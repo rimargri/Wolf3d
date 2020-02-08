@@ -39,7 +39,7 @@ void	test_wolf(t_sdl *sdl)
 	t_color col;
 	t_color *img;
 
-	img = (t_color*)malloc(sizeof(t_color) * WIN_W * WIN_H);
+	// img = (t_color*)malloc(sizeof(t_color) * WIN_W * WIN_H);
 	j = 0;
 	rect_w = WIN_W / MAP_W;
 	rect_h = WIN_H / MAP_H;
@@ -67,43 +67,48 @@ void	test_wolf(t_sdl *sdl)
 			col.r = (double)(255 * j / WIN_H);
 			col.g = (double)(255 * i / WIN_W);
 			col.b = 0;
-			img[i + j * WIN_W] = col;
+			SDL_SetRenderDrawColor(sdl->renderer, col.r, col.g, col.b, 0xFF);
+			SDL_RenderDrawPoint(sdl->renderer, i, j);
+			// img[i + j * WIN_W] = col;
 			i++;
 		}
 		j++;
 	}
-	i = 0;
 	j = 0;
 	while (j < MAP_H)
 	{
 		i = 0;
 		while (i < MAP_W)
 		{
-			while (map[i + j * MAP_W] == ' ')
+			if (map[i + j * MAP_W] == ' ')
+			{
 				i++;
+				continue;
+			}
 			rect_x = i * rect_w;
 			rect_y = j * rect_h;
 			draw_rect(img, rect_x, rect_y, rect_w, rect_h, (t_color){0, 255, 255}, sdl->renderer);
+			i++;
 		}
 		j++;
 	}
 }
 
-int     main(void)
+int		main(void)
 {
 	t_sdl *sdl;
 
 	sdl = init_sdl();
-	int finished;
-	finished = 1;
+	int running;
+	running = 1;
 	printf("before_init\n");
-	sdl = init_sdl();
+	// sdl = init_sdl();
 	printf("after_init\n");
-	while (finished)
+	while (running)
 	{
 		SDL_PollEvent(&sdl->event);
 		if (sdl->event.type == SDL_QUIT)
-			finished = 0;
+			running = 0;
 		clear_window_sdl(sdl);
 		test_wolf(sdl);
 		SDL_RenderPresent(sdl->renderer);

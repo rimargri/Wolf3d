@@ -34,8 +34,8 @@ typedef struct		s_sdl
 }					t_sdl;
 
 
-//t_sdl	*init_sdl(void);
-void	init_sdl(t_sdl *sdl);
+t_sdl	*init_sdl(void);
+// void	init_sdl(t_sdl *sdl);
 void	destroy_sdl(t_sdl *sdl);
 void	clear_window_sdl(t_sdl *sdl);
 
