@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   data_sdl.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/08 15:41:15 by cvernius          #+#    #+#             */
+/*   Updated: 2020/02/08 19:25:20 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
 t_sdl	*init_sdl(void)
 {
 	t_sdl *sdl;
 
-	printf("1ya tut\n");
 	sdl = (t_sdl*)malloc(sizeof(t_sdl));
-	printf("%p\n", sdl);
+	if (!sdl)
+		exit(99);
 	SDL_Init(SDL_INIT_VIDEO);
-	printf("2ya tut\n");
 	sdl->window = SDL_CreateWindow("WOLF3d", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, W, H, SDL_WINDOW_SHOWN);
 	if (!sdl->window)
 		exit(98);

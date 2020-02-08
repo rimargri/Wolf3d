@@ -1,80 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf_test.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
+/*   Updated: 2020/02/08 19:37:34 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-// int		get_color(t_color color)
-// {
-// 	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
-// }
-
-void    draw_rect(t_color *img, int x, int y, int w, int h, t_color col, SDL_Renderer *renderer)
-{
-    int i;
-	int j;
-	t_vec2 offset;
-
-	i = 0;
-	while (i < w)
-	{
-	    j = 0;
-	    while (j < h)
-	    {
-			offset.x = i + x;
-			offset.y = j + y;
-			img[offset.x + offset.y * IMG_W] = col;
-			SDL_SetRenderDrawColor(renderer, col.r, col.g, col.b, 0xFF);
-			SDL_RenderDrawPoint(renderer, offset.x, offset.y);
-	    	j++;
-		}
-		i++;
-	}
-}
-
-void	test_wolf(t_sdl *sdl)
+void	background_for_map(t_sdl *sdl)
 {
 	int i;
 	int j;
-	int rect_w;
-	int rect_h;
-	int rect_x;
-	int rect_y;
 	t_color col;
-	t_color *img;
 
-	// img = (t_color*)malloc(sizeof(t_color) * WIN_W * WIN_H);
 	j = 0;
-	rect_w = WIN_W / MAP_W;
-	rect_h = WIN_H / MAP_H;
-    char map[] = "0000222222220000"\
-                 "1              0"\
-                 "1      11111   0"\
-                 "1     0        0"\
-                 "0     0  1110000"\
-                 "0     3        0"\
-                 "0   10000      0"\
-                 "0   0   11100  0"\
-                 "0   0   0      0"\
-                 "0   0   1  00000"\
-                 "0       1      0"\
-                 "2       1      0"\
-                 "0       0      0"\
-                 "0 0000000      0"\
-                 "0              0"\
-                 "0002222222200000"; 
-    while (j < WIN_H)
+	while (j < WIN_H)
 	{
 		i = 0;
 		while (i < WIN_W)
 		{
-			col.r = (double)(255 * j / WIN_H);
-			col.g = (double)(255 * i / WIN_W);
-			col.b = 0;
-			SDL_SetRenderDrawColor(sdl->renderer, col.r, col.g, col.b, 0xFF);
-			SDL_RenderDrawPoint(sdl->renderer, i, j);
-			// img[i + j * WIN_W] = col;
+			col.r = (255 * j / WIN_H);
+			col.g = (255 * i / WIN_W);
+			col.b = 200;
+			set_pixel(sdl->renderer, col, i, j);
 			i++;
 		}
 		j++;
+		printf("j %d\n", j);
 	}
+}
+
+void	walls_on_map(t_sdl *sdl, char *map)
+{
+	int i;
+	int j;
+	t_vec2 rect;
+
 	j = 0;
+	rect = (t_vec2){0, 0};
 	while (j < MAP_H)
 	{
 		i = 0;
@@ -85,34 +53,11 @@ void	test_wolf(t_sdl *sdl)
 				i++;
 				continue;
 			}
-			rect_x = i * rect_w;
-			rect_y = j * rect_h;
-			draw_rect(img, rect_x, rect_y, rect_w, rect_h, (t_color){0, 255, 255}, sdl->renderer);
+			rect.x = i * RECT_W; // перевод координат в масштаб окна из масштаба карты
+			rect.y = j * RECT_H;
+			draw_rect(rect, RECT_W, RECT_H, (t_color){153, 113, 233}, sdl->renderer);
 			i++;
 		}
 		j++;
 	}
-}
-
-int		main(void)
-{
-	t_sdl *sdl;
-
-	sdl = init_sdl();
-	int running;
-	running = 1;
-	printf("before_init\n");
-	// sdl = init_sdl();
-	printf("after_init\n");
-	while (running)
-	{
-		SDL_PollEvent(&sdl->event);
-		if (sdl->event.type == SDL_QUIT)
-			running = 0;
-		clear_window_sdl(sdl);
-		test_wolf(sdl);
-		SDL_RenderPresent(sdl->renderer);
-	}
-	destroy_sdl(sdl);
-	return (0);
 }

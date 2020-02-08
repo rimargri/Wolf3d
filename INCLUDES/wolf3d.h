@@ -1,17 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
+/*   Updated: 2020/02/08 19:28:58 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h> //!--------------------------------------------------------
 #ifndef WOLF_3D
 # define WOLF_3D
 #include <SDL.h>
 #include <stdlib.h>
-#include <stdio.h>
-# define W 512
-# define H 512
+#include <math.h>
 # define WIN_W 512
 # define WIN_H 512
 # define MAP_W 16
 # define MAP_H 16
-// # define RECT_W (WIN_W / MAP_W)
-// # define RECT_H (WIN_H / MAP_H)
-# define IMG_W WIN_W
+# define RECT_W (WIN_W / MAP_W)
+# define RECT_H (WIN_H / MAP_H)
 
 typedef struct  	s_vec2
 {
@@ -33,10 +43,11 @@ typedef struct		s_sdl
 	SDL_Event		event;
 }					t_sdl;
 
-
 t_sdl	*init_sdl(void);
-// void	init_sdl(t_sdl *sdl);
 void	destroy_sdl(t_sdl *sdl);
 void	clear_window_sdl(t_sdl *sdl);
-
+void	wolf_test(t_sdl *sdl);
+void	set_pixel(SDL_Renderer *ren, t_color col, int x, int y);
+void    draw_rect(t_vec2 v, int w, int h, t_color col, SDL_Renderer *renderer);
+void	background_for_map(t_sdl *sdl);
 #endif
