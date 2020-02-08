@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/08 19:01:29 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/08 22:11:51 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	set_pixel(SDL_Renderer *ren, t_color col, int x, int y)
 ** до правого пикселя в нижнем правом - весь rectangle отрисован
 */
 
-void    draw_rect(t_vec2 first, int w, int h, t_color col, SDL_Renderer *renderer)
+void    draw_rect(t_vec2 frstpix, int w, int h, t_color col, SDL_Renderer *ren)
 {
     int i;
 	int j;
@@ -38,9 +38,9 @@ void    draw_rect(t_vec2 first, int w, int h, t_color col, SDL_Renderer *rendere
 	    j = 0;
 	    while (j < h)
 	    {
-			offset.x = first.x + i;
-			offset.y = first.y + j;
-			set_pixel(renderer, col, offset.x, offset.y);
+			offset.x = frstpix.x + i;
+			offset.y = frstpix.y + j;
+			set_pixel(ren, col, offset.x, offset.y);
 	    	j++;
 		}
 		i++;

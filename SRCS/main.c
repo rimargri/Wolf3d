@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/08 19:37:43 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/08 22:26:12 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	wolf_test(t_sdl *sdl)
 {
 	char *map;
+	t_vec2 player;
     
 	map = (char*)malloc(sizeof(char) * 258);
 	map   = "0000222222220000"\
@@ -35,6 +36,9 @@ void	wolf_test(t_sdl *sdl)
 			"0002222222200000";
 	background_for_map(sdl);
 	walls_on_map(sdl, map);
+	player = player_on_map(sdl); //! проинициализировать player в начале т к потом камера будет двигаться -> будут меняться значения
+	// printf("player.x = %d\nplayer.y = %d\n", player.x, player.y);
+	cast_ray(sdl, map, player);
 }
 
 int		main(void)
@@ -54,5 +58,6 @@ int		main(void)
 		SDL_RenderPresent(sdl->renderer);
 	}
 	destroy_sdl(sdl);
+	exit(100);
 	return (0);
 }

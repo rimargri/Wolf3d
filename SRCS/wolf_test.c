@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/08 19:37:34 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/08 23:22:46 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,18 @@ void	background_for_map(t_sdl *sdl)
 		i = 0;
 		while (i < WIN_W)
 		{
-			col.r = (255 * j / WIN_H);
-			col.g = (255 * i / WIN_W);
-			col.b = 200;
+			// col.r = (255 * j / WIN_H);
+			// col.g = (255 * i / WIN_W);
+			// col.b = 200;
+			col.r = 255;
+			col.g = 255;
+			col.b = 255; 
 			set_pixel(sdl->renderer, col, i, j);
 			i++;
 		}
 		j++;
-		printf("j %d\n", j);
+		if (j % 100 == 0)
+			printf("j %d\n", j);
 	}
 }
 
@@ -60,4 +64,17 @@ void	walls_on_map(t_sdl *sdl, char *map)
 		}
 		j++;
 	}
+}
+
+t_vec2	player_on_map(t_sdl *sdl)
+{
+	t_vec2 player;
+	t_vec2 transform;
+
+	player.x = 5;
+	player.y = 2;
+	transform.x = player.x * RECT_W;
+	transform.y = player.y * RECT_H;
+	draw_rect(transform, 6, 6, (t_color){255, 255, 255}, sdl->renderer);
+	return (player);
 }

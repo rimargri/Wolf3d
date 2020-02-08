@@ -8,7 +8,7 @@ OBJ_DIR = ./OBJ
 
 INCL_DIR = ./INCLUDES
 
-C_FILES = main.c wolf_test.c data_sdl.c draw_rectangle.c
+C_FILES = main.c data_sdl.c drawing.c wolf_test.c reycast.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -19,8 +19,7 @@ RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 SDLCFLAGS := $(shell sdl2-config --cflags)
 SDLLFLAGS := $(shell sdl2-config --libs) -framework OpenGL -framework Cocoa -framework AppKit #$(shell sdl2-config --static-libs)
 
-CFLAGS = -Wall -Wextra
-# -Werror
+CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -O3
 
 all: $(OBJ_DIR) $(NAME)

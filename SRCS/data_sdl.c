@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:15 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/08 19:25:20 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/08 23:21:51 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_sdl	*init_sdl(void)
 	if (!sdl)
 		exit(99);
 	SDL_Init(SDL_INIT_VIDEO);
-	sdl->window = SDL_CreateWindow("WOLF3d", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, W, H, SDL_WINDOW_SHOWN);
+	sdl->window = SDL_CreateWindow("WOLF3d", SDL_WINDOWPOS_CENTERED,
+					SDL_WINDOWPOS_CENTERED, WIN_W * 2, WIN_H, SDL_WINDOW_OPENGL);
 	if (!sdl->window)
 		exit(98);
 	sdl->renderer = SDL_CreateRenderer(sdl->window, -1, SDL_RENDERER_ACCELERATED);
