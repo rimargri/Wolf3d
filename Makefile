@@ -12,15 +12,27 @@ C_FILES = main.c data_sdl.c drawing.c wolf_test.c reycast.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
+detected_OS := $(shell uname 2>/dev/null || echo Unknown)
+detected_OS := $(patsubst CYGWIN%,Cygwin,$(detected_OS))
+detected_OS := $(patsubst MSYS%,MSYS,$(detected_OS))
+detected_OS := $(patsubst MINGW%,MSYS,$(detected_OS))
+
+
 # RAW_C_FILES = $(addprefix $(SRC_DIR)/,$(C_FILES))
 
 RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 
 SDLCFLAGS := $(shell sdl2-config --cflags)
-SDLLFLAGS := $(shell sdl2-config --libs) -framework OpenGL -framework Cocoa -framework AppKit #$(shell sdl2-config --static-libs)
+SDLLFLAGS := $(shell sdl2-config --libs)
+ifeq ($(detected_OS),Darwin)        # Mac OS X
+    SDLLFLAGS += -framework OpenGL -framework Cocoa -framework AppKit
+endif
+ifeq ($(detected_OS),Linux)
+    SDLLFLAGS += $(shell sdl2-config --static-libs)
+endif
 
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -O3
+CFLAGS += -O2
 
 all: $(OBJ_DIR) $(NAME)
 
