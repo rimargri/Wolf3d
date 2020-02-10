@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_rectangle.c                                   :+:      :+:    :+:   */
+/*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/08 22:11:51 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/10 20:57:20 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	set_pixel(SDL_Renderer *ren, t_color col, int x, int y)
+int		get_color(t_color color)
 {
-	SDL_SetRenderDrawColor(ren, col.r, col.g, col.b, 0xFF);
-	SDL_RenderDrawPoint(ren, x, y);	
+	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }
 
 /*
@@ -26,13 +25,15 @@ void	set_pixel(SDL_Renderer *ren, t_color col, int x, int y)
 ** до правого пикселя в нижнем правом - весь rectangle отрисован
 */
 
-void    draw_rect(t_vec2 frstpix, int w, int h, t_color col, SDL_Renderer *ren)
+void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx *mlx)
 {
     int i;
 	int j;
-	t_vec2 offset;
+	int color;
+	t_ivec2 offset;
 
 	i = 0;
+	color = get_color(col);
 	while (i < w)
 	{
 	    j = 0;
@@ -40,7 +41,7 @@ void    draw_rect(t_vec2 frstpix, int w, int h, t_color col, SDL_Renderer *ren)
 	    {
 			offset.x = frstpix.x + i;
 			offset.y = frstpix.y + j;
-			set_pixel(ren, col, offset.x, offset.y);
+			mlx_pixel_put(mlx->mptr, mlx->wptr, offset.x, offset.y, color);
 	    	j++;
 		}
 		i++;
