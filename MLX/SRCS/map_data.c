@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/10 21:41:40 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/11 20:09:36 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,14 @@ void	walls_on_map(t_mlx *mlx, char *map)
 	}
 }
 
-t_ivec2	player_on_map(t_mlx *mlx)
+t_player	player_on_map(t_mlx *mlx)
 {
-	t_ivec2 player;
-	t_ivec2 transform;
+	t_player p;
 
-	player.x = 5;
-	player.y = 2;
-	transform.x = player.x * RECT_W;
-	transform.y = player.y * RECT_H;
-	draw_rect(transform, 6, 6, (t_color){255, 255, 255}, mlx);
-	return (player);
+	p.pos.x = 5;
+	p.pos.y = 2;
+	p.transform.x = p.pos.x * RECT_W;
+	p.transform.y = p.pos.y * RECT_H;
+	draw_rect(p.transform, 6, 6, (t_color){255, 255, 255}, mlx);
+	return (p);
 }

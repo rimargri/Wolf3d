@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/10 16:16:03 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/11 20:10:38 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@
 # define RECT_H (WIN_H / MAP_H)
 # define FOV M_PI / 3.0
 
-// s_vec2 == s_ivec2 //!!-----------------------------------------------
-// s_fvec2 == s_vec2
-// WIN_W = 1024
-
 typedef struct  	s_ivec2
 {
     int         	x;
@@ -39,6 +35,13 @@ typedef struct		s_vec2
 	double			x;
 	double			y;
 }					t_vec2;
+
+typedef struct  	s_color
+{
+    int         	r;
+    int         	g;
+    int         	b;
+}               	t_color;
 
 typedef struct		s_player
 {
@@ -56,13 +59,6 @@ typedef struct		s_reycast
 	t_ivec2			transform;
 	int				current_pix;
 }					t_reycast;
-
-typedef struct  	s_color
-{
-    int         	r;
-    int         	g;
-    int         	b;
-}               	t_color;
 
 typedef struct		s_sdl
 {

@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/10 21:02:22 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/11 19:09:15 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,6 @@ RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
-# SDLCFLAGS := $(shell sdl2-config --cflags)
-# SDLLFLAGS := $(shell sdl2-config --libs) -framework OpenGL -framework Cocoa -framework AppKit #$(shell sdl2-config --static-libs)
-
 CFLAGS = -Wall -Wextra
 # CFLAGS += -Werror
 # CFLAGS += -g
@@ -47,7 +44,6 @@ $(NAME): $(RAW_OBJ_FILES)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	gcc $(CFLAGS) -I $(INCL_DIR) -c $< -o $@
-	# gcc $(CFLAGS) $(MLX_FLAGS) -I $(INCL_DIR) -c $< -o $@
 
 clean:
 	rm -rf $(RAW_OBJ_FILES)

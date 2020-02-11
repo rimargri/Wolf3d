@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/10 21:02:11 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/11 20:07:12 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*get_map(void)
 
 void	create_objects(t_mlx *mlx)
 {
-	t_ivec2 player;
+	t_player player;
 
 	background_for_map(mlx);
 	walls_on_map(mlx, mlx->map);
