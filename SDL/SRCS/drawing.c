@@ -26,11 +26,11 @@ void	set_pixel(SDL_Renderer *ren, t_color col, int x, int y)
 ** до правого пикселя в нижнем правом - весь rectangle отрисован
 */
 
-void    draw_rect(t_vec2 frstpix, int w, int h, t_color col, SDL_Renderer *ren)
+void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, SDL_Renderer *ren)
 {
     int i;
 	int j;
-	t_vec2 offset;
+	t_ivec2 offset;
 
 	i = 0;
 	while (i < w)

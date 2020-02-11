@@ -36,15 +36,15 @@ char	*get_map(void)
 	return (map);
 }
 
-void	wolf_test(t_sdl *sdl, char *map)
+void	create_objects(t_sdl *sdl, char *map)
 {
-	t_vec2 player;
+	t_player player;
 
 	background_for_map(sdl);
-	// walls_on_map(sdl, map);
-	// player = player_on_map(sdl); //! проинициализировать player в начале т к потом камера будет двигаться -> будут меняться значения
+	walls_on_map(sdl, map);
+	player = player_on_map(sdl); //! проинициализировать player в начале т к потом камера будет двигаться -> будут меняться значения
 	// printf("player.x = %d\nplayer.y = %d\n", player.x, player.y);
-	// cast_ray(sdl, map, player);
+	cast_ray(sdl, map, player);
 }
 
 int		main(void)
@@ -58,13 +58,8 @@ int		main(void)
 	sdl = init_sdl();
 	while (1)
 	{
-		// SDL_PollEvent(&sdl->event);
-		// if (sdl->event.type == SDL_QUIT)
-		// 	running = 0;
-
-		SDL_SetRenderTarget(sdl->renderer, NULL);
 		clear_window_sdl(sdl);
-		wolf_test(sdl, map);
+		create_objects(sdl, map);
 		SDL_RenderPresent(sdl->renderer);
 		while (SDL_PollEvent(&sdl->event))
 		{

@@ -40,7 +40,7 @@ void	destroy_sdl(t_sdl *sdl)
 
 void	clear_window_sdl(t_sdl *sdl)
 {
-	// SDL_SetRenderTarget(sdl->renderer, NULL);
+	SDL_SetRenderTarget(sdl->renderer, NULL);
 	SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 0xFF); // задание цвета фона
     SDL_RenderClear(sdl->renderer);
 }

@@ -16,7 +16,7 @@
 #include <SDL.h>
 #include <stdlib.h>
 #include <math.h>
-# define WIN_W 512
+# define WIN_W 1024
 # define WIN_H 512
 # define MAP_W 16
 # define MAP_H 16
@@ -28,17 +28,34 @@
 // s_fvec2 == s_vec2
 // WIN_W = 1024
 
-typedef struct  	s_vec2
+typedef struct  	s_ivec2
 {
     int         	x;
     int         	y;
-}               	t_vec2;
+}               	t_ivec2;
 
-typedef struct		s_fvec2
+typedef struct		s_vec2
 {
 	double			x;
 	double			y;
-}					t_fvec2;
+}					t_vec2;
+
+typedef struct		s_player
+{
+	t_ivec2			pos;
+	t_ivec2			transform;
+}					t_player;
+
+typedef struct		s_reycast
+{
+	float			vec_dir;
+	float			angle;
+	float			t;
+	t_player		player;
+	t_vec2			len;
+	t_ivec2			transform;
+	int				current_pix;
+}					t_reycast;
 
 typedef struct  	s_color
 {
@@ -54,15 +71,15 @@ typedef struct		s_sdl
 	SDL_Event		event;
 }					t_sdl;
 
-t_sdl	*init_sdl(void);
-void	destroy_sdl(t_sdl *sdl);
-void	clear_window_sdl(t_sdl *sdl);
-void	wolf_test(t_sdl *sdl, char *map);
-void	set_pixel(SDL_Renderer *ren, t_color col, int x, int y);
-void    draw_rect(t_vec2 v, int w, int h, t_color col, SDL_Renderer *renderer);
-void	background_for_map(t_sdl *sdl);
-void	walls_on_map(t_sdl *sdl, char *map);
-t_vec2	player_on_map(t_sdl *sdl);
-void	cast_ray(t_sdl *sdl, char *map, t_vec2 player);
+t_sdl		*init_sdl(void);
+void		destroy_sdl(t_sdl *sdl);
+void		clear_window_sdl(t_sdl *sdl);
+void		wolf_test(t_sdl *sdl, char *map);
+void		set_pixel(SDL_Renderer *ren, t_color col, int x, int y);
+void    	draw_rect(t_ivec2 v, int w, int h, t_color col, SDL_Renderer *renderer);
+void		background_for_map(t_sdl *sdl);
+void		walls_on_map(t_sdl *sdl, char *map);
+t_player	player_on_map(t_sdl *sdl);
+void		cast_ray(t_sdl *sdl, char *map, t_player player);
 
 #endif

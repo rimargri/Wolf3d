@@ -19,17 +19,15 @@ void	background_for_map(t_sdl *sdl)
 	t_color col;
 
 	j = 0;
-	SDL_SetRenderDrawColor(sdl->renderer, 5, 50, 150, 255);
 	while (j < WIN_H)
 	{
 		i = 0;
 		while (i < WIN_W)
 		{
-			// col.r = (255 * j / WIN_H);
-			// col.g = (255 * i / WIN_W);
-			// col.b = 200;
-			SDL_RenderDrawPoint(sdl->renderer, i, j);
-			// set_pixel(sdl->renderer, col, i, j);
+			col.r = (255 * j / WIN_H);
+			col.g = (255 * i / WIN_W);
+			col.b = 200;
+			set_pixel(sdl->renderer, col, i, j);
 			i++;
 		}
 		j++;
@@ -42,14 +40,14 @@ void	walls_on_map(t_sdl *sdl, char *map)
 {
 	int i;
 	int j;
-	t_vec2 rect;
+	t_ivec2 rect;
 
 	j = 0;
-	rect = (t_vec2){0, 0};
+	rect = (t_ivec2){0, 0};
 	while (j < MAP_H)
 	{
 		i = 0;
-		while (i < MAP_W)
+		while (i < MAP_W / 2)
 		{
 			if (map[i + j * MAP_W] == ' ')
 			{
@@ -65,15 +63,14 @@ void	walls_on_map(t_sdl *sdl, char *map)
 	}
 }
 
-t_vec2	player_on_map(t_sdl *sdl)
+t_ivec2	player_on_map(t_sdl *sdl)
 {
-	t_vec2 player;
-	t_vec2 transform;
+	t_player	p;
 
-	player.x = 5;
-	player.y = 2;
-	transform.x = player.x * RECT_W;
-	transform.y = player.y * RECT_H;
-	draw_rect(transform, 6, 6, (t_color){255, 255, 255}, sdl->renderer);
-	return (player);
+	p.pos.x = 5;
+	p.pos.y = 2;
+	p.transform.x = p.pos.x * RECT_W;
+	p.transform.y = p.pos.y * RECT_H;
+	draw_rect(p.transform, 6, 6, (t_color){255, 255, 255}, sdl->renderer);
+	return (p.pos);
 }
