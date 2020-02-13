@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/10 20:57:20 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/13 19:13:08 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		get_color(t_color color)
 ** до правого пикселя в нижнем правом - весь rectangle отрисован
 */
 
-void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx *mlx)
+void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx mlx)
 {
     int i;
 	int j;
@@ -41,7 +41,7 @@ void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx *mlx)
 	    {
 			offset.x = frstpix.x + i;
 			offset.y = frstpix.y + j;
-			mlx_pixel_put(mlx->mptr, mlx->wptr, offset.x, offset.y, color);
+			mlx_pixel_put(mlx.mptr, mlx.wptr, offset.x, offset.y, color);
 	    	j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/11 19:09:15 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/13 23:29:25 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_DIR = ./OBJ
 
 INCL_DIR = ./INCLUDES
 
-C_FILES = main.c key_press.c drawing.c map_data.c reycast.c
+C_FILES = main.c key_press.c drawing.c map_data.c reycast.c calc_player_pos.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

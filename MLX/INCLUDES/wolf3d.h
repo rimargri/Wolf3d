@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/11 20:10:44 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/13 23:37:35 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define WIDTH 1200
 # define KEY_ESC 53
 # define KEY_1 18
+# define KEY_2 19
 # define KEY_SPACE 49
 # define KEY_A 0
 # define KEY_D 2
@@ -74,24 +75,39 @@ typedef struct		s_reycast
 	t_vec2			len;
 	t_ivec2			transform;
 	int				current_pix;
-	int				color;
+	t_color			color;
 }					t_reycast;
+
+typedef struct s_raycast {
+	float distance;
+	t_color wall_color;
+} t_raycast;
 
 typedef struct		s_mlx
 {
 	void			*mptr;
 	void			*wptr;
-    char            *map;
 }					t_mlx;
 
-int					key_press(int k, t_mlx *mlx);
+typedef struct		s_wolf
+{
+	t_mlx			mlx;
+	t_reycast		r;
+	t_player		player;
+	char			*map;
+}					t_wolf;
+
+int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
 int					get_color(t_color color);
-void				create_objects(t_mlx *mlx);
-void    			draw_rect(t_ivec2 v, int w, int h, t_color col, t_mlx *mlx);
-void				background_for_map(t_mlx *mlx);
-void				walls_on_map(t_mlx *mlx, char *map);
-t_player			player_on_map(t_mlx *mlx);
-void				cast_ray(t_mlx *mlx, char *map, t_player player);
+void				create_objects(t_wolf *w);
+void    			draw_rect(t_ivec2 v, int w, int h, t_color col, t_mlx mlx);
+void				draw_background(t_wolf *w);
+void				draw_walls(t_wolf *w, char *map);
+void				draw_player(t_wolf *w);
+void				cast_ray(t_reycast r, t_wolf *w, char *map);
+void				init_reycast(t_wolf *wolf);
+void				init_player(t_wolf *w);
+void				calc_player_pos(t_wolf *w, int k);
 
 #endif
