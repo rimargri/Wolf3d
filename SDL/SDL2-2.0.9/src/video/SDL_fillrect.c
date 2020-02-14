@@ -231,7 +231,7 @@ SDL_FillRect4(Uint8 * pixels, int pitch, Uint32 color, int w, int h)
 }
 
 /* 
- * This function performs a fast fill of the given rectangle with 'color'
+ * This function performs a fast fill of the given rectcolumn_angle with 'color'
  */
 int
 SDL_FillRect(SDL_Surface * dst, const SDL_Rect * rect, Uint32 color)

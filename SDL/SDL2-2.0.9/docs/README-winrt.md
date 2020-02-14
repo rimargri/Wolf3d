@@ -61,7 +61,7 @@ Here is a rough list of what works, and what doesn't:
   * compile-time platform detection for SDL programs.  The C/C++ #define,
     `__WINRT__`, will be set to 1 (by SDL) when compiling for WinRT.
   * GPU-accelerated 2D rendering, via SDL_Renderer.
-  * OpenGL ES 2, via the ANGLE library (included separately from SDL)
+  * OpenGL ES 2, via the column_angle library (included separately from SDL)
   * software rendering, via either SDL_Surface (optionally in conjunction with
     SDL_GetWindowSurface() and SDL_UpdateWindowSurface()) or via the
     SDL_Renderer APIs

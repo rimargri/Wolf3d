@@ -855,7 +855,7 @@ extern DECLSPEC SDL_Surface * SDLCALL SDL_GetWindowSurface(SDL_Window * window);
 extern DECLSPEC int SDLCALL SDL_UpdateWindowSurface(SDL_Window * window);
 
 /**
- *  \brief Copy a number of rectangles on the window surface to the screen.
+ *  \brief Copy a number of rectcolumn_angles on the window surface to the screen.
  *
  *  \return 0 on success, or -1 on error.
  *

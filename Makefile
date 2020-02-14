@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 18:58:16 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/11 20:20:36 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/14 18:48:30 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ ifeq ($(detected_OS),Linux)
 	INCL_DIR = $(addprefix SDL/,$(INCL_DIR))
 endif
 
-C_FILES = main.c drawing.c map_data.c reycast.c
+C_FILES = main.c drawing.c map_data.c raycast.c
 
 ifeq ($(detected_OS),Linux)
 	C_FILES += data_sdl.c

@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:05 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/10 20:07:38 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/14 18:48:30 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_DIR = ./OBJ
 
 INCL_DIR = ./INCLUDES
 
-C_FILES = main.c data_sdl.c drawing.c map_data.c reycast.c
+C_FILES = main.c data_sdl.c drawing.c map_data.c raycast.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

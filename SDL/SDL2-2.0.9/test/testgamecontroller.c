@@ -52,7 +52,7 @@ static const struct { int x; int y; } button_positions[] = {
 };
 
 /* This is indexed by SDL_GameControllerAxis. */
-static const struct { int x; int y; double angle; } axis_positions[] = {
+static const struct { int x; int y; double column_angle; } axis_positions[] = {
     {74,  153, 270.0},  /* LEFTX */
     {74,  153, 0.0},  /* LEFTY */
     {306, 231, 270.0},  /* RIGHTX */
@@ -146,12 +146,12 @@ loop(void *arg)
         const Sint16 value = SDL_GameControllerGetAxis(gamecontroller, (SDL_GameControllerAxis)(i));
         if (value < -deadzone) {
             const SDL_Rect dst = { axis_positions[i].x, axis_positions[i].y, 50, 50 };
-            const double angle = axis_positions[i].angle;
-            SDL_RenderCopyEx(screen, axis, NULL, &dst, angle, NULL, SDL_FLIP_NONE);
+            const double column_angle = axis_positions[i].column_angle;
+            SDL_RenderCopyEx(screen, axis, NULL, &dst, column_angle, NULL, SDL_FLIP_NONE);
         } else if (value > deadzone) {
             const SDL_Rect dst = { axis_positions[i].x, axis_positions[i].y, 50, 50 };
-            const double angle = axis_positions[i].angle + 180.0;
-            SDL_RenderCopyEx(screen, axis, NULL, &dst, angle, NULL, SDL_FLIP_NONE);
+            const double column_angle = axis_positions[i].column_angle + 180.0;
+            SDL_RenderCopyEx(screen, axis, NULL, &dst, column_angle, NULL, SDL_FLIP_NONE);
         }
     }
 

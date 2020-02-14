@@ -71,7 +71,7 @@
 		FD5F9CEC0E0E0741008E885B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB96EDF0DEFC9DC00FAF19F /* QuartzCore.framework */; };
 		FD77A00E0E26BC0500F39101 /* happy.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A0080E26BC0500F39101 /* happy.c */; };
 		FD77A0130E26BC0500F39101 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A0060E26BC0500F39101 /* common.c */; };
-		FD77A0160E26BC0500F39101 /* rectangles.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A00A0E26BC0500F39101 /* rectangles.c */; };
+		FD77A0160E26BC0500F39101 /* rectcolumn_angles.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A00A0E26BC0500F39101 /* rectcolumn_angles.c */; };
 		FD77A0190E26BC0500F39101 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A0060E26BC0500F39101 /* common.c */; };
 		FD77A01F0E26BC0500F39101 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A0060E26BC0500F39101 /* common.c */; };
 		FD77A0230E26BC0500F39101 /* touch.c in Sources */ = {isa = PBXBuildFile; fileRef = FD77A00B0E26BC0500F39101 /* touch.c */; };
@@ -223,7 +223,7 @@
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Rectangles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rectangles.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Rectcolumn_angles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rectcolumn_angles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA30DE961BBF59D9009C397F /* Happy-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Happy-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,7 +240,7 @@
 		FD77A0070E26BC0500F39101 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		FD77A0080E26BC0500F39101 /* happy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = happy.c; sourceTree = "<group>"; };
 		FD77A0090E26BC0500F39101 /* mixer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mixer.c; sourceTree = "<group>"; };
-		FD77A00A0E26BC0500F39101 /* rectangles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rectangles.c; sourceTree = "<group>"; };
+		FD77A00A0E26BC0500F39101 /* rectcolumn_angles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rectcolumn_angles.c; sourceTree = "<group>"; };
 		FD77A00B0E26BC0500F39101 /* touch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = touch.c; sourceTree = "<group>"; };
 		FD787AA00E22A5CC003E8E36 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FD925B180E0F276600E92347 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Rectangles.app */,
+				1D6058910D05DD3D006BFB54 /* Rectcolumn_angles.app */,
 				FD15FCB20E086866003BDF25 /* Happy.app */,
 				FD5F9BE40E0DEBEA008E885B /* Accel.app */,
 				FDC202EE0E107B1200ABAC90 /* Touch.app */,
@@ -484,7 +484,7 @@
 			children = (
 				FD77A0060E26BC0500F39101 /* common.c */,
 				FD77A0070E26BC0500F39101 /* common.h */,
-				FD77A00A0E26BC0500F39101 /* rectangles.c */,
+				FD77A00A0E26BC0500F39101 /* rectcolumn_angles.c */,
 				FD77A0080E26BC0500F39101 /* happy.c */,
 				FD77A0050E26BC0500F39101 /* accelerometer.c */,
 				FD77A00B0E26BC0500F39101 /* touch.c */,
@@ -531,9 +531,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Rectangles */ = {
+		1D6058900D05DD3D006BFB54 /* Rectcolumn_angles */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Rectangles" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Rectcolumn_angles" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -544,9 +544,9 @@
 			dependencies = (
 				049F3695130CD86800FF080F /* PBXTargetDependency */,
 			);
-			name = Rectangles;
+			name = Rectcolumn_angles;
 			productName = SDLiPodTest;
-			productReference = 1D6058910D05DD3D006BFB54 /* Rectangles.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Rectcolumn_angles.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FA30DE951BBF59D9009C397F /* Happy-TV */ = {
@@ -712,7 +712,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Rectangles */,
+				1D6058900D05DD3D006BFB54 /* Rectcolumn_angles */,
 				FD15FCB10E086866003BDF25 /* Happy */,
 				FA30DE951BBF59D9009C397F /* Happy-TV */,
 				FD5F9BE30E0DEBEA008E885B /* Accel */,
@@ -841,7 +841,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD77A0130E26BC0500F39101 /* common.c in Sources */,
-				FD77A0160E26BC0500F39101 /* rectangles.c in Sources */,
+				FD77A0160E26BC0500F39101 /* rectcolumn_angles.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,8 +958,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Rectangles;
-				PRODUCT_NAME = Rectangles;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Rectcolumn_angles;
+				PRODUCT_NAME = Rectcolumn_angles;
 			};
 			name = Debug;
 		};
@@ -967,8 +967,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Rectangles;
-				PRODUCT_NAME = Rectangles;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.Rectcolumn_angles;
+				PRODUCT_NAME = Rectcolumn_angles;
 			};
 			name = Release;
 		};
@@ -1214,7 +1214,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Rectangles" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Rectcolumn_angles" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

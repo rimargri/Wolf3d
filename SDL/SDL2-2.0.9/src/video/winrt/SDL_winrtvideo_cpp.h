@@ -42,7 +42,7 @@ extern "C" {
 
 /* Private display data */
 typedef struct SDL_VideoData {
-    /* An object created by ANGLE/WinRT (OpenGL ES 2 for WinRT) that gets
+    /* An object created by column_angle/WinRT (OpenGL ES 2 for WinRT) that gets
      * passed to eglGetDisplay and eglCreateWindowSurface:
      */
     IUnknown *winrtEglWindow;

@@ -44,7 +44,7 @@ static SDL_sem *pad_sem = NULL;
 static SDL_Thread *thread = NULL;
 static int running = 0;
 static const enum PspCtrlButtons button_map[] = {
-    PSP_CTRL_TRIANGLE, PSP_CTRL_CIRCLE, PSP_CTRL_CROSS, PSP_CTRL_SQUARE,
+    PSP_CTRL_TRIcolumn_angle, PSP_CTRL_CIRCLE, PSP_CTRL_CROSS, PSP_CTRL_SQUARE,
     PSP_CTRL_LTRIGGER, PSP_CTRL_RTRIGGER,
     PSP_CTRL_DOWN, PSP_CTRL_LEFT, PSP_CTRL_UP, PSP_CTRL_RIGHT,
     PSP_CTRL_SELECT, PSP_CTRL_START, PSP_CTRL_HOME, PSP_CTRL_HOLD };

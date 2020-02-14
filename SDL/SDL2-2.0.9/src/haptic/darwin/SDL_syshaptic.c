@@ -440,7 +440,7 @@ GetSupportedFeatures(SDL_Haptic * haptic)
     /* !!! FIXME: put this back when we have more bits in 2.1 */
     /* FF_TEST(FFCAP_ET_SQUARE, SDL_HAPTIC_SQUARE); */
     FF_TEST(FFCAP_ET_SINE, SDL_HAPTIC_SINE);
-    FF_TEST(FFCAP_ET_TRIANGLE, SDL_HAPTIC_TRIANGLE);
+    FF_TEST(FFCAP_ET_TRIcolumn_angle, SDL_HAPTIC_TRIcolumn_angle);
     FF_TEST(FFCAP_ET_SAWTOOTHUP, SDL_HAPTIC_SAWTOOTHUP);
     FF_TEST(FFCAP_ET_SAWTOOTHDOWN, SDL_HAPTIC_SAWTOOTHDOWN);
     FF_TEST(FFCAP_ET_SPRING, SDL_HAPTIC_SPRING);
@@ -865,7 +865,7 @@ SDL_SYS_ToFFEFFECT(SDL_Haptic * haptic, FFEFFECT * dest, SDL_HapticEffect * src)
     case SDL_HAPTIC_SINE:
     /* !!! FIXME: put this back when we have more bits in 2.1 */
     /* case SDL_HAPTIC_SQUARE: */
-    case SDL_HAPTIC_TRIANGLE:
+    case SDL_HAPTIC_TRIcolumn_angle:
     case SDL_HAPTIC_SAWTOOTHUP:
     case SDL_HAPTIC_SAWTOOTHDOWN:
         hap_periodic = &src->periodic;
@@ -1097,8 +1097,8 @@ SDL_SYS_HapticEffectType(Uint16 type)
     case SDL_HAPTIC_SINE:
         return kFFEffectType_Sine_ID;
 
-    case SDL_HAPTIC_TRIANGLE:
-        return kFFEffectType_Triangle_ID;
+    case SDL_HAPTIC_TRIcolumn_angle:
+        return kFFEffectType_Tricolumn_angle_ID;
 
     case SDL_HAPTIC_SAWTOOTHUP:
         return kFFEffectType_SawtoothUp_ID;

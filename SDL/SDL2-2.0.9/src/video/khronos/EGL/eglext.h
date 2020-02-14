@@ -526,33 +526,33 @@ EGLAPI EGLBoolean EGLAPIENTRY eglPresentationTimeANDROID (EGLDisplay dpy, EGLSur
 #define EGL_RECORDABLE_ANDROID            0x3142
 #endif /* EGL_ANDROID_recordable */
 
-#ifndef EGL_ANGLE_d3d_share_handle_client_buffer
-#define EGL_ANGLE_d3d_share_handle_client_buffer 1
-#define EGL_D3D_TEXTURE_2D_SHARE_HANDLE_ANGLE 0x3200
-#endif /* EGL_ANGLE_d3d_share_handle_client_buffer */
+#ifndef EGL_column_angle_d3d_share_handle_client_buffer
+#define EGL_column_angle_d3d_share_handle_client_buffer 1
+#define EGL_D3D_TEXTURE_2D_SHARE_HANDLE_column_angle 0x3200
+#endif /* EGL_column_angle_d3d_share_handle_client_buffer */
 
-#ifndef EGL_ANGLE_device_d3d
-#define EGL_ANGLE_device_d3d 1
-#define EGL_D3D9_DEVICE_ANGLE             0x33A0
-#define EGL_D3D11_DEVICE_ANGLE            0x33A1
-#endif /* EGL_ANGLE_device_d3d */
+#ifndef EGL_column_angle_device_d3d
+#define EGL_column_angle_device_d3d 1
+#define EGL_D3D9_DEVICE_column_angle             0x33A0
+#define EGL_D3D11_DEVICE_column_angle            0x33A1
+#endif /* EGL_column_angle_device_d3d */
 
-#ifndef EGL_ANGLE_query_surface_pointer
-#define EGL_ANGLE_query_surface_pointer 1
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYSURFACEPOINTERANGLEPROC) (EGLDisplay dpy, EGLSurface surface, EGLint attribute, void **value);
+#ifndef EGL_column_angle_query_surface_pointer
+#define EGL_column_angle_query_surface_pointer 1
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYSURFACEPOINTERcolumn_anglePROC) (EGLDisplay dpy, EGLSurface surface, EGLint attribute, void **value);
 #ifdef EGL_EGLEXT_PROTOTYPES
-EGLAPI EGLBoolean EGLAPIENTRY eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSurface surface, EGLint attribute, void **value);
+EGLAPI EGLBoolean EGLAPIENTRY eglQuerySurfacePointercolumn_angle (EGLDisplay dpy, EGLSurface surface, EGLint attribute, void **value);
 #endif
-#endif /* EGL_ANGLE_query_surface_pointer */
+#endif /* EGL_column_angle_query_surface_pointer */
 
-#ifndef EGL_ANGLE_surface_d3d_texture_2d_share_handle
-#define EGL_ANGLE_surface_d3d_texture_2d_share_handle 1
-#endif /* EGL_ANGLE_surface_d3d_texture_2d_share_handle */
+#ifndef EGL_column_angle_surface_d3d_texture_2d_share_handle
+#define EGL_column_angle_surface_d3d_texture_2d_share_handle 1
+#endif /* EGL_column_angle_surface_d3d_texture_2d_share_handle */
 
-#ifndef EGL_ANGLE_window_fixed_size
-#define EGL_ANGLE_window_fixed_size 1
-#define EGL_FIXED_SIZE_ANGLE              0x3201
-#endif /* EGL_ANGLE_window_fixed_size */
+#ifndef EGL_column_angle_window_fixed_size
+#define EGL_column_angle_window_fixed_size 1
+#define EGL_FIXED_SIZE_column_angle              0x3201
+#endif /* EGL_column_angle_window_fixed_size */
 
 #ifndef EGL_ARM_implicit_external_sync
 #define EGL_ARM_implicit_external_sync 1

@@ -1377,12 +1377,12 @@
 
 	Damage is double-buffered state, see wl_surface.commit.
 
-	The damage rectangle is specified in surface-local coordinates,
-	where x and y specify the upper left corner of the damage rectangle.
+	The damage rectcolumn_angle is specified in surface-local coordinates,
+	where x and y specify the upper left corner of the damage rectcolumn_angle.
 
 	The initial value for pending damage is empty: no damage.
 	wl_surface.damage adds pending damage: the new pending damage
-	is the union of old pending damage and the given rectangle.
+	is the union of old pending damage and the given rectcolumn_angle.
 
 	wl_surface.commit assigns pending damage as the current damage,
 	and clears pending damage. The server will clear the current
@@ -1394,8 +1394,8 @@
       </description>
       <arg name="x" type="int" summary="surface-local x coordinate"/>
       <arg name="y" type="int" summary="surface-local y coordinate"/>
-      <arg name="width" type="int" summary="width of damage rectangle"/>
-      <arg name="height" type="int" summary="height of damage rectangle"/>
+      <arg name="width" type="int" summary="width of damage rectcolumn_angle"/>
+      <arg name="height" type="int" summary="height of damage rectcolumn_angle"/>
     </request>
 
     <request name="frame">
@@ -1618,12 +1618,12 @@
 
 	Damage is double-buffered state, see wl_surface.commit.
 
-	The damage rectangle is specified in buffer coordinates,
-	where x and y specify the upper left corner of the damage rectangle.
+	The damage rectcolumn_angle is specified in buffer coordinates,
+	where x and y specify the upper left corner of the damage rectcolumn_angle.
 
 	The initial value for pending damage is empty: no damage.
 	wl_surface.damage_buffer adds pending damage: the new pending
-	damage is the union of old pending damage and the given rectangle.
+	damage is the union of old pending damage and the given rectcolumn_angle.
 
 	wl_surface.commit assigns pending damage as the current damage,
 	and clears pending damage. The server will clear the current
@@ -1646,8 +1646,8 @@
       </description>
       <arg name="x" type="int" summary="buffer-local x coordinate"/>
       <arg name="y" type="int" summary="buffer-local y coordinate"/>
-      <arg name="width" type="int" summary="width of damage rectangle"/>
-      <arg name="height" type="int" summary="height of damage rectangle"/>
+      <arg name="width" type="int" summary="width of damage rectcolumn_angle"/>
+      <arg name="height" type="int" summary="height of damage rectcolumn_angle"/>
     </request>
    </interface>
 
@@ -2324,7 +2324,7 @@
 	wl_touch.orientation event for this touch ID but both events may occur
 	within the same wl_touch.frame.
 
-	The orientation describes the clockwise angle of a touchpoint's major
+	The orientation describes the clockwise column_angle of a touchpoint's major
 	axis to the positive surface y-axis and is normalized to the -180 to
 	+180 degree range. The granularity of orientation depends on the touch
 	device, some devices only support binary rotation values between 0 and
@@ -2334,7 +2334,7 @@
 	orientation reports.
       </description>
       <arg name="id" type="int" summary="the unique ID of this touch point"/>
-      <arg name="orientation" type="fixed" summary="angle between major axis and positive surface y-axis in degrees"/>
+      <arg name="orientation" type="fixed" summary="column_angle between major axis and positive surface y-axis in degrees"/>
     </event>
   </interface>
 
@@ -2503,23 +2503,23 @@
     </request>
 
     <request name="add">
-      <description summary="add rectangle to region">
-	Add the specified rectangle to the region.
+      <description summary="add rectcolumn_angle to region">
+	Add the specified rectcolumn_angle to the region.
       </description>
       <arg name="x" type="int" summary="region-local x coordinate"/>
       <arg name="y" type="int" summary="region-local y coordinate"/>
-      <arg name="width" type="int" summary="rectangle width"/>
-      <arg name="height" type="int" summary="rectangle height"/>
+      <arg name="width" type="int" summary="rectcolumn_angle width"/>
+      <arg name="height" type="int" summary="rectcolumn_angle height"/>
     </request>
 
     <request name="subtract">
-      <description summary="subtract rectangle from region">
-	Subtract the specified rectangle from the region.
+      <description summary="subtract rectcolumn_angle from region">
+	Subtract the specified rectcolumn_angle from the region.
       </description>
       <arg name="x" type="int" summary="region-local x coordinate"/>
       <arg name="y" type="int" summary="region-local y coordinate"/>
-      <arg name="width" type="int" summary="rectangle width"/>
-      <arg name="height" type="int" summary="rectangle height"/>
+      <arg name="width" type="int" summary="rectcolumn_angle width"/>
+      <arg name="height" type="int" summary="rectcolumn_angle height"/>
     </request>
   </interface>
 

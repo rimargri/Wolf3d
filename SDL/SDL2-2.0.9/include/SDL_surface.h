@@ -353,14 +353,14 @@ extern DECLSPEC int SDLCALL SDL_GetSurfaceBlendMode(SDL_Surface * surface,
                                                     SDL_BlendMode *blendMode);
 
 /**
- *  Sets the clipping rectangle for the destination surface in a blit.
+ *  Sets the clipping rectcolumn_angle for the destination surface in a blit.
  *
- *  If the clip rectangle is NULL, clipping will be disabled.
+ *  If the clip rectcolumn_angle is NULL, clipping will be disabled.
  *
- *  If the clip rectangle doesn't intersect the surface, the function will
+ *  If the clip rectcolumn_angle doesn't intersect the surface, the function will
  *  return SDL_FALSE and blits will be completely clipped.  Otherwise the
  *  function returns SDL_TRUE and blits to the surface will be clipped to
- *  the intersection of the surface area and the clipping rectangle.
+ *  the intersection of the surface area and the clipping rectcolumn_angle.
  *
  *  Note that blits are automatically clipped to the edges of the source
  *  and destination surfaces.
@@ -369,9 +369,9 @@ extern DECLSPEC SDL_bool SDLCALL SDL_SetClipRect(SDL_Surface * surface,
                                                  const SDL_Rect * rect);
 
 /**
- *  Gets the clipping rectangle for the destination surface in a blit.
+ *  Gets the clipping rectcolumn_angle for the destination surface in a blit.
  *
- *  \c rect must be a pointer to a valid rectangle which will be filled
+ *  \c rect must be a pointer to a valid rectcolumn_angle which will be filled
  *  with the correct values.
  */
 extern DECLSPEC void SDLCALL SDL_GetClipRect(SDL_Surface * surface,
@@ -409,7 +409,7 @@ extern DECLSPEC int SDLCALL SDL_ConvertPixels(int width, int height,
                                               void * dst, int dst_pitch);
 
 /**
- *  Performs a fast fill of the given rectangle with \c color.
+ *  Performs a fast fill of the given rectcolumn_angle with \c color.
  *
  *  If \c rect is NULL, the whole surface will be filled with \c color.
  *
@@ -426,9 +426,9 @@ extern DECLSPEC int SDLCALL SDL_FillRects
 /**
  *  Performs a fast blit from the source surface to the destination surface.
  *
- *  This assumes that the source and destination rectangles are
+ *  This assumes that the source and destination rectcolumn_angles are
  *  the same size.  If either \c srcrect or \c dstrect are NULL, the entire
- *  surface (\c src or \c dst) is copied.  The final blit rectangles are saved
+ *  surface (\c src or \c dst) is copied.  The final blit rectcolumn_angles are saved
  *  in \c srcrect and \c dstrect after all clipping is performed.
  *
  *  \return If the blit is successful, it returns 0, otherwise it returns -1.
@@ -484,7 +484,7 @@ extern DECLSPEC int SDLCALL SDL_FillRects
 
 /**
  *  This is the public blit function, SDL_BlitSurface(), and it performs
- *  rectangle validation and clipping before passing it to SDL_LowerBlit()
+ *  rectcolumn_angle validation and clipping before passing it to SDL_LowerBlit()
  */
 extern DECLSPEC int SDLCALL SDL_UpperBlit
     (SDL_Surface * src, const SDL_Rect * srcrect,
@@ -513,7 +513,7 @@ extern DECLSPEC int SDLCALL SDL_SoftStretch(SDL_Surface * src,
 
 /**
  *  This is the public scaled blit function, SDL_BlitScaled(), and it performs
- *  rectangle validation and clipping before passing it to SDL_LowerBlitScaled()
+ *  rectcolumn_angle validation and clipping before passing it to SDL_LowerBlitScaled()
  */
 extern DECLSPEC int SDLCALL SDL_UpperBlitScaled
     (SDL_Surface * src, const SDL_Rect * srcrect,

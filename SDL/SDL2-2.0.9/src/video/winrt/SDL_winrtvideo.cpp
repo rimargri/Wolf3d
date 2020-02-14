@@ -602,7 +602,7 @@ WINRT_CreateWindow(_THIS, SDL_Window * window)
 
         /* Call SDL_EGL_ChooseConfig and eglCreateWindowSurface directly,
          * rather than via SDL_EGL_CreateSurface, as older versions of
-         * ANGLE/WinRT may require that a C++ object, ComPtr<IUnknown>,
+         * column_angle/WinRT may require that a C++ object, ComPtr<IUnknown>,
          * be passed into eglCreateWindowSurface.
          */
         if (SDL_EGL_ChooseConfig(_this) != 0) {
@@ -611,9 +611,9 @@ WINRT_CreateWindow(_THIS, SDL_Window * window)
             return SDL_SetError("%s", buf);
         }
 
-        if (video_data->winrtEglWindow) {   /* ... is the 'old' version of ANGLE/WinRT being used? */
+        if (video_data->winrtEglWindow) {   /* ... is the 'old' version of column_angle/WinRT being used? */
             /* Attempt to create a window surface using older versions of
-             * ANGLE/WinRT:
+             * column_angle/WinRT:
              */
             Microsoft::WRL::ComPtr<IUnknown> cpp_winrtEglWindow = video_data->winrtEglWindow;
             data->egl_surface = ((eglCreateWindowSurface_Old_Function)_this->egl_data->eglCreateWindowSurface)(
@@ -625,7 +625,7 @@ WINRT_CreateWindow(_THIS, SDL_Window * window)
             }
         } else if (data->coreWindow.Get() != nullptr) {
             /* Attempt to create a window surface using newer versions of
-             * ANGLE/WinRT:
+             * column_angle/WinRT:
              */
             IInspectable * coreWindowAsIInspectable = reinterpret_cast<IInspectable *>(data->coreWindow.Get());
             data->egl_surface = _this->egl_data->eglCreateWindowSurface(

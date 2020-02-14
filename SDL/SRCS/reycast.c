@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 22:03:09 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/10 15:42:14 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 00:05:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@ void	draw_first_person_view(t_sdl *sdl, float t, int i)
 }
 
 /*
-** vec_dir - direction vector
+** player_column_angle - direction vector
 */
 
 void	cast_ray(t_sdl *sdl, char *map, t_player player)
 {
-	t_reycast	r;
+	t_raycast	r;
 
 	r.player = player;
 
-	// while (vec_dir < 360.0)
+	// while (player_column_angle < 360.0)
 	// {
-		r.vec_dir = 1.5;
+		r.player_column_angle = 1.5;
 		r.transform = (t_ivec2){0, 0};
 		r.len = (t_vec2){0, 0};
 		r.curent_pix = 0;
 		while (r.curent_pix < WIN_W / 2)
 		{
-			r.angle = r.vec_dir - FOV / 2 + FOV * r.curent_pix / (float) (WIN_W);
+			r.column_angle = r.player_column_angle - FOV / 2 + FOV * r.curent_pix / (float) (WIN_W);
 			r.t = 0.0;
 			while (r.t < 20)
 			{
-				r.len.x = cos(r.angle) * r.t + player.x;
-				r.len.y = sin(r.angle) * r.t + player.y;
+				r.len.x = cos(r.column_angle) * r.t + player.x;
+				r.len.y = sin(r.column_angle) * r.t + player.y;
 				r.transform.x = r.len.x * RECT_W;
 				r.transform.y = r.len.y * RECT_H;
 				set_pixel(sdl->renderer, (t_color){255, 255, 255}, r.transform.x, r.transform.y);
@@ -58,6 +58,6 @@ void	cast_ray(t_sdl *sdl, char *map, t_player player)
 			}
 			r.curent_pix++;	
 		}
-		// vec_dir++;
+		// player_column_angle++;
 	// }
 }

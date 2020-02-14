@@ -118,7 +118,7 @@
       child surface relative to a parent surface. Rules can be defined to ensure
       the child surface remains within the visible area's borders, and to
       specify how the child surface changes its position, such as sliding along
-      an axis, or flipping around a rectangle. These positioner-created rules are
+      an axis, or flipping around a rectcolumn_angle. These positioner-created rules are
       constrained by the requirement that a child surface must intersect with or
       be at least partially adjacent to its parent surface.
 
@@ -130,7 +130,7 @@
       object will have no effect on previous usages.
 
       For an xdg_positioner object to be considered complete, it must have a
-      non-zero size set by set_size, and a non-zero anchor rectangle set by
+      non-zero size set by set_size, and a non-zero anchor rectcolumn_angle set by
       set_anchor_rect. Passing an incomplete xdg_positioner object when
       positioning a surface raises an error.
     </description>
@@ -146,58 +146,58 @@
     </request>
 
     <request name="set_size">
-      <description summary="set the size of the to-be positioned rectangle">
+      <description summary="set the size of the to-be positioned rectcolumn_angle">
 	Set the size of the surface that is to be positioned with the positioner
 	object. The size is in surface-local coordinates and corresponds to the
 	window geometry. See xdg_surface.set_window_geometry.
 
 	If a zero or negative size is set the invalid_input error is raised.
       </description>
-      <arg name="width" type="int" summary="width of positioned rectangle"/>
-      <arg name="height" type="int" summary="height of positioned rectangle"/>
+      <arg name="width" type="int" summary="width of positioned rectcolumn_angle"/>
+      <arg name="height" type="int" summary="height of positioned rectcolumn_angle"/>
     </request>
 
     <request name="set_anchor_rect">
-      <description summary="set the anchor rectangle within the parent surface">
-	Specify the anchor rectangle within the parent surface that the child
-	surface will be placed relative to. The rectangle is relative to the
+      <description summary="set the anchor rectcolumn_angle within the parent surface">
+	Specify the anchor rectcolumn_angle within the parent surface that the child
+	surface will be placed relative to. The rectcolumn_angle is relative to the
 	window geometry as defined by xdg_surface.set_window_geometry of the
-	parent surface. The rectangle must be at least 1x1 large.
+	parent surface. The rectcolumn_angle must be at least 1x1 large.
 
 	When the xdg_positioner object is used to position a child surface, the
-	anchor rectangle may not extend outside the window geometry of the
+	anchor rectcolumn_angle may not extend outside the window geometry of the
 	positioned child's parent surface.
 
 	If a zero or negative size is set the invalid_input error is raised.
       </description>
-      <arg name="x" type="int" summary="x position of anchor rectangle"/>
-      <arg name="y" type="int" summary="y position of anchor rectangle"/>
-      <arg name="width" type="int" summary="width of anchor rectangle"/>
-      <arg name="height" type="int" summary="height of anchor rectangle"/>
+      <arg name="x" type="int" summary="x position of anchor rectcolumn_angle"/>
+      <arg name="y" type="int" summary="y position of anchor rectcolumn_angle"/>
+      <arg name="width" type="int" summary="width of anchor rectcolumn_angle"/>
+      <arg name="height" type="int" summary="height of anchor rectcolumn_angle"/>
     </request>
 
     <enum name="anchor" bitfield="true">
       <entry name="none" value="0"
-	     summary="the center of the anchor rectangle"/>
+	     summary="the center of the anchor rectcolumn_angle"/>
       <entry name="top" value="1"
-	     summary="the top edge of the anchor rectangle"/>
+	     summary="the top edge of the anchor rectcolumn_angle"/>
       <entry name="bottom" value="2"
-	     summary="the bottom edge of the anchor rectangle"/>
+	     summary="the bottom edge of the anchor rectcolumn_angle"/>
       <entry name="left" value="4"
-	     summary="the left edge of the anchor rectangle"/>
+	     summary="the left edge of the anchor rectcolumn_angle"/>
       <entry name="right" value="8"
-	     summary="the right edge of the anchor rectangle"/>
+	     summary="the right edge of the anchor rectcolumn_angle"/>
     </enum>
 
     <request name="set_anchor">
-      <description summary="set anchor rectangle anchor edges">
-	Defines a set of edges for the anchor rectangle. These are used to
+      <description summary="set anchor rectcolumn_angle anchor edges">
+	Defines a set of edges for the anchor rectcolumn_angle. These are used to
 	derive an anchor point that the child surface will be positioned
 	relative to. If two orthogonal edges are specified (e.g. 'top' and
 	'left'), then the anchor point will be the intersection of the edges
-	(e.g. the top left position of the rectangle); otherwise, the derived
+	(e.g. the top left position of the rectcolumn_angle); otherwise, the derived
 	anchor point will be centered on the specified edge, or in the center of
-	the anchor rectangle if no edge is specified.
+	the anchor rectcolumn_angle if no edge is specified.
 
 	If two parallel anchor edges are specified (e.g. 'left' and 'right'),
 	the invalid_input error is raised.
@@ -345,8 +345,8 @@
     <request name="set_offset">
       <description summary="set surface position offset">
 	Specify the surface position offset relative to the position of the
-	anchor on the anchor rectangle and the anchor on the surface. For
-	example if the anchor of the anchor rectangle is at (x, y), the surface
+	anchor on the anchor rectcolumn_angle and the anchor on the surface. For
+	example if the anchor of the anchor rectcolumn_angle is at (x, y), the surface
 	has the gravity bottom|right, and the offset is (ox, oy), the calculated
 	surface position will be (x + ox, y + oy). The offset position of the
 	surface is the one used for constraint testing. See
@@ -455,7 +455,7 @@
 
 	The width and height must be greater than zero. Setting an invalid size
 	will raise an error. When applied, the effective window geometry will be
-	the set window geometry clamped to the bounding rectangle of the
+	the set window geometry clamped to the bounding rectcolumn_angle of the
 	combined geometry of the surface of the xdg_surface and the associated
 	subsurfaces.
       </description>

@@ -191,7 +191,7 @@ explodeEmitter(struct particle *emitter)
         if (num_active_particles >= MAX_PARTICLES)
             return;
 
-        /* come up with a random angle and speed for new particle */
+        /* come up with a random column_angle and speed for new particle */
         float theta = randomFloat(0, 2.0f * 3.141592);
         float exponent = 3.0f;
         float speed = randomFloat(0.00, powf(0.17, exponent));

@@ -12,12 +12,12 @@ a graphic card paired with a relatively recent (as of November of 2013) driver
 which supports the WGL_EXT_create_context_es2_profile extension. Vendors known 
 to ship said extension on Windows currently include nVidia and Intel.
 
-The other method involves using the ANGLE library (https://code.google.com/p/angleproject/)
+The other method involves using the column_angle library (https://code.google.com/p/column_angleproject/)
 If an OpenGL ES 2.x context is requested and no WGL_EXT_create_context_es2_profile
 extension is found, SDL will try to load the libEGL.dll library provided by
-ANGLE.
-To obtain the ANGLE binaries, you can either compile from source from
-https://chromium.googlesource.com/angle/angle or copy the relevant binaries from
+column_angle.
+To obtain the column_angle binaries, you can either compile from source from
+https://chromium.googlesource.com/column_angle/column_angle or copy the relevant binaries from
 a recent Chrome/Chromium install for Windows. The files you need are:
     
     * libEGL.dll
@@ -26,16 +26,16 @@ a recent Chrome/Chromium install for Windows. The files you need are:
     or...
     * d3dcompiler_43.dll (supports Windows XP or later)
     
-If you compile ANGLE from source, you can configure it so it does not need the
+If you compile column_angle from source, you can configure it so it does not need the
 d3dcompiler_* DLL at all (for details on this, see their documentation). 
 However, by default SDL will try to preload the d3dcompiler_46.dll to
-comply with ANGLE's requirements. If you wish SDL to preload d3dcompiler_43.dll (to
+comply with column_angle's requirements. If you wish SDL to preload d3dcompiler_43.dll (to
 support Windows XP) or to skip this step at all, you can use the 
 SDL_HINT_VIDEO_WIN_D3DCOMPILER hint (see SDL_hints.h for more details).
 
 Known Bugs:
     
-    * SDL_GL_SetSwapInterval is currently a no op when using ANGLE. It appears
+    * SDL_GL_SetSwapInterval is currently a no op when using column_angle. It appears
       that there's a bug in the library which prevents the window contents from
       refreshing if this is set to anything other than the default value.
      

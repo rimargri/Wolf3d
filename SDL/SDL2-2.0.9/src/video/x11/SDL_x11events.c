@@ -1038,7 +1038,7 @@ X11_DispatchEvent(_THIS)
                 m.format=32;
                 m.data.l[0] = data->xwindow;
                 m.data.l[1] = (data->xdnd_req != None);
-                m.data.l[2] = 0; /* specify an empty rectangle */
+                m.data.l[2] = 0; /* specify an empty rectcolumn_angle */
                 m.data.l[3] = 0;
                 m.data.l[4] = videodata->XdndActionCopy; /* we only accept copying anyway */
 

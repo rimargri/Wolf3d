@@ -35,18 +35,18 @@ extern "C" {
 #include <wrl/client.h>
 using namespace Windows::UI::Core;
 
-/* ANGLE/WinRT constants */
-static const int ANGLE_D3D_FEATURE_LEVEL_ANY = 0;
-#define EGL_PLATFORM_ANGLE_ANGLE                        0x3202
-#define EGL_PLATFORM_ANGLE_TYPE_ANGLE                   0x3203
-#define EGL_PLATFORM_ANGLE_MAX_VERSION_MAJOR_ANGLE      0x3204
-#define EGL_PLATFORM_ANGLE_MAX_VERSION_MINOR_ANGLE      0x3205
-#define EGL_PLATFORM_ANGLE_TYPE_D3D11_ANGLE             0x3208
-#define EGL_PLATFORM_ANGLE_DEVICE_TYPE_ANGLE            0x3209
-#define EGL_PLATFORM_ANGLE_DEVICE_TYPE_WARP_ANGLE       0x320B
-#define EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE  0x320F
+/* column_angle/WinRT constants */
+static const int column_angle_D3D_FEATURE_LEVEL_ANY = 0;
+#define EGL_PLATFORM_column_angle_column_angle                        0x3202
+#define EGL_PLATFORM_column_angle_TYPE_column_angle                   0x3203
+#define EGL_PLATFORM_column_angle_MAX_VERSION_MAJOR_column_angle      0x3204
+#define EGL_PLATFORM_column_angle_MAX_VERSION_MINOR_column_angle      0x3205
+#define EGL_PLATFORM_column_angle_TYPE_D3D11_column_angle             0x3208
+#define EGL_PLATFORM_column_angle_DEVICE_TYPE_column_angle            0x3209
+#define EGL_PLATFORM_column_angle_DEVICE_TYPE_WARP_column_angle       0x320B
+#define EGL_PLATFORM_column_angle_ENABLE_AUTOMATIC_TRIM_column_angle  0x320F
 
-#define EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER   0x320B
+#define EGL_column_angle_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER   0x320B
 
 
 /*
@@ -62,26 +62,26 @@ WINRT_GLES_LoadLibrary(_THIS, const char *path)
         return -1;
     }
 
-    /* Load ANGLE/WinRT-specific functions */
+    /* Load column_angle/WinRT-specific functions */
     CreateWinrtEglWindow_Old_Function CreateWinrtEglWindow = (CreateWinrtEglWindow_Old_Function) SDL_LoadFunction(_this->egl_data->egl_dll_handle, "CreateWinrtEglWindow");
     if (CreateWinrtEglWindow) {
         /* 'CreateWinrtEglWindow' was found, which means that an an older
-         * version of ANGLE/WinRT is being used.  Continue setting up EGL,
-         * as appropriate to this version of ANGLE.
+         * version of column_angle/WinRT is being used.  Continue setting up EGL,
+         * as appropriate to this version of column_angle.
          */
 
-        /* Create an ANGLE/WinRT EGL-window */
+        /* Create an column_angle/WinRT EGL-window */
         /* TODO, WinRT: check for XAML usage before accessing the CoreWindow, as not doing so could lead to a crash */
         CoreWindow ^ native_win = CoreWindow::GetForCurrentThread();
         Microsoft::WRL::ComPtr<IUnknown> cpp_win = reinterpret_cast<IUnknown *>(native_win);
-        HRESULT result = CreateWinrtEglWindow(cpp_win, ANGLE_D3D_FEATURE_LEVEL_ANY, &(video_data->winrtEglWindow));
+        HRESULT result = CreateWinrtEglWindow(cpp_win, column_angle_D3D_FEATURE_LEVEL_ANY, &(video_data->winrtEglWindow));
         if (FAILED(result)) {
             return -1;
         }
 
         /* Call eglGetDisplay and eglInitialize as appropriate.  On other
          * platforms, this would probably get done by SDL_EGL_LoadLibrary,
-         * however ANGLE/WinRT's current implementation (as of Mar 22, 2014) of
+         * however column_angle/WinRT's current implementation (as of Mar 22, 2014) of
          * eglGetDisplay requires that a C++ object be passed into it, so the
          * call will be made in this file, a C++ file, instead.
          */
@@ -95,52 +95,52 @@ WINRT_GLES_LoadLibrary(_THIS, const char *path)
             return SDL_EGL_SetError("Could not initialize Windows 8.0 EGL", "eglInitialize");
         }
     } else {
-        /* Declare some ANGLE/EGL initialization property-sets, as suggested by
-         * MSOpenTech's ANGLE-for-WinRT template apps:
+        /* Declare some column_angle/EGL initialization property-sets, as suggested by
+         * MSOpenTech's column_angle-for-WinRT template apps:
          */
         const EGLint defaultDisplayAttributes[] =
         {
-            EGL_PLATFORM_ANGLE_TYPE_ANGLE, EGL_PLATFORM_ANGLE_TYPE_D3D11_ANGLE,
-            EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
-            EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE, EGL_TRUE,
+            EGL_PLATFORM_column_angle_TYPE_column_angle, EGL_PLATFORM_column_angle_TYPE_D3D11_column_angle,
+            EGL_column_angle_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
+            EGL_PLATFORM_column_angle_ENABLE_AUTOMATIC_TRIM_column_angle, EGL_TRUE,
             EGL_NONE,
         };
 
         const EGLint fl9_3DisplayAttributes[] =
         {
-            EGL_PLATFORM_ANGLE_TYPE_ANGLE, EGL_PLATFORM_ANGLE_TYPE_D3D11_ANGLE,
-            EGL_PLATFORM_ANGLE_MAX_VERSION_MAJOR_ANGLE, 9,
-            EGL_PLATFORM_ANGLE_MAX_VERSION_MINOR_ANGLE, 3,
-            EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
-            EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE, EGL_TRUE,
+            EGL_PLATFORM_column_angle_TYPE_column_angle, EGL_PLATFORM_column_angle_TYPE_D3D11_column_angle,
+            EGL_PLATFORM_column_angle_MAX_VERSION_MAJOR_column_angle, 9,
+            EGL_PLATFORM_column_angle_MAX_VERSION_MINOR_column_angle, 3,
+            EGL_column_angle_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
+            EGL_PLATFORM_column_angle_ENABLE_AUTOMATIC_TRIM_column_angle, EGL_TRUE,
             EGL_NONE,
         };
 
         const EGLint warpDisplayAttributes[] =
         {
-            EGL_PLATFORM_ANGLE_TYPE_ANGLE, EGL_PLATFORM_ANGLE_TYPE_D3D11_ANGLE,
-            EGL_PLATFORM_ANGLE_DEVICE_TYPE_ANGLE, EGL_PLATFORM_ANGLE_DEVICE_TYPE_WARP_ANGLE,
-            EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
-            EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE, EGL_TRUE,
+            EGL_PLATFORM_column_angle_TYPE_column_angle, EGL_PLATFORM_column_angle_TYPE_D3D11_column_angle,
+            EGL_PLATFORM_column_angle_DEVICE_TYPE_column_angle, EGL_PLATFORM_column_angle_DEVICE_TYPE_WARP_column_angle,
+            EGL_column_angle_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
+            EGL_PLATFORM_column_angle_ENABLE_AUTOMATIC_TRIM_column_angle, EGL_TRUE,
             EGL_NONE,
         };
 
         /* 'CreateWinrtEglWindow' was NOT found, which either means that a
-         * newer version of ANGLE/WinRT is being used, or that we don't have
-         * a valid copy of ANGLE.
+         * newer version of column_angle/WinRT is being used, or that we don't have
+         * a valid copy of column_angle.
          *
-         * Try loading ANGLE as if it were the newer version.
+         * Try loading column_angle as if it were the newer version.
          */
         eglGetPlatformDisplayEXT_Function eglGetPlatformDisplayEXT = (eglGetPlatformDisplayEXT_Function)_this->egl_data->eglGetProcAddress("eglGetPlatformDisplayEXT");
         if (!eglGetPlatformDisplayEXT) {
-            return SDL_EGL_SetError("Could not retrieve ANGLE/WinRT display function(s)", "eglGetProcAddress");
+            return SDL_EGL_SetError("Could not retrieve column_angle/WinRT display function(s)", "eglGetProcAddress");
         }
 
 #if (WINAPI_FAMILY != WINAPI_FAMILY_PHONE_APP)
         /* Try initializing EGL at D3D11 Feature Level 10_0+ (which is not
          * supported on WinPhone 8.x.
          */
-        _this->egl_data->egl_display = eglGetPlatformDisplayEXT(EGL_PLATFORM_ANGLE_ANGLE, EGL_DEFAULT_DISPLAY, defaultDisplayAttributes);
+        _this->egl_data->egl_display = eglGetPlatformDisplayEXT(EGL_PLATFORM_column_angle_column_angle, EGL_DEFAULT_DISPLAY, defaultDisplayAttributes);
         if (!_this->egl_data->egl_display) {
             return SDL_EGL_SetError("Could not get EGL display for Direct3D 10_0+", "eglGetPlatformDisplayEXT");
         }
@@ -152,7 +152,7 @@ WINRT_GLES_LoadLibrary(_THIS, const char *path)
              * 10_0 init fails, or we're on Windows Phone (which only supports
              * 9_3).
              */
-            _this->egl_data->egl_display = eglGetPlatformDisplayEXT(EGL_PLATFORM_ANGLE_ANGLE, EGL_DEFAULT_DISPLAY, fl9_3DisplayAttributes);
+            _this->egl_data->egl_display = eglGetPlatformDisplayEXT(EGL_PLATFORM_column_angle_column_angle, EGL_DEFAULT_DISPLAY, fl9_3DisplayAttributes);
             if (!_this->egl_data->egl_display) {
                 return SDL_EGL_SetError("Could not get EGL display for Direct3D 9_3", "eglGetPlatformDisplayEXT");
             }
@@ -161,7 +161,7 @@ WINRT_GLES_LoadLibrary(_THIS, const char *path)
                 /* Try initializing EGL at D3D11 Feature Level 11_0 on WARP
                  * (a Windows-provided, software rasterizer) if all else fails.
                  */
-                _this->egl_data->egl_display = eglGetPlatformDisplayEXT(EGL_PLATFORM_ANGLE_ANGLE, EGL_DEFAULT_DISPLAY, warpDisplayAttributes);
+                _this->egl_data->egl_display = eglGetPlatformDisplayEXT(EGL_PLATFORM_column_angle_column_angle, EGL_DEFAULT_DISPLAY, warpDisplayAttributes);
                 if (!_this->egl_data->egl_display) {
                     return SDL_EGL_SetError("Could not get EGL display for Direct3D WARP", "eglGetPlatformDisplayEXT");
                 }
@@ -181,7 +181,7 @@ WINRT_GLES_UnloadLibrary(_THIS)
 {
     SDL_VideoData *video_data = (SDL_VideoData *)_this->driverdata;
 
-    /* Release SDL's own COM reference to the ANGLE/WinRT IWinrtEglWindow */
+    /* Release SDL's own COM reference to the column_angle/WinRT IWinrtEglWindow */
     if (video_data->winrtEglWindow) {
         video_data->winrtEglWindow->Release();
         video_data->winrtEglWindow = nullptr;

@@ -56,7 +56,7 @@ loop(){
         SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
         SDL_RenderClear(renderer);
 
-        /* Wrap the cursor rectangle at the screen edges to keep it visible */
+        /* Wrap the cursor rectcolumn_angle at the screen edges to keep it visible */
         SDL_RenderGetViewport(renderer, &viewport);
         if (rect.x < viewport.x) rect.x += viewport.w;
         if (rect.y < viewport.y) rect.y += viewport.h;

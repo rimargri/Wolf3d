@@ -328,8 +328,8 @@ HapticPrintSupported(SDL_Haptic * haptic)
     /* !!! FIXME: put this back when we have more bits in 2.1 */
     /* if (supported & SDL_HAPTIC_SQUARE)
         SDL_Log("      square\n"); */
-    if (supported & SDL_HAPTIC_TRIANGLE)
-        SDL_Log("      triangle\n");
+    if (supported & SDL_HAPTIC_TRIcolumn_angle)
+        SDL_Log("      tricolumn_angle\n");
     if (supported & SDL_HAPTIC_SAWTOOTHUP)
         SDL_Log("      sawtoothup\n");
     if (supported & SDL_HAPTIC_SAWTOOTHDOWN)

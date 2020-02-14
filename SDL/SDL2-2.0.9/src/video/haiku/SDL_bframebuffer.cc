@@ -143,10 +143,10 @@ int32 HAIKU_DrawThread(void *data) {
             int32 numClips = bwin->GetNumClips();
             int i, y;
 
-            /* Blit each clipping rectangle */
+            /* Blit each clipping rectcolumn_angle */
             bscreen.WaitForRetrace();
             for(i = 0; i < numClips; ++i) {
-                /* Get addresses of the start of each clipping rectangle */
+                /* Get addresses of the start of each clipping rectcolumn_angle */
                 int32 width = clips[i].right - clips[i].left + 1;
                 int32 height = clips[i].bottom - clips[i].top + 1;
                 bufferpx = bwin->GetBufferPx() + 
@@ -224,10 +224,10 @@ static int32 HAIKU_UpdateOnce(SDL_Window *window) {
         int32 numClips = bwin->GetNumClips();
         int i, y;
 
-        /* Blit each clipping rectangle */
+        /* Blit each clipping rectcolumn_angle */
         bscreen.WaitForRetrace();
         for(i = 0; i < numClips; ++i) {
-            /* Get addresses of the start of each clipping rectangle */
+            /* Get addresses of the start of each clipping rectcolumn_angle */
             int32 width = clips[i].right - clips[i].left + 1;
             int32 height = clips[i].bottom - clips[i].top + 1;
             bufferpx = bwin->GetBufferPx() + 

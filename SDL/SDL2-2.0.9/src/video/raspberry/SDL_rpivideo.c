@@ -25,7 +25,7 @@
 
 /* References
  * http://elinux.org/RPi_VideoCore_APIs
- * https://github.com/raspberrypi/firmware/blob/master/opt/vc/src/hello_pi/hello_triangle/triangle.c
+ * https://github.com/raspberrypi/firmware/blob/master/opt/vc/src/hello_pi/hello_tricolumn_angle/tricolumn_angle.c
  * http://cgit.freedesktop.org/wayland/weston/tree/src/rpi-renderer.c
  * http://cgit.freedesktop.org/wayland/weston/tree/src/compositor-rpi.c
  */

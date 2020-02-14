@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/13 23:37:35 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 00:05:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # define KEY_SPACE 49
 # define KEY_A 0
 # define KEY_D 2
-# define KEY_W 1
-# define KEY_S 13
+# define KEY_S 1
+# define KEY_W 13
 
 typedef struct  	s_ivec2
 {
@@ -62,26 +62,27 @@ typedef struct  	s_color
 
 typedef struct		s_player
 {
-	t_ivec2			pos;
+	t_vec2			pos;
 	t_ivec2			transform;
+	float			look_column_angle;
 }					t_player;
 
-typedef struct		s_reycast
+typedef struct		s_raycast
 {
-	float			vec_dir;
-	float			angle;
+	float			player_column_angle;
+	float			column_column_angle;
 	float			t;
 	t_player		player;
 	t_vec2			len;
 	t_ivec2			transform;
 	int				current_pix;
 	t_color			color;
-}					t_reycast;
+}					t_raycast;
 
-typedef struct s_raycast {
-	float distance;
-	t_color wall_color;
-} t_raycast;
+// typedef struct s_raycast {
+// 	float distance;
+// 	t_color wall_color;
+// } t_raycast;
 
 typedef struct		s_mlx
 {
@@ -92,7 +93,7 @@ typedef struct		s_mlx
 typedef struct		s_wolf
 {
 	t_mlx			mlx;
-	t_reycast		r;
+	// t_raycast		r;
 	t_player		player;
 	char			*map;
 }					t_wolf;
@@ -105,9 +106,12 @@ void    			draw_rect(t_ivec2 v, int w, int h, t_color col, t_mlx mlx);
 void				draw_background(t_wolf *w);
 void				draw_walls(t_wolf *w, char *map);
 void				draw_player(t_wolf *w);
-void				cast_ray(t_reycast r, t_wolf *w, char *map);
-void				init_reycast(t_wolf *wolf);
+void				cast_ray(t_raycast r, t_wolf *w, char *map);
+void				init_raycast(t_wolf *wolf);
 void				init_player(t_wolf *w);
 void				calc_player_pos(t_wolf *w, int k);
+void				init_raycast(t_wolf *wolf);
+t_color	raycast_color(t_raycast r, char *map);
+t_raycast	raycast_data(t_raycast r, t_wolf *w);
 
 #endif

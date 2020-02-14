@@ -355,9 +355,9 @@ SDL_PROC_UNUSED(void, glRects,
 SDL_PROC_UNUSED(void, glRectsv, (const GLshort * v1, const GLshort * v2))
 SDL_PROC_UNUSED(GLint, glRenderMode, (GLenum mode))
 SDL_PROC(void, glRotated,
-                (GLdouble angle, GLdouble x, GLdouble y, GLdouble z))
+                (GLdouble column_angle, GLdouble x, GLdouble y, GLdouble z))
 SDL_PROC(void, glRotatef,
-                (GLfloat angle, GLfloat x, GLfloat y, GLfloat z))
+                (GLfloat column_angle, GLfloat x, GLfloat y, GLfloat z))
 SDL_PROC_UNUSED(void, glScaled, (GLdouble x, GLdouble y, GLdouble z))
 SDL_PROC_UNUSED(void, glScalef, (GLfloat x, GLfloat y, GLfloat z))
 SDL_PROC(void, glScissor, (GLint x, GLint y, GLsizei width, GLsizei height))

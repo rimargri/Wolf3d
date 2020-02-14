@@ -119,7 +119,7 @@ int render_testPrimitives (void *arg)
    /* Need drawcolor or just skip test. */
    SDLTest_AssertCheck(_hasDrawColor(), "_hasDrawColor");
 
-   /* Draw a rectangle. */
+   /* Draw a rectcolumn_angle. */
    rect.x = 40;
    rect.y = 0;
    rect.w = 40;
@@ -131,7 +131,7 @@ int render_testPrimitives (void *arg)
    ret = SDL_RenderFillRect(renderer, &rect );
    SDLTest_AssertCheck(ret == 0, "Validate result from SDL_RenderFillRect, expected: 0, got: %i", ret);
 
-   /* Draw a rectangle. */
+   /* Draw a rectcolumn_angle. */
    rect.x = 10;
    rect.y = 10;
    rect.w = 60;
@@ -227,7 +227,7 @@ int render_testPrimitivesBlend (void *arg)
    SDLTest_AssertCheck(_hasDrawColor(), "_hasDrawColor");
    SDLTest_AssertCheck(_hasBlendModes(), "_hasBlendModes");
 
-   /* Create some rectangles for each blend mode. */
+   /* Create some rectcolumn_angles for each blend mode. */
    ret = SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0 );
    SDLTest_AssertCheck(ret == 0, "Validate result from SDL_SetRenderDrawColor, expected: 0, got: %i", ret);
 

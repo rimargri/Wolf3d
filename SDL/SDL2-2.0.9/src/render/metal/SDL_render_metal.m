@@ -77,7 +77,7 @@ static int METAL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect);
 static int METAL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                         const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
+                         const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
 static int METAL_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                                Uint32 pixel_format, void * pixels, int pitch);
 static void METAL_RenderPresent(SDL_Renderer * renderer);
@@ -966,7 +966,7 @@ METAL_UpdateTextureYUV(SDL_Renderer * renderer, SDL_Texture * texture,
     const int Uslice = 0;
     const int Vslice = 1;
 
-    /* Bail out if we're supposed to update an empty rectangle */
+    /* Bail out if we're supposed to update an empty rectcolumn_angle */
     if (rect->w <= 0 || rect->h <= 0) {
         return 0;
     }
@@ -1125,14 +1125,14 @@ METAL_RenderClear(SDL_Renderer * renderer)
         viewport.znear = 0.0;
         viewport.zfar = 1.0;
 
-        // Slow path for clearing: draw a filled fullscreen triangle.
+        // Slow path for clearing: draw a filled fullscreen tricolumn_angle.
         METAL_SetOrthographicProjection(renderer, 1, 1);
         [data.mtlcmdencoder setViewport:viewport];
         [data.mtlcmdencoder setRenderPipelineState:ChoosePipelineState(data, data.activepipelines, SDL_METAL_FRAGMENT_SOLID, SDL_BLENDMODE_NONE)];
         [data.mtlcmdencoder setVertexBuffer:data.mtlbufconstants offset:CONSTANTS_OFFSET_CLEAR_VERTS atIndex:0];
         [data.mtlcmdencoder setVertexBuffer:data.mtlbufconstants offset:CONSTANTS_OFFSET_IDENTITY atIndex:3];
         [data.mtlcmdencoder setFragmentBytes:color length:sizeof(color) atIndex:0];
-        [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];
+        [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTricolumn_angle vertexStart:0 vertexCount:3];
 
         // reset the viewport for the rest of our usual drawing work...
         viewport.originX = renderer->viewport.x;
@@ -1213,7 +1213,7 @@ METAL_RenderFillRects(SDL_Renderer * renderer, const SDL_FRect * rects, int coun
         };
 
         [data.mtlcmdencoder setVertexBytes:verts length:sizeof(verts) atIndex:0];
-        [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
+        [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTricolumn_angleStrip vertexStart:0 vertexCount:4];
     }
 
     return 0;
@@ -1271,7 +1271,7 @@ METAL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
     [data.mtlcmdencoder setVertexBytes:xy length:sizeof(xy) atIndex:0];
     [data.mtlcmdencoder setVertexBytes:uv length:sizeof(uv) atIndex:1];
     [data.mtlcmdencoder setVertexBuffer:data.mtlbufconstants offset:CONSTANTS_OFFSET_IDENTITY atIndex:3];
-    [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
+    [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTricolumn_angleStrip vertexStart:0 vertexCount:4];
 
     return 0;
 }}
@@ -1279,7 +1279,7 @@ METAL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 static int
 METAL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
               const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-              const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
+              const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
 { @autoreleasepool {
     METAL_ActivateRenderCommandEncoder(renderer, MTLLoadActionLoad);
     METAL_RenderData *data = (__bridge METAL_RenderData *) renderer->driverdata;
@@ -1322,7 +1322,7 @@ METAL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     };
 
     {
-        float rads = (float)(M_PI * (float) angle / 180.0f);
+        float rads = (float)(M_PI * (float) column_angle / 180.0f);
         float c = cosf(rads), s = sinf(rads);
         SDL_memset(transform, 0, sizeof(transform));
 
@@ -1342,7 +1342,7 @@ METAL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     [data.mtlcmdencoder setVertexBytes:xy length:sizeof(xy) atIndex:0];
     [data.mtlcmdencoder setVertexBytes:uv length:sizeof(uv) atIndex:1];
     [data.mtlcmdencoder setVertexBytes:transform length:sizeof(transform) atIndex:3];
-    [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
+    [data.mtlcmdencoder drawPrimitives:MTLPrimitiveTypeTricolumn_angleStrip vertexStart:0 vertexCount:4];
 
     return 0;
 }}

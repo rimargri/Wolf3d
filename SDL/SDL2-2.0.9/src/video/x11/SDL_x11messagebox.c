@@ -68,7 +68,7 @@ typedef struct SDL_MessageBoxButtonDataX11 {
     int length;                         /* Text length */
     int text_width;                     /* Text width */
 
-    SDL_Rect rect;                      /* Rectangle for entire button */
+    SDL_Rect rect;                      /* Rectcolumn_angle for entire button */
 
     const SDL_MessageBoxButtonData *buttondata;   /* Button data from caller */
 } SDL_MessageBoxButtonDataX11;
@@ -128,7 +128,7 @@ static void
 GetTextWidthHeight( SDL_MessageBoxDataX11 *data, const char *str, int nbytes, int *pwidth, int *pheight )
 {
     if (SDL_X11_HAVE_UTF8) {
-        XRectangle overall_ink, overall_logical;
+        XRectcolumn_angle overall_ink, overall_logical;
         X11_Xutf8TextExtents(data->font_set, str, nbytes, &overall_ink, &overall_logical);
         *pwidth = overall_logical.width;
         *pheight = overall_logical.height;
@@ -543,7 +543,7 @@ X11_MessageBoxDraw( SDL_MessageBoxDataX11 *data, GC ctx )
 #endif
 
     X11_XSetForeground( display, ctx, data->color[ SDL_MESSAGEBOX_COLOR_BACKGROUND ] );
-    X11_XFillRectangle( display, window, ctx, 0, 0, data->dialog_width, data->dialog_height );
+    X11_XFillRectcolumn_angle( display, window, ctx, 0, 0, data->dialog_width, data->dialog_height );
 
     X11_XSetForeground( display, ctx, data->color[ SDL_MESSAGEBOX_COLOR_TEXT ] );
     for ( i = 0; i < data->numlines; i++ ) {
@@ -567,12 +567,12 @@ X11_MessageBoxDraw( SDL_MessageBoxDataX11 *data, GC ctx )
         int offset = ( ( data->mouse_over_index == i ) && ( data->button_press_index == data->mouse_over_index ) ) ? 1 : 0;
 
         X11_XSetForeground( display, ctx, data->color[ SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND ] );
-        X11_XFillRectangle( display, window, ctx,
+        X11_XFillRectcolumn_angle( display, window, ctx,
                         buttondatax11->rect.x - border, buttondatax11->rect.y - border,
                         buttondatax11->rect.w + 2 * border, buttondatax11->rect.h + 2 * border );
 
         X11_XSetForeground( display, ctx, data->color[ SDL_MESSAGEBOX_COLOR_BUTTON_BORDER ] );
-        X11_XDrawRectangle( display, window, ctx,
+        X11_XDrawRectcolumn_angle( display, window, ctx,
                         buttondatax11->rect.x, buttondatax11->rect.y,
                         buttondatax11->rect.w, buttondatax11->rect.h );
 

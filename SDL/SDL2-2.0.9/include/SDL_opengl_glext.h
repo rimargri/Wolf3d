@@ -1291,10 +1291,10 @@ GLAPI GLboolean APIENTRY glIsVertexArray (GLuint array);
 #define GL_MAX_TEXTURE_BUFFER_SIZE        0x8C2B
 #define GL_TEXTURE_BINDING_BUFFER         0x8C2C
 #define GL_TEXTURE_BUFFER_DATA_STORE_BINDING 0x8C2D
-#define GL_TEXTURE_RECTANGLE              0x84F5
-#define GL_TEXTURE_BINDING_RECTANGLE      0x84F6
-#define GL_PROXY_TEXTURE_RECTANGLE        0x84F7
-#define GL_MAX_RECTANGLE_TEXTURE_SIZE     0x84F8
+#define GL_TEXTURE_RECTcolumn_angle              0x84F5
+#define GL_TEXTURE_BINDING_RECTcolumn_angle      0x84F6
+#define GL_PROXY_TEXTURE_RECTcolumn_angle        0x84F7
+#define GL_MAX_RECTcolumn_angle_TEXTURE_SIZE     0x84F8
 #define GL_R8_SNORM                       0x8F94
 #define GL_RG8_SNORM                      0x8F95
 #define GL_RGB8_SNORM                     0x8F96
@@ -1412,8 +1412,8 @@ typedef int64_t GLint64;
 #define GL_CONTEXT_COMPATIBILITY_PROFILE_BIT 0x00000002
 #define GL_LINES_ADJACENCY                0x000A
 #define GL_LINE_STRIP_ADJACENCY           0x000B
-#define GL_TRIANGLES_ADJACENCY            0x000C
-#define GL_TRIANGLE_STRIP_ADJACENCY       0x000D
+#define GL_TRIcolumn_angleS_ADJACENCY            0x000C
+#define GL_TRIcolumn_angle_STRIP_ADJACENCY       0x000D
 #define GL_PROGRAM_POINT_SIZE             0x8642
 #define GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS 0x8C29
 #define GL_FRAMEBUFFER_ATTACHMENT_LAYERED 0x8DA7
@@ -2997,8 +2997,8 @@ GLAPI GLboolean APIENTRY glIsProgramARB (GLuint program);
 #define GL_ARB_geometry_shader4 1
 #define GL_LINES_ADJACENCY_ARB            0x000A
 #define GL_LINE_STRIP_ADJACENCY_ARB       0x000B
-#define GL_TRIANGLES_ADJACENCY_ARB        0x000C
-#define GL_TRIANGLE_STRIP_ADJACENCY_ARB   0x000D
+#define GL_TRIcolumn_angleS_ADJACENCY_ARB        0x000C
+#define GL_TRIcolumn_angle_STRIP_ADJACENCY_ARB   0x000D
 #define GL_PROGRAM_POINT_SIZE_ARB         0x8642
 #define GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB 0x8C29
 #define GL_FRAMEBUFFER_ATTACHMENT_LAYERED_ARB 0x8DA7
@@ -3980,13 +3980,13 @@ GLAPI void APIENTRY glGetCompressedTexImageARB (GLenum target, GLint level, void
 #define GL_ARB_texture_query_lod 1
 #endif /* GL_ARB_texture_query_lod */
 
-#ifndef GL_ARB_texture_rectangle
-#define GL_ARB_texture_rectangle 1
-#define GL_TEXTURE_RECTANGLE_ARB          0x84F5
-#define GL_TEXTURE_BINDING_RECTANGLE_ARB  0x84F6
-#define GL_PROXY_TEXTURE_RECTANGLE_ARB    0x84F7
-#define GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB 0x84F8
-#endif /* GL_ARB_texture_rectangle */
+#ifndef GL_ARB_texture_rectcolumn_angle
+#define GL_ARB_texture_rectcolumn_angle 1
+#define GL_TEXTURE_RECTcolumn_angle_ARB          0x84F5
+#define GL_TEXTURE_BINDING_RECTcolumn_angle_ARB  0x84F6
+#define GL_PROXY_TEXTURE_RECTcolumn_angle_ARB    0x84F7
+#define GL_MAX_RECTcolumn_angle_TEXTURE_SIZE_ARB 0x84F8
+#endif /* GL_ARB_texture_rectcolumn_angle */
 
 #ifndef GL_ARB_texture_rg
 #define GL_ARB_texture_rg 1
@@ -4522,7 +4522,7 @@ typedef void (APIENTRYP PFNGLORTHOXOESPROC) (GLfixed l, GLfixed r, GLfixed b, GL
 typedef void (APIENTRYP PFNGLPOINTPARAMETERXVOESPROC) (GLenum pname, const GLfixed *params);
 typedef void (APIENTRYP PFNGLPOINTSIZEXOESPROC) (GLfixed size);
 typedef void (APIENTRYP PFNGLPOLYGONOFFSETXOESPROC) (GLfixed factor, GLfixed units);
-typedef void (APIENTRYP PFNGLROTATEXOESPROC) (GLfixed angle, GLfixed x, GLfixed y, GLfixed z);
+typedef void (APIENTRYP PFNGLROTATEXOESPROC) (GLfixed column_angle, GLfixed x, GLfixed y, GLfixed z);
 typedef void (APIENTRYP PFNGLSAMPLECOVERAGEOESPROC) (GLfixed value, GLboolean invert);
 typedef void (APIENTRYP PFNGLSCALEXOESPROC) (GLfixed x, GLfixed y, GLfixed z);
 typedef void (APIENTRYP PFNGLTEXENVXOESPROC) (GLenum target, GLenum pname, GLfixed param);
@@ -4627,7 +4627,7 @@ GLAPI void APIENTRY glOrthoxOES (GLfixed l, GLfixed r, GLfixed b, GLfixed t, GLf
 GLAPI void APIENTRY glPointParameterxvOES (GLenum pname, const GLfixed *params);
 GLAPI void APIENTRY glPointSizexOES (GLfixed size);
 GLAPI void APIENTRY glPolygonOffsetxOES (GLfixed factor, GLfixed units);
-GLAPI void APIENTRY glRotatexOES (GLfixed angle, GLfixed x, GLfixed y, GLfixed z);
+GLAPI void APIENTRY glRotatexOES (GLfixed column_angle, GLfixed x, GLfixed y, GLfixed z);
 GLAPI void APIENTRY glSampleCoverageOES (GLfixed value, GLboolean invert);
 GLAPI void APIENTRY glScalexOES (GLfixed x, GLfixed y, GLfixed z);
 GLAPI void APIENTRY glTexEnvxOES (GLenum target, GLenum pname, GLfixed param);
@@ -5084,9 +5084,9 @@ GLAPI void APIENTRY glStencilOpValueAMD (GLenum face, GLuint value);
 #define GL_AMD_texture_texture4 1
 #endif /* GL_AMD_texture_texture4 */
 
-#ifndef GL_AMD_transform_feedback3_lines_triangles
-#define GL_AMD_transform_feedback3_lines_triangles 1
-#endif /* GL_AMD_transform_feedback3_lines_triangles */
+#ifndef GL_AMD_transform_feedback3_lines_tricolumn_angles
+#define GL_AMD_transform_feedback3_lines_tricolumn_angles 1
+#endif /* GL_AMD_transform_feedback3_lines_tricolumn_angles */
 
 #ifndef GL_AMD_transform_feedback4
 #define GL_AMD_transform_feedback4 1
@@ -5549,24 +5549,24 @@ GLAPI void APIENTRY glUnmapObjectBufferATI (GLuint buffer);
 #define GL_COLOR_CLEAR_UNCLAMPED_VALUE_ATI 0x8835
 #endif /* GL_ATI_pixel_format_float */
 
-#ifndef GL_ATI_pn_triangles
-#define GL_ATI_pn_triangles 1
-#define GL_PN_TRIANGLES_ATI               0x87F0
-#define GL_MAX_PN_TRIANGLES_TESSELATION_LEVEL_ATI 0x87F1
-#define GL_PN_TRIANGLES_POINT_MODE_ATI    0x87F2
-#define GL_PN_TRIANGLES_NORMAL_MODE_ATI   0x87F3
-#define GL_PN_TRIANGLES_TESSELATION_LEVEL_ATI 0x87F4
-#define GL_PN_TRIANGLES_POINT_MODE_LINEAR_ATI 0x87F5
-#define GL_PN_TRIANGLES_POINT_MODE_CUBIC_ATI 0x87F6
-#define GL_PN_TRIANGLES_NORMAL_MODE_LINEAR_ATI 0x87F7
-#define GL_PN_TRIANGLES_NORMAL_MODE_QUADRATIC_ATI 0x87F8
-typedef void (APIENTRYP PFNGLPNTRIANGLESIATIPROC) (GLenum pname, GLint param);
-typedef void (APIENTRYP PFNGLPNTRIANGLESFATIPROC) (GLenum pname, GLfloat param);
+#ifndef GL_ATI_pn_tricolumn_angles
+#define GL_ATI_pn_tricolumn_angles 1
+#define GL_PN_TRIcolumn_angleS_ATI               0x87F0
+#define GL_MAX_PN_TRIcolumn_angleS_TESSELATION_LEVEL_ATI 0x87F1
+#define GL_PN_TRIcolumn_angleS_POINT_MODE_ATI    0x87F2
+#define GL_PN_TRIcolumn_angleS_NORMAL_MODE_ATI   0x87F3
+#define GL_PN_TRIcolumn_angleS_TESSELATION_LEVEL_ATI 0x87F4
+#define GL_PN_TRIcolumn_angleS_POINT_MODE_LINEAR_ATI 0x87F5
+#define GL_PN_TRIcolumn_angleS_POINT_MODE_CUBIC_ATI 0x87F6
+#define GL_PN_TRIcolumn_angleS_NORMAL_MODE_LINEAR_ATI 0x87F7
+#define GL_PN_TRIcolumn_angleS_NORMAL_MODE_QUADRATIC_ATI 0x87F8
+typedef void (APIENTRYP PFNGLPNTRIcolumn_angleSIATIPROC) (GLenum pname, GLint param);
+typedef void (APIENTRYP PFNGLPNTRIcolumn_angleSFATIPROC) (GLenum pname, GLfloat param);
 #ifdef GL_GLEXT_PROTOTYPES
-GLAPI void APIENTRY glPNTrianglesiATI (GLenum pname, GLint param);
-GLAPI void APIENTRY glPNTrianglesfATI (GLenum pname, GLfloat param);
+GLAPI void APIENTRY glPNTricolumn_anglesiATI (GLenum pname, GLint param);
+GLAPI void APIENTRY glPNTricolumn_anglesfATI (GLenum pname, GLfloat param);
 #endif
-#endif /* GL_ATI_pn_triangles */
+#endif /* GL_ATI_pn_tricolumn_angles */
 
 #ifndef GL_ATI_separate_stencil
 #define GL_ATI_separate_stencil 1
@@ -6094,8 +6094,8 @@ typedef void (APIENTRYP PFNGLMATRIXLOADDEXTPROC) (GLenum mode, const GLdouble *m
 typedef void (APIENTRYP PFNGLMATRIXMULTFEXTPROC) (GLenum mode, const GLfloat *m);
 typedef void (APIENTRYP PFNGLMATRIXMULTDEXTPROC) (GLenum mode, const GLdouble *m);
 typedef void (APIENTRYP PFNGLMATRIXLOADIDENTITYEXTPROC) (GLenum mode);
-typedef void (APIENTRYP PFNGLMATRIXROTATEFEXTPROC) (GLenum mode, GLfloat angle, GLfloat x, GLfloat y, GLfloat z);
-typedef void (APIENTRYP PFNGLMATRIXROTATEDEXTPROC) (GLenum mode, GLdouble angle, GLdouble x, GLdouble y, GLdouble z);
+typedef void (APIENTRYP PFNGLMATRIXROTATEFEXTPROC) (GLenum mode, GLfloat column_angle, GLfloat x, GLfloat y, GLfloat z);
+typedef void (APIENTRYP PFNGLMATRIXROTATEDEXTPROC) (GLenum mode, GLdouble column_angle, GLdouble x, GLdouble y, GLdouble z);
 typedef void (APIENTRYP PFNGLMATRIXSCALEFEXTPROC) (GLenum mode, GLfloat x, GLfloat y, GLfloat z);
 typedef void (APIENTRYP PFNGLMATRIXSCALEDEXTPROC) (GLenum mode, GLdouble x, GLdouble y, GLdouble z);
 typedef void (APIENTRYP PFNGLMATRIXTRANSLATEFEXTPROC) (GLenum mode, GLfloat x, GLfloat y, GLfloat z);
@@ -6350,8 +6350,8 @@ GLAPI void APIENTRY glMatrixLoaddEXT (GLenum mode, const GLdouble *m);
 GLAPI void APIENTRY glMatrixMultfEXT (GLenum mode, const GLfloat *m);
 GLAPI void APIENTRY glMatrixMultdEXT (GLenum mode, const GLdouble *m);
 GLAPI void APIENTRY glMatrixLoadIdentityEXT (GLenum mode);
-GLAPI void APIENTRY glMatrixRotatefEXT (GLenum mode, GLfloat angle, GLfloat x, GLfloat y, GLfloat z);
-GLAPI void APIENTRY glMatrixRotatedEXT (GLenum mode, GLdouble angle, GLdouble x, GLdouble y, GLdouble z);
+GLAPI void APIENTRY glMatrixRotatefEXT (GLenum mode, GLfloat column_angle, GLfloat x, GLfloat y, GLfloat z);
+GLAPI void APIENTRY glMatrixRotatedEXT (GLenum mode, GLdouble column_angle, GLdouble x, GLdouble y, GLdouble z);
 GLAPI void APIENTRY glMatrixScalefEXT (GLenum mode, GLfloat x, GLfloat y, GLfloat z);
 GLAPI void APIENTRY glMatrixScaledEXT (GLenum mode, GLdouble x, GLdouble y, GLdouble z);
 GLAPI void APIENTRY glMatrixTranslatefEXT (GLenum mode, GLfloat x, GLfloat y, GLfloat z);
@@ -6796,8 +6796,8 @@ GLAPI void APIENTRY glGenerateMipmapEXT (GLenum target);
 #define GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_EXT 0x8DE1
 #define GL_LINES_ADJACENCY_EXT            0x000A
 #define GL_LINE_STRIP_ADJACENCY_EXT       0x000B
-#define GL_TRIANGLES_ADJACENCY_EXT        0x000C
-#define GL_TRIANGLE_STRIP_ADJACENCY_EXT   0x000D
+#define GL_TRIcolumn_angleS_ADJACENCY_EXT        0x000C
+#define GL_TRIcolumn_angle_STRIP_ADJACENCY_EXT   0x000D
 #define GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_EXT 0x8DA8
 #define GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_EXT 0x8DA9
 #define GL_FRAMEBUFFER_ATTACHMENT_LAYERED_EXT 0x8DA7
@@ -8081,7 +8081,7 @@ GLAPI void APIENTRY glStringMarkerGREMEDY (GLsizei len, const void *string);
 #define GL_IMAGE_SCALE_Y_HP               0x8156
 #define GL_IMAGE_TRANSLATE_X_HP           0x8157
 #define GL_IMAGE_TRANSLATE_Y_HP           0x8158
-#define GL_IMAGE_ROTATE_ANGLE_HP          0x8159
+#define GL_IMAGE_ROTATE_column_angle_HP          0x8159
 #define GL_IMAGE_ROTATE_ORIGIN_X_HP       0x815A
 #define GL_IMAGE_ROTATE_ORIGIN_Y_HP       0x815B
 #define GL_IMAGE_MAG_FILTER_HP            0x815C
@@ -9539,19 +9539,19 @@ GLAPI void APIENTRY glTextureImage3DMultisampleCoverageNV (GLuint texture, GLenu
 #endif
 #endif /* GL_NV_texture_multisample */
 
-#ifndef GL_NV_texture_rectangle
-#define GL_NV_texture_rectangle 1
-#define GL_TEXTURE_RECTANGLE_NV           0x84F5
-#define GL_TEXTURE_BINDING_RECTANGLE_NV   0x84F6
-#define GL_PROXY_TEXTURE_RECTANGLE_NV     0x84F7
-#define GL_MAX_RECTANGLE_TEXTURE_SIZE_NV  0x84F8
-#endif /* GL_NV_texture_rectangle */
+#ifndef GL_NV_texture_rectcolumn_angle
+#define GL_NV_texture_rectcolumn_angle 1
+#define GL_TEXTURE_RECTcolumn_angle_NV           0x84F5
+#define GL_TEXTURE_BINDING_RECTcolumn_angle_NV   0x84F6
+#define GL_PROXY_TEXTURE_RECTcolumn_angle_NV     0x84F7
+#define GL_MAX_RECTcolumn_angle_TEXTURE_SIZE_NV  0x84F8
+#endif /* GL_NV_texture_rectcolumn_angle */
 
 #ifndef GL_NV_texture_shader
 #define GL_NV_texture_shader 1
-#define GL_OFFSET_TEXTURE_RECTANGLE_NV    0x864C
-#define GL_OFFSET_TEXTURE_RECTANGLE_SCALE_NV 0x864D
-#define GL_DOT_PRODUCT_TEXTURE_RECTANGLE_NV 0x864E
+#define GL_OFFSET_TEXTURE_RECTcolumn_angle_NV    0x864C
+#define GL_OFFSET_TEXTURE_RECTcolumn_angle_SCALE_NV 0x864D
+#define GL_DOT_PRODUCT_TEXTURE_RECTcolumn_angle_NV 0x864E
 #define GL_RGBA_UNSIGNED_DOT_PRODUCT_MAPPING_NV 0x86D9
 #define GL_UNSIGNED_INT_S8_S8_8_8_NV      0x86DA
 #define GL_UNSIGNED_INT_8_8_S8_S8_REV_NV  0x86DB
@@ -9633,12 +9633,12 @@ GLAPI void APIENTRY glTextureImage3DMultisampleCoverageNV (GLuint texture, GLenu
 #define GL_NV_texture_shader3 1
 #define GL_OFFSET_PROJECTIVE_TEXTURE_2D_NV 0x8850
 #define GL_OFFSET_PROJECTIVE_TEXTURE_2D_SCALE_NV 0x8851
-#define GL_OFFSET_PROJECTIVE_TEXTURE_RECTANGLE_NV 0x8852
-#define GL_OFFSET_PROJECTIVE_TEXTURE_RECTANGLE_SCALE_NV 0x8853
+#define GL_OFFSET_PROJECTIVE_TEXTURE_RECTcolumn_angle_NV 0x8852
+#define GL_OFFSET_PROJECTIVE_TEXTURE_RECTcolumn_angle_SCALE_NV 0x8853
 #define GL_OFFSET_HILO_TEXTURE_2D_NV      0x8854
-#define GL_OFFSET_HILO_TEXTURE_RECTANGLE_NV 0x8855
+#define GL_OFFSET_HILO_TEXTURE_RECTcolumn_angle_NV 0x8855
 #define GL_OFFSET_HILO_PROJECTIVE_TEXTURE_2D_NV 0x8856
-#define GL_OFFSET_HILO_PROJECTIVE_TEXTURE_RECTANGLE_NV 0x8857
+#define GL_OFFSET_HILO_PROJECTIVE_TEXTURE_RECTcolumn_angle_NV 0x8857
 #define GL_DEPENDENT_HILO_TEXTURE_2D_NV   0x8858
 #define GL_DEPENDENT_RGB_TEXTURE_3D_NV    0x8859
 #define GL_DEPENDENT_RGB_TEXTURE_CUBE_MAP_NV 0x885A
@@ -11024,7 +11024,7 @@ GLAPI void APIENTRY glGlobalAlphaFactoruiSUN (GLuint factor);
 #ifndef GL_SUN_mesh_array
 #define GL_SUN_mesh_array 1
 #define GL_QUAD_MESH_SUN                  0x8614
-#define GL_TRIANGLE_MESH_SUN              0x8615
+#define GL_TRIcolumn_angle_MESH_SUN              0x8615
 typedef void (APIENTRYP PFNGLDRAWMESHARRAYSSUNPROC) (GLenum mode, GLint first, GLsizei count, GLsizei width);
 #ifdef GL_GLEXT_PROTOTYPES
 GLAPI void APIENTRY glDrawMeshArraysSUN (GLenum mode, GLint first, GLsizei count, GLsizei width);
@@ -11036,12 +11036,12 @@ GLAPI void APIENTRY glDrawMeshArraysSUN (GLenum mode, GLint first, GLsizei count
 #define GL_SLICE_ACCUM_SUN                0x85CC
 #endif /* GL_SUN_slice_accum */
 
-#ifndef GL_SUN_triangle_list
-#define GL_SUN_triangle_list 1
+#ifndef GL_SUN_tricolumn_angle_list
+#define GL_SUN_tricolumn_angle_list 1
 #define GL_RESTART_SUN                    0x0001
 #define GL_REPLACE_MIDDLE_SUN             0x0002
 #define GL_REPLACE_OLDEST_SUN             0x0003
-#define GL_TRIANGLE_LIST_SUN              0x81D7
+#define GL_TRIcolumn_angle_LIST_SUN              0x81D7
 #define GL_REPLACEMENT_CODE_SUN           0x81D8
 #define GL_REPLACEMENT_CODE_ARRAY_SUN     0x85C0
 #define GL_REPLACEMENT_CODE_ARRAY_TYPE_SUN 0x85C1
@@ -11071,7 +11071,7 @@ GLAPI void APIENTRY glReplacementCodeusvSUN (const GLushort *code);
 GLAPI void APIENTRY glReplacementCodeubvSUN (const GLubyte *code);
 GLAPI void APIENTRY glReplacementCodePointerSUN (GLenum type, GLsizei stride, const void **pointer);
 #endif
-#endif /* GL_SUN_triangle_list */
+#endif /* GL_SUN_tricolumn_angle_list */
 
 #ifndef GL_SUN_vertex
 #define GL_SUN_vertex 1

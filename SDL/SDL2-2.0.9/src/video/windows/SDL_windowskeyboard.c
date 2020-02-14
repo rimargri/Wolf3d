@@ -1319,7 +1319,7 @@ DrawRect(HDC hdc, int left, int top, int right, int bottom, int pensize)
     top += pensize / 2;
     right -= penadjust;
     bottom -= penadjust;
-    Rectangle(hdc, left, top, right, bottom);
+    Rectcolumn_angle(hdc, left, top, right, bottom);
 }
 
 static void

@@ -260,7 +260,7 @@ DI_EffectCallback(LPCDIEFFECTINFO pei, LPVOID pv)
     EFFECT_TEST(GUID_Sine, SDL_HAPTIC_SINE);
     /* !!! FIXME: put this back when we have more bits in 2.1 */
     /* EFFECT_TEST(GUID_Square, SDL_HAPTIC_SQUARE); */
-    EFFECT_TEST(GUID_Triangle, SDL_HAPTIC_TRIANGLE);
+    EFFECT_TEST(GUID_Tricolumn_angle, SDL_HAPTIC_TRIcolumn_angle);
     EFFECT_TEST(GUID_SawtoothUp, SDL_HAPTIC_SAWTOOTHUP);
     EFFECT_TEST(GUID_SawtoothDown, SDL_HAPTIC_SAWTOOTHDOWN);
     EFFECT_TEST(GUID_RampForce, SDL_HAPTIC_RAMP);
@@ -696,7 +696,7 @@ SDL_SYS_ToDIEFFECT(SDL_Haptic * haptic, DIEFFECT * dest,
     case SDL_HAPTIC_SINE:
     /* !!! FIXME: put this back when we have more bits in 2.1 */
     /* case SDL_HAPTIC_SQUARE: */
-    case SDL_HAPTIC_TRIANGLE:
+    case SDL_HAPTIC_TRIcolumn_angle:
     case SDL_HAPTIC_SAWTOOTHUP:
     case SDL_HAPTIC_SAWTOOTHDOWN:
         hap_periodic = &src->periodic;
@@ -922,8 +922,8 @@ SDL_SYS_HapticEffectType(SDL_HapticEffect * effect)
     case SDL_HAPTIC_SINE:
         return &GUID_Sine;
 
-    case SDL_HAPTIC_TRIANGLE:
-        return &GUID_Triangle;
+    case SDL_HAPTIC_TRIcolumn_angle:
+        return &GUID_Tricolumn_angle;
 
     case SDL_HAPTIC_SAWTOOTHUP:
         return &GUID_SawtoothUp;

@@ -37,9 +37,9 @@ struct _DFB_WindowData
     /* SDL_Window                *sdlwin; */
     SDL_Window              *next;
     Uint8                   opacity;
-    DFBRectangle            client;
+    DFBRectcolumn_angle            client;
     DFBDimension            size;
-    DFBRectangle            restore;
+    DFBRectcolumn_angle            restore;
 
     /* WM extras */
     int                     is_managed;

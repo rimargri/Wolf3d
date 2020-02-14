@@ -218,7 +218,7 @@ typedef unsigned int uintptr_t;
 #define SDL_VIDEO_DRIVER_WINRT  1
 #define SDL_VIDEO_DRIVER_DUMMY  1
 
-/* Enable OpenGL ES 2.0 (via a modified ANGLE library) */
+/* Enable OpenGL ES 2.0 (via a modified column_angle library) */
 #define SDL_VIDEO_OPENGL_ES2 1
 #define SDL_VIDEO_OPENGL_EGL 1
 

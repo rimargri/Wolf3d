@@ -67,7 +67,7 @@ static int SW_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect);
 static int SW_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                           const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                          const double angle, const SDL_FPoint * center, const SDL_RendererFlip flip);
+                          const double column_angle, const SDL_FPoint * center, const SDL_RendererFlip flip);
 static int SW_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                                Uint32 format, void * pixels, int pitch);
 static void SW_RenderPresent(SDL_Renderer * renderer);
@@ -590,7 +590,7 @@ SW_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 static int
 SW_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                 const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                const double angle, const SDL_FPoint * center, const SDL_RendererFlip flip)
+                const double column_angle, const SDL_FPoint * center, const SDL_RendererFlip flip)
 {
     SDL_Surface *surface = SW_ActivateRenderer(renderer);
     SDL_Surface *src = (SDL_Surface *) texture->driverdata;
@@ -598,7 +598,7 @@ SW_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     SDL_Surface *src_clone, *src_rotated, *src_scaled;
     SDL_Surface *mask = NULL, *mask_rotated = NULL;
     int retval = 0, dstwidth, dstheight, abscenterx, abscentery;
-    double cangle, sangle, px, py, p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y;
+    double ccolumn_angle, scolumn_angle, px, py, p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y;
     SDL_BlendMode blendmode;
     Uint8 alphaMod, rMod, gMod, bMod;
     int applyModulation = SDL_FALSE;
@@ -709,14 +709,14 @@ SW_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     SDL_SetSurfaceBlendMode(src_clone, blendmode);
 
     if (!retval) {
-        SDLgfx_rotozoomSurfaceSizeTrig(tmp_rect.w, tmp_rect.h, angle, &dstwidth, &dstheight, &cangle, &sangle);
-        src_rotated = SDLgfx_rotateSurface(src_clone, angle, dstwidth/2, dstheight/2, (texture->scaleMode == SDL_ScaleModeNearest) ? 0 : 1, flip & SDL_FLIP_HORIZONTAL, flip & SDL_FLIP_VERTICAL, dstwidth, dstheight, cangle, sangle);
+        SDLgfx_rotozoomSurfaceSizeTrig(tmp_rect.w, tmp_rect.h, column_angle, &dstwidth, &dstheight, &ccolumn_angle, &scolumn_angle);
+        src_rotated = SDLgfx_rotateSurface(src_clone, column_angle, dstwidth/2, dstheight/2, (texture->scaleMode == SDL_ScaleModeNearest) ? 0 : 1, flip & SDL_FLIP_HORIZONTAL, flip & SDL_FLIP_VERTICAL, dstwidth, dstheight, ccolumn_angle, scolumn_angle);
         if (src_rotated == NULL) {
             retval = -1;
         }
         if (!retval && mask != NULL) {
             /* The mask needed for the NONE blend mode gets rotated with the same parameters. */
-            mask_rotated = SDLgfx_rotateSurface(mask, angle, dstwidth/2, dstheight/2, SDL_FALSE, 0, 0, dstwidth, dstheight, cangle, sangle);
+            mask_rotated = SDLgfx_rotateSurface(mask, column_angle, dstwidth/2, dstheight/2, SDL_FALSE, 0, 0, dstwidth, dstheight, ccolumn_angle, scolumn_angle);
             if (mask_rotated == NULL) {
                 retval = -1;
             }
@@ -725,32 +725,32 @@ SW_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
             /* Find out where the new origin is by rotating the four final_rect points around the center and then taking the extremes */
             abscenterx = final_rect.x + (int)center->x;
             abscentery = final_rect.y + (int)center->y;
-            /* Compensate the angle inversion to match the behaviour of the other backends */
-            sangle = -sangle;
+            /* Compensate the column_angle inversion to match the behaviour of the other backends */
+            scolumn_angle = -scolumn_angle;
 
             /* Top Left */
             px = final_rect.x - abscenterx;
             py = final_rect.y - abscentery;
-            p1x = px * cangle - py * sangle + abscenterx;
-            p1y = px * sangle + py * cangle + abscentery;
+            p1x = px * ccolumn_angle - py * scolumn_angle + abscenterx;
+            p1y = px * scolumn_angle + py * ccolumn_angle + abscentery;
 
             /* Top Right */
             px = final_rect.x + final_rect.w - abscenterx;
             py = final_rect.y - abscentery;
-            p2x = px * cangle - py * sangle + abscenterx;
-            p2y = px * sangle + py * cangle + abscentery;
+            p2x = px * ccolumn_angle - py * scolumn_angle + abscenterx;
+            p2y = px * scolumn_angle + py * ccolumn_angle + abscentery;
 
             /* Bottom Left */
             px = final_rect.x - abscenterx;
             py = final_rect.y + final_rect.h - abscentery;
-            p3x = px * cangle - py * sangle + abscenterx;
-            p3y = px * sangle + py * cangle + abscentery;
+            p3x = px * ccolumn_angle - py * scolumn_angle + abscenterx;
+            p3y = px * scolumn_angle + py * ccolumn_angle + abscentery;
 
             /* Bottom Right */
             px = final_rect.x + final_rect.w - abscenterx;
             py = final_rect.y + final_rect.h - abscentery;
-            p4x = px * cangle - py * sangle + abscenterx;
-            p4y = px * sangle + py * cangle + abscentery;
+            p4x = px * ccolumn_angle - py * scolumn_angle + abscenterx;
+            p4y = px * scolumn_angle + py * ccolumn_angle + abscentery;
 
             tmp_rect.x = (int)MIN(MIN(p1x, p2x), MIN(p3x, p4x));
             tmp_rect.y = (int)MIN(MIN(p1y, p2y), MIN(p3y, p4y));

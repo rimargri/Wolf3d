@@ -370,8 +370,8 @@ GL_APICALL void GL_APIENTRY glMultiDrawElementsBaseVertexEXT (GLenum mode, const
 #define GL_LAYER_PROVOKING_VERTEX_OES     0x825E
 #define GL_LINES_ADJACENCY_OES            0x000A
 #define GL_LINE_STRIP_ADJACENCY_OES       0x000B
-#define GL_TRIANGLES_ADJACENCY_OES        0x000C
-#define GL_TRIANGLE_STRIP_ADJACENCY_OES   0x000D
+#define GL_TRIcolumn_angleS_ADJACENCY_OES        0x000C
+#define GL_TRIcolumn_angle_STRIP_ADJACENCY_OES   0x000D
 #define GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_OES 0x8DDF
 #define GL_MAX_GEOMETRY_UNIFORM_BLOCKS_OES 0x8A2C
 #define GL_MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS_OES 0x8A32
@@ -845,80 +845,80 @@ GL_APICALL void GL_APIENTRY glGetPerfMonitorCounterDataAMD (GLuint monitor, GLen
 #define GL_ANDROID_extension_pack_es31a 1
 #endif /* GL_ANDROID_extension_pack_es31a */
 
-#ifndef GL_ANGLE_depth_texture
-#define GL_ANGLE_depth_texture 1
-#endif /* GL_ANGLE_depth_texture */
+#ifndef GL_column_angle_depth_texture
+#define GL_column_angle_depth_texture 1
+#endif /* GL_column_angle_depth_texture */
 
-#ifndef GL_ANGLE_framebuffer_blit
-#define GL_ANGLE_framebuffer_blit 1
-#define GL_READ_FRAMEBUFFER_ANGLE         0x8CA8
-#define GL_DRAW_FRAMEBUFFER_ANGLE         0x8CA9
-#define GL_DRAW_FRAMEBUFFER_BINDING_ANGLE 0x8CA6
-#define GL_READ_FRAMEBUFFER_BINDING_ANGLE 0x8CAA
-typedef void (GL_APIENTRYP PFNGLBLITFRAMEBUFFERANGLEPROC) (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+#ifndef GL_column_angle_framebuffer_blit
+#define GL_column_angle_framebuffer_blit 1
+#define GL_READ_FRAMEBUFFER_column_angle         0x8CA8
+#define GL_DRAW_FRAMEBUFFER_column_angle         0x8CA9
+#define GL_DRAW_FRAMEBUFFER_BINDING_column_angle 0x8CA6
+#define GL_READ_FRAMEBUFFER_BINDING_column_angle 0x8CAA
+typedef void (GL_APIENTRYP PFNGLBLITFRAMEBUFFERcolumn_anglePROC) (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 #ifdef GL_GLEXT_PROTOTYPES
-GL_APICALL void GL_APIENTRY glBlitFramebufferANGLE (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+GL_APICALL void GL_APIENTRY glBlitFramebuffercolumn_angle (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
 #endif
-#endif /* GL_ANGLE_framebuffer_blit */
+#endif /* GL_column_angle_framebuffer_blit */
 
-#ifndef GL_ANGLE_framebuffer_multisample
-#define GL_ANGLE_framebuffer_multisample 1
-#define GL_RENDERBUFFER_SAMPLES_ANGLE     0x8CAB
-#define GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE_ANGLE 0x8D56
-#define GL_MAX_SAMPLES_ANGLE              0x8D57
-typedef void (GL_APIENTRYP PFNGLRENDERBUFFERSTORAGEMULTISAMPLEANGLEPROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+#ifndef GL_column_angle_framebuffer_multisample
+#define GL_column_angle_framebuffer_multisample 1
+#define GL_RENDERBUFFER_SAMPLES_column_angle     0x8CAB
+#define GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE_column_angle 0x8D56
+#define GL_MAX_SAMPLES_column_angle              0x8D57
+typedef void (GL_APIENTRYP PFNGLRENDERBUFFERSTORAGEMULTISAMPLEcolumn_anglePROC) (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
 #ifdef GL_GLEXT_PROTOTYPES
-GL_APICALL void GL_APIENTRY glRenderbufferStorageMultisampleANGLE (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+GL_APICALL void GL_APIENTRY glRenderbufferStorageMultisamplecolumn_angle (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
 #endif
-#endif /* GL_ANGLE_framebuffer_multisample */
+#endif /* GL_column_angle_framebuffer_multisample */
 
-#ifndef GL_ANGLE_instanced_arrays
-#define GL_ANGLE_instanced_arrays 1
-#define GL_VERTEX_ATTRIB_ARRAY_DIVISOR_ANGLE 0x88FE
-typedef void (GL_APIENTRYP PFNGLDRAWARRAYSINSTANCEDANGLEPROC) (GLenum mode, GLint first, GLsizei count, GLsizei primcount);
-typedef void (GL_APIENTRYP PFNGLDRAWELEMENTSINSTANCEDANGLEPROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
-typedef void (GL_APIENTRYP PFNGLVERTEXATTRIBDIVISORANGLEPROC) (GLuint index, GLuint divisor);
+#ifndef GL_column_angle_instanced_arrays
+#define GL_column_angle_instanced_arrays 1
+#define GL_VERTEX_ATTRIB_ARRAY_DIVISOR_column_angle 0x88FE
+typedef void (GL_APIENTRYP PFNGLDRAWARRAYSINSTANCEDcolumn_anglePROC) (GLenum mode, GLint first, GLsizei count, GLsizei primcount);
+typedef void (GL_APIENTRYP PFNGLDRAWELEMENTSINSTANCEDcolumn_anglePROC) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
+typedef void (GL_APIENTRYP PFNGLVERTEXATTRIBDIVISORcolumn_anglePROC) (GLuint index, GLuint divisor);
 #ifdef GL_GLEXT_PROTOTYPES
-GL_APICALL void GL_APIENTRY glDrawArraysInstancedANGLE (GLenum mode, GLint first, GLsizei count, GLsizei primcount);
-GL_APICALL void GL_APIENTRY glDrawElementsInstancedANGLE (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
-GL_APICALL void GL_APIENTRY glVertexAttribDivisorANGLE (GLuint index, GLuint divisor);
+GL_APICALL void GL_APIENTRY glDrawArraysInstancedcolumn_angle (GLenum mode, GLint first, GLsizei count, GLsizei primcount);
+GL_APICALL void GL_APIENTRY glDrawElementsInstancedcolumn_angle (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei primcount);
+GL_APICALL void GL_APIENTRY glVertexAttribDivisorcolumn_angle (GLuint index, GLuint divisor);
 #endif
-#endif /* GL_ANGLE_instanced_arrays */
+#endif /* GL_column_angle_instanced_arrays */
 
-#ifndef GL_ANGLE_pack_reverse_row_order
-#define GL_ANGLE_pack_reverse_row_order 1
-#define GL_PACK_REVERSE_ROW_ORDER_ANGLE   0x93A4
-#endif /* GL_ANGLE_pack_reverse_row_order */
+#ifndef GL_column_angle_pack_reverse_row_order
+#define GL_column_angle_pack_reverse_row_order 1
+#define GL_PACK_REVERSE_ROW_ORDER_column_angle   0x93A4
+#endif /* GL_column_angle_pack_reverse_row_order */
 
-#ifndef GL_ANGLE_program_binary
-#define GL_ANGLE_program_binary 1
-#define GL_PROGRAM_BINARY_ANGLE           0x93A6
-#endif /* GL_ANGLE_program_binary */
+#ifndef GL_column_angle_program_binary
+#define GL_column_angle_program_binary 1
+#define GL_PROGRAM_BINARY_column_angle           0x93A6
+#endif /* GL_column_angle_program_binary */
 
-#ifndef GL_ANGLE_texture_compression_dxt3
-#define GL_ANGLE_texture_compression_dxt3 1
-#define GL_COMPRESSED_RGBA_S3TC_DXT3_ANGLE 0x83F2
-#endif /* GL_ANGLE_texture_compression_dxt3 */
+#ifndef GL_column_angle_texture_compression_dxt3
+#define GL_column_angle_texture_compression_dxt3 1
+#define GL_COMPRESSED_RGBA_S3TC_DXT3_column_angle 0x83F2
+#endif /* GL_column_angle_texture_compression_dxt3 */
 
-#ifndef GL_ANGLE_texture_compression_dxt5
-#define GL_ANGLE_texture_compression_dxt5 1
-#define GL_COMPRESSED_RGBA_S3TC_DXT5_ANGLE 0x83F3
-#endif /* GL_ANGLE_texture_compression_dxt5 */
+#ifndef GL_column_angle_texture_compression_dxt5
+#define GL_column_angle_texture_compression_dxt5 1
+#define GL_COMPRESSED_RGBA_S3TC_DXT5_column_angle 0x83F3
+#endif /* GL_column_angle_texture_compression_dxt5 */
 
-#ifndef GL_ANGLE_texture_usage
-#define GL_ANGLE_texture_usage 1
-#define GL_TEXTURE_USAGE_ANGLE            0x93A2
-#define GL_FRAMEBUFFER_ATTACHMENT_ANGLE   0x93A3
-#endif /* GL_ANGLE_texture_usage */
+#ifndef GL_column_angle_texture_usage
+#define GL_column_angle_texture_usage 1
+#define GL_TEXTURE_USAGE_column_angle            0x93A2
+#define GL_FRAMEBUFFER_ATTACHMENT_column_angle   0x93A3
+#endif /* GL_column_angle_texture_usage */
 
-#ifndef GL_ANGLE_translated_shader_source
-#define GL_ANGLE_translated_shader_source 1
-#define GL_TRANSLATED_SHADER_SOURCE_LENGTH_ANGLE 0x93A0
-typedef void (GL_APIENTRYP PFNGLGETTRANSLATEDSHADERSOURCEANGLEPROC) (GLuint shader, GLsizei bufsize, GLsizei *length, GLchar *source);
+#ifndef GL_column_angle_translated_shader_source
+#define GL_column_angle_translated_shader_source 1
+#define GL_TRANSLATED_SHADER_SOURCE_LENGTH_column_angle 0x93A0
+typedef void (GL_APIENTRYP PFNGLGETTRANSLATEDSHADERSOURCEcolumn_anglePROC) (GLuint shader, GLsizei bufsize, GLsizei *length, GLchar *source);
 #ifdef GL_GLEXT_PROTOTYPES
-GL_APICALL void GL_APIENTRY glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufsize, GLsizei *length, GLchar *source);
+GL_APICALL void GL_APIENTRY glGetTranslatedShaderSourcecolumn_angle (GLuint shader, GLsizei bufsize, GLsizei *length, GLchar *source);
 #endif
-#endif /* GL_ANGLE_translated_shader_source */
+#endif /* GL_column_angle_translated_shader_source */
 
 #ifndef GL_APPLE_clip_distance
 #define GL_APPLE_clip_distance 1
@@ -1392,8 +1392,8 @@ GL_APICALL void GL_APIENTRY glNamedBufferStorageExternalEXT (GLuint buffer, GLin
 #define GL_LAYER_PROVOKING_VERTEX_EXT     0x825E
 #define GL_LINES_ADJACENCY_EXT            0x000A
 #define GL_LINE_STRIP_ADJACENCY_EXT       0x000B
-#define GL_TRIANGLES_ADJACENCY_EXT        0x000C
-#define GL_TRIANGLE_STRIP_ADJACENCY_EXT   0x000D
+#define GL_TRIcolumn_angleS_ADJACENCY_EXT        0x000C
+#define GL_TRIcolumn_angle_STRIP_ADJACENCY_EXT   0x000D
 #define GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_EXT 0x8DDF
 #define GL_MAX_GEOMETRY_UNIFORM_BLOCKS_EXT 0x8A2C
 #define GL_MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS_EXT 0x8A32
@@ -2197,19 +2197,19 @@ GL_APICALL GLboolean GL_APIENTRY glReleaseKeyedMutexWin32EXT (GLuint memory, GLu
 #endif
 #endif /* GL_EXT_win32_keyed_mutex */
 
-#ifndef GL_EXT_window_rectangles
-#define GL_EXT_window_rectangles 1
+#ifndef GL_EXT_window_rectcolumn_angles
+#define GL_EXT_window_rectcolumn_angles 1
 #define GL_INCLUSIVE_EXT                  0x8F10
 #define GL_EXCLUSIVE_EXT                  0x8F11
-#define GL_WINDOW_RECTANGLE_EXT           0x8F12
-#define GL_WINDOW_RECTANGLE_MODE_EXT      0x8F13
-#define GL_MAX_WINDOW_RECTANGLES_EXT      0x8F14
-#define GL_NUM_WINDOW_RECTANGLES_EXT      0x8F15
-typedef void (GL_APIENTRYP PFNGLWINDOWRECTANGLESEXTPROC) (GLenum mode, GLsizei count, const GLint *box);
+#define GL_WINDOW_RECTcolumn_angle_EXT           0x8F12
+#define GL_WINDOW_RECTcolumn_angle_MODE_EXT      0x8F13
+#define GL_MAX_WINDOW_RECTcolumn_angleS_EXT      0x8F14
+#define GL_NUM_WINDOW_RECTcolumn_angleS_EXT      0x8F15
+typedef void (GL_APIENTRYP PFNGLWINDOWRECTcolumn_angleSEXTPROC) (GLenum mode, GLsizei count, const GLint *box);
 #ifdef GL_GLEXT_PROTOTYPES
-GL_APICALL void GL_APIENTRY glWindowRectanglesEXT (GLenum mode, GLsizei count, const GLint *box);
+GL_APICALL void GL_APIENTRY glWindowRectcolumn_anglesEXT (GLenum mode, GLsizei count, const GLint *box);
 #endif
-#endif /* GL_EXT_window_rectangles */
+#endif /* GL_EXT_window_rectcolumn_angles */
 
 #ifndef GL_FJ_shader_binary_GCCSO
 #define GL_FJ_shader_binary_GCCSO 1
@@ -2494,16 +2494,16 @@ GL_APICALL void GL_APIENTRY glSubpixelPrecisionBiasNV (GLuint xbits, GLuint ybit
 #endif
 #endif /* GL_NV_conservative_raster */
 
-#ifndef GL_NV_conservative_raster_pre_snap_triangles
-#define GL_NV_conservative_raster_pre_snap_triangles 1
+#ifndef GL_NV_conservative_raster_pre_snap_tricolumn_angles
+#define GL_NV_conservative_raster_pre_snap_tricolumn_angles 1
 #define GL_CONSERVATIVE_RASTER_MODE_NV    0x954D
 #define GL_CONSERVATIVE_RASTER_MODE_POST_SNAP_NV 0x954E
-#define GL_CONSERVATIVE_RASTER_MODE_PRE_SNAP_TRIANGLES_NV 0x954F
+#define GL_CONSERVATIVE_RASTER_MODE_PRE_SNAP_TRIcolumn_angleS_NV 0x954F
 typedef void (GL_APIENTRYP PFNGLCONSERVATIVERASTERPARAMETERINVPROC) (GLenum pname, GLint param);
 #ifdef GL_GLEXT_PROTOTYPES
 GL_APICALL void GL_APIENTRY glConservativeRasterParameteriNV (GLenum pname, GLint param);
 #endif
-#endif /* GL_NV_conservative_raster_pre_snap_triangles */
+#endif /* GL_NV_conservative_raster_pre_snap_tricolumn_angles */
 
 #ifndef GL_NV_copy_buffer
 #define GL_NV_copy_buffer 1
@@ -2639,10 +2639,10 @@ GL_APICALL void GL_APIENTRY glSetFenceNV (GLuint fence, GLenum condition);
 #endif
 #endif /* GL_NV_fence */
 
-#ifndef GL_NV_fill_rectangle
-#define GL_NV_fill_rectangle 1
-#define GL_FILL_RECTANGLE_NV              0x933C
-#endif /* GL_NV_fill_rectangle */
+#ifndef GL_NV_fill_rectcolumn_angle
+#define GL_NV_fill_rectcolumn_angle 1
+#define GL_FILL_RECTcolumn_angle_NV              0x933C
+#endif /* GL_NV_fill_rectcolumn_angle */
 
 #ifndef GL_NV_fragment_coverage_to_color
 #define GL_NV_fragment_coverage_to_color 1

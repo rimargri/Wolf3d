@@ -224,12 +224,12 @@ SDL_SoftStretch(SDL_Surface * src, const SDL_Rect * srcrect,
         return SDL_SetError("Only works with same format surfaces");
     }
 
-    /* Verify the blit rectangles */
+    /* Verify the blit rectcolumn_angles */
     if (srcrect) {
         if ((srcrect->x < 0) || (srcrect->y < 0) ||
             ((srcrect->x + srcrect->w) > src->w) ||
             ((srcrect->y + srcrect->h) > src->h)) {
-            return SDL_SetError("Invalid source blit rectangle");
+            return SDL_SetError("Invalid source blit rectcolumn_angle");
         }
     } else {
         full_src.x = 0;
@@ -242,7 +242,7 @@ SDL_SoftStretch(SDL_Surface * src, const SDL_Rect * srcrect,
         if ((dstrect->x < 0) || (dstrect->y < 0) ||
             ((dstrect->x + dstrect->w) > dst->w) ||
             ((dstrect->y + dstrect->h) > dst->h)) {
-            return SDL_SetError("Invalid destination blit rectangle");
+            return SDL_SetError("Invalid destination blit rectcolumn_angle");
         }
     } else {
         full_dst.x = 0;

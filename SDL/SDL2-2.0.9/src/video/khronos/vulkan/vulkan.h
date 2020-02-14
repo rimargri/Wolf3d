@@ -301,8 +301,8 @@ typedef enum VkStructureType {
     VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE = 1000092000,
     VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX = 1000097000,
     VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV = 1000098000,
-    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT = 1000099000,
-    VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT = 1000099001,
+    VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTcolumn_angle_PROPERTIES_EXT = 1000099000,
+    VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTcolumn_angle_STATE_CREATE_INFO_EXT = 1000099001,
     VK_STRUCTURE_TYPE_HDR_METADATA_EXT = 1000105000,
     VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR = 1000111000,
     VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO_KHR = 1000112000,
@@ -668,13 +668,13 @@ typedef enum VkPrimitiveTopology {
     VK_PRIMITIVE_TOPOLOGY_POINT_LIST = 0,
     VK_PRIMITIVE_TOPOLOGY_LINE_LIST = 1,
     VK_PRIMITIVE_TOPOLOGY_LINE_STRIP = 2,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST = 3,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP = 4,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN = 5,
+    VK_PRIMITIVE_TOPOLOGY_TRIcolumn_angle_LIST = 3,
+    VK_PRIMITIVE_TOPOLOGY_TRIcolumn_angle_STRIP = 4,
+    VK_PRIMITIVE_TOPOLOGY_TRIcolumn_angle_FAN = 5,
     VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY = 6,
     VK_PRIMITIVE_TOPOLOGY_LINE_STRIP_WITH_ADJACENCY = 7,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY = 8,
-    VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_WITH_ADJACENCY = 9,
+    VK_PRIMITIVE_TOPOLOGY_TRIcolumn_angle_LIST_WITH_ADJACENCY = 8,
+    VK_PRIMITIVE_TOPOLOGY_TRIcolumn_angle_STRIP_WITH_ADJACENCY = 9,
     VK_PRIMITIVE_TOPOLOGY_PATCH_LIST = 10,
     VK_PRIMITIVE_TOPOLOGY_BEGIN_RANGE = VK_PRIMITIVE_TOPOLOGY_POINT_LIST,
     VK_PRIMITIVE_TOPOLOGY_END_RANGE = VK_PRIMITIVE_TOPOLOGY_PATCH_LIST,
@@ -686,7 +686,7 @@ typedef enum VkPolygonMode {
     VK_POLYGON_MODE_FILL = 0,
     VK_POLYGON_MODE_LINE = 1,
     VK_POLYGON_MODE_POINT = 2,
-    VK_POLYGON_MODE_FILL_RECTANGLE_NV = 1000153000,
+    VK_POLYGON_MODE_FILL_RECTcolumn_angle_NV = 1000153000,
     VK_POLYGON_MODE_BEGIN_RANGE = VK_POLYGON_MODE_FILL,
     VK_POLYGON_MODE_END_RANGE = VK_POLYGON_MODE_POINT,
     VK_POLYGON_MODE_RANGE_SIZE = (VK_POLYGON_MODE_POINT - VK_POLYGON_MODE_FILL + 1),
@@ -850,7 +850,7 @@ typedef enum VkDynamicState {
     VK_DYNAMIC_STATE_STENCIL_WRITE_MASK = 7,
     VK_DYNAMIC_STATE_STENCIL_REFERENCE = 8,
     VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV = 1000087000,
-    VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT = 1000099000,
+    VK_DYNAMIC_STATE_DISCARD_RECTcolumn_angle_EXT = 1000099000,
     VK_DYNAMIC_STATE_BEGIN_RANGE = VK_DYNAMIC_STATE_VIEWPORT,
     VK_DYNAMIC_STATE_END_RANGE = VK_DYNAMIC_STATE_STENCIL_REFERENCE,
     VK_DYNAMIC_STATE_RANGE_SIZE = (VK_DYNAMIC_STATE_STENCIL_REFERENCE - VK_DYNAMIC_STATE_VIEWPORT + 1),
@@ -4525,8 +4525,8 @@ typedef struct VkRectLayerKHR {
 } VkRectLayerKHR;
 
 typedef struct VkPresentRegionKHR {
-    uint32_t                 rectangleCount;
-    const VkRectLayerKHR*    pRectangles;
+    uint32_t                 rectcolumn_angleCount;
+    const VkRectLayerKHR*    pRectcolumn_angles;
 } VkPresentRegionKHR;
 
 typedef struct VkPresentRegionsKHR {
@@ -5502,7 +5502,7 @@ typedef VkResult (VKAPI_PTR *PFN_vkGetDeviceGroupPresentCapabilitiesKHX)(VkDevic
 typedef VkResult (VKAPI_PTR *PFN_vkGetDeviceGroupSurfacePresentModesKHX)(VkDevice device, VkSurfaceKHR surface, VkDeviceGroupPresentModeFlagsKHX* pModes);
 typedef VkResult (VKAPI_PTR *PFN_vkAcquireNextImage2KHX)(VkDevice device, const VkAcquireNextImageInfoKHX* pAcquireInfo, uint32_t* pImageIndex);
 typedef void (VKAPI_PTR *PFN_vkCmdDispatchBaseKHX)(VkCommandBuffer commandBuffer, uint32_t baseGroupX, uint32_t baseGroupY, uint32_t baseGroupZ, uint32_t groupCountX, uint32_t groupCountY, uint32_t groupCountZ);
-typedef VkResult (VKAPI_PTR *PFN_vkGetPhysicalDevicePresentRectanglesKHX)(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, uint32_t* pRectCount, VkRect2D* pRects);
+typedef VkResult (VKAPI_PTR *PFN_vkGetPhysicalDevicePresentRectcolumn_anglesKHX)(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, uint32_t* pRectCount, VkRect2D* pRects);
 
 #ifndef VK_NO_PROTOTYPES
 VKAPI_ATTR void VKAPI_CALL vkGetDeviceGroupPeerMemoryFeaturesKHX(
@@ -5549,7 +5549,7 @@ VKAPI_ATTR void VKAPI_CALL vkCmdDispatchBaseKHX(
     uint32_t                                    groupCountY,
     uint32_t                                    groupCountZ);
 
-VKAPI_ATTR VkResult VKAPI_CALL vkGetPhysicalDevicePresentRectanglesKHX(
+VKAPI_ATTR VkResult VKAPI_CALL vkGetPhysicalDevicePresentRectcolumn_anglesKHX(
     VkPhysicalDevice                            physicalDevice,
     VkSurfaceKHR                                surface,
     uint32_t*                                   pRectCount,
@@ -6171,46 +6171,46 @@ typedef struct VkPipelineViewportSwizzleStateCreateInfoNV {
 
 
 
-#define VK_EXT_discard_rectangles 1
-#define VK_EXT_DISCARD_RECTANGLES_SPEC_VERSION 1
-#define VK_EXT_DISCARD_RECTANGLES_EXTENSION_NAME "VK_EXT_discard_rectangles"
+#define VK_EXT_discard_rectcolumn_angles 1
+#define VK_EXT_DISCARD_RECTcolumn_angleS_SPEC_VERSION 1
+#define VK_EXT_DISCARD_RECTcolumn_angleS_EXTENSION_NAME "VK_EXT_discard_rectcolumn_angles"
 
 
-typedef enum VkDiscardRectangleModeEXT {
-    VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT = 0,
-    VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT = 1,
-    VK_DISCARD_RECTANGLE_MODE_BEGIN_RANGE_EXT = VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT,
-    VK_DISCARD_RECTANGLE_MODE_END_RANGE_EXT = VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT,
-    VK_DISCARD_RECTANGLE_MODE_RANGE_SIZE_EXT = (VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT - VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT + 1),
-    VK_DISCARD_RECTANGLE_MODE_MAX_ENUM_EXT = 0x7FFFFFFF
-} VkDiscardRectangleModeEXT;
+typedef enum VkDiscardRectcolumn_angleModeEXT {
+    VK_DISCARD_RECTcolumn_angle_MODE_INCLUSIVE_EXT = 0,
+    VK_DISCARD_RECTcolumn_angle_MODE_EXCLUSIVE_EXT = 1,
+    VK_DISCARD_RECTcolumn_angle_MODE_BEGIN_RANGE_EXT = VK_DISCARD_RECTcolumn_angle_MODE_INCLUSIVE_EXT,
+    VK_DISCARD_RECTcolumn_angle_MODE_END_RANGE_EXT = VK_DISCARD_RECTcolumn_angle_MODE_EXCLUSIVE_EXT,
+    VK_DISCARD_RECTcolumn_angle_MODE_RANGE_SIZE_EXT = (VK_DISCARD_RECTcolumn_angle_MODE_EXCLUSIVE_EXT - VK_DISCARD_RECTcolumn_angle_MODE_INCLUSIVE_EXT + 1),
+    VK_DISCARD_RECTcolumn_angle_MODE_MAX_ENUM_EXT = 0x7FFFFFFF
+} VkDiscardRectcolumn_angleModeEXT;
 
-typedef VkFlags VkPipelineDiscardRectangleStateCreateFlagsEXT;
+typedef VkFlags VkPipelineDiscardRectcolumn_angleStateCreateFlagsEXT;
 
-typedef struct VkPhysicalDeviceDiscardRectanglePropertiesEXT {
+typedef struct VkPhysicalDeviceDiscardRectcolumn_anglePropertiesEXT {
     VkStructureType    sType;
     void*              pNext;
-    uint32_t           maxDiscardRectangles;
-} VkPhysicalDeviceDiscardRectanglePropertiesEXT;
+    uint32_t           maxDiscardRectcolumn_angles;
+} VkPhysicalDeviceDiscardRectcolumn_anglePropertiesEXT;
 
-typedef struct VkPipelineDiscardRectangleStateCreateInfoEXT {
+typedef struct VkPipelineDiscardRectcolumn_angleStateCreateInfoEXT {
     VkStructureType                                  sType;
     const void*                                      pNext;
-    VkPipelineDiscardRectangleStateCreateFlagsEXT    flags;
-    VkDiscardRectangleModeEXT                        discardRectangleMode;
-    uint32_t                                         discardRectangleCount;
-    const VkRect2D*                                  pDiscardRectangles;
-} VkPipelineDiscardRectangleStateCreateInfoEXT;
+    VkPipelineDiscardRectcolumn_angleStateCreateFlagsEXT    flags;
+    VkDiscardRectcolumn_angleModeEXT                        discardRectcolumn_angleMode;
+    uint32_t                                         discardRectcolumn_angleCount;
+    const VkRect2D*                                  pDiscardRectcolumn_angles;
+} VkPipelineDiscardRectcolumn_angleStateCreateInfoEXT;
 
 
-typedef void (VKAPI_PTR *PFN_vkCmdSetDiscardRectangleEXT)(VkCommandBuffer commandBuffer, uint32_t firstDiscardRectangle, uint32_t discardRectangleCount, const VkRect2D* pDiscardRectangles);
+typedef void (VKAPI_PTR *PFN_vkCmdSetDiscardRectcolumn_angleEXT)(VkCommandBuffer commandBuffer, uint32_t firstDiscardRectcolumn_angle, uint32_t discardRectcolumn_angleCount, const VkRect2D* pDiscardRectcolumn_angles);
 
 #ifndef VK_NO_PROTOTYPES
-VKAPI_ATTR void VKAPI_CALL vkCmdSetDiscardRectangleEXT(
+VKAPI_ATTR void VKAPI_CALL vkCmdSetDiscardRectcolumn_angleEXT(
     VkCommandBuffer                             commandBuffer,
-    uint32_t                                    firstDiscardRectangle,
-    uint32_t                                    discardRectangleCount,
-    const VkRect2D*                             pDiscardRectangles);
+    uint32_t                                    firstDiscardRectcolumn_angle,
+    uint32_t                                    discardRectcolumn_angleCount,
+    const VkRect2D*                             pDiscardRectcolumn_angles);
 #endif
 
 #define VK_EXT_swapchain_colorspace 1
@@ -6436,9 +6436,9 @@ typedef struct VkPipelineCoverageModulationStateCreateInfoNV {
 
 
 
-#define VK_NV_fill_rectangle 1
-#define VK_NV_FILL_RECTANGLE_SPEC_VERSION 1
-#define VK_NV_FILL_RECTANGLE_EXTENSION_NAME "VK_NV_fill_rectangle"
+#define VK_NV_fill_rectcolumn_angle 1
+#define VK_NV_FILL_RECTcolumn_angle_SPEC_VERSION 1
+#define VK_NV_FILL_RECTcolumn_angle_EXTENSION_NAME "VK_NV_fill_rectcolumn_angle"
 
 
 #define VK_EXT_post_depth_coverage 1

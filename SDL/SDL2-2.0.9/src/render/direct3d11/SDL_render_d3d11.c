@@ -206,7 +206,7 @@ static int D3D11_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
                             const SDL_Rect * srcrect, const SDL_FRect * dstrect);
 static int D3D11_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                               const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                              const double angle, const SDL_FPoint * center, const SDL_RendererFlip flip);
+                              const double column_angle, const SDL_FPoint * center, const SDL_RendererFlip flip);
 static int D3D11_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                                   Uint32 format, void * pixels, int pitch);
 static void D3D11_RenderPresent(SDL_Renderer * renderer);
@@ -2126,7 +2126,7 @@ D3D11_RenderFillRects(SDL_Renderer * renderer,
             NULL,
             NULL);
 
-        D3D11_RenderFinishDrawOp(renderer, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP, SDL_arraysize(vertices));
+        D3D11_RenderFinishDrawOp(renderer, D3D11_PRIMITIVE_TOPOLOGY_TRIcolumn_angleSTRIP, SDL_arraysize(vertices));
     }
 
     return 0;
@@ -2284,7 +2284,7 @@ D3D11_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
         return -1;
     }
 
-    D3D11_RenderFinishDrawOp(renderer, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP, sizeof(vertices) / sizeof(VertexPositionColor));
+    D3D11_RenderFinishDrawOp(renderer, D3D11_PRIMITIVE_TOPOLOGY_TRIcolumn_angleSTRIP, sizeof(vertices) / sizeof(VertexPositionColor));
 
     return 0;
 }
@@ -2292,7 +2292,7 @@ D3D11_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 static int
 D3D11_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                    const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                   const double angle, const SDL_FPoint * center, const SDL_RendererFlip flip)
+                   const double column_angle, const SDL_FPoint * center, const SDL_RendererFlip flip)
 {
     float minu, maxu, minv, maxv;
     Float4 color;
@@ -2333,7 +2333,7 @@ D3D11_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     }
 
     modelMatrix = MatrixMultiply(
-            MatrixRotationZ((float)(M_PI * (float) angle / 180.0f)),
+            MatrixRotationZ((float)(M_PI * (float) column_angle / 180.0f)),
             MatrixTranslation(dstrect->x + center->x, dstrect->y + center->y, 0)
             );
     D3D11_SetModelMatrix(renderer, &modelMatrix);
@@ -2379,7 +2379,7 @@ D3D11_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
         return -1;
     }
 
-    D3D11_RenderFinishDrawOp(renderer, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP, sizeof(vertices) / sizeof(VertexPositionColor));
+    D3D11_RenderFinishDrawOp(renderer, D3D11_PRIMITIVE_TOPOLOGY_TRIcolumn_angleSTRIP, sizeof(vertices) / sizeof(VertexPositionColor));
 
     D3D11_SetModelMatrix(renderer, NULL);
 

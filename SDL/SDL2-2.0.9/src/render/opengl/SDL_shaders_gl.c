@@ -57,7 +57,7 @@ struct GL_ShaderContext
     PFNGLUNIFORM1FARBPROC glUniform1fARB;
     PFNGLUSEPROGRAMOBJECTARBPROC glUseProgramObjectARB;
 
-    SDL_bool GL_ARB_texture_rectangle_supported;
+    SDL_bool GL_ARB_texture_rectcolumn_angle_supported;
 
     GL_ShaderData shaders[NUM_SHADERS];
 };
@@ -209,7 +209,7 @@ struct GL_ShaderContext
 
 /*
  * NOTE: Always use sampler2D, etc here. We'll #define them to the
- *  texture_rectangle versions if we choose to use that extension.
+ *  texture_rectcolumn_angle versions if we choose to use that extension.
  */
 static const char *shader_source[NUM_SHADERS][2] =
 {
@@ -376,7 +376,7 @@ CompileShaderProgram(GL_ShaderContext *ctx, int index, GL_ShaderData *data)
     ctx->glGetError();
 
     /* Make sure we use the correct sampler type for our texture type */
-    if (ctx->GL_ARB_texture_rectangle_supported) {
+    if (ctx->GL_ARB_texture_rectcolumn_angle_supported) {
         frag_defines =
 "#define sampler2D sampler2DRect\n"
 "#define texture2D texture2DRect\n"
@@ -442,9 +442,9 @@ GL_CreateShaderContext(void)
     }
 
     if (!SDL_GL_ExtensionSupported("GL_ARB_texture_non_power_of_two") &&
-        (SDL_GL_ExtensionSupported("GL_ARB_texture_rectangle") ||
-         SDL_GL_ExtensionSupported("GL_EXT_texture_rectangle"))) {
-        ctx->GL_ARB_texture_rectangle_supported = SDL_TRUE;
+        (SDL_GL_ExtensionSupported("GL_ARB_texture_rectcolumn_angle") ||
+         SDL_GL_ExtensionSupported("GL_EXT_texture_rectcolumn_angle"))) {
+        ctx->GL_ARB_texture_rectcolumn_angle_supported = SDL_TRUE;
     }
 
     /* Check for shader support */

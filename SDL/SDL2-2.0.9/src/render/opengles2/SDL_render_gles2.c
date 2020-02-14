@@ -144,7 +144,7 @@ typedef enum
 {
     GLES2_ATTRIBUTE_POSITION = 0,
     GLES2_ATTRIBUTE_TEXCOORD = 1,
-    GLES2_ATTRIBUTE_ANGLE = 2,
+    GLES2_ATTRIBUTE_column_angle = 2,
     GLES2_ATTRIBUTE_CENTER = 3,
 } GLES2_Attribute;
 
@@ -757,7 +757,7 @@ GLES2_UpdateTexture(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect
 
     GLES2_ActivateRenderer(renderer);
 
-    /* Bail out if we're supposed to update an empty rectangle */
+    /* Bail out if we're supposed to update an empty rectcolumn_angle */
     if (rect->w <= 0 || rect->h <= 0) {
         return 0;
     }
@@ -837,7 +837,7 @@ GLES2_UpdateTextureYUV(SDL_Renderer * renderer, SDL_Texture * texture,
 
     GLES2_ActivateRenderer(renderer);
 
-    /* Bail out if we're supposed to update an empty rectangle */
+    /* Bail out if we're supposed to update an empty rectcolumn_angle */
     if (rect->w <= 0 || rect->h <= 0) {
         return 0;
     }
@@ -1009,7 +1009,7 @@ GLES2_CacheProgram(SDL_Renderer *renderer, GLES2_ShaderCacheEntry *vertex,
     data->glAttachShader(entry->id, fragment->id);
     data->glBindAttribLocation(entry->id, GLES2_ATTRIBUTE_POSITION, "a_position");
     data->glBindAttribLocation(entry->id, GLES2_ATTRIBUTE_TEXCOORD, "a_texCoord");
-    data->glBindAttribLocation(entry->id, GLES2_ATTRIBUTE_ANGLE, "a_angle");
+    data->glBindAttribLocation(entry->id, GLES2_ATTRIBUTE_column_angle, "a_column_angle");
     data->glBindAttribLocation(entry->id, GLES2_ATTRIBUTE_CENTER, "a_center");
     data->glLinkProgram(entry->id);
     data->glGetProgramiv(entry->id, GL_LINK_STATUS, &linkSuccessful);
@@ -1386,7 +1386,7 @@ static int GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const 
                             const SDL_FRect *dstrect);
 static int GLES2_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                         const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
+                         const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
 static int GLES2_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                     Uint32 pixel_format, void * pixels, int pitch);
 static void GLES2_RenderPresent(SDL_Renderer *renderer);
@@ -1627,7 +1627,7 @@ GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count)
         return -1;
     }
 
-    /* Emit a line loop for each rectangle */
+    /* Emit a line loop for each rectcolumn_angle */
     for (idx = 0; idx < count; ++idx) {
         const SDL_FRect *rect = &rects[idx];
 
@@ -1646,7 +1646,7 @@ GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count)
         vertices[7] = yMax;
         /*data->glVertexAttribPointer(GLES2_ATTRIBUTE_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);*/
         GLES2_UpdateVertexBuffer(renderer, GLES2_ATTRIBUTE_POSITION, vertices, 8 * sizeof(GLfloat));
-        data->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        data->glDrawArrays(GL_TRIcolumn_angle_STRIP, 0, 4);
     }
     return GL_CheckError("", renderer);
 }
@@ -1852,22 +1852,22 @@ GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *s
     texCoords[7] = (srcrect->y + srcrect->h) / (GLfloat)texture->h;
     /*data->glVertexAttribPointer(GLES2_ATTRIBUTE_TEXCOORD, 2, GL_FLOAT, GL_FALSE, 0, texCoords);*/
     GLES2_UpdateVertexBuffer(renderer, GLES2_ATTRIBUTE_TEXCOORD, texCoords, 8 * sizeof(GLfloat));
-    data->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    data->glDrawArrays(GL_TRIcolumn_angle_STRIP, 0, 4);
 
     return GL_CheckError("", renderer);
 }
 
 static int
 GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *srcrect,
-                 const SDL_FRect *dstrect, const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
+                 const SDL_FRect *dstrect, const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
 {
     GLES2_DriverContext *data = (GLES2_DriverContext *)renderer->driverdata;
     GLfloat vertices[8];
     GLfloat texCoords[8];
     GLfloat translate[8];
-    GLfloat fAngle[8];
+    GLfloat fcolumn_angle[8];
     GLfloat tmp;
-    float radian_angle;
+    float radian_column_angle;
 
     GLES2_ActivateRenderer(renderer);
 
@@ -1876,12 +1876,12 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
     }
 
     data->glEnableVertexAttribArray(GLES2_ATTRIBUTE_CENTER);
-    data->glEnableVertexAttribArray(GLES2_ATTRIBUTE_ANGLE);
+    data->glEnableVertexAttribArray(GLES2_ATTRIBUTE_column_angle);
 
-    radian_angle = (float)(M_PI * (360.0 - angle) / 180.0);
-    fAngle[0] = fAngle[2] = fAngle[4] = fAngle[6] = (GLfloat)SDL_sin(radian_angle);
+    radian_column_angle = (float)(M_PI * (360.0 - column_angle) / 180.0);
+    fcolumn_angle[0] = fcolumn_angle[2] = fcolumn_angle[4] = fcolumn_angle[6] = (GLfloat)SDL_sin(radian_column_angle);
     /* render expects cos value - 1 (see GLES2_VertexSrc_Default_) */
-    fAngle[1] = fAngle[3] = fAngle[5] = fAngle[7] = (GLfloat)SDL_cos(radian_angle) - 1.0f;
+    fcolumn_angle[1] = fcolumn_angle[3] = fcolumn_angle[5] = fcolumn_angle[7] = (GLfloat)SDL_cos(radian_column_angle) - 1.0f;
     /* Calculate the center of rotation */
     translate[0] = translate[2] = translate[4] = translate[6] = (center->x + dstrect->x);
     translate[1] = translate[3] = translate[5] = translate[7] = (center->y + dstrect->y);
@@ -1906,11 +1906,11 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
         vertices[5] = vertices[7] = tmp;
     }
 
-    /*data->glVertexAttribPointer(GLES2_ATTRIBUTE_ANGLE, 1, GL_FLOAT, GL_FALSE, 0, &fAngle);
+    /*data->glVertexAttribPointer(GLES2_ATTRIBUTE_column_angle, 1, GL_FLOAT, GL_FALSE, 0, &fcolumn_angle);
     data->glVertexAttribPointer(GLES2_ATTRIBUTE_CENTER, 2, GL_FLOAT, GL_FALSE, 0, translate);
     data->glVertexAttribPointer(GLES2_ATTRIBUTE_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);*/
 
-    GLES2_UpdateVertexBuffer(renderer, GLES2_ATTRIBUTE_ANGLE, fAngle, 8 * sizeof(GLfloat));
+    GLES2_UpdateVertexBuffer(renderer, GLES2_ATTRIBUTE_column_angle, fcolumn_angle, 8 * sizeof(GLfloat));
     GLES2_UpdateVertexBuffer(renderer, GLES2_ATTRIBUTE_CENTER, translate, 8 * sizeof(GLfloat));
     GLES2_UpdateVertexBuffer(renderer, GLES2_ATTRIBUTE_POSITION, vertices, 8 * sizeof(GLfloat));
 
@@ -1924,9 +1924,9 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
     texCoords[7] = (srcrect->y + srcrect->h) / (GLfloat)texture->h;
     /*data->glVertexAttribPointer(GLES2_ATTRIBUTE_TEXCOORD, 2, GL_FLOAT, GL_FALSE, 0, texCoords);*/
     GLES2_UpdateVertexBuffer(renderer, GLES2_ATTRIBUTE_TEXCOORD, texCoords, 8 * sizeof(GLfloat));
-    data->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    data->glDrawArrays(GL_TRIcolumn_angle_STRIP, 0, 4);
     data->glDisableVertexAttribArray(GLES2_ATTRIBUTE_CENTER);
-    data->glDisableVertexAttribArray(GLES2_ATTRIBUTE_ANGLE);
+    data->glDisableVertexAttribArray(GLES2_ATTRIBUTE_column_angle);
 
     return GL_CheckError("", renderer);
 }
@@ -2148,7 +2148,7 @@ GLES2_CreateRenderer(SDL_Window *window, Uint32 flags)
     }
 
 #if __WINRT__
-    /* DLudwig, 2013-11-29: ANGLE for WinRT doesn't seem to work unless VSync
+    /* DLudwig, 2013-11-29: column_angle for WinRT doesn't seem to work unless VSync
      * is turned on.  Not doing so will freeze the screen's contents to that
      * of the first drawn frame.
      */

@@ -168,7 +168,7 @@ typedef struct
 } DirectFB_TextureData;
 
 static SDL_INLINE void
-SDLtoDFBRect(const SDL_Rect * sr, DFBRectangle * dr)
+SDLtoDFBRect(const SDL_Rect * sr, DFBRectcolumn_angle * dr)
 {
     dr->x = sr->x;
     dr->y = sr->y;
@@ -176,7 +176,7 @@ SDLtoDFBRect(const SDL_Rect * sr, DFBRectangle * dr)
     dr->w = sr->w;
 }
 static SDL_INLINE void
-SDLtoDFBRect_Float(const SDL_FRect * sr, DFBRectangle * dr)
+SDLtoDFBRect_Float(const SDL_FRect * sr, DFBRectcolumn_angle * dr)
 {
     dr->x = sr->x;
     dr->y = sr->y;
@@ -1010,7 +1010,7 @@ DirectFB_RenderDrawRects(SDL_Renderer * renderer, const SDL_Rect ** rects, int c
         SDL_Rect dst = {rects[i]->x, rects[i]->y, rects[i]->w, rects[i]->h};
         dst.x += clip_region.x1;
         dst.y += clip_region.y1;
-        SDL_DFB_CHECKERR(destsurf->DrawRectangle(destsurf, dst.x, dst.y,
+        SDL_DFB_CHECKERR(destsurf->DrawRectcolumn_angle(destsurf, dst.x, dst.y,
                 dst.w, dst.h));
     }
 
@@ -1036,7 +1036,7 @@ DirectFB_RenderFillRects(SDL_Renderer * renderer, const SDL_FRect * rects, int c
         SDL_Rect dst = {rects[i].x, rects[i].y, rects[i].w, rects[i].h};
         dst.x += clip_region.x1;
         dst.y += clip_region.y1;
-        SDL_DFB_CHECKERR(destsurf->FillRectangle(destsurf, dst.x, dst.y,
+        SDL_DFB_CHECKERR(destsurf->FillRectcolumn_angle(destsurf, dst.x, dst.y,
                 dst.w, dst.h));
     }
 
@@ -1055,7 +1055,7 @@ DirectFB_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
         (DirectFB_TextureData *) texture->driverdata;
     Uint8 alpha, r, g, b;
     DFBRegion clip_region;
-    DFBRectangle sr, dr;
+    DFBRectcolumn_angle sr, dr;
 
     DirectFB_ActivateRenderer(renderer);
 
@@ -1075,13 +1075,13 @@ DirectFB_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
         DFB_DisplayData *dispdata = (DFB_DisplayData *) display->driverdata;
 
         SDL_DFB_CHECKERR(dispdata->
-                         vidlayer->SetSourceRectangle(dispdata->vidlayer,
+                         vidlayer->SetSourceRectcolumn_angle(dispdata->vidlayer,
                                                       sr.x, sr.y, sr.w, sr.h));
         dfbwin->GetPosition(dfbwin, &px, &py);
         px += windata->client.x;
         py += windata->client.y;
         SDL_DFB_CHECKERR(dispdata->
-                         vidlayer->SetScreenRectangle(dispdata->vidlayer,
+                         vidlayer->SetScreenRectcolumn_angle(dispdata->vidlayer,
                                                       px + dr.x,
                                                       py + dr.y,
                                                       dr.w,
@@ -1179,7 +1179,7 @@ DirectFB_RenderPresent(SDL_Renderer * renderer)
         SDL_DFB_CHECK(windata->window_surface->SetDstBlendFunction(windata->window_surface, DSBF_ONE));
         SDL_DFB_CHECK(windata->window_surface->SetDrawingFlags(windata->window_surface, DSDRAW_BLEND));
         SDL_DFB_CHECK(windata->window_surface->SetColor(windata->window_surface, 0, 0, 0, 0xff));
-        SDL_DFB_CHECK(windata->window_surface->FillRectangle(windata->window_surface, 0,0, windata->size.w, windata->size.h));
+        SDL_DFB_CHECK(windata->window_surface->FillRectcolumn_angle(windata->window_surface, 0,0, windata->size.w, windata->size.h));
 
         /* blit the mask */
         SDL_DFB_CHECK(windata->surface->SetSrcBlendFunction(windata->surface, DSBF_DESTCOLOR));

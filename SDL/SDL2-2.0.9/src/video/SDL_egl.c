@@ -59,14 +59,14 @@
 #define DEFAULT_OGL_ES "libGLESv1_CM.so"
 
 #elif SDL_VIDEO_DRIVER_WINDOWS || SDL_VIDEO_DRIVER_WINRT
-/* EGL AND OpenGL ES support via ANGLE */
+/* EGL AND OpenGL ES support via column_angle */
 #define DEFAULT_EGL "libEGL.dll"
 #define DEFAULT_OGL_ES2 "libGLESv2.dll"
 #define DEFAULT_OGL_ES_PVR "libGLES_CM.dll"
 #define DEFAULT_OGL_ES "libGLESv1_CM.dll"
 
 #elif SDL_VIDEO_DRIVER_COCOA
-/* EGL AND OpenGL ES support via ANGLE */
+/* EGL AND OpenGL ES support via column_angle */
 #define DEFAULT_EGL "libEGL.dylib"
 #define DEFAULT_OGL_ES2 "libGLESv2.dylib"
 #define DEFAULT_OGL_ES_PVR "libGLES_CM.dylib"   //???
@@ -81,7 +81,7 @@
 #define DEFAULT_OGL_ES "libGLESv1_CM.so.1"
 #endif /* SDL_VIDEO_DRIVER_RPI */
 
-#ifdef SDL_VIDEO_STATIC_ANGLE
+#ifdef SDL_VIDEO_STATIC_column_angle
 #define LOAD_FUNC(NAME) \
 _this->egl_data->NAME = (void *)NAME;
 #else
@@ -292,7 +292,7 @@ SDL_EGL_LoadLibrary(_THIS, const char *egl_path, NativeDisplayType native_displa
     }
 #endif
 
-#ifndef SDL_VIDEO_STATIC_ANGLE
+#ifndef SDL_VIDEO_STATIC_column_angle
     /* A funny thing, loading EGL.so first does not work on the Raspberry, so we load libGL* first */
     path = SDL_getenv("SDL_VIDEO_GL_DRIVER");
     if (path != NULL) {

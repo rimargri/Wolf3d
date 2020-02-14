@@ -27,7 +27,7 @@
  *  This API supports the following features:
  *      * single pixel points
  *      * single pixel lines
- *      * filled rectangles
+ *      * filled rectcolumn_angles
  *      * texture images
  *
  *  The primitives may be drawn in opaque, blended, or additive modes.
@@ -367,10 +367,10 @@ extern DECLSPEC int SDLCALL SDL_GetTextureBlendMode(SDL_Texture * texture,
                                                     SDL_BlendMode *blendMode);
 
 /**
- *  \brief Update the given texture rectangle with new pixel data.
+ *  \brief Update the given texture rectcolumn_angle with new pixel data.
  *
  *  \param texture   The texture to update
- *  \param rect      A pointer to the rectangle of pixels to update, or NULL to
+ *  \param rect      A pointer to the rectcolumn_angle of pixels to update, or NULL to
  *                   update the entire texture.
  *  \param pixels    The raw pixel data in the format of the texture.
  *  \param pitch     The number of bytes in a row of pixel data, including padding between lines.
@@ -387,10 +387,10 @@ extern DECLSPEC int SDLCALL SDL_UpdateTexture(SDL_Texture * texture,
                                               const void *pixels, int pitch);
 
 /**
- *  \brief Update a rectangle within a planar YV12 or IYUV texture with new pixel data.
+ *  \brief Update a rectcolumn_angle within a planar YV12 or IYUV texture with new pixel data.
  *
  *  \param texture   The texture to update
- *  \param rect      A pointer to the rectangle of pixels to update, or NULL to
+ *  \param rect      A pointer to the rectcolumn_angle of pixels to update, or NULL to
  *                   update the entire texture.
  *  \param Yplane    The raw pixel data for the Y plane.
  *  \param Ypitch    The number of bytes between rows of pixel data for the Y plane.
@@ -416,7 +416,7 @@ extern DECLSPEC int SDLCALL SDL_UpdateYUVTexture(SDL_Texture * texture,
  *
  *  \param texture   The texture to lock for access, which was created with
  *                   ::SDL_TEXTUREACCESS_STREAMING.
- *  \param rect      A pointer to the rectangle to lock for access. If the rect
+ *  \param rect      A pointer to the rectcolumn_angle to lock for access. If the rect
  *                   is NULL, the entire texture will be locked.
  *  \param pixels    This is filled in with a pointer to the locked pixels,
  *                   appropriately offset by the locked area.
@@ -532,7 +532,7 @@ extern DECLSPEC SDL_bool SDLCALL SDL_RenderGetIntegerScale(SDL_Renderer * render
  *  \brief Set the drawing area for rendering on the current target.
  *
  *  \param renderer The renderer for which the drawing area should be set.
- *  \param rect The rectangle representing the drawing area, or NULL to set the viewport to the entire target.
+ *  \param rect The rectcolumn_angle representing the drawing area, or NULL to set the viewport to the entire target.
  *
  *  The x,y of the viewport rect represents the origin for rendering.
  *
@@ -555,10 +555,10 @@ extern DECLSPEC void SDLCALL SDL_RenderGetViewport(SDL_Renderer * renderer,
                                                    SDL_Rect * rect);
 
 /**
- *  \brief Set the clip rectangle for the current target.
+ *  \brief Set the clip rectcolumn_angle for the current target.
  *
- *  \param renderer The renderer for which clip rectangle should be set.
- *  \param rect   A pointer to the rectangle to set as the clip rectangle, or
+ *  \param renderer The renderer for which clip rectcolumn_angle should be set.
+ *  \param rect   A pointer to the rectcolumn_angle to set as the clip rectcolumn_angle, or
  *                NULL to disable clipping.
  *
  *  \return 0 on success, or -1 on error
@@ -569,11 +569,11 @@ extern DECLSPEC int SDLCALL SDL_RenderSetClipRect(SDL_Renderer * renderer,
                                                   const SDL_Rect * rect);
 
 /**
- *  \brief Get the clip rectangle for the current target.
+ *  \brief Get the clip rectcolumn_angle for the current target.
  *
- *  \param renderer The renderer from which clip rectangle should be queried.
- *  \param rect   A pointer filled in with the current clip rectangle, or
- *                an empty rectangle if clipping is disabled.
+ *  \param renderer The renderer from which clip rectcolumn_angle should be queried.
+ *  \param rect   A pointer filled in with the current clip rectcolumn_angle, or
+ *                an empty rectcolumn_angle if clipping is disabled.
  *
  *  \sa SDL_RenderSetClipRect()
  */
@@ -688,7 +688,7 @@ extern DECLSPEC int SDLCALL SDL_GetRenderDrawBlendMode(SDL_Renderer * renderer,
  *  \brief Clear the current rendering target with the drawing color
  *
  *  This function clears the entire rendering target, ignoring the viewport and
- *  the clip rectangle.
+ *  the clip rectcolumn_angle.
  *
  *  \return 0 on success, or -1 on error
  */
@@ -747,10 +747,10 @@ extern DECLSPEC int SDLCALL SDL_RenderDrawLines(SDL_Renderer * renderer,
                                                 int count);
 
 /**
- *  \brief Draw a rectangle on the current rendering target.
+ *  \brief Draw a rectcolumn_angle on the current rendering target.
  *
- *  \param renderer The renderer which should draw a rectangle.
- *  \param rect A pointer to the destination rectangle, or NULL to outline the entire rendering target.
+ *  \param renderer The renderer which should draw a rectcolumn_angle.
+ *  \param rect A pointer to the destination rectcolumn_angle, or NULL to outline the entire rendering target.
  *
  *  \return 0 on success, or -1 on error
  */
@@ -758,11 +758,11 @@ extern DECLSPEC int SDLCALL SDL_RenderDrawRect(SDL_Renderer * renderer,
                                                const SDL_Rect * rect);
 
 /**
- *  \brief Draw some number of rectangles on the current rendering target.
+ *  \brief Draw some number of rectcolumn_angles on the current rendering target.
  *
- *  \param renderer The renderer which should draw multiple rectangles.
- *  \param rects A pointer to an array of destination rectangles.
- *  \param count The number of rectangles.
+ *  \param renderer The renderer which should draw multiple rectcolumn_angles.
+ *  \param rects A pointer to an array of destination rectcolumn_angles.
+ *  \param count The number of rectcolumn_angles.
  *
  *  \return 0 on success, or -1 on error
  */
@@ -771,10 +771,10 @@ extern DECLSPEC int SDLCALL SDL_RenderDrawRects(SDL_Renderer * renderer,
                                                 int count);
 
 /**
- *  \brief Fill a rectangle on the current rendering target with the drawing color.
+ *  \brief Fill a rectcolumn_angle on the current rendering target with the drawing color.
  *
- *  \param renderer The renderer which should fill a rectangle.
- *  \param rect A pointer to the destination rectangle, or NULL for the entire
+ *  \param renderer The renderer which should fill a rectcolumn_angle.
+ *  \param rect A pointer to the destination rectcolumn_angle, or NULL for the entire
  *              rendering target.
  *
  *  \return 0 on success, or -1 on error
@@ -783,11 +783,11 @@ extern DECLSPEC int SDLCALL SDL_RenderFillRect(SDL_Renderer * renderer,
                                                const SDL_Rect * rect);
 
 /**
- *  \brief Fill some number of rectangles on the current rendering target with the drawing color.
+ *  \brief Fill some number of rectcolumn_angles on the current rendering target with the drawing color.
  *
- *  \param renderer The renderer which should fill multiple rectangles.
- *  \param rects A pointer to an array of destination rectangles.
- *  \param count The number of rectangles.
+ *  \param renderer The renderer which should fill multiple rectcolumn_angles.
+ *  \param rects A pointer to an array of destination rectcolumn_angles.
+ *  \param count The number of rectcolumn_angles.
  *
  *  \return 0 on success, or -1 on error
  */
@@ -800,9 +800,9 @@ extern DECLSPEC int SDLCALL SDL_RenderFillRects(SDL_Renderer * renderer,
  *
  *  \param renderer The renderer which should copy parts of a texture.
  *  \param texture The source texture.
- *  \param srcrect   A pointer to the source rectangle, or NULL for the entire
+ *  \param srcrect   A pointer to the source rectcolumn_angle, or NULL for the entire
  *                   texture.
- *  \param dstrect   A pointer to the destination rectangle, or NULL for the
+ *  \param dstrect   A pointer to the destination rectcolumn_angle, or NULL for the
  *                   entire rendering target.
  *
  *  \return 0 on success, or -1 on error
@@ -813,15 +813,15 @@ extern DECLSPEC int SDLCALL SDL_RenderCopy(SDL_Renderer * renderer,
                                            const SDL_Rect * dstrect);
 
 /**
- *  \brief Copy a portion of the source texture to the current rendering target, rotating it by angle around the given center
+ *  \brief Copy a portion of the source texture to the current rendering target, rotating it by column_angle around the given center
  *
  *  \param renderer The renderer which should copy parts of a texture.
  *  \param texture The source texture.
- *  \param srcrect   A pointer to the source rectangle, or NULL for the entire
+ *  \param srcrect   A pointer to the source rectcolumn_angle, or NULL for the entire
  *                   texture.
- *  \param dstrect   A pointer to the destination rectangle, or NULL for the
+ *  \param dstrect   A pointer to the destination rectcolumn_angle, or NULL for the
  *                   entire rendering target.
- *  \param angle    An angle in degrees that indicates the rotation that will be applied to dstrect, rotating it in a clockwise direction
+ *  \param column_angle    An column_angle in degrees that indicates the rotation that will be applied to dstrect, rotating it in a clockwise direction
  *  \param center   A pointer to a point indicating the point around which dstrect will be rotated (if NULL, rotation will be done around dstrect.w/2, dstrect.h/2).
  *  \param flip     An SDL_RendererFlip value stating which flipping actions should be performed on the texture
  *
@@ -831,7 +831,7 @@ extern DECLSPEC int SDLCALL SDL_RenderCopyEx(SDL_Renderer * renderer,
                                            SDL_Texture * texture,
                                            const SDL_Rect * srcrect,
                                            const SDL_Rect * dstrect,
-                                           const double angle,
+                                           const double column_angle,
                                            const SDL_Point *center,
                                            const SDL_RendererFlip flip);
 
@@ -839,7 +839,7 @@ extern DECLSPEC int SDLCALL SDL_RenderCopyEx(SDL_Renderer * renderer,
  *  \brief Read pixels from the current rendering target.
  *
  *  \param renderer The renderer from which pixels should be read.
- *  \param rect   A pointer to the rectangle to read, or NULL for the entire
+ *  \param rect   A pointer to the rectcolumn_angle to read, or NULL for the entire
  *                render target.
  *  \param format The desired format of the pixel data, or 0 to use the format
  *                of the rendering target

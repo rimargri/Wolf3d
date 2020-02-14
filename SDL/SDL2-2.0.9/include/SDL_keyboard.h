@@ -177,7 +177,7 @@ extern DECLSPEC SDL_bool SDLCALL SDL_IsTextInputActive(void);
 extern DECLSPEC void SDLCALL SDL_StopTextInput(void);
 
 /**
- *  \brief Set the rectangle used to type Unicode text inputs.
+ *  \brief Set the rectcolumn_angle used to type Unicode text inputs.
  *         This is used as a hint for IME and on-screen keyboard placement.
  *
  *  \sa SDL_StartTextInput()

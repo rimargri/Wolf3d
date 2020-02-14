@@ -14,9 +14,9 @@
 AC_DEFUN([LTOPTIONS_VERSION], [m4_if([1])])
 
 
-# _LT_MANGLE_OPTION(MACRO-NAME, OPTION-NAME)
+# _LT_Mcolumn_angle_OPTION(MACRO-NAME, OPTION-NAME)
 # ------------------------------------------
-m4_define([_LT_MANGLE_OPTION],
+m4_define([_LT_Mcolumn_angle_OPTION],
 [[_LT_OPTION_]m4_bpatsubst($1__$2, [[^a-zA-Z0-9_]], [_])])
 
 
@@ -26,9 +26,9 @@ m4_define([_LT_MANGLE_OPTION],
 # matching handler defined, dispatch to it.  Other OPTION-NAMEs are
 # saved as a flag.
 m4_define([_LT_SET_OPTION],
-[m4_define(_LT_MANGLE_OPTION([$1], [$2]))dnl
-m4_ifdef(_LT_MANGLE_DEFUN([$1], [$2]),
-        _LT_MANGLE_DEFUN([$1], [$2]),
+[m4_define(_LT_Mcolumn_angle_OPTION([$1], [$2]))dnl
+m4_ifdef(_LT_Mcolumn_angle_DEFUN([$1], [$2]),
+        _LT_Mcolumn_angle_DEFUN([$1], [$2]),
     [m4_warning([Unknown $1 option `$2'])])[]dnl
 ])
 
@@ -37,7 +37,7 @@ m4_ifdef(_LT_MANGLE_DEFUN([$1], [$2]),
 # ------------------------------------------------------------
 # Execute IF-SET if OPTION is set, IF-NOT-SET otherwise.
 m4_define([_LT_IF_OPTION],
-[m4_ifdef(_LT_MANGLE_OPTION([$1], [$2]), [$3], [$4])])
+[m4_ifdef(_LT_Mcolumn_angle_OPTION([$1], [$2]), [$3], [$4])])
 
 
 # _LT_UNLESS_OPTIONS(MACRO-NAME, OPTION-LIST, IF-NOT-SET)
@@ -46,7 +46,7 @@ m4_define([_LT_IF_OPTION],
 # are set.
 m4_define([_LT_UNLESS_OPTIONS],
 [m4_foreach([_LT_Option], m4_split(m4_normalize([$2])),
-	    [m4_ifdef(_LT_MANGLE_OPTION([$1], _LT_Option),
+	    [m4_ifdef(_LT_Mcolumn_angle_OPTION([$1], _LT_Option),
 		      [m4_define([$0_found])])])[]dnl
 m4_ifdef([$0_found], [m4_undefine([$0_found])], [$3
 ])[]dnl
@@ -90,16 +90,16 @@ m4_if([$1],[LT_INIT],[
 ## Macros to handle LT_INIT options. ##
 ## --------------------------------- ##
 
-# _LT_MANGLE_DEFUN(MACRO-NAME, OPTION-NAME)
+# _LT_Mcolumn_angle_DEFUN(MACRO-NAME, OPTION-NAME)
 # -----------------------------------------
-m4_define([_LT_MANGLE_DEFUN],
+m4_define([_LT_Mcolumn_angle_DEFUN],
 [[_LT_OPTION_DEFUN_]m4_bpatsubst(m4_toupper([$1__$2]), [[^A-Z0-9_]], [_])])
 
 
 # LT_OPTION_DEFINE(MACRO-NAME, OPTION-NAME, CODE)
 # -----------------------------------------------
 m4_define([LT_OPTION_DEFINE],
-[m4_define(_LT_MANGLE_DEFUN([$1], [$2]), [$3])[]dnl
+[m4_define(_LT_Mcolumn_angle_DEFUN([$1], [$2]), [$3])[]dnl
 ])# LT_OPTION_DEFINE
 
 

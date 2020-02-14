@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/11 20:10:38 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 00:05:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ typedef struct		s_player
 	t_ivec2			transform;
 }					t_player;
 
-typedef struct		s_reycast
+typedef struct		s_raycast
 {
-	float			vec_dir;
-	float			angle;
+	float			player_column_angle;
+	float			column_angle;
 	float			t;
 	t_player		player;
 	t_vec2			len;
 	t_ivec2			transform;
 	int				current_pix;
-}					t_reycast;
+}					t_raycast;
 
 typedef struct		s_sdl
 {

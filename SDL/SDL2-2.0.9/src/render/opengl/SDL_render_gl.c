@@ -82,7 +82,7 @@ static int GL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect);
 static int GL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                         const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
+                         const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
 static int GL_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                                Uint32 pixel_format, void * pixels, int pitch);
 static void GL_RenderPresent(SDL_Renderer * renderer);
@@ -123,7 +123,7 @@ typedef struct
     GLvoid *next_error_userparam;
 
     SDL_bool GL_ARB_texture_non_power_of_two_supported;
-    SDL_bool GL_ARB_texture_rectangle_supported;
+    SDL_bool GL_ARB_texture_rectcolumn_angle_supported;
     struct {
         GL_Shader shader;
         Uint32 color;
@@ -503,12 +503,12 @@ GL_CreateRenderer(SDL_Window * window, Uint32 flags)
 
     if (SDL_GL_ExtensionSupported("GL_ARB_texture_non_power_of_two")) {
         data->GL_ARB_texture_non_power_of_two_supported = SDL_TRUE;
-    } else if (SDL_GL_ExtensionSupported("GL_ARB_texture_rectangle") ||
-               SDL_GL_ExtensionSupported("GL_EXT_texture_rectangle")) {
-        data->GL_ARB_texture_rectangle_supported = SDL_TRUE;
+    } else if (SDL_GL_ExtensionSupported("GL_ARB_texture_rectcolumn_angle") ||
+               SDL_GL_ExtensionSupported("GL_EXT_texture_rectcolumn_angle")) {
+        data->GL_ARB_texture_rectcolumn_angle_supported = SDL_TRUE;
     }
-    if (data->GL_ARB_texture_rectangle_supported) {
-        data->glGetIntegerv(GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB, &value);
+    if (data->GL_ARB_texture_rectcolumn_angle_supported) {
+        data->glGetIntegerv(GL_MAX_RECTcolumn_angle_TEXTURE_SIZE_ARB, &value);
         renderer->info.max_texture_width = value;
         renderer->info.max_texture_height = value;
     } else {
@@ -775,8 +775,8 @@ GL_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
         texture_h = texture->h;
         data->texw = 1.0f;
         data->texh = 1.0f;
-    } else if (renderdata->GL_ARB_texture_rectangle_supported) {
-        data->type = GL_TEXTURE_RECTANGLE_ARB;
+    } else if (renderdata->GL_ARB_texture_rectcolumn_angle_supported) {
+        data->type = GL_TEXTURE_RECTcolumn_angle_ARB;
         texture_w = texture->w;
         texture_h = texture->h;
         data->texw = (GLfloat) texture_w;
@@ -796,10 +796,10 @@ GL_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
     renderdata->glBindTexture(data->type, data->texture);
     renderdata->glTexParameteri(data->type, GL_TEXTURE_MIN_FILTER, scaleMode);
     renderdata->glTexParameteri(data->type, GL_TEXTURE_MAG_FILTER, scaleMode);
-    /* According to the spec, CLAMP_TO_EDGE is the default for TEXTURE_RECTANGLE
+    /* According to the spec, CLAMP_TO_EDGE is the default for TEXTURE_RECTcolumn_angle
        and setting it causes an INVALID_ENUM error in the latest NVidia drivers.
     */
-    if (data->type != GL_TEXTURE_RECTANGLE_ARB) {
+    if (data->type != GL_TEXTURE_RECTcolumn_angle_ARB) {
         renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_S,
                                     GL_CLAMP_TO_EDGE);
         renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_T,
@@ -1402,7 +1402,7 @@ GL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
     maxv = (GLfloat) (srcrect->y + srcrect->h) / texture->h;
     maxv *= texturedata->texh;
 
-    data->glBegin(GL_TRIANGLE_STRIP);
+    data->glBegin(GL_TRIcolumn_angle_STRIP);
     data->glTexCoord2f(minu, minv);
     data->glVertex2f(minx, miny);
     data->glTexCoord2f(maxu, minv);
@@ -1421,7 +1421,7 @@ GL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 static int
 GL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
               const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-              const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
+              const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
 {
     GL_RenderData *data = (GL_RenderData *) renderer->driverdata;
     GL_TextureData *texturedata = (GL_TextureData *) texture->driverdata;
@@ -1468,9 +1468,9 @@ GL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     /* Translate to flip, rotate, translate to position */
     data->glPushMatrix();
     data->glTranslatef((GLfloat)dstrect->x + centerx, (GLfloat)dstrect->y + centery, (GLfloat)0.0);
-    data->glRotated(angle, (GLdouble)0.0, (GLdouble)0.0, (GLdouble)1.0);
+    data->glRotated(column_angle, (GLdouble)0.0, (GLdouble)0.0, (GLdouble)1.0);
 
-    data->glBegin(GL_TRIANGLE_STRIP);
+    data->glBegin(GL_TRIcolumn_angle_STRIP);
     data->glTexCoord2f(minu, minv);
     data->glVertex2f(minx, miny);
     data->glTexCoord2f(maxu, minv);

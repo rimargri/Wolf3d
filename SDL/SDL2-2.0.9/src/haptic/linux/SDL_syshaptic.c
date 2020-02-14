@@ -112,7 +112,7 @@ EV_IsHaptic(int fd)
     EV_TEST(FF_SINE, SDL_HAPTIC_SINE);
     /* !!! FIXME: put this back when we have more bits in 2.1 */
     /* EV_TEST(FF_SQUARE, SDL_HAPTIC_SQUARE); */
-    EV_TEST(FF_TRIANGLE, SDL_HAPTIC_TRIANGLE);
+    EV_TEST(FF_TRIcolumn_angle, SDL_HAPTIC_TRIcolumn_angle);
     EV_TEST(FF_SAW_UP, SDL_HAPTIC_SAWTOOTHUP);
     EV_TEST(FF_SAW_DOWN, SDL_HAPTIC_SAWTOOTHDOWN);
     EV_TEST(FF_RAMP, SDL_HAPTIC_RAMP);
@@ -677,7 +677,7 @@ SDL_SYS_ToDirection(Uint16 *dest, SDL_HapticDirection * src)
             /*
                 We convert to polar, because that's the only supported direction on Linux.
                 The first value of a spherical direction is practically the same as a
-                Polar direction, except that we have to add 90 degrees. It is the angle
+                Polar direction, except that we have to add 90 degrees. It is the column_angle
                 from EAST {1,0} towards SOUTH {0,1}.
                 --> add 9000
                 --> finally convert to [0,0xFFFF] as in case SDL_HAPTIC_POLAR.
@@ -769,7 +769,7 @@ SDL_SYS_ToFFEffect(struct ff_effect *dest, SDL_HapticEffect * src)
     case SDL_HAPTIC_SINE:
     /* !!! FIXME: put this back when we have more bits in 2.1 */
     /* case SDL_HAPTIC_SQUARE: */
-    case SDL_HAPTIC_TRIANGLE:
+    case SDL_HAPTIC_TRIcolumn_angle:
     case SDL_HAPTIC_SAWTOOTHUP:
     case SDL_HAPTIC_SAWTOOTHDOWN:
         periodic = &src->periodic;
@@ -794,8 +794,8 @@ SDL_SYS_ToFFEffect(struct ff_effect *dest, SDL_HapticEffect * src)
         /* !!! FIXME: put this back when we have more bits in 2.1 */
         /* else if (periodic->type == SDL_HAPTIC_SQUARE)
             dest->u.periodic.waveform = FF_SQUARE; */
-        else if (periodic->type == SDL_HAPTIC_TRIANGLE)
-            dest->u.periodic.waveform = FF_TRIANGLE;
+        else if (periodic->type == SDL_HAPTIC_TRIcolumn_angle)
+            dest->u.periodic.waveform = FF_TRIcolumn_angle;
         else if (periodic->type == SDL_HAPTIC_SAWTOOTHUP)
             dest->u.periodic.waveform = FF_SAW_UP;
         else if (periodic->type == SDL_HAPTIC_SAWTOOTHDOWN)

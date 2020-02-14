@@ -1604,7 +1604,7 @@ SDLTest_CommonEvent(SDLTest_CommonState * state, SDL_Event * event, int *done)
                 printf("Copied text to clipboard\n");
             }
             if (withAlt) {
-                /* Alt-C toggle a render clip rectangle */
+                /* Alt-C toggle a render clip rectcolumn_angle */
                 for (i = 0; i < state->num_windows; ++i) {
                     int w, h;
                     if (state->renderers[i]) {

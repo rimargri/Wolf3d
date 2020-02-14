@@ -1968,7 +1968,7 @@ SDL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 int
 SDL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                const SDL_Rect * srcrect, const SDL_Rect * dstrect,
-               const double angle, const SDL_Point *center, const SDL_RendererFlip flip)
+               const double column_angle, const SDL_Point *center, const SDL_RendererFlip flip)
 {
     SDL_Rect real_srcrect = { 0, 0, 0, 0 };
     SDL_Rect real_dstrect = { 0, 0, 0, 0 };
@@ -1976,7 +1976,7 @@ SDL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     SDL_FRect frect;
     SDL_FPoint fcenter;
 
-    if (flip == SDL_FLIP_NONE && (int)(angle/360) == angle/360) { /* fast path when we don't need rotation or flipping */
+    if (flip == SDL_FLIP_NONE && (int)(column_angle/360) == column_angle/360) { /* fast path when we don't need rotation or flipping */
         return SDL_RenderCopy(renderer, texture, srcrect, dstrect);
     }
 
@@ -2033,7 +2033,7 @@ SDL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     fcenter.x = real_center.x * renderer->scale.x;
     fcenter.y = real_center.y * renderer->scale.y;
 
-    return renderer->RenderCopyEx(renderer, texture, &real_srcrect, &frect, angle, &fcenter, flip);
+    return renderer->RenderCopyEx(renderer, texture, &real_srcrect, &frect, column_angle, &fcenter, flip);
 }
 
 int

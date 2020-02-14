@@ -110,7 +110,7 @@ static void SDL_InitDynamicAPI(void);
 
 /* Typedefs for function pointers for jump table, and predeclare funcs */
 /* The DEFAULT funcs will init jump table and then call real function. */
-/* The REAL funcs are the actual functions, name-mangled to not clash. */
+/* The REAL funcs are the actual functions, name-mcolumn_angled to not clash. */
 #define SDL_DYNAPI_PROC(rc,fn,params,args,ret) \
     typedef rc (SDLCALL *SDL_DYNAPIFN_##fn) params; \
     static rc SDLCALL fn##_DEFAULT params; \

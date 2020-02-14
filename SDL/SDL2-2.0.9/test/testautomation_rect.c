@@ -28,7 +28,7 @@ void _validateIntersectRectAndLineResults(
         refRect->x, refRect->y, refRect->w, refRect->h,
         x1Ref, y1Ref, x2Ref, y2Ref);
     SDLTest_AssertCheck(rect->x == refRect->x && rect->y == refRect->y && rect->w == refRect->w && rect->h == refRect->h,
-        "Check that source rectangle was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rect->x, rect->y, rect->w, rect->h,
         refRect->x, refRect->y, refRect->w, refRect->h);
     SDLTest_AssertCheck(x1 == x1Ref && y1 == y1Ref && x2 == x2Ref && y2 == y2Ref,
@@ -233,7 +233,7 @@ rect_testIntersectRectAndLineOutside (void *arg)
 }
 
 /* !
- * \brief Tests SDL_IntersectRectAndLine() with empty rectangle
+ * \brief Tests SDL_IntersectRectAndLine() with empty rectcolumn_angle
  *
  * \sa
  * http://wiki.libsdl.org/moin.cgi/SDL_IntersectRectAndLine
@@ -316,11 +316,11 @@ void _validateHasIntersectionResults(
         rectA->x, rectA->y, rectA->w, rectA->h,
         rectB->x, rectB->y, rectB->w, rectB->h);
     SDLTest_AssertCheck(rectA->x == refRectA->x && rectA->y == refRectA->y && rectA->w == refRectA->w && rectA->h == refRectA->h,
-        "Check that source rectangle A was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle A was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rectA->x, rectA->y, rectA->w, rectA->h,
         refRectA->x, refRectA->y, refRectA->w, refRectA->h);
     SDLTest_AssertCheck(rectB->x == refRectB->x && rectB->y == refRectB->y && rectB->w == refRectB->w && rectB->h == refRectB->h,
-        "Check that source rectangle B was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle B was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rectB->x, rectB->y, rectB->w, rectB->h,
         refRectB->x, refRectB->y, refRectB->w, refRectB->h);
 }
@@ -336,7 +336,7 @@ void _validateIntersectRectResults(
     _validateHasIntersectionResults(intersection, expectedIntersection, rectA, rectB, refRectA, refRectB);
     if (result && expectedResult) {
         SDLTest_AssertCheck(result->x == expectedResult->x && result->y == expectedResult->y && result->w == expectedResult->w && result->h == expectedResult->h,
-            "Check that intersection of rectangles A (%d,%d,%d,%d) and B (%d,%d,%d,%d) was correctly calculated, got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+            "Check that intersection of rectcolumn_angles A (%d,%d,%d,%d) and B (%d,%d,%d,%d) was correctly calculated, got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
             rectA->x, rectA->y, rectA->w, rectA->h,
             rectB->x, rectB->y, rectB->w, rectB->h,
             result->x, result->y, result->w, result->h,
@@ -352,15 +352,15 @@ void _validateUnionRectResults(
     SDL_Rect *result, SDL_Rect *expectedResult)
 {
     SDLTest_AssertCheck(rectA->x == refRectA->x && rectA->y == refRectA->y && rectA->w == refRectA->w && rectA->h == refRectA->h,
-        "Check that source rectangle A was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle A was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rectA->x, rectA->y, rectA->w, rectA->h,
         refRectA->x, refRectA->y, refRectA->w, refRectA->h);
     SDLTest_AssertCheck(rectB->x == refRectB->x && rectB->y == refRectB->y && rectB->w == refRectB->w && rectB->h == refRectB->h,
-        "Check that source rectangle B was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle B was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rectB->x, rectB->y, rectB->w, rectB->h,
         refRectB->x, refRectB->y, refRectB->w, refRectB->h);
     SDLTest_AssertCheck(result->x == expectedResult->x && result->y == expectedResult->y && result->w == expectedResult->w && result->h == expectedResult->h,
-        "Check that union of rectangles A (%d,%d,%d,%d) and B (%d,%d,%d,%d) was correctly calculated, got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that union of rectcolumn_angles A (%d,%d,%d,%d) and B (%d,%d,%d,%d) was correctly calculated, got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rectA->x, rectA->y, rectA->w, rectA->h,
         rectB->x, rectB->y, rectB->w, rectB->h,
         result->x, result->y, result->w, result->h,
@@ -380,7 +380,7 @@ void _validateRectEmptyResults(
         (empty == SDL_TRUE) ? "SDL_TRUE" : "SDL_FALSE",
         rect->x, rect->y, rect->w, rect->h);
     SDLTest_AssertCheck(rect->x == refRect->x && rect->y == refRect->y && rect->w == refRect->w && rect->h == refRect->h,
-        "Check that source rectangle was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rect->x, rect->y, rect->w, rect->h,
         refRect->x, refRect->y, refRect->w, refRect->h);
 }
@@ -399,11 +399,11 @@ void _validateRectEqualsResults(
         rectA->x, rectA->y, rectA->w, rectA->h,
         rectB->x, rectB->y, rectB->w, rectB->h);
     SDLTest_AssertCheck(rectA->x == refRectA->x && rectA->y == refRectA->y && rectA->w == refRectA->w && rectA->h == refRectA->h,
-        "Check that source rectangle A was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle A was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rectA->x, rectA->y, rectA->w, rectA->h,
         refRectA->x, refRectA->y, refRectA->w, refRectA->h);
     SDLTest_AssertCheck(rectB->x == refRectB->x && rectB->y == refRectB->y && rectB->w == refRectB->w && rectB->h == refRectB->h,
-        "Check that source rectangle B was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
+        "Check that source rectcolumn_angle B was not modified: got (%d,%d,%d,%d) expected (%d,%d,%d,%d)",
         rectB->x, rectB->y, rectB->w, rectB->h,
         refRectB->x, refRectB->y, refRectB->w, refRectB->h);
 }
@@ -554,7 +554,7 @@ int rect_testIntersectRectPartial (void *arg)
 }
 
 /* !
- * \brief Tests SDL_IntersectRect() with 1x1 pixel sized rectangles
+ * \brief Tests SDL_IntersectRect() with 1x1 pixel sized rectcolumn_angles
  *
  * \sa
  * http://wiki.libsdl.org/moin.cgi/SDL_IntersectRect
@@ -601,7 +601,7 @@ int rect_testIntersectRectPoint (void *arg)
 }
 
 /* !
- * \brief Tests SDL_IntersectRect() with empty rectangles
+ * \brief Tests SDL_IntersectRect() with empty rectcolumn_angles
  *
  * \sa
  * http://wiki.libsdl.org/moin.cgi/SDL_IntersectRect
@@ -824,7 +824,7 @@ int rect_testHasIntersectionPartial (void *arg)
 }
 
 /* !
- * \brief Tests SDL_HasIntersection() with 1x1 pixel sized rectangles
+ * \brief Tests SDL_HasIntersection() with 1x1 pixel sized rectcolumn_angles
  *
  * \sa
  * http://wiki.libsdl.org/moin.cgi/SDL_HasIntersection
@@ -870,7 +870,7 @@ int rect_testHasIntersectionPoint (void *arg)
 }
 
 /* !
- * \brief Tests SDL_HasIntersection() with empty rectangles
+ * \brief Tests SDL_HasIntersection() with empty rectcolumn_angles
  *
  * \sa
  * http://wiki.libsdl.org/moin.cgi/SDL_HasIntersection
@@ -1014,7 +1014,7 @@ int rect_testEnclosePoints(void *arg)
             i, refPoints[i].x, refPoints[i].y, points[i].x, points[i].y);
     }
     SDLTest_AssertCheck(result.x==minx && result.y==miny && result.w==(maxx - minx + 1) && result.h==(maxy - miny + 1),
-        "Resulting enclosing rectangle incorrect: expected (%i,%i - %i,%i), actual (%i,%i - %i,%i)",
+        "Resulting enclosing rectcolumn_angle incorrect: expected (%i,%i - %i,%i), actual (%i,%i - %i,%i)",
         minx, miny, maxx, maxy, result.x, result.y, result.x + result.w - 1, result.y + result.h - 1);
 
     return TEST_COMPLETED;
@@ -1090,7 +1090,7 @@ int rect_testEnclosePointsRepeatedInput(void *arg)
             i, refPoints[i].x, refPoints[i].y, points[i].x, points[i].y);
     }
     SDLTest_AssertCheck(result.x==minx && result.y==miny && result.w==(maxx - minx + 1) && result.h==(maxy - miny + 1),
-        "Check resulting enclosing rectangle: expected (%i,%i - %i,%i), actual (%i,%i - %i,%i)",
+        "Check resulting enclosing rectcolumn_angle: expected (%i,%i - %i,%i), actual (%i,%i - %i,%i)",
         minx, miny, maxx, maxy, result.x, result.y, result.x + result.w - 1, result.y + result.h - 1);
 
     return TEST_COMPLETED;
@@ -1117,7 +1117,7 @@ int rect_testEnclosePointsWithClipping(void *arg)
     int minx = 0, maxx = 0, miny = 0, maxy = 0;
     int i;
 
-    /* Setup clipping rectangle */
+    /* Setup clipping rectcolumn_angle */
     refClip.x = SDLTest_RandomIntegerInRange(-1024, 1024);
     refClip.y = SDLTest_RandomIntegerInRange(-1024, 1024);
     refClip.w = SDLTest_RandomIntegerInRange(1, 1024);
@@ -1161,7 +1161,7 @@ int rect_testEnclosePointsWithClipping(void *arg)
             i, refPoints[i].x, refPoints[i].y, points[i].x, points[i].y);
     }
     SDLTest_AssertCheck(refClip.x==clip.x && refClip.y==clip.y && refClip.w==clip.w && refClip.h==clip.h,
-        "Check that source clipping rectangle was not modified");
+        "Check that source clipping rectcolumn_angle was not modified");
 
     /* Call function and validate */
     anyEnclosed = SDL_EnclosePoints((const SDL_Point *)points, numPoints, (const SDL_Rect *)&clip, &result);
@@ -1175,14 +1175,14 @@ int rect_testEnclosePointsWithClipping(void *arg)
             i, refPoints[i].x, refPoints[i].y, points[i].x, points[i].y);
     }
     SDLTest_AssertCheck(refClip.x==clip.x && refClip.y==clip.y && refClip.w==clip.w && refClip.h==clip.h,
-        "Check that source clipping rectangle was not modified");
+        "Check that source clipping rectcolumn_angle was not modified");
     if (expectedEnclosed==SDL_TRUE) {
         SDLTest_AssertCheck(result.x==minx && result.y==miny && result.w==(maxx - minx + 1) && result.h==(maxy - miny + 1),
-            "Check resulting enclosing rectangle: expected (%i,%i - %i,%i), actual (%i,%i - %i,%i)",
+            "Check resulting enclosing rectcolumn_angle: expected (%i,%i - %i,%i), actual (%i,%i - %i,%i)",
             minx, miny, maxx, maxy, result.x, result.y, result.x + result.w - 1, result.y + result.h - 1);
     }
 
-    /* Empty clipping rectangle */
+    /* Empty clipping rectcolumn_angle */
     clip.w = 0;
     clip.h = 0;
     expectedEnclosed = SDL_FALSE;
@@ -1589,7 +1589,7 @@ static const SDLTest_TestCaseReference rectTest3 =
         { (SDLTest_TestCaseFp)rect_testIntersectRectAndLineOutside, "rect_testIntersectRectAndLineOutside", "Tests SDL_IntersectRectAndLine with line fully outside of rect", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest4 =
-        { (SDLTest_TestCaseFp)rect_testIntersectRectAndLineEmpty, "rect_testIntersectRectAndLineEmpty", "Tests SDL_IntersectRectAndLine with empty rectangle ", TEST_ENABLED };
+        { (SDLTest_TestCaseFp)rect_testIntersectRectAndLineEmpty, "rect_testIntersectRectAndLineEmpty", "Tests SDL_IntersectRectAndLine with empty rectcolumn_angle ", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest5 =
         { (SDLTest_TestCaseFp)rect_testIntersectRectAndLineParam, "rect_testIntersectRectAndLineParam", "Negative tests against SDL_IntersectRectAndLine with invalid parameters", TEST_ENABLED };
@@ -1605,10 +1605,10 @@ static const SDLTest_TestCaseReference rectTest8 =
         { (SDLTest_TestCaseFp)rect_testIntersectRectPartial, "rect_testIntersectRectPartial", "Tests SDL_IntersectRect with B partially intersecting A", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest9 =
-        { (SDLTest_TestCaseFp)rect_testIntersectRectPoint, "rect_testIntersectRectPoint", "Tests SDL_IntersectRect with 1x1 sized rectangles", TEST_ENABLED };
+        { (SDLTest_TestCaseFp)rect_testIntersectRectPoint, "rect_testIntersectRectPoint", "Tests SDL_IntersectRect with 1x1 sized rectcolumn_angles", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest10 =
-        { (SDLTest_TestCaseFp)rect_testIntersectRectEmpty, "rect_testIntersectRectEmpty", "Tests SDL_IntersectRect with empty rectangles", TEST_ENABLED };
+        { (SDLTest_TestCaseFp)rect_testIntersectRectEmpty, "rect_testIntersectRectEmpty", "Tests SDL_IntersectRect with empty rectcolumn_angles", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest11 =
         { (SDLTest_TestCaseFp)rect_testIntersectRectParam, "rect_testIntersectRectParam", "Negative tests against SDL_IntersectRect with invalid parameters", TEST_ENABLED };
@@ -1624,10 +1624,10 @@ static const SDLTest_TestCaseReference rectTest14 =
         { (SDLTest_TestCaseFp)rect_testHasIntersectionPartial,"rect_testHasIntersectionPartial",  "Tests SDL_HasIntersection with B partially intersecting A", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest15 =
-        { (SDLTest_TestCaseFp)rect_testHasIntersectionPoint, "rect_testHasIntersectionPoint", "Tests SDL_HasIntersection with 1x1 sized rectangles", TEST_ENABLED };
+        { (SDLTest_TestCaseFp)rect_testHasIntersectionPoint, "rect_testHasIntersectionPoint", "Tests SDL_HasIntersection with 1x1 sized rectcolumn_angles", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest16 =
-        { (SDLTest_TestCaseFp)rect_testHasIntersectionEmpty, "rect_testHasIntersectionEmpty", "Tests SDL_HasIntersection with empty rectangles", TEST_ENABLED };
+        { (SDLTest_TestCaseFp)rect_testHasIntersectionEmpty, "rect_testHasIntersectionEmpty", "Tests SDL_HasIntersection with empty rectcolumn_angles", TEST_ENABLED };
 
 static const SDLTest_TestCaseReference rectTest17 =
         { (SDLTest_TestCaseFp)rect_testHasIntersectionParam, "rect_testHasIntersectionParam", "Negative tests against SDL_HasIntersection with invalid parameters", TEST_ENABLED };
@@ -1675,7 +1675,7 @@ static const SDLTest_TestCaseReference rectTest29 =
 
 
 /* !
- * \brief Sequence of Rect test cases; functions that handle simple rectangles including overlaps and merges.
+ * \brief Sequence of Rect test cases; functions that handle simple rectcolumn_angles including overlaps and merges.
  *
  * \sa
  * http://wiki.libsdl.org/moin.cgi/CategoryRect

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/13 23:43:33 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/14 23:13:38 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,14 @@ void	init_player(t_wolf *w)
 {
 	t_player p;
 
-	p.pos.x = 5;
-	p.pos.y = 2;
-	w->player.pos = p.pos;
+	w->player = p;
+	w->player.pos.x = 5;
+	w->player.pos.y = 2;
 }
 
 void	draw_player(t_wolf *w)
 {
+	printf("draw_player---w->player.pos.x = %d\n", w->player.pos.x);
 	w->player.transform.x = w->player.pos.x * RECT_W;
 	w->player.transform.y = w->player.pos.y * RECT_H;
 	draw_rect(w->player.transform, 6, 6, (t_color){255, 255, 255}, w->mlx);

@@ -8,9 +8,9 @@ Common files:
 
 	common.c and common.h contain code common to all demo applications.  This includes functions about delta timing (in seconds), simple error handling, and functions for generating random numbers.
 
-Rectangles (rectangles.c):
+Rectcolumn_angles (rectcolumn_angles.c):
 
-	Draws randomly sized and colored rectangles all over the screen by using SDL_RenderFillRect.  This is the simplest of all the demos.
+	Draws randomly sized and colored rectcolumn_angles all over the screen by using SDL_RenderFillRect.  This is the simplest of all the demos.
 
 Happy (happy.c):
 

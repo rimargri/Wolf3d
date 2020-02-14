@@ -52,7 +52,7 @@ enum
 static struct 
 {
     int x, y;
-    double angle;
+    double column_angle;
     int marker;
 
 } s_arrBindingDisplay[BINDING_COUNT] = {
@@ -453,7 +453,7 @@ WatchJoystick(SDL_Joystick * joystick)
         SDL_RenderCopy(screen, background, NULL, NULL);
         SDL_SetTextureAlphaMod(marker, alpha);
         SDL_SetTextureColorMod(marker, 10, 255, 21);
-        SDL_RenderCopyEx(screen, marker, NULL, &dst, s_arrBindingDisplay[iElement].angle, NULL, SDL_FLIP_NONE);
+        SDL_RenderCopyEx(screen, marker, NULL, &dst, s_arrBindingDisplay[iElement].column_angle, NULL, SDL_FLIP_NONE);
         SDL_RenderPresent(screen);
             
         while (SDL_PollEvent(&event) > 0) {

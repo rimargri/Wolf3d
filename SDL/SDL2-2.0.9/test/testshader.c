@@ -368,7 +368,7 @@ void DrawGLScene(SDL_Window *window, GLuint texture, GLfloat * texcoord)
 
     glTranslatef(-1.5f,0.0f,0.0f);        /* Move Left 1.5 Units */
 
-    /* draw a triangle (in smooth coloring mode) */
+    /* draw a tricolumn_angle (in smooth coloring mode) */
     glBegin(GL_POLYGON);                /* start drawing a polygon */
     glColor3f(1.0f,0.0f,0.0f);            /* Set The Color To Red */
     glVertex3f( 0.0f, 1.0f, 0.0f);        /* Top */

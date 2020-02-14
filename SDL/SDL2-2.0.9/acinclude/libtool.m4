@@ -4571,7 +4571,7 @@ m4_if([$1], [CXX], [
   case $host_os in
   aix[[4-9]]*)
     # If we're using GNU nm, then we don't want the "-C" option.
-    # -C means demangle to AIX nm, but means don't demangle with GNU nm
+    # -C means demcolumn_angle to AIX nm, but means don't demcolumn_angle with GNU nm
     # Also, AIX nm treats weak defined symbols like other global defined
     # symbols, whereas GNU nm marks them as "W".
     if $NM -V 2>&1 | $GREP 'GNU' > /dev/null; then
@@ -4988,7 +4988,7 @@ _LT_EOF
 	no_entry_flag=""
       else
 	# If we're using GNU nm, then we don't want the "-C" option.
-	# -C means demangle to AIX nm, but means don't demangle with GNU nm
+	# -C means demcolumn_angle to AIX nm, but means don't demcolumn_angle with GNU nm
 	# Also, AIX nm treats weak defined symbols like other global
 	# defined symbols, whereas GNU nm marks them as "W".
 	if $NM -V 2>&1 | $GREP 'GNU' > /dev/null; then

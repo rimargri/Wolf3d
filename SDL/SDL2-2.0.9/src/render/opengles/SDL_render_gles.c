@@ -81,7 +81,7 @@ static int GLES_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
                            const SDL_FRect * dstrect);
 static int GLES_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                         const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
+                         const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
 static int GLES_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                     Uint32 pixel_format, void * pixels, int pitch);
 static void GLES_RenderPresent(SDL_Renderer * renderer);
@@ -625,7 +625,7 @@ GLES_UpdateTexture(SDL_Renderer * renderer, SDL_Texture * texture,
 
     GLES_ActivateRenderer(renderer);
 
-    /* Bail out if we're supposed to update an empty rectangle */
+    /* Bail out if we're supposed to update an empty rectcolumn_angle */
     if (rect->w <= 0 || rect->h <= 0) {
         return 0;
     }
@@ -980,7 +980,7 @@ GLES_RenderFillRects(SDL_Renderer * renderer, const SDL_FRect * rects,
         vertices[7] = maxy;
 
         data->glVertexPointer(2, GL_FLOAT, 0, vertices);
-        data->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        data->glDrawArrays(GL_TRIcolumn_angle_STRIP, 0, 4);
     }
 
     return 0;
@@ -1047,7 +1047,7 @@ GLES_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 
     data->glVertexPointer(2, GL_FLOAT, 0, vertices);
     data->glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
-    data->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    data->glDrawArrays(GL_TRIcolumn_angle_STRIP, 0, 4);
 
     data->glDisable(GL_TEXTURE_2D);
 
@@ -1057,7 +1057,7 @@ GLES_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 static int
 GLES_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                 const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
+                const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
 {
 
     GLES_RenderData *data = (GLES_RenderData *) renderer->driverdata;
@@ -1091,7 +1091,7 @@ GLES_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     /* Rotate and translate */
     data->glPushMatrix();
     data->glTranslatef(dstrect->x + centerx, dstrect->y + centery, 0.0f);
-    data->glRotatef((GLfloat)angle, 0.0f, 0.0f, 1.0f);
+    data->glRotatef((GLfloat)column_angle, 0.0f, 0.0f, 1.0f);
 
     if (flip & SDL_FLIP_HORIZONTAL) {
         minx =  dstrect->w - centerx;
@@ -1137,7 +1137,7 @@ GLES_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     texCoords[7] = maxv;
     data->glVertexPointer(2, GL_FLOAT, 0, vertices);
     data->glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
-    data->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    data->glDrawArrays(GL_TRIcolumn_angle_STRIP, 0, 4);
     data->glPopMatrix();
     data->glDisable(GL_TEXTURE_2D);
 

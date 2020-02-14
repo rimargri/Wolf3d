@@ -104,12 +104,12 @@ quit(int rc)
  * order. 
  */
 static void
-rotate_matrix(float angle, float x, float y, float z, float *r)
+rotate_matrix(float column_angle, float x, float y, float z, float *r)
 {
     float radians, c, s, c1, u[3], length;
     int i, j;
 
-    radians = (float)(angle * M_PI) / 180.0f;
+    radians = (float)(column_angle * M_PI) / 180.0f;
 
     c = SDL_cosf(radians);
     s = SDL_sinf(radians);
@@ -368,7 +368,7 @@ typedef struct shader_data
     GLint attr_position;
     GLint attr_color, attr_mvp;
 
-    int angle_x, angle_y, angle_z;
+    int column_angle_x, column_angle_y, column_angle_z;
 
 } shader_data;
 
@@ -378,15 +378,15 @@ Render(unsigned int width, unsigned int height, shader_data* data)
     float matrix_rotate[16], matrix_modelview[16], matrix_perspective[16], matrix_mvp[16];
 
     /* 
-    * Do some rotation with Euler angles. It is not a fixed axis as
+    * Do some rotation with Euler column_angles. It is not a fixed axis as
     * quaterions would be, but the effect is cool. 
     */
-    rotate_matrix((float)data->angle_x, 1.0f, 0.0f, 0.0f, matrix_modelview);
-    rotate_matrix((float)data->angle_y, 0.0f, 1.0f, 0.0f, matrix_rotate);
+    rotate_matrix((float)data->column_angle_x, 1.0f, 0.0f, 0.0f, matrix_modelview);
+    rotate_matrix((float)data->column_angle_y, 0.0f, 1.0f, 0.0f, matrix_rotate);
 
     multiply_matrix(matrix_rotate, matrix_modelview, matrix_modelview);
 
-    rotate_matrix((float)data->angle_z, 0.0f, 1.0f, 0.0f, matrix_rotate);
+    rotate_matrix((float)data->column_angle_z, 0.0f, 1.0f, 0.0f, matrix_rotate);
 
     multiply_matrix(matrix_rotate, matrix_modelview, matrix_modelview);
 
@@ -398,19 +398,19 @@ Render(unsigned int width, unsigned int height, shader_data* data)
 
     GL_CHECK(ctx.glUniformMatrix4fv(data->attr_mvp, 1, GL_FALSE, matrix_mvp));
 
-    data->angle_x += 3;
-    data->angle_y += 2;
-    data->angle_z += 1;
+    data->column_angle_x += 3;
+    data->column_angle_y += 2;
+    data->column_angle_z += 1;
 
-    if(data->angle_x >= 360) data->angle_x -= 360;
-    if(data->angle_x < 0) data->angle_x += 360;
-    if(data->angle_y >= 360) data->angle_y -= 360;
-    if(data->angle_y < 0) data->angle_y += 360;
-    if(data->angle_z >= 360) data->angle_z -= 360;
-    if(data->angle_z < 0) data->angle_z += 360;
+    if(data->column_angle_x >= 360) data->column_angle_x -= 360;
+    if(data->column_angle_x < 0) data->column_angle_x += 360;
+    if(data->column_angle_y >= 360) data->column_angle_y -= 360;
+    if(data->column_angle_y < 0) data->column_angle_y += 360;
+    if(data->column_angle_z >= 360) data->column_angle_z -= 360;
+    if(data->column_angle_z < 0) data->column_angle_z += 360;
 
     GL_CHECK(ctx.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
-    GL_CHECK(ctx.glDrawArrays(GL_TRIANGLES, 0, 36));
+    GL_CHECK(ctx.glDrawArrays(GL_TRIcolumn_angleS, 0, 36));
 }
 
 int done;
@@ -658,7 +658,7 @@ main(int argc, char *argv[])
         ctx.glViewport(0, 0, w, h);
 
         data = &datas[i];
-        data->angle_x = 0; data->angle_y = 0; data->angle_z = 0;
+        data->column_angle_x = 0; data->column_angle_y = 0; data->column_angle_z = 0;
 
         /* Shader Initialization */
         process_shader(&data->shader_vert, _shader_vert_src, GL_VERTEX_SHADER);

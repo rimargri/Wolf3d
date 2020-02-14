@@ -326,9 +326,9 @@ static float bestDollarDifference(SDL_FloatPoint* points,SDL_FloatPoint* templ)
     }
     /*
       if (f1 <= f2)
-          printf("Min angle (x1): %f\n",x1);
+          printf("Min column_angle (x1): %f\n",x1);
       else if (f1 >  f2)
-          printf("Min angle (x2): %f\n",x2);
+          printf("Min column_angle (x2): %f\n",x2);
     */
     return SDL_min(f1,f2);
 }
@@ -644,7 +644,7 @@ void SDL_GestureProcessEvent(SDL_Event* event)
                 Dist = (float)SDL_sqrt(v.x*v.x+v.y*v.y);
                 /* SDL_cos(dTheta) = (v . lv)/(|v| * |lv|) */
 
-                /* Normalize Vectors to simplify angle calculation */
+                /* Normalize Vectors to simplify column_angle calculation */
                 lv.x/=lDist;
                 lv.y/=lDist;
                 v.x/=Dist;

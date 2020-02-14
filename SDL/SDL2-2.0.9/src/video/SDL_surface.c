@@ -551,13 +551,13 @@ SDL_SetClipRect(SDL_Surface * surface, const SDL_Rect * rect)
         return SDL_FALSE;
     }
 
-    /* Set up the full surface rectangle */
+    /* Set up the full surface rectcolumn_angle */
     full_rect.x = 0;
     full_rect.y = 0;
     full_rect.w = surface->w;
     full_rect.h = surface->h;
 
-    /* Set the clipping rectangle */
+    /* Set the clipping rectcolumn_angle */
     if (!rect) {
         surface->clip_rect = full_rect;
         return SDL_TRUE;
@@ -575,7 +575,7 @@ SDL_GetClipRect(SDL_Surface * surface, SDL_Rect * rect)
 
 /*
  * Set up a blit between two surfaces -- split into three parts:
- * The upper part, SDL_UpperBlit(), performs clipping and rectangle
+ * The upper part, SDL_UpperBlit(), performs clipping and rectcolumn_angle
  * verification.  The lower part is a pointer to a low level
  * accelerated blitting function.
  *
@@ -622,7 +622,7 @@ SDL_UpperBlit(SDL_Surface * src, const SDL_Rect * srcrect,
         return SDL_SetError("Surfaces must not be locked during blit");
     }
 
-    /* If the destination rectangle is NULL, use the entire dest surface */
+    /* If the destination rectcolumn_angle is NULL, use the entire dest surface */
     if (dstrect == NULL) {
         fulldst.x = fulldst.y = 0;
         fulldst.w = dst->w;
@@ -630,7 +630,7 @@ SDL_UpperBlit(SDL_Surface * src, const SDL_Rect * srcrect,
         dstrect = &fulldst;
     }
 
-    /* clip the source rectangle to the source surface */
+    /* clip the source rectcolumn_angle to the source surface */
     if (srcrect) {
         int maxw, maxh;
 
@@ -662,7 +662,7 @@ SDL_UpperBlit(SDL_Surface * src, const SDL_Rect * srcrect,
         h = src->h;
     }
 
-    /* clip the destination rectangle against the clip rectangle */
+    /* clip the destination rectcolumn_angle against the clip rectcolumn_angle */
     {
         SDL_Rect *clip = &dst->clip_rect;
         int dx, dy;
@@ -772,7 +772,7 @@ SDL_UpperBlitScaled(SDL_Surface * src, const SDL_Rect * srcrect,
         src_x1 = src_x0 + src_w - 1;
         src_y1 = src_y0 + src_h - 1;
 
-        /* Clip source rectangle to the source surface */
+        /* Clip source rectcolumn_angle to the source surface */
 
         if (src_x0 < 0) {
             dst_x0 -= src_x0 * scaling_w;
@@ -795,7 +795,7 @@ SDL_UpperBlitScaled(SDL_Surface * src, const SDL_Rect * srcrect,
         }
     }
 
-    /* Clip destination rectangle to the clip rectangle */
+    /* Clip destination rectcolumn_angle to the clip rectcolumn_angle */
 
     /* Translate to clip space for easier calculations */
     dst_x0 -= dst->clip_rect.x;

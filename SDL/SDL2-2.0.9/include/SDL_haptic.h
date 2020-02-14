@@ -186,13 +186,13 @@ typedef struct _SDL_Haptic SDL_Haptic;
 /* #define SDL_HAPTIC_SQUARE     (1<<2) */
 
 /**
- *  \brief Triangle wave effect supported.
+ *  \brief Tricolumn_angle wave effect supported.
  *
  *  Periodic haptic effect that simulates triangular waves.
  *
  *  \sa SDL_HapticPeriodic
  */
-#define SDL_HAPTIC_TRIANGLE   (1u<<3)
+#define SDL_HAPTIC_TRIcolumn_angle   (1u<<3)
 
 /**
  *  \brief Sawtoothup wave effect supported.
@@ -495,7 +495,7 @@ typedef struct SDL_HapticConstant
  *  The struct handles the following effects:
  *   - ::SDL_HAPTIC_SINE
  *   - ::SDL_HAPTIC_LEFTRIGHT
- *   - ::SDL_HAPTIC_TRIANGLE
+ *   - ::SDL_HAPTIC_TRIcolumn_angle
  *   - ::SDL_HAPTIC_SAWTOOTHUP
  *   - ::SDL_HAPTIC_SAWTOOTHDOWN
  *
@@ -523,7 +523,7 @@ typedef struct SDL_HapticConstant
     |  |  |  |  |  |  |  |  |  |
     |  |__|  |__|  |__|  |__|  |
 
-    SDL_HAPTIC_TRIANGLE
+    SDL_HAPTIC_TRIcolumn_angle
       /\    /\    /\    /\    /\
      /  \  /  \  /  \  /  \  /
     /    \/    \/    \/    \/
@@ -541,7 +541,7 @@ typedef struct SDL_HapticConstant
  *
  *  \sa SDL_HAPTIC_SINE
  *  \sa SDL_HAPTIC_LEFTRIGHT
- *  \sa SDL_HAPTIC_TRIANGLE
+ *  \sa SDL_HAPTIC_TRIcolumn_angle
  *  \sa SDL_HAPTIC_SAWTOOTHUP
  *  \sa SDL_HAPTIC_SAWTOOTHDOWN
  *  \sa SDL_HapticEffect
@@ -550,7 +550,7 @@ typedef struct SDL_HapticPeriodic
 {
     /* Header */
     Uint16 type;        /**< ::SDL_HAPTIC_SINE, ::SDL_HAPTIC_LEFTRIGHT,
-                             ::SDL_HAPTIC_TRIANGLE, ::SDL_HAPTIC_SAWTOOTHUP or
+                             ::SDL_HAPTIC_TRIcolumn_angle, ::SDL_HAPTIC_SAWTOOTHUP or
                              ::SDL_HAPTIC_SAWTOOTHDOWN */
     SDL_HapticDirection direction;  /**< Direction of the effect. */
 

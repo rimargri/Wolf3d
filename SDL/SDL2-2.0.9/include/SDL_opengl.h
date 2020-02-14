@@ -69,7 +69,7 @@
 #define __gl_h_
 
 #if defined(USE_MGL_NAMESPACE)
-#include "gl_mangle.h"
+#include "gl_mcolumn_angle.h"
 #endif
 
 
@@ -217,9 +217,9 @@ typedef double		GLclampd;	/* double precision float in [0,1] */
 #define GL_LINES				0x0001
 #define GL_LINE_LOOP				0x0002
 #define GL_LINE_STRIP				0x0003
-#define GL_TRIANGLES				0x0004
-#define GL_TRIANGLE_STRIP			0x0005
-#define GL_TRIANGLE_FAN				0x0006
+#define GL_TRIcolumn_angleS				0x0004
+#define GL_TRIcolumn_angle_STRIP			0x0005
+#define GL_TRIcolumn_angle_FAN				0x0006
 #define GL_QUADS				0x0007
 #define GL_QUAD_STRIP				0x0008
 #define GL_POLYGON				0x0009
@@ -943,9 +943,9 @@ GLAPI void GLAPIENTRY glLoadMatrixf( const GLfloat *m );
 GLAPI void GLAPIENTRY glMultMatrixd( const GLdouble *m );
 GLAPI void GLAPIENTRY glMultMatrixf( const GLfloat *m );
 
-GLAPI void GLAPIENTRY glRotated( GLdouble angle,
+GLAPI void GLAPIENTRY glRotated( GLdouble column_angle,
                                    GLdouble x, GLdouble y, GLdouble z );
-GLAPI void GLAPIENTRY glRotatef( GLfloat angle,
+GLAPI void GLAPIENTRY glRotatef( GLfloat column_angle,
                                    GLfloat x, GLfloat y, GLfloat z );
 
 GLAPI void GLAPIENTRY glScaled( GLdouble x, GLdouble y, GLdouble z );
@@ -2152,7 +2152,7 @@ typedef void (APIENTRYP PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC) (GLenum t
 
 /**
  ** NOTE!!!!!  If you add new functions to this file, or update
- ** glext.h be sure to regenerate the gl_mangle.h file.  See comments
+ ** glext.h be sure to regenerate the gl_mcolumn_angle.h file.  See comments
  ** in that file for details.
  **/
 

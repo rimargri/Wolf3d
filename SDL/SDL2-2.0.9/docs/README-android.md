@@ -390,10 +390,10 @@ higher (October 2017).
 
 
 ================================================================================
- A note regarding the use of the "dirty rectangles" rendering technique
+ A note regarding the use of the "dirty rectcolumn_angles" rendering technique
 ================================================================================
 
-If your app uses a variation of the "dirty rectangles" rendering technique,
+If your app uses a variation of the "dirty rectcolumn_angles" rendering technique,
 where you only update a portion of the screen on each frame, you may notice a
 variety of visual glitches on Android, that are not present on other platforms.
 This is caused by SDL's use of EGL as the support system to handle OpenGL ES/ES2

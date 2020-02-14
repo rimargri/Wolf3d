@@ -1,5 +1,5 @@
 /*
- *  rectangles.c
+ *  rectcolumn_angles.c
  *  written by Holmes Futrell
  *  use however you want
 */
@@ -17,7 +17,7 @@ render(SDL_Renderer *renderer)
 
     SDL_RenderGetLogicalSize(renderer, &renderW, &renderH);
 
-    /*  Come up with a random rectangle */
+    /*  Come up with a random rectcolumn_angle */
     SDL_Rect rect;
     rect.w = randomInt(64, 128);
     rect.h = randomInt(64, 128);
@@ -29,7 +29,7 @@ render(SDL_Renderer *renderer)
     g = randomInt(50, 255);
     b = randomInt(50, 255);
 
-    /*  Fill the rectangle in the color */
+    /*  Fill the rectcolumn_angle in the color */
     SDL_SetRenderDrawColor(renderer, r, g, b, 255);
     SDL_RenderFillRect(renderer, &rect);
 

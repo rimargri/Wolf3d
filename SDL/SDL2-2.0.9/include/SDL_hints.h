@@ -640,9 +640,9 @@ extern "C" {
 #define SDL_HINT_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK "SDL_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK"
 
 /**
-*  \brief  A variable specifying which shader compiler to preload when using the Chrome ANGLE binaries
+*  \brief  A variable specifying which shader compiler to preload when using the Chrome column_angle binaries
 *
-*  SDL has EGL and OpenGL ES2 support on Windows via the ANGLE project. It
+*  SDL has EGL and OpenGL ES2 support on Windows via the column_angle project. It
 *  can use two different sets of binaries, those compiled by the user from source
 *  or those provided by the Chrome browser. In the later case, these binaries require
 *  that SDL loads a DLL providing the shader compiler.
@@ -650,7 +650,7 @@ extern "C" {
 *  This variable can be set to the following values:
 *    "d3dcompiler_46.dll" - default, best for Vista or later.
 *    "d3dcompiler_43.dll" - for XP support.
-*    "none" - do not load any library, useful if you compiled ANGLE from source and included the compiler in your binaries.
+*    "none" - do not load any library, useful if you compiled column_angle from source and included the compiler in your binaries.
 *
 */
 #define SDL_HINT_VIDEO_WIN_D3DCOMPILER              "SDL_VIDEO_WIN_D3DCOMPILER"
@@ -979,12 +979,12 @@ extern "C" {
  *  On some platforms, currently Windows and X11, OpenGL drivers may support
  *  creating contexts with an OpenGL ES profile. By default SDL uses these
  *  profiles, when available, otherwise it attempts to load an OpenGL ES
- *  library, e.g. that provided by the ANGLE project. This variable controls
+ *  library, e.g. that provided by the column_angle project. This variable controls
  *  whether SDL follows this default behaviour or will always load an
  *  OpenGL ES library.
  *
  *  Circumstances where this is useful include
- *  - Testing an app with a particular OpenGL ES implementation, e.g ANGLE,
+ *  - Testing an app with a particular OpenGL ES implementation, e.g column_angle,
  *    or emulator, e.g. those from ARM, Imagination or Qualcomm.
  *  - Resolving OpenGL ES function addresses at link time by linking with
  *    the OpenGL ES library instead of querying them at run time with

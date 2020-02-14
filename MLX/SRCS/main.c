@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/13 23:42:12 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/14 22:03:03 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int		main(void)
 	draw_background(wolf);
 	draw_walls(wolf, wolf->map);
 	init_player(wolf);
-	init_reycast(wolf);
+	printf("w->player.pos.x = %d\n", wolf->player.pos.x);
+	// draw_player(wolf);
+	init_raycast(wolf);
 	cast_ray(wolf->r, wolf, wolf->map);
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);

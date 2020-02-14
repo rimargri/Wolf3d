@@ -76,7 +76,7 @@ static int PSP_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                     Uint32 pixel_format, void * pixels, int pitch);
 static int PSP_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                          const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                         const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
+                         const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
 static void PSP_RenderPresent(SDL_Renderer * renderer);
 static void PSP_DestroyTexture(SDL_Renderer * renderer,
                                 SDL_Texture * texture);
@@ -856,7 +856,7 @@ PSP_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
 static int
 PSP_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                 const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
+                const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
 {
     float x, y, width, height;
     float u0, v0, u1, v1;
@@ -898,7 +898,7 @@ PSP_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
 
     float c, s;
 
-    MathSincos(degToRad(angle), &s, &c);
+    MathSincos(degToRad(column_angle), &s, &c);
 
 /*      width *= 0.5f; */
 /*      height *= 0.5f; */
@@ -946,7 +946,7 @@ PSP_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                 Swap(&vertices[1].u, &vertices[3].u);
     }
 
-    sceGuDrawArray(GU_TRIANGLE_FAN, GU_TEXTURE_32BITF|GU_VERTEX_32BITF|GU_TRANSFORM_2D, 4, 0, vertices);
+    sceGuDrawArray(GU_TRIcolumn_angle_FAN, GU_TEXTURE_32BITF|GU_VERTEX_32BITF|GU_TRANSFORM_2D, 4, 0, vertices);
 
     if(alpha != 255)
         sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGBA);

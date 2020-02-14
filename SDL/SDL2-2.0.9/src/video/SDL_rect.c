@@ -215,7 +215,7 @@ SDL_EnclosePoints(const SDL_Point * points, int count, const SDL_Rect * clip,
         const int clip_maxx = clip->x+clip->w-1;
         const int clip_maxy = clip->y+clip->h-1;
 
-        /* Special case for empty rectangle */
+        /* Special case for empty rectcolumn_angle */
         if (SDL_RectEmpty(clip)) {
             return SDL_FALSE;
         }
@@ -506,7 +506,7 @@ SDL_GetSpanEnclosingRect(int width, int height,
         rect_y1 = rects[i].y;
         rect_y2 = rect_y1 + rects[i].h;
 
-        /* Clip out of bounds rectangles, and expand span rect */
+        /* Clip out of bounds rectcolumn_angles, and expand span rect */
         if (rect_y1 < 0) {
             span_y1 = 0;
         } else if (rect_y1 < span_y1) {

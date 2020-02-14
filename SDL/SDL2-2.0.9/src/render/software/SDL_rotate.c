@@ -95,50 +95,50 @@ _colorkey(SDL_Surface *src)
 
 \param width The source surface width.
 \param height The source surface height.
-\param angle The angle to rotate in degrees.
+\param column_angle The column_angle to rotate in degrees.
 \param dstwidth The calculated width of the destination surface.
 \param dstheight The calculated height of the destination surface.
-\param cangle The sine of the angle
-\param sangle The cosine of the angle
+\param ccolumn_angle The sine of the column_angle
+\param scolumn_angle The cosine of the column_angle
 
 */
 void
-SDLgfx_rotozoomSurfaceSizeTrig(int width, int height, double angle,
+SDLgfx_rotozoomSurfaceSizeTrig(int width, int height, double column_angle,
                                int *dstwidth, int *dstheight,
-                               double *cangle, double *sangle)
+                               double *ccolumn_angle, double *scolumn_angle)
 {
-    /* The trig code below gets the wrong size (due to FP inaccuracy?) when angle is a multiple of 90 degrees */
-    int angle90 = (int)(angle/90);
-    if(angle90 == angle/90) { /* if the angle is a multiple of 90 degrees */
-        angle90 %= 4;
-        if(angle90 < 0) angle90 += 4; /* 0:0 deg, 1:90 deg, 2:180 deg, 3:270 deg */
-        if(angle90 & 1) {
+    /* The trig code below gets the wrong size (due to FP inaccuracy?) when column_angle is a multiple of 90 degrees */
+    int column_angle90 = (int)(column_angle/90);
+    if(column_angle90 == column_angle/90) { /* if the column_angle is a multiple of 90 degrees */
+        column_angle90 %= 4;
+        if(column_angle90 < 0) column_angle90 += 4; /* 0:0 deg, 1:90 deg, 2:180 deg, 3:270 deg */
+        if(column_angle90 & 1) {
             *dstwidth  = height;
             *dstheight = width;
-            *cangle = 0;
-            *sangle = angle90 == 1 ? -1 : 1; /* reversed because our rotations are clockwise */
+            *ccolumn_angle = 0;
+            *scolumn_angle = column_angle90 == 1 ? -1 : 1; /* reversed because our rotations are clockwise */
         } else {
             *dstwidth  = width;
             *dstheight = height;
-            *cangle = angle90 == 0 ? 1 : -1;
-            *sangle = 0;
+            *ccolumn_angle = column_angle90 == 0 ? 1 : -1;
+            *scolumn_angle = 0;
         }
     } else {
         double x, y, cx, cy, sx, sy;
-        double radangle;
+        double radcolumn_angle;
         int dstwidthhalf, dstheighthalf;
         /*
         * Determine destination width and height by rotating a centered source box
         */
-        radangle = angle * (M_PI / -180.0); /* reverse the angle because our rotations are clockwise */
-        *sangle = SDL_sin(radangle);
-        *cangle = SDL_cos(radangle);
+        radcolumn_angle = column_angle * (M_PI / -180.0); /* reverse the column_angle because our rotations are clockwise */
+        *scolumn_angle = SDL_sin(radcolumn_angle);
+        *ccolumn_angle = SDL_cos(radcolumn_angle);
         x = (double)(width / 2);
         y = (double)(height / 2);
-        cx = *cangle * x;
-        cy = *cangle * y;
-        sx = *sangle * x;
-        sy = *sangle * y;
+        cx = *ccolumn_angle * x;
+        cy = *ccolumn_angle * y;
+        sx = *scolumn_angle * x;
+        sy = *scolumn_angle * y;
 
         dstwidthhalf = MAX((int)
             SDL_ceil(MAX(MAX(MAX(SDL_fabs(cx + sy), SDL_fabs(cx - sy)), SDL_fabs(-cx + sy)), SDL_fabs(-cx - sy))), 1);
@@ -151,14 +151,14 @@ SDLgfx_rotozoomSurfaceSizeTrig(int width, int height, double angle,
 
 /* Computes source pointer X/Y increments for a rotation that's a multiple of 90 degrees. */
 static void
-computeSourceIncrements90(SDL_Surface * src, int bpp, int angle, int flipx, int flipy,
+computeSourceIncrements90(SDL_Surface * src, int bpp, int column_angle, int flipx, int flipy,
                           int *sincx, int *sincy, int *signx, int *signy)
 {
     int pitch = flipy ? -src->pitch : src->pitch;
     if (flipx) {
         bpp = -bpp;
     }
-    switch (angle) { /* 0:0 deg, 1:90 deg, 2:180 deg, 3:270 deg */
+    switch (column_angle) { /* 0:0 deg, 1:90 deg, 2:180 deg, 3:270 deg */
     case 0: *sincx = bpp; *sincy = pitch - src->w * *sincx; *signx = *signy = 1; break;
     case 1: *sincx = -pitch; *sincy = bpp - *sincx * src->h; *signx = 1; *signy = -1; break;
     case 2: *sincx = -bpp; *sincy = -src->w * *sincx - pitch; *signx = *signy = -1; break;
@@ -172,12 +172,12 @@ computeSourceIncrements90(SDL_Surface * src, int bpp, int angle, int flipx, int 
     }
 }
 
-/* Performs a relatively fast rotation/flip when the angle is a multiple of 90 degrees. */
+/* Performs a relatively fast rotation/flip when the column_angle is a multiple of 90 degrees. */
 #define TRANSFORM_SURFACE_90(pixelType) \
     int dy, dincy = dst->pitch - dst->w*sizeof(pixelType), sincx, sincy, signx, signy;                      \
     Uint8 *sp = (Uint8*)src->pixels, *dp = (Uint8*)dst->pixels, *de;                                        \
                                                                                                             \
-    computeSourceIncrements90(src, sizeof(pixelType), angle, flipx, flipy, &sincx, &sincy, &signx, &signy); \
+    computeSourceIncrements90(src, sizeof(pixelType), column_angle, flipx, flipy, &sincx, &sincy, &signx, &signy); \
     if (signx < 0) sp += (src->w-1)*sizeof(pixelType);                                                      \
     if (signy < 0) sp += (src->h-1)*src->pitch;                                                             \
                                                                                                             \
@@ -194,13 +194,13 @@ computeSourceIncrements90(SDL_Surface * src, int bpp, int angle, int flipx, int 
     }
 
 static void
-transformSurfaceRGBA90(SDL_Surface * src, SDL_Surface * dst, int angle, int flipx, int flipy)
+transformSurfaceRGBA90(SDL_Surface * src, SDL_Surface * dst, int column_angle, int flipx, int flipy)
 {
     TRANSFORM_SURFACE_90(tColorRGBA);
 }
 
 static void
-transformSurfaceY90(SDL_Surface * src, SDL_Surface * dst, int angle, int flipx, int flipy)
+transformSurfaceY90(SDL_Surface * src, SDL_Surface * dst, int column_angle, int flipx, int flipy)
 {
     TRANSFORM_SURFACE_90(tColorY);
 }
@@ -220,8 +220,8 @@ Assumes dst surface was allocated with the correct dimensions.
 \param dst Destination surface.
 \param cx Horizontal center coordinate.
 \param cy Vertical center coordinate.
-\param isin Integer version of sine of angle.
-\param icos Integer version of cosine of angle.
+\param isin Integer version of sine of column_angle.
+\param icos Integer version of cosine of column_angle.
 \param flipx Flag indicating horizontal mirroring should be applied.
 \param flipy Flag indicating vertical mirroring should be applied.
 \param smooth Flag indicating anti-aliasing should be used.
@@ -335,8 +335,8 @@ Assumes dst surface was allocated with the correct dimensions.
 \param dst Destination surface.
 \param cx Horizontal center coordinate.
 \param cy Vertical center coordinate.
-\param isin Integer version of sine of angle.
-\param icos Integer version of cosine of angle.
+\param isin Integer version of sine of column_angle.
+\param icos Integer version of cosine of column_angle.
 \param flipx Flag indicating horizontal mirroring should be applied.
 \param flipy Flag indicating vertical mirroring should be applied.
 */
@@ -388,7 +388,7 @@ transformSurfaceY(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, int isin
 \brief Rotates and zooms a surface with different horizontal and vertival scaling factors and optional anti-aliasing.
 
 Rotates a 32-bit or 8-bit 'src' surface to newly created 'dst' surface.
-'angle' is the rotation in degrees, 'centerx' and 'centery' the rotation center. If 'smooth' is set
+'column_angle' is the rotation in degrees, 'centerx' and 'centery' the rotation center. If 'smooth' is set
 then the destination 32-bit surface is anti-aliased. 8-bit surfaces must have a colorkey. 32-bit
 surfaces must have a 8888 layout with red, green, blue and alpha masks (any ordering goes).
 The blend mode of the 'src' surface has some effects on generation of the 'dst' surface: The NONE
@@ -397,7 +397,7 @@ surface and sets the colorkey or fills the it with the colorkey before copying t
 When using the NONE and MOD modes, color and alpha modulation must be applied before using this function.
 
 \param src The surface to rotozoom.
-\param angle The angle to rotate in degrees.
+\param column_angle The column_angle to rotate in degrees.
 \param centerx The horizontal coordinate of the center of rotation
 \param zoomy The vertical coordinate of the center of rotation
 \param smooth Antialiasing flag; set to SMOOTHING_ON to enable.
@@ -405,22 +405,22 @@ When using the NONE and MOD modes, color and alpha modulation must be applied be
 \param flipy Set to 1 to flip the image vertically
 \param dstwidth The destination surface width
 \param dstheight The destination surface height
-\param cangle The angle cosine
-\param sangle The angle sine
+\param ccolumn_angle The column_angle cosine
+\param scolumn_angle The column_angle sine
 \return The new rotated surface.
 
 */
 
 SDL_Surface *
-SDLgfx_rotateSurface(SDL_Surface * src, double angle, int centerx, int centery, int smooth, int flipx, int flipy, int dstwidth, int dstheight, double cangle, double sangle)
+SDLgfx_rotateSurface(SDL_Surface * src, double column_angle, int centerx, int centery, int smooth, int flipx, int flipy, int dstwidth, int dstheight, double ccolumn_angle, double scolumn_angle)
 {
     SDL_Surface *rz_dst;
-    int is8bit, angle90;
+    int is8bit, column_angle90;
     int i;
     SDL_BlendMode blendmode;
     Uint32 colorkey = 0;
     int colorKeyAvailable = SDL_FALSE;
-    double sangleinv, cangleinv;
+    double scolumn_angleinv, ccolumn_angleinv;
 
     /* Sanity check */
     if (src == NULL)
@@ -438,8 +438,8 @@ SDLgfx_rotateSurface(SDL_Surface * src, double angle, int centerx, int centery, 
         return NULL;
 
     /* Calculate target factors from sin/cos and zoom */
-    sangleinv = sangle*65536.0;
-    cangleinv = cangle*65536.0;
+    scolumn_angleinv = scolumn_angle*65536.0;
+    ccolumn_angleinv = ccolumn_angle*65536.0;
 
     /* Alloc space to completely contain the rotated surface */
     rz_dst = NULL;
@@ -498,28 +498,28 @@ SDLgfx_rotateSurface(SDL_Surface * src, double angle, int centerx, int centery, 
      * the off-by-one problem in _transformSurfaceRGBA that expresses itself when the rotation is near
      * multiples of 90 degrees.
      */
-    angle90 = (int)(angle/90);
-    if (angle90 == angle/90) {
-        angle90 %= 4;
-        if (angle90 < 0) angle90 += 4; /* 0:0 deg, 1:90 deg, 2:180 deg, 3:270 deg */
+    column_angle90 = (int)(column_angle/90);
+    if (column_angle90 == column_angle/90) {
+        column_angle90 %= 4;
+        if (column_angle90 < 0) column_angle90 += 4; /* 0:0 deg, 1:90 deg, 2:180 deg, 3:270 deg */
     } else {
-        angle90 = -1;
+        column_angle90 = -1;
     }
 
     if (is8bit) {
         /* Call the 8-bit transformation routine to do the rotation */
-        if(angle90 >= 0) {
-            transformSurfaceY90(src, rz_dst, angle90, flipx, flipy);
+        if(column_angle90 >= 0) {
+            transformSurfaceY90(src, rz_dst, column_angle90, flipx, flipy);
         } else {
-            transformSurfaceY(src, rz_dst, centerx, centery, (int)sangleinv, (int)cangleinv,
+            transformSurfaceY(src, rz_dst, centerx, centery, (int)scolumn_angleinv, (int)ccolumn_angleinv,
                               flipx, flipy);
         }
     } else {
         /* Call the 32-bit transformation routine to do the rotation */
-        if (angle90 >= 0) {
-            transformSurfaceRGBA90(src, rz_dst, angle90, flipx, flipy);
+        if (column_angle90 >= 0) {
+            transformSurfaceRGBA90(src, rz_dst, column_angle90, flipx, flipy);
         } else {
-            _transformSurfaceRGBA(src, rz_dst, centerx, centery, (int)sangleinv, (int)cangleinv,
+            _transformSurfaceRGBA(src, rz_dst, centerx, centery, (int)scolumn_angleinv, (int)ccolumn_angleinv,
                                   flipx, flipy, smooth);
         }
     }

@@ -76,7 +76,7 @@ static int D3D_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
                           const SDL_Rect * srcrect, const SDL_FRect * dstrect);
 static int D3D_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                           const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-                          const double angle, const SDL_FPoint * center, const SDL_RendererFlip flip);
+                          const double column_angle, const SDL_FPoint * center, const SDL_RendererFlip flip);
 static int D3D_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                                 Uint32 format, void * pixels, int pitch);
 static void D3D_RenderPresent(SDL_Renderer * renderer);
@@ -1385,7 +1385,7 @@ D3D_RenderFillRects(SDL_Renderer * renderer, const SDL_FRect * rects,
         vertices[3].v = 0.0f;
 
         result =
-            IDirect3DDevice9_DrawPrimitiveUP(data->device, D3DPT_TRIANGLEFAN,
+            IDirect3DDevice9_DrawPrimitiveUP(data->device, D3DPT_TRIcolumn_angleFAN,
                                              2, vertices, sizeof(*vertices));
         if (FAILED(result)) {
             return D3D_SetError("DrawPrimitiveUP()", result);
@@ -1526,7 +1526,7 @@ D3D_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
             return D3D_SetError("SetShader()", result);
         }
     }
-    result = IDirect3DDevice9_DrawPrimitiveUP(data->device, D3DPT_TRIANGLEFAN, 2,
+    result = IDirect3DDevice9_DrawPrimitiveUP(data->device, D3DPT_TRIcolumn_angleFAN, 2,
                                               vertices, sizeof(*vertices));
     if (FAILED(result)) {
         D3D_SetError("DrawPrimitiveUP()", result);
@@ -1541,7 +1541,7 @@ D3D_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
 static int
 D3D_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
                const SDL_Rect * srcrect, const SDL_FRect * dstrect,
-               const double angle, const SDL_FPoint * center, const SDL_RendererFlip flip)
+               const double column_angle, const SDL_FPoint * center, const SDL_RendererFlip flip)
 {
     D3D_RenderData *data = (D3D_RenderData *) renderer->driverdata;
     LPDIRECT3DPIXELSHADER9 shader = NULL;
@@ -1619,7 +1619,7 @@ D3D_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
 
     /* Rotate and translate */
     modelMatrix = MatrixMultiply(
-            MatrixRotationZ((float)(M_PI * (float) angle / 180.0f)),
+            MatrixRotationZ((float)(M_PI * (float) column_angle / 180.0f)),
             MatrixTranslation(dstrect->x + center->x - 0.5f, dstrect->y + center->y - 0.5f, 0));
     IDirect3DDevice9_SetTransform(data->device, D3DTS_VIEW, (D3DMATRIX*)&modelMatrix);
     
@@ -1630,7 +1630,7 @@ D3D_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
             goto done;
         }
     }
-    result = IDirect3DDevice9_DrawPrimitiveUP(data->device, D3DPT_TRIANGLEFAN, 2,
+    result = IDirect3DDevice9_DrawPrimitiveUP(data->device, D3DPT_TRIcolumn_angleFAN, 2,
                                               vertices, sizeof(*vertices));
     if (FAILED(result)) {
         D3D_SetError("DrawPrimitiveUP()", result);

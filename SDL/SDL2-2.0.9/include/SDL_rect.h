@@ -52,7 +52,7 @@ typedef struct SDL_Point
 } SDL_Point;
 
 /**
- *  \brief A rectangle, with the origin at the upper left.
+ *  \brief A rectcolumn_angle, with the origin at the upper left.
  *
  *  \sa SDL_RectEmpty
  *  \sa SDL_RectEquals
@@ -68,7 +68,7 @@ typedef struct SDL_Rect
 } SDL_Rect;
 
 /**
- *  \brief Returns true if point resides inside a rectangle.
+ *  \brief Returns true if point resides inside a rectcolumn_angle.
  */
 SDL_FORCE_INLINE SDL_bool SDL_PointInRect(const SDL_Point *p, const SDL_Rect *r)
 {
@@ -77,7 +77,7 @@ SDL_FORCE_INLINE SDL_bool SDL_PointInRect(const SDL_Point *p, const SDL_Rect *r)
 }
 
 /**
- *  \brief Returns true if the rectangle has no area.
+ *  \brief Returns true if the rectcolumn_angle has no area.
  */
 SDL_FORCE_INLINE SDL_bool SDL_RectEmpty(const SDL_Rect *r)
 {
@@ -85,7 +85,7 @@ SDL_FORCE_INLINE SDL_bool SDL_RectEmpty(const SDL_Rect *r)
 }
 
 /**
- *  \brief Returns true if the two rectangles are equal.
+ *  \brief Returns true if the two rectcolumn_angles are equal.
  */
 SDL_FORCE_INLINE SDL_bool SDL_RectEquals(const SDL_Rect *a, const SDL_Rect *b)
 {
@@ -94,7 +94,7 @@ SDL_FORCE_INLINE SDL_bool SDL_RectEquals(const SDL_Rect *a, const SDL_Rect *b)
 }
 
 /**
- *  \brief Determine whether two rectangles intersect.
+ *  \brief Determine whether two rectcolumn_angles intersect.
  *
  *  \return SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
  */
@@ -102,7 +102,7 @@ extern DECLSPEC SDL_bool SDLCALL SDL_HasIntersection(const SDL_Rect * A,
                                                      const SDL_Rect * B);
 
 /**
- *  \brief Calculate the intersection of two rectangles.
+ *  \brief Calculate the intersection of two rectcolumn_angles.
  *
  *  \return SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
  */
@@ -111,14 +111,14 @@ extern DECLSPEC SDL_bool SDLCALL SDL_IntersectRect(const SDL_Rect * A,
                                                    SDL_Rect * result);
 
 /**
- *  \brief Calculate the union of two rectangles.
+ *  \brief Calculate the union of two rectcolumn_angles.
  */
 extern DECLSPEC void SDLCALL SDL_UnionRect(const SDL_Rect * A,
                                            const SDL_Rect * B,
                                            SDL_Rect * result);
 
 /**
- *  \brief Calculate a minimal rectangle enclosing a set of points
+ *  \brief Calculate a minimal rectcolumn_angle enclosing a set of points
  *
  *  \return SDL_TRUE if any points were within the clipping rect
  */
@@ -128,7 +128,7 @@ extern DECLSPEC SDL_bool SDLCALL SDL_EnclosePoints(const SDL_Point * points,
                                                    SDL_Rect * result);
 
 /**
- *  \brief Calculate the intersection of a rectangle and line segment.
+ *  \brief Calculate the intersection of a rectcolumn_angle and line segment.
  *
  *  \return SDL_TRUE if there is an intersection, SDL_FALSE otherwise.
  */

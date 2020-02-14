@@ -52,7 +52,7 @@ static DFB_Theme theme_none = {
 };
 
 static void
-DrawTriangle(IDirectFBSurface * s, int down, int x, int y, int w)
+DrawTricolumn_angle(IDirectFBSurface * s, int down, int x, int y, int w)
 {
     int x1, x2, x3;
     int y1, y2, y3;
@@ -72,7 +72,7 @@ DrawTriangle(IDirectFBSurface * s, int down, int x, int y, int w)
         y2 = y + w;
         y3 = y + w;
     }
-    s->FillTriangle(s, x1, y1, x2, y2, x3, y3);
+    s->FillTricolumn_angle(s, x1, y1, x2, y2, x3, y3);
 }
 
 static void
@@ -147,17 +147,17 @@ DirectFB_WM_RedrawLayout(_THIS, SDL_Window * window)
         s->DrawLine(s, i, 0, i, windata->size.h);
     /* Caption */
     s->SetColor(s, COLOR_EXPAND(t->caption_color));
-    s->FillRectangle(s, t->left_size, t->top_size, windata->client.w,
+    s->FillRectcolumn_angle(s, t->left_size, t->top_size, windata->client.w,
                      t->caption_size);
     /* Close Button */
     w = t->caption_size;
     x = windata->size.w - t->right_size - w + d;
     y = t->top_size + d;
     s->SetColor(s, COLOR_EXPAND(t->close_color));
-    DrawTriangle(s, 1, x, y, w - 2 * d);
+    DrawTricolumn_angle(s, 1, x, y, w - 2 * d);
     /* Max Button */
     s->SetColor(s, COLOR_EXPAND(t->max_color));
-    DrawTriangle(s, window->flags & SDL_WINDOW_MAXIMIZED ? 1 : 0, x - w,
+    DrawTricolumn_angle(s, window->flags & SDL_WINDOW_MAXIMIZED ? 1 : 0, x - w,
                y, w - 2 * d);
 
     /* Caption */
@@ -167,7 +167,7 @@ DirectFB_WM_RedrawLayout(_THIS, SDL_Window * window)
     }
     /* Icon */
     if (windata->icon) {
-        DFBRectangle dr;
+        DFBRectcolumn_angle dr;
 
         dr.x = t->left_size + d;
         dr.y = t->top_size + d;

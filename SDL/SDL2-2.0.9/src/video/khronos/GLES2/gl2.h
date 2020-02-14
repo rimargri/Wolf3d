@@ -88,9 +88,9 @@ typedef khronos_uint8_t GLubyte;
 #define GL_LINES                          0x0001
 #define GL_LINE_LOOP                      0x0002
 #define GL_LINE_STRIP                     0x0003
-#define GL_TRIANGLES                      0x0004
-#define GL_TRIANGLE_STRIP                 0x0005
-#define GL_TRIANGLE_FAN                   0x0006
+#define GL_TRIcolumn_angleS                      0x0004
+#define GL_TRIcolumn_angle_STRIP                 0x0005
+#define GL_TRIcolumn_angle_FAN                   0x0006
 #define GL_ZERO                           0
 #define GL_ONE                            1
 #define GL_SRC_COLOR                      0x0300

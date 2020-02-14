@@ -121,7 +121,7 @@ struct SDL_Renderer
                        const SDL_Rect * srcrect, const SDL_FRect * dstrect);
     int (*RenderCopyEx) (SDL_Renderer * renderer, SDL_Texture * texture,
                        const SDL_Rect * srcquad, const SDL_FRect * dstrect,
-                       const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
+                       const double column_angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
     int (*RenderReadPixels) (SDL_Renderer * renderer, const SDL_Rect * rect,
                              Uint32 format, void * pixels, int pitch);
     void (*RenderPresent) (SDL_Renderer * renderer);
@@ -155,11 +155,11 @@ struct SDL_Renderer
     SDL_Rect viewport;
     SDL_Rect viewport_backup;
 
-    /* The clip rectangle within the window */
+    /* The clip rectcolumn_angle within the window */
     SDL_Rect clip_rect;
     SDL_Rect clip_rect_backup;
 
-    /* Wether or not the clipping rectangle is used. */
+    /* Wether or not the clipping rectcolumn_angle is used. */
     SDL_bool clipping_enabled;
     SDL_bool clipping_enabled_backup;
 

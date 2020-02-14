@@ -345,7 +345,7 @@ SDL_SW_CopyYUVToRGB(SDL_SW_YUVTexture * swdata, const SDL_Rect * srcrect,
 
     stretch = 0;
     if (srcrect->x || srcrect->y || srcrect->w < swdata->w || srcrect->h < swdata->h) {
-        /* The source rectangle has been clipped.
+        /* The source rectcolumn_angle has been clipped.
            Using a scratch surface is easier than adding clipped
            source support to all the blitters, plus that would
            slow them down in the general unclipped case.
