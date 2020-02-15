@@ -6,11 +6,23 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/15 21:34:46 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:47:54 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*
+** arrow let	-	rotation player on left
+** arrow right	-	rotation player on right
+**
+**		*** move of player ***
+**
+** key_w		-		move up
+** key_s		-		move down
+** key_a		-		move_left
+** key_d		-		move right
+*/
 
 void	player_move(t_wolf *w, int k)
 {

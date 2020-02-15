@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/15 21:38:06 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/15 21:45:03 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
 
-$(NAME): $(RAW_OBJ_FILES)	
+$(NAME): $(RAW_OBJ_FILES)
 	@gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
 	@echo "(*≧ω≦*) Mama, ya peresobralsya (*≧ω≦*)"
 
