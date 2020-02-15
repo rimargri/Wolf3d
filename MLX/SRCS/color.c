@@ -6,21 +6,15 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:45:42 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/15 00:05:49 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 19:41:33 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_raycast	raycast_data(t_raycast r, t_wolf *w)
+int		get_color(t_color color)
 {
-	r.player = w->player;
-	// r.player_column_angle = 1.9;
-	r.player_column_angle = r.player.look_column_angle;
-	r.transform = (t_ivec2){0, 0};
-	r.len = (t_vec2){0, 0};
-	r.current_pix = 0;
-	return (r);
+	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }
 
 t_color	raycast_color(t_raycast r, char *map)
@@ -34,12 +28,4 @@ t_color	raycast_color(t_raycast r, char *map)
 	if (map[(int)r.len.x + (int)r.len.y * MAP_W] == '3')
 		r.color = (t_color){176, 229, 193};									// green
 	return (r.color);
-}
-
-void	init_raycast(t_wolf *wolf)
-{
-	t_raycast	r;
-	
-	wolf->r.player_column_angle = 0.0;
-	wolf->r = r;
 }

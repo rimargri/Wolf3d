@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_data.c                                         :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/14 23:13:38 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:24:53 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_background(t_wolf *w)
 			col.g = (255 * i / WIN_W);
 			col.b = 193;
 			color = get_color(col);
-			mlx_pixel_put(w->mlx.mptr, w->mlx.wptr, i, j, color);
+			w->mlx.img[i + j * WIN_W] = color;
 			i++;
 		}
 		j++;
@@ -38,12 +38,12 @@ void	draw_background(t_wolf *w)
 
 void	draw_walls(t_wolf *w, char *map)
 {
-	int i;
-	int j;
-	t_ivec2 rect;
+	int			i;
+	int			j;
+	t_drawrect	dr;
 
 	j = 0;
-	rect = (t_ivec2){0, 0};
+	dr = (t_drawrect){(t_ivec2){0, 0}, (t_color){0, 0, 0}};
 	while (j < MAP_H)
 	{
 		i = 0;
@@ -54,35 +54,19 @@ void	draw_walls(t_wolf *w, char *map)
 				i++;
 				continue;
 			}
-			rect.x = i * RECT_W; // перевод координат в масштаб окна из масштаба карты
-			rect.y = j * RECT_H;
+			dr.firstpix.x = i * RECT_W; // перевод координат в масштаб окна из масштаба карты
+			dr.firstpix.y = j * RECT_H;
 			if (map[i + j * MAP_W] == '0')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){153, 113, 233}, w->mlx);		// pirple
+				dr.color = (t_color){153, 113, 233};			// pirple
 			if (map[i + j * MAP_W] == '1')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){227, 176, 229}, w->mlx);		// pink
+				dr.color = (t_color){227, 176, 229};			// pink
 			if (map[i + j * MAP_W] == '2')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){92, 147, 255}, w->mlx);		// blue
+				dr.color = (t_color){92, 147, 255};				// blue
 			if (map[i + j * MAP_W] == '3')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){176, 229, 193}, w->mlx);		// green
+				dr.color = (t_color){176, 229, 193};			// green
+			draw_rect(dr, RECT_W, RECT_H, w->mlx);		
 			i++;
 		}
 		j++;
 	}
-}
-
-void	init_player(t_wolf *w)
-{
-	t_player p;
-
-	w->player = p;
-	w->player.pos.x = 5;
-	w->player.pos.y = 2;
-}
-
-void	draw_player(t_wolf *w)
-{
-	printf("draw_player---w->player.pos.x = %d\n", w->player.pos.x);
-	w->player.transform.x = w->player.pos.x * RECT_W;
-	w->player.transform.y = w->player.pos.y * RECT_H;
-	draw_rect(w->player.transform, 6, 6, (t_color){255, 255, 255}, w->mlx);
 }

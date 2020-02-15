@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/14 18:46:28 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/15 21:38:06 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ_DIR = ./OBJ
 
 INCL_DIR = ./INCLUDES
 
-C_FILES = main.c key_press.c drawing.c map_data.c raycast.c calc_player_pos.c raycast_data.c
+C_FILES = main.c key_press.c draw_rect.c draw_map.c color.c raycast.c player.c player_move.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -38,17 +38,18 @@ $(OBJ_DIR):
 
 
 $(NAME): $(RAW_OBJ_FILES)	
-	gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
+	@gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
+	@echo "(*≧ω≦*) Mama, ya peresobralsya (*≧ω≦*)"
 
 #### К о м п и л я ц и я ####
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	gcc $(CFLAGS) -I $(INCL_DIR) -c $< -o $@
+	@gcc $(CFLAGS) -I $(INCL_DIR) -c $< -o $@
 
 clean:
-	rm -rf $(RAW_OBJ_FILES)
+	@rm -rf $(RAW_OBJ_FILES)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all

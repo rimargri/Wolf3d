@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   draw_rect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/15 00:05:49 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:25:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-int		get_color(t_color color)
-{
-	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
-}
 
 /*
 ** в ф-цию draw_rect поступает х, у - коорд-ты первого пискеля из всего rect
@@ -25,7 +20,7 @@ int		get_color(t_color color)
 ** до правого пикселя в нижнем правом - весь rectcolumn_angle отрисован
 */
 
-void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx mlx)
+void    draw_rect(t_drawrect dr, int w, int h, t_mlx mlx)
 {
     int i;
 	int j;
@@ -33,16 +28,17 @@ void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx mlx)
 	t_ivec2 offset;
 
 	i = 0;
-	color = get_color(col);
+	offset = (t_ivec2){0, 0};
+	color = get_color(dr.color);
 	while (i < w)
 	{
-	    j = 0;
-	    while (j < h)
-	    {
-			offset.x = frstpix.x + i;
-			offset.y = frstpix.y + j;
-			mlx_pixel_put(mlx.mptr, mlx.wptr, offset.x, offset.y, color);
-	    	j++;
+		j = 0;
+		while (j < h)
+		{
+			offset.x = dr.firstpix.x + i;
+			offset.y = dr.firstpix.y + j;
+			mlx.img[offset.x + offset.y * WIN_W] = color;
+			j++;
 		}
 		i++;
 	}

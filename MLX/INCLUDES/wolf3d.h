@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/15 00:05:49 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:34:59 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_W 13
+// # define KEY_ARROW_UP 126
+// # define KEY_ARROW_DOWN 125
+# define KEY_ARROW_LEFT 123
+# define KEY_ARROW_RIGHT 124
 
 typedef struct  	s_ivec2
 {
@@ -60,6 +64,12 @@ typedef struct  	s_color
     int         	b;
 }               	t_color;
 
+typedef struct		s_drawrect
+{
+	t_ivec2			firstpix;
+	t_color			color;
+}					t_drawrect;
+
 typedef struct		s_player
 {
 	t_vec2			pos;
@@ -70,9 +80,8 @@ typedef struct		s_player
 typedef struct		s_raycast
 {
 	float			player_column_angle;
-	float			column_column_angle;
+	float			column_angle;
 	float			t;
-	t_player		player;
 	t_vec2			len;
 	t_ivec2			transform;
 	int				current_pix;
@@ -88,12 +97,13 @@ typedef struct		s_mlx
 {
 	void			*mptr;
 	void			*wptr;
+	void			*iptr;
+	int				*img;
 }					t_mlx;
 
 typedef struct		s_wolf
 {
 	t_mlx			mlx;
-	// t_raycast		r;
 	t_player		player;
 	char			*map;
 }					t_wolf;
@@ -102,16 +112,18 @@ int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
 int					get_color(t_color color);
 void				create_objects(t_wolf *w);
-void    			draw_rect(t_ivec2 v, int w, int h, t_color col, t_mlx mlx);
+void    			draw_rect(t_drawrect v, int w, int h, t_mlx mlx);
 void				draw_background(t_wolf *w);
 void				draw_walls(t_wolf *w, char *map);
 void				draw_player(t_wolf *w);
-void				cast_ray(t_raycast r, t_wolf *w, char *map);
-void				init_raycast(t_wolf *wolf);
+void				cast_ray(t_wolf *w, char *map);
 void				init_player(t_wolf *w);
-void				calc_player_pos(t_wolf *w, int k);
-void				init_raycast(t_wolf *wolf);
-t_color	raycast_color(t_raycast r, char *map);
-t_raycast	raycast_data(t_raycast r, t_wolf *w);
+void				player_move(t_wolf *w, int k);
+t_color				raycast_color(t_raycast r, char *map);
+t_raycast			raycast_data(t_raycast r, t_wolf *w);
+void				move_forward(t_wolf *w);
+void				move_back(t_wolf *w);
+void				move_right(t_wolf *w);
+void				move_left(t_wolf *w);
 
 #endif
