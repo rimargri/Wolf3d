@@ -21,9 +21,9 @@ int		key_press(int k, t_wolf *w)
 	(k == (KEY_W || KEY_S || KEY_D || KEY_A) ? (calc_player_pos(w, k)) : 1);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_background(w);
-	draw_walls(w, w->map);
+	draw_walls(w, w->tmap);
 	draw_player(w);
-	cast_ray(w->r, w, w->map);
+	cast_ray(w->r, w, w->tmap);
 	return (0);
 }
 

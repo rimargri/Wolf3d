@@ -38,15 +38,15 @@ t_reycast	raycast_data(t_reycast r, t_wolf *w)
 	return (r);
 }
 
-t_color	reycast_color(t_reycast r, char *map)
+t_color	reycast_color(t_reycast r, t_map map)
 {
-	if (map[(int)r.len.x + (int)r.len.y * MAP_W] == '0')					// pirple
+	if (map.line[(int)r.len.x + (int)r.len.y * map.w] == '0')					// pirple
 		r.color = (t_color){153, 113, 233};
-	if (map[(int)r.len.x + (int)r.len.y * MAP_W] == '1')
+	if (map.line[(int)r.len.x + (int)r.len.y * map.w] == '1')
 		r.color = (t_color){227, 176, 229};									// pink
-	if (map[(int)r.len.x + (int)r.len.y * MAP_W] == '2')
+	if (map.line[(int)r.len.x + (int)r.len.y * map.w] == '2')
 		r.color = (t_color){92, 147, 255};									// blue
-	if (map[(int)r.len.x + (int)r.len.y * MAP_W] == '3')
+	if (map.line[(int)r.len.x + (int)r.len.y * map.w] == '3')
 		r.color = (t_color){176, 229, 193};									// green
 	return (r.color);
 }
@@ -59,7 +59,7 @@ void	init_reycast(t_wolf *wolf)
 	wolf->r = r;
 }
 
-void	cast_ray(t_reycast r, t_wolf *w, char *map)
+void	cast_ray(t_reycast r, t_wolf *w, t_map map)
 {
 	r = raycast_data(r, w);
 	while (r.current_pix < WIN_W / 2)
@@ -73,7 +73,7 @@ void	cast_ray(t_reycast r, t_wolf *w, char *map)
 			r.transform.x = r.len.x * RECT_W;
 			r.transform.y = r.len.y * RECT_H;
 			mlx_pixel_put(w->mlx.mptr, w->mlx.wptr, r.transform.x, r.transform.y, get_color((t_color){255, 255, 255})); //? Render
-			if (map[(int)r.len.x + (int)r.len.y * MAP_W] != ' ')
+			if (map.line[(int)r.len.x + (int)r.len.y * map.w] != ' ')
 			{
 				r.color = reycast_color(r, map);
 				draw_view(w->mlx, r.t, r.current_pix, r.color); //? Render

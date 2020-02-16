@@ -36,7 +36,7 @@ void	draw_background(t_wolf *w)
 	}
 }
 
-void	draw_walls(t_wolf *w, char *map)
+void	draw_walls(t_wolf *w, t_map map)
 {
 	int i;
 	int j;
@@ -44,25 +44,25 @@ void	draw_walls(t_wolf *w, char *map)
 
 	j = 0;
 	rect = (t_ivec2){0, 0};
-	while (j < MAP_H)
+	while (j < map.h)
 	{
 		i = 0;
-		while (i < MAP_W)
+		while (i < map.w)
 		{
-			if (map[i + j * MAP_W] == ' ')
+			if (map.line[i + j * map.w] == ' ')
 			{
 				i++;
 				continue;
 			}
 			rect.x = i * RECT_W; // перевод координат в масштаб окна из масштаба карты
 			rect.y = j * RECT_H;
-			if (map[i + j * MAP_W] == '0')
+			if (map.line[i + j * map.w] == '0')
 				draw_rect(rect, RECT_W, RECT_H, (t_color){153, 113, 233}, w->mlx);		// pirple
-			if (map[i + j * MAP_W] == '1')
+			if (map.line[i + j * map.w] == '1')
 				draw_rect(rect, RECT_W, RECT_H, (t_color){227, 176, 229}, w->mlx);		// pink
-			if (map[i + j * MAP_W] == '2')
+			if (map.line[i + j * map.w] == '2')
 				draw_rect(rect, RECT_W, RECT_H, (t_color){92, 147, 255}, w->mlx);		// blue
-			if (map[i + j * MAP_W] == '3')
+			if (map.line[i + j * map.w] == '3')
 				draw_rect(rect, RECT_W, RECT_H, (t_color){176, 229, 193}, w->mlx);		// green
 			i++;
 		}

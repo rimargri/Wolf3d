@@ -41,6 +41,18 @@
 # define KEY_W 1
 # define KEY_S 13
 
+/*
+**		added for validation
+*/
+#include "errors.h"
+
+typedef struct		s_map
+{
+	char			*line;
+	int				h;//сорри, не нашла лучшего способа избавиться от дефайнов,
+	int				w;//если что - откатимся
+}					t_map;
+
 typedef struct  	s_ivec2
 {
     int         	x;
@@ -94,7 +106,8 @@ typedef struct		s_wolf
 	t_mlx			mlx;
 	t_reycast		r;
 	t_player		player;
-	char			*map;
+//	char			*map;
+	t_map			tmap;
 }					t_wolf;
 
 int					key_press(int k, t_wolf *wolf);
@@ -103,11 +116,13 @@ int					get_color(t_color color);
 void				create_objects(t_wolf *w);
 void    			draw_rect(t_ivec2 v, int w, int h, t_color col, t_mlx mlx);
 void				draw_background(t_wolf *w);
-void				draw_walls(t_wolf *w, char *map);
+void				draw_walls(t_wolf *w, t_map map);
 void				draw_player(t_wolf *w);
-void				cast_ray(t_reycast r, t_wolf *w, char *map);
+void				cast_ray(t_reycast r, t_wolf *w, t_map map);
 void				init_reycast(t_wolf *wolf);
 void				init_player(t_wolf *w);
 void				calc_player_pos(t_wolf *w, int k);
+t_map				validate(int ac, char **maps);
+void				wolf_error(char *reason);
 
 #endif

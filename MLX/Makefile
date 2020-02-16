@@ -18,7 +18,8 @@ OBJ_DIR = ./OBJ
 
 INCL_DIR = ./INCLUDES
 
-C_FILES = main.c key_press.c drawing.c map_data.c reycast.c calc_player_pos.c
+C_FILES = main.c key_press.c drawing.c map_data.c reycast.c calc_player_pos.c \
+validate.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
