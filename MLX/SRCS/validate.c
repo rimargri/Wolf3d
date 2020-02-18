@@ -25,64 +25,101 @@ void	check_simbols(t_map *map, char *buf)
 	//поэтому перепись получилась довольно большая, позже
 	//разобью
 	int		i;
-	int		map_i;
+	int		cur_w;
 
 	map->h = 0;
 	map->w = 0;
+	cur_w = 0;
 	i = 0;
-	map_i = 0;
 	while (buf[i])
 	{
 		if (buf[i] == '\n')
 		{
 			map->h++;
-			if (map->w != 0 && map->w != i / map->h)
+			if (map->w < cur_w)
 			{
-				free(map->line);
-				wolf_error(SHAPE);
+				map->w = cur_w;
 			}
-			map->w = i / map->h;
+			cur_w = 0;
 		}
 		else
 		{
-			map->line[map_i] = buf[i];
 			if ((buf[i] < '0' || buf[i] > '9') && buf[i] != ' ')
 				{
 					free(map->line);
 					wolf_error(MAP_SIMB);
 				}
-			map_i++;
+			cur_w++;
 		}
 		i++;
 	}
-	map->line[map_i] = '\0';
+	printf("%i, %i", map->w, map->h);
+}
+//
+//void	check_square(t_map map)
+//{
+//	int		i;
+//
+//	i = 0;
+//	while (i < map.w)
+//	{
+//		//гаризонталь первой и последней линий должны быть забиты числами
+//		if (map.line[i] < '0' || map.line[i] > '9')
+//			wolf_error(SHAPE);
+//		if (map.line[i + (map.h - 1) * (map.w)] < '0')
+//			wolf_error(SHAPE);
+//		i++;
+//	}
+//	i = 0;
+//	//вертикаль первой и последней линий должны быть забиты числами
+//	while (map.line[i])
+//	{
+//		if (map.line[i] < '0' || map.line[i] > '9')
+//			if (map.line[i] != '\n')
+//				wolf_error(SHAPE);
+//		if (map.line[i + map.w - 1] < '0')
+//			wolf_error(SHAPE);
+//		i += map.w;
+//	}
+//}
+
+void	make_empty_map(t_map *map)
+{
+	map->h = 1;
+	map->w = 1;
+	map->line[0] = ' ';
+	map->line[1] = '\0';
 }
 
-void	check_square(t_map map)
+void	record_shape(t_map *map, char *src)
 {
 	int		i;
+	int		str_diff;
+	int		comm_diff;
 
 	i = 0;
-	while (i < map.w)
+	comm_diff = 0;
+	while (src[i])
 	{
-		//гаризонталь первой и последней линий должны быть забиты числами
-		if (map.line[i] < '0' || map.line[i] > '9')
-			wolf_error(SHAPE);
-		if (map.line[i + (map.h - 1) * (map.w)] < '0')
-			wolf_error(SHAPE);
-		i++;
+		str_diff = 0;
+		while (src[i] && src[i] != '\n')
+		{
+			map->line[comm_diff] = src[i];
+			i++;
+			str_diff++;
+			comm_diff++;
+		}
+		while (str_diff < map->w)
+		{
+			map->line[comm_diff] = ' ';
+			comm_diff++;
+			str_diff++;
+		}
+		i = src[i] ? ++i : i;
 	}
-	i = 0;
-	//вертикаль первой и последней линий должны быть забиты числами
-	while (map.line[i])
-	{
-		if (map.line[i] < '0' || map.line[i] > '9')
-			if (map.line[i] != '\n')
-				wolf_error(SHAPE);
-		if (map.line[i + map.w - 1] < '0')
-			wolf_error(SHAPE);
-		i += map.w;
-	}
+	map->line[comm_diff] = 'l';
+	map->line[comm_diff + 1] = '\0';
+
 }
 
 t_map	validate(int ac, char **maps)
@@ -107,12 +144,17 @@ t_map	validate(int ac, char **maps)
 		wolf_error(TOO_BIG);
 	buf[ret] = '\0';
 	//подготовка строки
-	res.line = (char *)malloc(sizeof(char) * ret);
 	//посимвольная проверка
 	check_simbols(&res, buf);
+	res.line = (char *)malloc(sizeof(char) * (res.h * res.w + 1));
 	//проверка формы (пока доступен только прямоугольник)
-	check_square(res);
-	if (!(close(fd)))
-		wolf_error("wolf3d: fd close error");
+//	check_square(res);
+	record_shape(&res, buf);
+	//если мапа пустая:
+//	if (ret == 0)
+//		make_empty_map(&res);
+	if ((close(fd)))
+		wolf_error(CLOSE_FD_ERROR);
+	printf("\n%s", res.line);
 	return (res);
 }

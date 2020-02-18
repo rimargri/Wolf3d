@@ -32,6 +32,7 @@ void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx mlx)
 	int color;
 	t_ivec2 offset;
 
+	printf("frspix = {%d %d}\n", frstpix.x, frstpix.y);
 	i = 0;
 	color = get_color(col);
 	while (i < w)
@@ -46,4 +47,5 @@ void    draw_rect(t_ivec2 frstpix, int w, int h, t_color col, t_mlx mlx)
 		}
 		i++;
 	}
+	printf("lastpixpix = {%d %d}\n", offset.x, offset.y);
 }

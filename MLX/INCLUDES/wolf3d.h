@@ -18,10 +18,10 @@
 #include <math.h>
 # define WIN_W 1024
 # define WIN_H 512
-# define MAP_W 16
-# define MAP_H 16
-# define RECT_W (WIN_W / 2 / MAP_W)
-# define RECT_H (WIN_H / MAP_H)
+//# define MAP_W 16
+//# define MAP_H 16
+//# define RECT_W (WIN_W / 2 / MAP_W)
+//# define RECT_H (WIN_H / MAP_H)
 # define FOV M_PI / 3.0
 
 /** *********************************** **/
@@ -49,8 +49,8 @@
 typedef struct		s_map
 {
 	char			*line;
-	int				h;//сорри, не нашла лучшего способа избавиться от дефайнов,
-	int				w;//если что - откатимся
+	int				h;
+	int				w;
 }					t_map;
 
 typedef struct  	s_ivec2
@@ -124,5 +124,8 @@ void				init_player(t_wolf *w);
 void				calc_player_pos(t_wolf *w, int k);
 t_map				validate(int ac, char **maps);
 void				wolf_error(char *reason);
+void				check_shape(t_map *map);
+int		rect_w(int w);
+int		rect_h(int h);
 
 #endif

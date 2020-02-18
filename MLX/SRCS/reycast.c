@@ -70,8 +70,8 @@ void	cast_ray(t_reycast r, t_wolf *w, t_map map)
 		{
 			r.len.x = cos(r.angle) * r.t + r.player.pos.x; //? Logic
 			r.len.y = sin(r.angle) * r.t + r.player.pos.y;
-			r.transform.x = r.len.x * RECT_W;
-			r.transform.y = r.len.y * RECT_H;
+			r.transform.x = r.len.x * rect_w(map.w);
+			r.transform.y = r.len.y * rect_h(map.h);
 			mlx_pixel_put(w->mlx.mptr, w->mlx.wptr, r.transform.x, r.transform.y, get_color((t_color){255, 255, 255})); //? Render
 			if (map.line[(int)r.len.x + (int)r.len.y * map.w] != ' ')
 			{

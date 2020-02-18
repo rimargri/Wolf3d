@@ -36,6 +36,16 @@ void	draw_background(t_wolf *w)
 	}
 }
 
+int		rect_w(int w)
+{
+	return (WIN_W / 2 / w);
+}
+
+int		rect_h(int h)
+{
+	return (WIN_H / h);
+}
+
 void	draw_walls(t_wolf *w, t_map map)
 {
 	int i;
@@ -54,16 +64,16 @@ void	draw_walls(t_wolf *w, t_map map)
 				i++;
 				continue;
 			}
-			rect.x = i * RECT_W; // перевод координат в масштаб окна из масштаба карты
-			rect.y = j * RECT_H;
+			rect.x = i * rect_w(map.w); // перевод координат в масштаб окна из масштаба карты
+			rect.y = j * rect_h(map.h);
 			if (map.line[i + j * map.w] == '0')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){153, 113, 233}, w->mlx);		// pirple
+				draw_rect(rect, rect_w(map.w), rect_h(map.h), (t_color){153, 113, 233}, w->mlx);		// pirple
 			if (map.line[i + j * map.w] == '1')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){227, 176, 229}, w->mlx);		// pink
+				draw_rect(rect, rect_w(map.w), rect_h(map.h), (t_color){227, 176, 229}, w->mlx);		// pink
 			if (map.line[i + j * map.w] == '2')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){92, 147, 255}, w->mlx);		// blue
+				draw_rect(rect, rect_w(map.w), rect_h(map.h), (t_color){92, 147, 255}, w->mlx);		// blue
 			if (map.line[i + j * map.w] == '3')
-				draw_rect(rect, RECT_W, RECT_H, (t_color){176, 229, 193}, w->mlx);		// green
+				draw_rect(rect, rect_w(map.w), rect_h(map.h), (t_color){176, 229, 193}, w->mlx);		// green
 			i++;
 		}
 		j++;
@@ -81,7 +91,7 @@ void	init_player(t_wolf *w)
 
 void	draw_player(t_wolf *w)
 {
-	w->player.transform.x = w->player.pos.x * RECT_W;
-	w->player.transform.y = w->player.pos.y * RECT_H;
+	w->player.transform.x = w->player.pos.x * rect_w(w->tmap.w);
+	w->player.transform.y = w->player.pos.y * rect_h(w->tmap.h);
 	draw_rect(w->player.transform, 6, 6, (t_color){255, 255, 255}, w->mlx);
 }

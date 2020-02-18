@@ -30,6 +30,7 @@
 # define TOO_BIG		"wolf3d: map is too big! try to load another one\n"
 # define DIRECTORY_ERR	"wolf3d: map can't be a directory!\n"\
 						"wolf3d: please check path\n"
-
+# define MALLOC_ERROR	"wolf3d: memory allocation error.\n"
+# define CLOSE_FD_ERROR	"wolf3d: fd close error\n"
 
 #endif

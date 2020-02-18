@@ -50,20 +50,20 @@ int		main(int ac, char **maps)
 	t_wolf *wolf;
 
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
-	((wolf == NULL) ? (exit(98)) : 1);
+	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
 	wolf->tmap = validate(ac, maps);
 	wolf->mlx = init_mlx();
 //	wolf->map = get_map();
 	draw_background(wolf);
 	draw_walls(wolf, wolf->tmap);
-	init_player(wolf);
-	init_reycast(wolf);
-	cast_ray(wolf->r, wolf, wolf->tmap);
+//	init_player(wolf);
+//	init_reycast(wolf);
+//	cast_ray(wolf->r, wolf, wolf->tmap);
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
-	// mlx_hook(mlx->win_ptr, 4, 0, &mouse_hook, mlx);
-	// mlx_hook(mlx->win_ptr, 6, 0, &move_hook, mlx);
-	// mlx_update_hook();
+//	 mlx_hook(wolf->mlx.wptr, 4, 0, &mouse_hook, &wolf->mlx);
+//	 mlx_hook(wolf->mlx.wptr, 6, 0, &move_hook, &wolf->mlx);
+//	 mlx_update_hook();
 	mlx_loop(wolf->mlx.mptr);
 	return (0);
 }
