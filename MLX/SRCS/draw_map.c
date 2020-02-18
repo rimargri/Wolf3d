@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/15 21:24:53 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/18 21:32:35 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	draw_background(t_wolf *w)
 			col.g = (255 * i / WIN_W);
 			col.b = 193;
 			color = get_color(col);
-			w->mlx.img[i + j * WIN_W] = color;
+			if ((i + j * WIN_W) <= (WIN_H * WIN_W) && (i + j * WIN_W) >= 0) 
+				w->mlx.img[i + j * WIN_W] = color;
 			i++;
 		}
 		j++;

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/15 21:37:58 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:41:51 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char	*get_map(void)
 	char *map;
     
 	map = (char*)malloc(sizeof(char) * 258);
-	map   = "0000222222220000"\
-			"1              0"\
-			"1      11111   0"\
+	map   = "00    2222220000"\
+			"                "\
+			"       11111   0"\
 			"1     0        0"\
 			"0     0  1110000"\
 			"0     3        0"\
@@ -32,7 +32,7 @@ char	*get_map(void)
 			"0       0      0"\
 			"2 3000000      0"\
 			"0              0"\
-			"2202222222200000";
+			"2  22222222 0000";
 	return (map);
 }
 
@@ -66,11 +66,12 @@ int		main(void)
 	((wolf == NULL) ? (exit(98)) : 1);
 	wolf->mlx = init_mlx();
 	wolf->map = get_map();
+	wolf->space_was_pressed = 0;
 	draw_background(wolf);
 	draw_walls(wolf, wolf->map);
 	init_player(wolf);
 	draw_player(wolf);
-	cast_ray(wolf, wolf->map);
+	render(wolf);
 	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);

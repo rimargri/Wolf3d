@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/15 21:34:59 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:02:40 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define HEIGHT 900
 # define WIDTH 1200
 # define KEY_ESC 53
-# define KEY_1 18
-# define KEY_2 19
+// # define KEY_1 18
+// # define KEY_2 19
 # define KEY_SPACE 49
 # define KEY_A 0
 # define KEY_D 2
@@ -79,19 +79,9 @@ typedef struct		s_player
 
 typedef struct		s_raycast
 {
-	float			player_column_angle;
-	float			column_angle;
-	float			t;
-	t_vec2			len;
-	t_ivec2			transform;
-	int				current_pix;
-	t_color			color;
+	float			distance;
+	t_color			wall_color;
 }					t_raycast;
-
-// typedef struct s_raycast {
-// 	float distance;
-// 	t_color wall_color;
-// } t_raycast;
 
 typedef struct		s_mlx
 {
@@ -106,12 +96,16 @@ typedef struct		s_wolf
 	t_mlx			mlx;
 	t_player		player;
 	char			*map;
+	int				space_was_pressed;
 }					t_wolf;
 
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
+void				move_forward(t_wolf *w);
+void				move_back(t_wolf *w);
+void				move_right(t_wolf *w);
+void				move_left(t_wolf *w);
 int					get_color(t_color color);
-void				create_objects(t_wolf *w);
 void    			draw_rect(t_drawrect v, int w, int h, t_mlx mlx);
 void				draw_background(t_wolf *w);
 void				draw_walls(t_wolf *w, char *map);
@@ -119,11 +113,9 @@ void				draw_player(t_wolf *w);
 void				cast_ray(t_wolf *w, char *map);
 void				init_player(t_wolf *w);
 void				player_move(t_wolf *w, int k);
-t_color				raycast_color(t_raycast r, char *map);
-t_raycast			raycast_data(t_raycast r, t_wolf *w);
-void				move_forward(t_wolf *w);
-void				move_back(t_wolf *w);
-void				move_right(t_wolf *w);
-void				move_left(t_wolf *w);
+t_color				wall_color(char *map, t_vec2 len);
+void				render(t_wolf *w);
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
+void				draw_view(t_wolf *w, t_raycast r, int pix);
 
 #endif
