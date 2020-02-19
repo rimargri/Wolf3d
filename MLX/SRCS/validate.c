@@ -127,8 +127,6 @@ t_map	validate(int ac, char **maps)
 	//посимвольная проверка
 	check_simbols(&res, buf);
 	res.line = (char *)malloc(sizeof(char) * (res.h * res.w + 1));
-	//проверка формы (пока доступен только прямоугольник)
-//	check_square(res);
 	record_shape(&res, buf);
 	//если мапа пустая:
 //	if (ret == 0)
