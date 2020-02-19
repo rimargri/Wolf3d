@@ -1,10 +1,14 @@
-//
-// Created by Hugor Chau on 2020-02-11.
-//
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/19 19:19:43 by hchau             #+#    #+#             */
+/*   Updated: 2020/02/19 19:20:07 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "wolf3d.h"
 
@@ -123,8 +127,6 @@ t_map	validate(int ac, char **maps)
 	//посимвольная проверка
 	check_simbols(&res, buf);
 	res.line = (char *)malloc(sizeof(char) * (res.h * res.w + 1));
-	//проверка формы (пока доступен только прямоугольник)
-//	check_square(res);
 	record_shape(&res, buf);
 	//если мапа пустая:
 //	if (ret == 0)

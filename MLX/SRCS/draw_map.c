@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/18 21:32:35 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:06:02 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_background(t_wolf *w)
 			col.g = (255 * i / WIN_W);
 			col.b = 193;
 			color = get_color(col);
-			if ((i + j * WIN_W) <= (WIN_H * WIN_W) && (i + j * WIN_W) >= 0)
+			if ((i + j * WIN_W) <= (WIN_H * WIN_W) && (i + j * WIN_W) >= 0) 
 				w->mlx.img[i + j * WIN_W] = color;
 			i++;
 		}
@@ -65,7 +65,7 @@ void	draw_walls(t_wolf *w, char *map)
 				dr.color = (t_color){92, 147, 255};				// blue
 			if (map[i + j * MAP_W] == '3')
 				dr.color = (t_color){176, 229, 193};			// green
-			draw_rect(dr, RECT_W, RECT_H, w->mlx);
+			draw_rect(dr, RECT_W, RECT_H, w->mlx);		
 			i++;
 		}
 		j++;

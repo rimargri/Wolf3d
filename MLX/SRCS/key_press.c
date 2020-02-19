@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/18 19:55:48 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:09:17 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,19 @@ int		key_press(int k, t_wolf *w)
 	(k == KEY_ESC ? exit(0) : 1);
 
 	if (k == KEY_W)
-		w->direction.move_f = k;
+		w->direction.move_f = KEY_W;
 	else if (k == KEY_S)
-		w->direction.move_b = k;
+		w->direction.move_b = KEY_S;
 	else if (k == KEY_D)
-		w->direction.move_r = k;
+		w->direction.move_r = KEY_D;
 	else if (k == KEY_A)
-		w->direction.move_l = k;
+		w->direction.move_l = KEY_A;
 	else if  (k == KEY_ARROW_RIGHT)
 		w->direction.camera = KEY_ARROW_RIGHT;
 	else if (k == KEY_ARROW_LEFT)
 		w->direction.camera = KEY_ARROW_LEFT;
-	else
-	{
-//		return (0);
-		if (k == KEY_SPACE)
+	else if (k == KEY_SPACE)
 			w->space_was_pressed = !(w->space_was_pressed);
-	}
 	return (0);
 }
 

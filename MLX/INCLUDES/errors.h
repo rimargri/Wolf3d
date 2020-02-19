@@ -1,6 +1,14 @@
-//
-// Created by Hugor Chau on 2020-02-11.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/19 19:18:14 by hchau             #+#    #+#             */
+/*   Updated: 2020/02/19 19:19:18 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MLX_ERRORS_H
 #define MLX_ERRORS_H
@@ -8,9 +16,8 @@
 **		map errors
 */
 # define OK					0
-# define MAX_MAP			10000//не хочу ГНЛ-ить, и не думаю, что
-								//поддержка бòльших карт что-то даст,
-								//кроме вечного подвисания
+# define MAX_MAP			10000
+
 # define MISSING_ARG	"wolf3d: missing argument after call\n"\
 						"usage: ./wolf3d [file]\n"
 

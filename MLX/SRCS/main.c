@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/18 22:41:51 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:23:08 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int		draw_all_hook(t_wolf *w)
 	draw_background(w);
 	draw_walls(w, w->map);
 	draw_player(w);
-	render(w);
+	render_rays(w);
+	render_walls(w);
 	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->mlx.iptr, 0, 0);
 	return (0);
 }
@@ -90,7 +91,8 @@ int		main(int ac, char **maps)
 	draw_walls(wolf, wolf->map);
 	init_player(wolf);
 	draw_player(wolf);
-	render(wolf);
+	render_rays(wolf);
+	render_walls(wolf);
 	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
 	mlx_loop_hook(wolf->mlx.mptr, &draw_all_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
@@ -99,3 +101,6 @@ int		main(int ac, char **maps)
 	mlx_loop(wolf->mlx.mptr);
 	return (0);
 }
+
+	// mlx_hook(mlx->win_ptr, 4, 0, &mouse_hook, mlx);
+	// mlx_hook(mlx->win_ptr, 6, 0, &move_hook, mlx);
