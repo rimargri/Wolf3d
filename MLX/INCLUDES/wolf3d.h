@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 22:36:39 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 22:52:47 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,13 @@ typedef struct		s_direction
 	int				left;
 	int				camera;
 }					t_direction;
+
+typedef struct		s_texture
+{
+	int				*texture;
+	int				text_size;
+	int				text_cnt;
+}					t_texture;
 
 typedef struct		s_mlx
 {

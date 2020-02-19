@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 22:33:32 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 22:57:03 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_map(void)
 **					binary representation of a number.
 */
 
-t_direction	init_move(t_wolf *w)
+t_direction	init_move(void)
 {
 	t_direction move;
 
@@ -52,7 +52,7 @@ t_direction	init_move(t_wolf *w)
 	move.right = FAULSE;
 	move.left = FAULSE;
 	move.camera = 0;
-	w->move = move;
+	return (move);
 }
 
 int		main(int ac, char **maps)
@@ -65,7 +65,7 @@ int		main(int ac, char **maps)
 	// wolf->tmap = validate(ac, maps);
 	wolf->mlx = init_mlx();
 	wolf->map = get_map();
-	wolf->move = init_move(wolf);
+	wolf->move = init_move();
 	wolf->space_was_pressed = 0;
 	draw_background(wolf);
 	draw_walls(wolf, wolf->map);
@@ -73,7 +73,7 @@ int		main(int ac, char **maps)
 	draw_player(wolf);
 	render_rays(wolf);
 	render_walls(wolf);
-	texture_main();
+	// texture_main();
 	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
 	hooks_loops_mlx(wolf);
 	return (0);

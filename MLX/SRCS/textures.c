@@ -6,13 +6,13 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 22:17:39 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 22:50:46 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		*load_texture(char *filename, int *texture, size_t &text_size, size_t &text_cnt)
+int		load_texture(char *filename, t_texture *t)
 {
 	unsigned char *pixmap;
 	int nchannels = -1, w, h;
@@ -28,14 +28,14 @@ int		*load_texture(char *filename, int *texture, size_t &text_size, size_t &text
 		stbi_image_free(pixmap);
 		exit (12);
 	}
-	text_cnt = w / h;
-	text_size = w / text_cnt;
-	if (w != h * (int)text_cnt) // Error: the texture file must contain N square textures packed horizontally
+	t->text_cnt = w / h;
+	t->text_size = w / t->text_cnt;
+	if (w != h * (int)t->text_cnt) // Error: the texture file must contain N square textures packed horizontally
 	{
 		stbi_image_free(pixmap);
 		exit (13);
 	}
-	texture = malloc(sizeof(int) * w * h);
+	t->texture = malloc(sizeof(int) * w * h);
 	while (j < h)
 	{
 		i = 0;
@@ -44,28 +44,30 @@ int		*load_texture(char *filename, int *texture, size_t &text_size, size_t &text
 			c.r = (int)pixmap[(i + j * w) * 4 + 0];
 			c.g = (int)pixmap[(i + j * w) * 4 + 1];
 			c.b = (int)pixmap[(i + j * w) * 4 + 2];
-			texture[i + j * w] = get_color(c);
+			t->texture[i + j * w] = get_color(c);
 			i++;
 		}
 		j++;
 	}
 	stbi_image_free(pixmap);
-	return (texture);
+	return (1);
 }
 
 void	texture_main(void)
 {
-	int *walltext;
-	int walltext_size;
-	int walltext_cnt;
+	t_texture	*t;
+	// int			*walltext;
+	// int walltext_size;
+	// int walltext_cnt;
 	int	text_id = 4;
 	int i = 0;
 	int j;
 
-	if (!(walltext = load_texture("../textures/rei_ayanami.png", walltext, walltext_size, walltext_cnt)))
+	t = (t_texture*)malloc(sizeof(t_texture));
+	if (!(load_texture("../textures/rei_ayanami.png", t)))
 		exit(14);
 	/** весь остальной код, что етсь в проге **/
-	printf("walltext_size = %d\n", walltext_size);
+	printf("walltext_size = %d\n", t->text_size);
 	// while (i < walltext_size)
 	// {
 	// 	j = 0;
