@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:45:42 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/18 19:12:12 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:05:22 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ t_color	wall_color(char *map, t_vec2 len)
 
 	if (map[(int)len.x + (int)len.y * MAP_W] == '0')					// pirple
 		c = (t_color){153, 113, 233};
-	if (map[(int)len.x + (int)len.y * MAP_W] == '1')
+	else if (map[(int)len.x + (int)len.y * MAP_W] == '1')
 		c = (t_color){227, 176, 229};									// pink
-	if (map[(int)len.x + (int)len.y * MAP_W] == '2')
+	else if (map[(int)len.x + (int)len.y * MAP_W] == '2')
 		c = (t_color){92, 147, 255};									// blue
-	if (map[(int)len.x + (int)len.y * MAP_W] == '3')
+	else if (map[(int)len.x + (int)len.y * MAP_W] == '3')
 		c = (t_color){176, 229, 193};									// green
+	else
+		return (t_color){0, 0, 0};
 	return ((t_color)c);
 }

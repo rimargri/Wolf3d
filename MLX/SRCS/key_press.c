@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 18:11:49 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:09:17 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,52 @@
 ** key_d		-		move right
 */
 
-void	player_move(t_wolf *w, int k)
+void	player_move(t_wolf *w, t_direction *direction)
 {
-	if (k == KEY_W)
+	if (direction->move_f != FAULSE)
 		move_forward(w);
-	if (k == KEY_S)
+	if (direction->move_b != FAULSE)
 		move_back(w);
-	if (k == KEY_D)
+	if (direction->move_r != FAULSE)
 		move_right(w);
-	if (k == KEY_A)
+	if (direction->move_l != FAULSE)
 		move_left(w);
+}
+
+int		key_unpress(int k, t_wolf *w)
+{
+	if (k == KEY_ARROW_RIGHT)
+		w->direction.camera = 0;
+	else if (k == KEY_ARROW_LEFT)
+		w->direction.camera = 0;
+	else
+	{
+		w->direction.move_l = k == KEY_A ? FAULSE : w->direction.move_l;
+		w->direction.move_r = k == KEY_D ? FAULSE : w->direction.move_r;
+		w->direction.move_f = k == KEY_W ? FAULSE : w->direction.move_f;
+		w->direction.move_b = k == KEY_S ? FAULSE : w->direction.move_b;
+	}
+	return (0);
 }
 
 int		key_press(int k, t_wolf *w)
 {
 	(k == KEY_ESC ? exit(0) : 1);
-	(k == KEY_ARROW_RIGHT ? w->player.look_column_angle += 0.1 : 1);
-	(k == KEY_ARROW_LEFT ? w->player.look_column_angle -= 0.1 : 1);
-	((k == KEY_W || k == KEY_S || k == KEY_D || k == KEY_A) ? (player_move(w, k)) : 1);
-	(k == KEY_SPACE ? w->space_was_pressed = !(w->space_was_pressed) : 0);
-	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
-	draw_background(w);
-	draw_walls(w, w->map);
-	draw_player(w);
-	render_rays(w);
-	render_walls(w);
-	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->mlx.iptr, 0, 0);
+
+	if (k == KEY_W)
+		w->direction.move_f = KEY_W;
+	else if (k == KEY_S)
+		w->direction.move_b = KEY_S;
+	else if (k == KEY_D)
+		w->direction.move_r = KEY_D;
+	else if (k == KEY_A)
+		w->direction.move_l = KEY_A;
+	else if  (k == KEY_ARROW_RIGHT)
+		w->direction.camera = KEY_ARROW_RIGHT;
+	else if (k == KEY_ARROW_LEFT)
+		w->direction.camera = KEY_ARROW_LEFT;
+	else if (k == KEY_SPACE)
+			w->space_was_pressed = !(w->space_was_pressed);
 	return (0);
 }
 

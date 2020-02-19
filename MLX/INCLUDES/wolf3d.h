@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 18:21:04 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:20:48 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <math.h>
+#include "errors.h"
+
+/** *********************************** **/
+/** *********************************** **/
+/**         libs for reading            **/
+/** *********************************** **/
+/** *********************************** **/
+
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 # define WIN_W 1024
 # define WIN_H 512
 # define MAP_W 16
@@ -33,6 +46,7 @@
 # define HEIGHT 900
 # define WIDTH 1200
 # define KEY_ESC 53
+# define FAULSE -1
 // # define KEY_1 18
 // # define KEY_2 19
 # define KEY_SPACE 49
@@ -45,11 +59,27 @@
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
 
+typedef struct		s_map
+{
+	char			*line;
+	int				h;
+	int				w;
+}					t_map;
+
 typedef struct  	s_ivec2
 {
     int         	x;
     int         	y;
 }               	t_ivec2;
+
+typedef struct		s_direction
+{
+	int				move_r;
+	int				move_l;
+	int				move_b;
+	int				move_f;
+	int				camera;
+}					t_direction;
 
 typedef struct		s_vec2
 {
@@ -96,9 +126,12 @@ typedef struct		s_wolf
 	t_mlx			mlx;
 	t_player		player;
 	char			*map;
+	t_map			tmap;
+	t_direction		direction;
 	int				space_was_pressed;
 }					t_wolf;
 
+int					key_unpress(int k, t_wolf *w);
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
 int					get_color(t_color color);
@@ -108,11 +141,8 @@ void				draw_walls(t_wolf *w, char *map);
 void				draw_player(t_wolf *w);
 void				cast_ray(t_wolf *w, char *map);
 void				init_player(t_wolf *w);
-void				player_move(t_wolf *w, int k);
-t_color				wall_color(char *map, t_vec2 len);
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
-void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
 void				move_forward(t_wolf *w);
 void				move_back(t_wolf *w);
 void				move_right(t_wolf *w);
@@ -121,5 +151,12 @@ int					check_f(t_wolf *w);
 int					check_b(t_wolf *w);
 int					check_r(t_wolf *w);
 int					check_l(t_wolf *w);
+void				player_move(t_wolf *w, t_direction *direction);
+int					draw_all_hook(t_wolf *w);
+t_color				wall_color(char *map, t_vec2 len);
+t_map				validate(int ac, char **maps);
+void				render(t_wolf *w);
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
+void				draw_view(t_wolf *w, t_raycast r, int pix);
 
 #endif
