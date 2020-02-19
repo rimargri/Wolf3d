@@ -41,7 +41,7 @@ $(OBJ_DIR):
 $(NAME): $(RAW_OBJ_FILES)
 	@gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
 	@echo "\033[38;2;200;150;200m (*≧ω≦*) \033[38;2;200;200;250m \
-	Mama, ya peresobralsya \033[38;2;200;150;200m (*≧ω≦*)"
+	Mama, ya peresobralsya \033[38;2;200;150;200m (*≧ω≦*)  \033[0m"
 
 #### К о м п и л я ц и я ####
 

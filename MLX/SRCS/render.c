@@ -45,7 +45,7 @@ void	draw_ray(t_wolf *w, int pix)
 				break;
 		t += 0.01;
 	}
-	printf("t = %f\n", t);
+//	printf("t = %f\n", t);
 	// if (w->map[(int)len.x + (int)len.y * MAP_W] != ' ' && !(t == 23)
 		raycast(w, t, len, pix);
 }

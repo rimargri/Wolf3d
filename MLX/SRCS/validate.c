@@ -53,35 +53,7 @@ void	check_simbols(t_map *map, char *buf)
 		}
 		i++;
 	}
-//	printf("%i, %i", map->w, map->h);
 }
-//
-//void	check_square(t_map map)
-//{
-//	int		i;
-//
-//	i = 0;
-//	while (i < map.w)
-//	{
-//		//гаризонталь первой и последней линий должны быть забиты числами
-//		if (map.line[i] < '0' || map.line[i] > '9')
-//			wolf_error(SHAPE);
-//		if (map.line[i + (map.h - 1) * (map.w)] < '0')
-//			wolf_error(SHAPE);
-//		i++;
-//	}
-//	i = 0;
-//	//вертикаль первой и последней линий должны быть забиты числами
-//	while (map.line[i])
-//	{
-//		if (map.line[i] < '0' || map.line[i] > '9')
-//			if (map.line[i] != '\n')
-//				wolf_error(SHAPE);
-//		if (map.line[i + map.w - 1] < '0')
-//			wolf_error(SHAPE);
-//		i += map.w;
-//	}
-//}
 
 void	make_empty_map(t_map *map)
 {

@@ -57,6 +57,20 @@ t_mlx	init_mlx(void)
 	return (mlx);
 }
 
+int		draw_all_hook(t_wolf *w)
+{
+	(w->direction.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle += 0.05 : 1);
+	(w->direction.camera == KEY_ARROW_LEFT ? w->player.look_column_angle -= 0.05 : 1);
+	player_move(w, &w->direction);
+	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
+	draw_background(w);
+	draw_walls(w, w->map);
+	draw_player(w);
+	render(w);
+	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->mlx.iptr, 0, 0);
+	return (0);
+}
+
 int		main(int ac, char **maps)
 {
 	printf("(*≧ω≦*) Mama, ya sobralsya o7\n");
@@ -64,7 +78,11 @@ int		main(int ac, char **maps)
 
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
 	((wolf == NULL) ? (exit(98)) : 1);
-
+	wolf->direction.move_r = FAULSE;
+	wolf->direction.move_l = FAULSE;
+	wolf->direction.move_f = FAULSE;
+	wolf->direction.move_b = FAULSE;
+	wolf->direction.camera = 0;
 	wolf->mlx = init_mlx();
 	wolf->map = get_map();
 	wolf->space_was_pressed = 0;
@@ -74,11 +92,10 @@ int		main(int ac, char **maps)
 	draw_player(wolf);
 	render(wolf);
 	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
+	mlx_loop_hook(wolf->mlx.mptr, &test, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
+	mlx_hook(wolf->mlx.wptr, 3, 0, &key_unpress, &wolf->mlx);
 	mlx_loop(wolf->mlx.mptr);
 	return (0);
 }
-
-	// mlx_hook(mlx->win_ptr, 4, 0, &mouse_hook, mlx);
-	// mlx_hook(mlx->win_ptr, 6, 0, &move_hook, mlx);

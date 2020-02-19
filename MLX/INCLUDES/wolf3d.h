@@ -35,6 +35,7 @@
 # define HEIGHT 900
 # define WIDTH 1200
 # define KEY_ESC 53
+# define FAULSE -1
 // # define KEY_1 18
 // # define KEY_2 19
 # define KEY_SPACE 49
@@ -59,6 +60,15 @@ typedef struct  	s_ivec2
     int         	x;
     int         	y;
 }               	t_ivec2;
+
+typedef struct		s_direction
+{
+	int				move_r;
+	int				move_l;
+	int				move_b;
+	int				move_f;
+	int				camera;
+}					t_direction;
 
 typedef struct		s_vec2
 {
@@ -106,9 +116,11 @@ typedef struct		s_wolf
 	t_player		player;
 	char			*map;
 	t_map			tmap;
+	t_direction		direction;
 	int				space_was_pressed;
 }					t_wolf;
 
+int					key_unpress(int k, t_wolf *w);
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
 void				move_forward(t_wolf *w);
@@ -122,7 +134,8 @@ void				draw_walls(t_wolf *w, char *map);
 void				draw_player(t_wolf *w);
 void				cast_ray(t_wolf *w, char *map);
 void				init_player(t_wolf *w);
-void				player_move(t_wolf *w, int k);
+void				player_move(t_wolf *w, t_direction *direction);
+int					draw_all_hook(t_wolf *w);
 t_color				wall_color(char *map, t_vec2 len);
 t_map				validate(int ac, char **maps);
 void				render(t_wolf *w);
