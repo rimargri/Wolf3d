@@ -92,7 +92,7 @@ int		main(int ac, char **maps)
 	draw_player(wolf);
 	render(wolf);
 	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
-	mlx_loop_hook(wolf->mlx.mptr, &test, &wolf->mlx);
+	mlx_loop_hook(wolf->mlx.mptr, &draw_all_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 3, 0, &key_unpress, &wolf->mlx);
