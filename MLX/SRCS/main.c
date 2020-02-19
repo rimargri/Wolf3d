@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/18 22:41:51 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:11:26 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int		main(void)
 	draw_walls(wolf, wolf->map);
 	init_player(wolf);
 	draw_player(wolf);
-	render(wolf);
+	render_rays(wolf);
+	render_walls(wolf);
 	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);

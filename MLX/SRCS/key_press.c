@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/18 19:55:48 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:11:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int		key_press(int k, t_wolf *w)
 	draw_background(w);
 	draw_walls(w, w->map);
 	draw_player(w);
-	render(w);
+	render_rays(w);
+	render_walls(w);
 	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->mlx.iptr, 0, 0);
 	return (0);
 }

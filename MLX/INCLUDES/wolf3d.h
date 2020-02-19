@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/18 20:02:40 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:21:04 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define WIN_H 512
 # define MAP_W 16
 # define MAP_H 16
-# define RECT_W (WIN_W / 2 / MAP_W)
-# define RECT_H (WIN_H / MAP_H)
+# define RECT_W (WIN_W / 2 / MAP_W) // ширина одного прямоугольника
+# define RECT_H (WIN_H / MAP_H)		// высота одного прямоугольника
 # define FOV M_PI / 3.0
 
 /** *********************************** **/
@@ -101,10 +101,6 @@ typedef struct		s_wolf
 
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
-void				move_forward(t_wolf *w);
-void				move_back(t_wolf *w);
-void				move_right(t_wolf *w);
-void				move_left(t_wolf *w);
 int					get_color(t_color color);
 void    			draw_rect(t_drawrect v, int w, int h, t_mlx mlx);
 void				draw_background(t_wolf *w);
@@ -114,8 +110,16 @@ void				cast_ray(t_wolf *w, char *map);
 void				init_player(t_wolf *w);
 void				player_move(t_wolf *w, int k);
 t_color				wall_color(char *map, t_vec2 len);
-void				render(t_wolf *w);
+void				render_rays(t_wolf *w);
+void				render_walls(t_wolf *w);
 void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
-void				draw_view(t_wolf *w, t_raycast r, int pix);
+void				move_forward(t_wolf *w);
+void				move_back(t_wolf *w);
+void				move_right(t_wolf *w);
+void				move_left(t_wolf *w);
+int					check_f(t_wolf *w);
+int					check_b(t_wolf *w);
+int					check_r(t_wolf *w);
+int					check_l(t_wolf *w);
 
 #endif
