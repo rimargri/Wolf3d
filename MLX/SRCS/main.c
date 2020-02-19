@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 19:23:08 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 20:06:35 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int		main(int ac, char **maps)
 	wolf->direction.move_f = FAULSE;
 	wolf->direction.move_b = FAULSE;
 	wolf->direction.camera = 0;
+	// wolf->tmap = validate(ac, maps);
 	wolf->mlx = init_mlx();
 	wolf->map = get_map();
 	wolf->space_was_pressed = 0;
