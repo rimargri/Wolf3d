@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/13 23:37:35 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:02:40 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <math.h>
+//added headers for managing errors
+#include "errors.h"
 # define WIN_W 1024
 # define WIN_H 512
-//# define MAP_W 16
-//# define MAP_H 16
-//# define RECT_W (WIN_W / 2 / MAP_W)
-//# define RECT_H (WIN_H / MAP_H)
+# define MAP_W 16
+# define MAP_H 16
+# define RECT_W (WIN_W / 2 / MAP_W)
+# define RECT_H (WIN_H / MAP_H)
 # define FOV M_PI / 3.0
 
 /** *********************************** **/
@@ -33,18 +35,17 @@
 # define HEIGHT 900
 # define WIDTH 1200
 # define KEY_ESC 53
-# define KEY_1 18
-# define KEY_2 19
+// # define KEY_1 18
+// # define KEY_2 19
 # define KEY_SPACE 49
 # define KEY_A 0
 # define KEY_D 2
-# define KEY_W 1
-# define KEY_S 13
-
-/*
-**		added for validation
-*/
-#include "errors.h"
+# define KEY_S 1
+# define KEY_W 13
+// # define KEY_ARROW_UP 126
+// # define KEY_ARROW_DOWN 125
+# define KEY_ARROW_LEFT 123
+# define KEY_ARROW_RIGHT 124
 
 typedef struct		s_map
 {
@@ -72,60 +73,60 @@ typedef struct  	s_color
     int         	b;
 }               	t_color;
 
+typedef struct		s_drawrect
+{
+	t_ivec2			firstpix;
+	t_color			color;
+}					t_drawrect;
+
 typedef struct		s_player
 {
-	t_ivec2			pos;
+	t_vec2			pos;
 	t_ivec2			transform;
+	float			look_column_angle;
 }					t_player;
 
-typedef struct		s_reycast
+typedef struct		s_raycast
 {
-	float			vec_dir;
-	float			angle;
-	float			t;
-	t_player		player;
-	t_vec2			len;
-	t_ivec2			transform;
-	int				current_pix;
-	t_color			color;
-}					t_reycast;
-
-typedef struct s_raycast {
-	float distance;
-	t_color wall_color;
-} t_raycast;
+	float			distance;
+	t_color			wall_color;
+}					t_raycast;
 
 typedef struct		s_mlx
 {
 	void			*mptr;
 	void			*wptr;
+	void			*iptr;
+	int				*img;
 }					t_mlx;
 
 typedef struct		s_wolf
 {
 	t_mlx			mlx;
-	t_reycast		r;
 	t_player		player;
-//	char			*map;
+	char			*map;
 	t_map			tmap;
+	int				space_was_pressed;
 }					t_wolf;
 
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
+void				move_forward(t_wolf *w);
+void				move_back(t_wolf *w);
+void				move_right(t_wolf *w);
+void				move_left(t_wolf *w);
 int					get_color(t_color color);
-void				create_objects(t_wolf *w);
-void    			draw_rect(t_ivec2 v, int w, int h, t_color col, t_mlx mlx);
+void    			draw_rect(t_drawrect v, int w, int h, t_mlx mlx);
 void				draw_background(t_wolf *w);
-void				draw_walls(t_wolf *w, t_map map);
+void				draw_walls(t_wolf *w, char *map);
 void				draw_player(t_wolf *w);
-void				cast_ray(t_reycast r, t_wolf *w, t_map map);
-void				init_reycast(t_wolf *wolf);
+void				cast_ray(t_wolf *w, char *map);
 void				init_player(t_wolf *w);
-void				calc_player_pos(t_wolf *w, int k);
+void				player_move(t_wolf *w, int k);
+t_color				wall_color(char *map, t_vec2 len);
 t_map				validate(int ac, char **maps);
-void				wolf_error(char *reason);
-void				check_shape(t_map *map);
-int		rect_w(int w);
-int		rect_h(int h);
+void				render(t_wolf *w);
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
+void				draw_view(t_wolf *w, t_raycast r, int pix);
 
 #endif

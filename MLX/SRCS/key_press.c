@@ -6,24 +6,51 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/13 23:42:28 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/18 19:55:48 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
+/*
+**
+** key_space	-		show radar or no
+**
+**		*** move of player ***
+**
+** arrow let	-		rotation player on left
+** arrow right	-		rotation player on right
+** key_w		-		move up
+** key_s		-		move down
+** key_a		-		move_left
+** key_d		-		move right
+*/
+
+void	player_move(t_wolf *w, int k)
+{
+	if (k == KEY_W)
+		move_forward(w);
+	if (k == KEY_S)
+		move_back(w);
+	if (k == KEY_D)
+		move_right(w);
+	if (k == KEY_A)
+		move_left(w);
+}
+
 int		key_press(int k, t_wolf *w)
 {
 	(k == KEY_ESC ? exit(0) : 1);
-	// (k == KEY_1 ? w->r->vec_dir += 0.0037 : 1);
-	(k == KEY_1 ? w->r.vec_dir += 0.1 : 1);
-	(k == KEY_2 ? w->r.vec_dir -= 0.1 : 1);
-	(k == (KEY_W || KEY_S || KEY_D || KEY_A) ? (calc_player_pos(w, k)) : 1);
+	(k == KEY_ARROW_RIGHT ? w->player.look_column_angle += 0.1 : 1);
+	(k == KEY_ARROW_LEFT ? w->player.look_column_angle -= 0.1 : 1);
+	((k == KEY_W || k == KEY_S || k == KEY_D || k == KEY_A) ? (player_move(w, k)) : 1);
+	(k == KEY_SPACE ? w->space_was_pressed = !(w->space_was_pressed) : 0);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_background(w);
-	draw_walls(w, w->tmap);
+	draw_walls(w, w->map);
 	draw_player(w);
-	cast_ray(w->r, w, w->tmap);
+	render(w);
+	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->mlx.iptr, 0, 0);
 	return (0);
 }
 

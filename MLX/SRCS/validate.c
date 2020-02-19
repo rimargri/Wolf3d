@@ -53,7 +53,7 @@ void	check_simbols(t_map *map, char *buf)
 		}
 		i++;
 	}
-	printf("%i, %i", map->w, map->h);
+//	printf("%i, %i", map->w, map->h);
 }
 //
 //void	check_square(t_map map)
@@ -117,8 +117,7 @@ void	record_shape(t_map *map, char *src)
 		}
 		i = src[i] ? ++i : i;
 	}
-	map->line[comm_diff] = 'l';
-	map->line[comm_diff + 1] = '\0';
+	map->line[comm_diff] = '\0';
 
 }
 
@@ -143,6 +142,11 @@ t_map	validate(int ac, char **maps)
 	if ((ret = read(fd, buf, MAX_MAP)) == MAX_MAP)
 		wolf_error(TOO_BIG);
 	buf[ret] = '\0';
+	if (buf[ret - 1] != '\n')
+	{
+		buf[ret] = '\n';
+		buf[ret + 1] = '\0';
+	}
 	//подготовка строки
 	//посимвольная проверка
 	check_simbols(&res, buf);
@@ -155,6 +159,6 @@ t_map	validate(int ac, char **maps)
 //		make_empty_map(&res);
 	if ((close(fd)))
 		wolf_error(CLOSE_FD_ERROR);
-	printf("\n%s", res.line);
+//	printf("\n%s", res.line);
 	return (res);
 }
