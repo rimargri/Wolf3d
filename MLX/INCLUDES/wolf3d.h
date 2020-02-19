@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 19:20:48 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 22:36:39 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "errors.h"
+#include "stb_image.h"
 
 /** *********************************** **/
 /** *********************************** **/
@@ -59,12 +60,6 @@
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
 
-typedef struct		s_map
-{
-	char			*line;
-	int				h;
-	int				w;
-}					t_map;
 
 typedef struct  	s_ivec2
 {
@@ -72,14 +67,6 @@ typedef struct  	s_ivec2
     int         	y;
 }               	t_ivec2;
 
-typedef struct		s_direction
-{
-	int				move_r;
-	int				move_l;
-	int				move_b;
-	int				move_f;
-	int				camera;
-}					t_direction;
 
 typedef struct		s_vec2
 {
@@ -113,6 +100,22 @@ typedef struct		s_raycast
 	t_color			wall_color;
 }					t_raycast;
 
+typedef struct		s_map
+{
+	char			*line;
+	int				h;
+	int				w;
+}					t_map;
+
+typedef struct		s_direction
+{
+	int				forward;
+	int				back;
+	int				right;
+	int				left;
+	int				camera;
+}					t_direction;
+
 typedef struct		s_mlx
 {
 	void			*mptr;
@@ -127,10 +130,14 @@ typedef struct		s_wolf
 	t_player		player;
 	char			*map;
 	t_map			tmap;
-	t_direction		direction;
+	t_direction		move;
 	int				space_was_pressed;
 }					t_wolf;
 
+void				texture_main(void);
+t_mlx				init_mlx(void);
+int					draw_all_hook(t_wolf *w);
+void				hooks_loops_mlx(t_wolf *wolf);
 int					key_unpress(int k, t_wolf *w);
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);

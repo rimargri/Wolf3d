@@ -1,1 +1,4 @@
 .vscode
+MLX/.idea
+MLX/OBJ/*.o
+SDL/OBJ/*.o

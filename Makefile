@@ -6,11 +6,12 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/11 18:58:16 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/14 18:48:30 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/19 22:13:33 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # https://m.habr.com/ru/post/439698/
+# stb_image.h --- page 129: stbi_load()
 
 ##### try to do default makefile laubching needed library in depends on OS #####
 
