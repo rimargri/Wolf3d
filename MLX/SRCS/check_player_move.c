@@ -25,7 +25,7 @@ int		check_f(t_wolf *w)
 	forward_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + forward.x;
 	tmp.y = w->player.pos.y + forward.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' ')
+	if (w->tmap.line[(int)tmp.x + (int)tmp.y * w->tmap.w] == ' ')
 		return (1);
 	else
 		return (0);
@@ -44,7 +44,7 @@ int		check_b(t_wolf *w)
 	back_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + back.x;
 	tmp.y = w->player.pos.y + back.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' ')
+	if (w->tmap.line[(int)tmp.x + (int)tmp.y * w->tmap.w] == ' ')
 		return (1);
 	else
 		return (0);
@@ -63,7 +63,7 @@ int		check_r(t_wolf *w)
 	right_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + right.x;
 	tmp.y = w->player.pos.y + right.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' ')
+	if (w->tmap.line[(int)tmp.x + (int)tmp.y * w->tmap.w] == ' ')
 		return (1);
 	else
 		return (0);
@@ -82,7 +82,7 @@ int		check_l(t_wolf *w)
 	left_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + left.x;
 	tmp.y = w->player.pos.y + left.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' ')
+	if (w->tmap.line[(int)tmp.x + (int)tmp.y * w->tmap.w] == ' ')
 		return (1);
 	else
 		return (0);

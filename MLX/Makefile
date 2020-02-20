@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/19 19:04:36 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/19 22:56:52 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ OBJ_DIR = ./OBJ
 INCL_DIR = ./INCLUDES
 
 C_FILES = main.c key_press.c draw_rect.c draw_map.c color.c raycast.c \
-				render_rays.c player.c player_move.c check_player_move.c validate.c
+				render_rays.c player.c player_move.c check_player_move.c \
+				validate.c mlx_data.c #textures.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -53,5 +54,6 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(OBJ_DIR)
 
 re: fclean all

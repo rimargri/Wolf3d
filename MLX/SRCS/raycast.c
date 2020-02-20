@@ -21,13 +21,15 @@ void	find_distance(t_wolf *w, int pix)
 	t = 0.0f;
 	column_angle = w->player.look_column_angle - FOV / 2 + FOV * pix /
 														(float)(WIN_W / 2);
-	while (t < 23)
+	while (t < 25)
 	{
+//		if (len.x > w->tmap.w || len.y > w->tmap.h || len.x < 0 || len.y < 0)
+//			break ;
 		len.x = cos(column_angle) * t + w->player.pos.x; //? Logic
 		len.y = sin(column_angle) * t + w->player.pos.y;
-		if (len.x > MAP_W || len.y > MAP_H || len.x < 0 || len.y < 0)
+		if (len.x >= w->tmap.w || len.y > w->tmap.h || len.x < 0 || len.y < 0)
 			break ;
-		if (w->map[(int)len.x + (int)len.y * MAP_W] != ' ')
+		if (w->tmap.line[(int)len.x + (int)len.y * w->tmap.w] != ' ')
 				break;
 		t += 0.01;
 	}
@@ -41,7 +43,7 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
 	t_ivec2		firstpix;
 
 	r.distance = t;
-	r.wall_color = (t_color)wall_color(w->map, len);
+	r.wall_color = (t_color)wall_color(&w->tmap, len);
 	if (r.wall_color.r == 0 && r.wall_color.g == 0 && r.wall_color.b == 0)
 		return ;
 	column_height = (int)(WIN_H / r.distance);

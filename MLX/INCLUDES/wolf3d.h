@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 19:20:48 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/19 22:52:47 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "errors.h"
+#include "stb_image.h"
 
 /** *********************************** **/
 /** *********************************** **/
@@ -31,10 +32,10 @@
 
 # define WIN_W 1024
 # define WIN_H 512
-# define MAP_W 16
-# define MAP_H 16
-# define RECT_W (WIN_W / 2 / MAP_W) // ширина одного прямоугольника
-# define RECT_H (WIN_H / MAP_H)		// высота одного прямоугольника
+//# define MAP_W 16
+//# define MAP_H 16
+//# define RECT_W (WIN_W / 2 / MAP_W) // ширина одного прямоугольника
+//# define RECT_H (WIN_H / MAP_H)		// высота одного прямоугольника
 # define FOV M_PI / 3.0
 
 /** *********************************** **/
@@ -59,12 +60,6 @@
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
 
-typedef struct		s_map
-{
-	char			*line;
-	int				h;
-	int				w;
-}					t_map;
 
 typedef struct  	s_ivec2
 {
@@ -72,14 +67,6 @@ typedef struct  	s_ivec2
     int         	y;
 }               	t_ivec2;
 
-typedef struct		s_direction
-{
-	int				move_r;
-	int				move_l;
-	int				move_b;
-	int				move_f;
-	int				camera;
-}					t_direction;
 
 typedef struct		s_vec2
 {
@@ -113,6 +100,29 @@ typedef struct		s_raycast
 	t_color			wall_color;
 }					t_raycast;
 
+typedef struct		s_map
+{
+	char			*line;
+	int				h;
+	int				w;
+}					t_map;
+
+typedef struct		s_direction
+{
+	int				forward;
+	int				back;
+	int				right;
+	int				left;
+	int				camera;
+}					t_direction;
+
+typedef struct		s_texture
+{
+	int				*texture;
+	int				text_size;
+	int				text_cnt;
+}					t_texture;
+
 typedef struct		s_mlx
 {
 	void			*mptr;
@@ -125,21 +135,34 @@ typedef struct		s_wolf
 {
 	t_mlx			mlx;
 	t_player		player;
-	char			*map;
+//	char			*map;
 	t_map			tmap;
-	t_direction		direction;
+	t_direction		move;
 	int				space_was_pressed;
 }					t_wolf;
 
+/*
+**			need for map
+*/
+void				draw_walls(t_wolf *w, t_map *map);
+//void				cast_ray(t_wolf *w, t_map *map);
+t_color				wall_color(t_map *map, t_vec2 len);
+
+//сорри, лень что-то придумывать
+int					rect_w(int w);
+int					rect_h(int h);
+
+void				texture_main(void);
+t_mlx				init_mlx(void);
+int					draw_all_hook(t_wolf *w);
+void				hooks_loops_mlx(t_wolf *wolf);
 int					key_unpress(int k, t_wolf *w);
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
 int					get_color(t_color color);
 void    			draw_rect(t_drawrect v, int w, int h, t_mlx mlx);
 void				draw_background(t_wolf *w);
-void				draw_walls(t_wolf *w, char *map);
 void				draw_player(t_wolf *w);
-void				cast_ray(t_wolf *w, char *map);
 void				init_player(t_wolf *w);
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
@@ -153,7 +176,6 @@ int					check_r(t_wolf *w);
 int					check_l(t_wolf *w);
 void				player_move(t_wolf *w, t_direction *direction);
 int					draw_all_hook(t_wolf *w);
-t_color				wall_color(char *map, t_vec2 len);
 t_map				validate(int ac, char **maps);
 void				render(t_wolf *w);
 void				raycast(t_wolf *w, float t, t_vec2 len, int pix);

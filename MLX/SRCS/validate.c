@@ -129,10 +129,10 @@ t_map	validate(int ac, char **maps)
 	res.line = (char *)malloc(sizeof(char) * (res.h * res.w + 1));
 	record_shape(&res, buf);
 	//если мапа пустая:
-//	if (ret == 0)
-//		make_empty_map(&res);
+	if (ret < 2)
+		make_empty_map(&res);
 	if ((close(fd)))
 		wolf_error(CLOSE_FD_ERROR);
-//	printf("\n%s", res.line);
+	printf("\n%s", res.line);
 	return (res);
 }

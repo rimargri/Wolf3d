@@ -24,8 +24,8 @@ void	init_player(t_wolf *w)
 
 void	draw_player(t_wolf *w)
 {
-	w->player.transform.x = w->player.pos.x * RECT_W;
-	w->player.transform.y = w->player.pos.y * RECT_H;
+	w->player.transform.x = w->player.pos.x * rect_w(w->tmap.w);
+	w->player.transform.y = w->player.pos.y * rect_h(w->tmap.h);
 	draw_rect((t_drawrect){w->player.transform, (t_color){255, 255, 255}},
 															4, 4, w->mlx);
 }
