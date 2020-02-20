@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 16:30:21 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:56:32 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	draw_background(t_wolf *w)
 	}
 }
 
-//сорри, лень что-то придумывать
 int		rect_w(int w)
 {
 	return ((WIN_W / 2 / w));
@@ -66,7 +65,7 @@ void	draw_walls(t_wolf *w)
 				i++;
 				continue;
 			}
-			dr.firstpix.x = i * rect_w(w->map.w); // перевод координат в масштаб окна из масштаба карты
+			dr.firstpix.x = i * rect_w(w->map.w);				// перевод координат в масштаб окна из масштаба карты
 			dr.firstpix.y = j * rect_h(w->map.h);
 			if (w->map.line[i + j * w->map.w] == '0')
 				dr.color = (t_color){153, 113, 233};			// pirple

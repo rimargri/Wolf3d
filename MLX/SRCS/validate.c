@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 19:19:43 by hchau             #+#    #+#             */
-/*   Updated: 2020/02/20 16:28:21 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:16:39 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_simbols(t_map *map, char *buf)
 		}
 		else
 		{
-			if ((buf[i] < '0' || buf[i] > '9') && buf[i] != ' ')
+			if ((buf[i] < '0' || buf[i] > '9') && buf[i] != ' ' && buf[i] != 'x')
 				{
 					free(map->line);
 					wolf_error(MAP_SIMB);

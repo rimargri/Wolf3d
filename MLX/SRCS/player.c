@@ -6,17 +6,42 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:40:26 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 15:23:42 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:57:17 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_vec2		spawn_place(t_wolf *w)
+t_vec2		find_player(t_wolf *w)
 {
 	t_vec2 p;
 
-	p = (t_vec2){0.0, 0.0};
+	p = (t_vec2){0.0f, 0.0f};
+	while ((int)p.x < w->map.w)
+	{
+		p.y = 0;
+		while (p.y < w->map.h)
+		{
+			if (w->map.line[(int)p.x + (int)p.y * w->map.w] == 'x')
+				break;
+			p.y++;
+		}
+		if (w->map.line[(int)p.x + (int)p.y * w->map.w] == 'x')
+			break;
+		p.x++;
+	}
+	if (w->map.line[(int)p.x + (int)p.y * w->map.w] == 'x')
+			w->map.line[(int)p.x + (int)p.y * w->map.w] = ' ';
+	else if (w->map.line[(int)p.x + (int)p.y * w->map.w] != 'x')
+		p = first_empty_place(w);
+	return (p);
+}
+
+t_vec2		first_empty_place(t_wolf *w)
+{
+	t_vec2 p;
+
+	p = (t_vec2){0.0f, 0.0f};
 	while (p.x < w->map.w)
 	{
 		p.y = 0;
@@ -39,7 +64,7 @@ void	init_player(t_wolf *w)
 {
 	t_player p;
 
-	p.pos = spawn_place(w);
+	p.pos = find_player(w);
 	p.look_column_angle = 0.0;
 	w->player = p;
 }
