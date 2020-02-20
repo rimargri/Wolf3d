@@ -1,4 +1,5 @@
 .vscode
+MLX/.DS_Store
 MLX/.idea
 MLX/OBJ/*.o
 SDL/OBJ/*.o
