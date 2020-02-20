@@ -1,5 +1,5 @@
-.vscode
-MLX/.DS_Store
-MLX/.idea
-MLX/OBJ/*.o
-SDL/OBJ/*.o
+./**/.vscode
+./**/.DS_Store
+./**/.idea
+./**/*.o
+./**/*.o

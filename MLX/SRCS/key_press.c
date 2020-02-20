@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 22:36:19 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:57:12 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,6 @@
 ** key_d		-		move right
 */
 
-void	player_move(t_wolf *w, t_direction *move)
-{
-	if (move->forward != FAULSE)
-		move_forward(w);
-	if (move->back != FAULSE)
-		move_back(w);
-	if (move->right != FAULSE)
-		move_right(w);
-	if (move->left != FAULSE)
-		move_left(w);
-}
-
 int		key_unpress(int k, t_wolf *w)
 {
 	if (k == KEY_ARROW_RIGHT)
@@ -46,10 +34,10 @@ int		key_unpress(int k, t_wolf *w)
 		w->move.camera = 0;
 	else
 	{
-		w->move.left = k == KEY_A ? FAULSE : w->move.left;
-		w->move.right = k == KEY_D ? FAULSE : w->move.right;
-		w->move.forward = k == KEY_W ? FAULSE : w->move.forward;
-		w->move.back = k == KEY_S ? FAULSE : w->move.back;
+		w->move.left = k == KEY_A ? FALSE : w->move.left;
+		w->move.right = k == KEY_D ? FALSE : w->move.right;
+		w->move.forward = k == KEY_W ? FALSE : w->move.forward;
+		w->move.back = k == KEY_S ? FALSE : w->move.back;
 	}
 	return (0);
 }

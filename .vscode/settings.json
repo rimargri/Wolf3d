@@ -1,0 +1,15 @@
+{
+	"files.associations": {
+		"wolf3d.h": "c",
+		"sdl.h": "c",
+		"unistd.h": "c",
+		"stdio.h": "c",
+		"mlx.h": "c",
+		"algorithm": "c",
+		"__split_buffer": "c",
+		"array": "c",
+		"string_view": "c",
+		"vector": "c",
+		"ios": "c"
+	}
+}

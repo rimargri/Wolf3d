@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 19:19:43 by hchau             #+#    #+#             */
-/*   Updated: 2020/02/19 19:20:07 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 14:24:25 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,14 @@ t_map	validate(int ac, char **maps)
 	//подготовка строки
 	//посимвольная проверка
 	check_simbols(&res, buf);
-	res.line = (char *)malloc(sizeof(char) * (res.h * res.w + 1));
+	if (!(res.line = (char *)malloc(sizeof(char) * (res.h * res.w + 1))))
+		wolf_error(MALLOC_ERROR);
 	record_shape(&res, buf);
 	//если мапа пустая:
-//	if (ret == 0)
-//		make_empty_map(&res);
+	if (ret < 2)
+		make_empty_map(&res);
 	if ((close(fd)))
 		wolf_error(CLOSE_FD_ERROR);
-//	printf("\n%s", res.line);
+	// printf("\n%s", res.line);
 	return (res);
 }

@@ -6,26 +6,48 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:40:26 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 19:14:50 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:23:42 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
+t_vec2		spawn_place(t_wolf *w)
+{
+	t_vec2 p;
+
+	p = (t_vec2){0.0, 0.0};
+	while (p.x < w->map.w)
+	{
+		p.y = 0;
+		while (p.y < w->map.h)
+		{
+			if (w->map.line[(int)p.x + (int)p.y * w->map.w] == ' ')
+				break;
+			p.y++;
+		}
+		if (w->map.line[(int)p.x + (int)p.y * w->map.w] == ' ')
+			break;
+		p.x++;
+	}
+	if (!(w->map.line[(int)p.x + (int)p.y * w->map.w] == ' '))
+		wolf_error(MAP_IS_FULL);
+	return (p);
+}
+
 void	init_player(t_wolf *w)
 {
 	t_player p;
 
-	p.pos.x = 5;
-	p.pos.y = 2;
+	p.pos = spawn_place(w);
 	p.look_column_angle = 0.0;
 	w->player = p;
 }
 
 void	draw_player(t_wolf *w)
 {
-	w->player.transform.x = w->player.pos.x * RECT_W;
-	w->player.transform.y = w->player.pos.y * RECT_H;
+	w->player.transform.x = w->player.pos.x * rect_w(w->map.w);
+	w->player.transform.y = w->player.pos.y * rect_h(w->map.h);
 	draw_rect((t_drawrect){w->player.transform, (t_color){255, 255, 255}},
 															4, 4, w->mlx);
 }

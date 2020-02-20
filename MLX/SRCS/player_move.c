@@ -6,13 +6,23 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 22:37:47 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 19:14:14 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:01:40 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-	//!! ДОБАВИТЬ ограничение на выход из карты, если там дырка, а не стена
+void	player_move(t_wolf *w)
+{
+	if (w->move.forward != FALSE)
+		move_forward(w);
+	if (w->move.back != FALSE)
+		move_back(w);
+	if (w->move.right != FALSE)
+		move_right(w);
+	if (w->move.left != FALSE)
+		move_left(w);
+}
 
 void	move_forward(t_wolf *w)
 {
@@ -27,8 +37,8 @@ void	move_forward(t_wolf *w)
 	forward_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + forward.x;
 	tmp.y = w->player.pos.y + forward.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' '
-	&& (int)tmp.x < MAP_W && (int)tmp.y < MAP_H
+	if (w->map.line[(int)tmp.x + (int)tmp.y * w->map.w] == ' '
+	&& (int)tmp.x < w->map.w && (int)tmp.y < w->map.h
 	&& tmp.x >= 0 && tmp.y >= 0
 	&& check_f(w) == 1)
 	{
@@ -50,8 +60,8 @@ void	move_back(t_wolf *w)
 	back_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + back.x;
 	tmp.y = w->player.pos.y + back.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' '
-	&& (int)tmp.x < MAP_W && (int)tmp.y < MAP_H
+	if (w->map.line[(int)tmp.x + (int)tmp.y * w->map.w] == ' '
+	&& (int)tmp.x < w->map.w && (int)tmp.y < w->map.h
 	&& tmp.x >= 0 && tmp.y >= 0
 	&& check_b(w) == 1)
 	{
@@ -73,8 +83,8 @@ void	move_right(t_wolf *w)
 	right_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + right.x;
 	tmp.y = w->player.pos.y + right.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' '
-	&& (int)tmp.x < MAP_W && (int)tmp.y < MAP_H
+	if (w->map.line[(int)tmp.x + (int)tmp.y * w->map.w] == ' '
+	&& (int)tmp.x < w->map.w && (int)tmp.y < w->map.h
 	&& tmp.x >= 0 && tmp.y >= 0
 	&& check_r(w) == 1)
 	{
@@ -96,8 +106,8 @@ void	move_left(t_wolf *w)
 	left_base.y * cos(w->player.look_column_angle);
 	tmp.x = w->player.pos.x + left.x;
 	tmp.y = w->player.pos.y + left.y;
-	if (w->map[(int)tmp.x + (int)tmp.y * MAP_W] == ' '
-	&& (int)tmp.x < MAP_W && (int)tmp.y < MAP_H
+	if (w->map.line[(int)tmp.x + (int)tmp.y * w->map.w] == ' '
+	&& (int)tmp.x < w->map.w && (int)tmp.y < w->map.h
 	&& tmp.x >= 0 && tmp.y >= 0
 	&& check_l(w) == 1)
 	{
