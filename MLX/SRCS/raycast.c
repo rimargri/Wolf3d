@@ -44,7 +44,7 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
 
 	r.distance = t;
 	r.wall_color = (t_color)wall_color(&w->tmap, len);
-	if (r.wall_color.r == 0 && r.wall_color.g == 0 && r.wall_color.b == 0)
+	if (r.wall_color.r == -1 && r.wall_color.g == -1 && r.wall_color.b == -1)
 		return ;
 	column_height = (int)(WIN_H / r.distance);
 	firstpix.x = (int){WIN_W / 2 + pix};

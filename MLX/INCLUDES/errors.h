@@ -16,7 +16,7 @@
 **		map errors
 */
 # define OK					0
-# define MAX_MAP			10000
+# define MAX_MAP			1000000
 
 # define MISSING_ARG	"wolf3d: missing argument after call\n"\
 						"usage: ./wolf3d [file]\n"

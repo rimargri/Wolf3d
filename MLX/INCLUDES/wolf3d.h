@@ -32,6 +32,17 @@
 
 # define WIN_W 1024
 # define WIN_H 512
+
+/** *********************************** **/
+/** *********************************** **/
+/**         defines for colors          **/
+/** *********************************** **/
+/** *********************************** **/
+
+# define GREEN	3
+# define BLACK	4
+# define RED	5
+# define WHITE	6
 //# define MAP_W 16
 //# define MAP_H 16
 //# define RECT_W (WIN_W / 2 / MAP_W) // ширина одного прямоугольника

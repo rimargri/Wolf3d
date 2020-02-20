@@ -115,7 +115,7 @@ t_map	validate(int ac, char **maps)
 	if ((fd = open(maps[1], O_RDONLY)) < 3)
 		wolf_error(NOT_A_FILE);
 	//считывание в буффер
-	if ((ret = read(fd, buf, MAX_MAP)) == MAX_MAP)
+	if ((ret = read(fd, buf, MAX_MAP)) >= MAX_MAP - 1)
 		wolf_error(TOO_BIG);
 	buf[ret] = '\0';
 	if (buf[ret - 1] != '\n')
@@ -133,6 +133,6 @@ t_map	validate(int ac, char **maps)
 		make_empty_map(&res);
 	if ((close(fd)))
 		wolf_error(CLOSE_FD_ERROR);
-	printf("\n%s", res.line);
+//	printf("\n%s", res.line);
 	return (res);
 }

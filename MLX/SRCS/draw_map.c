@@ -70,12 +70,22 @@ void	draw_walls(t_wolf *w, t_map *map)
 			dr.firstpix.y = j * rect_h(map->h);
 			if (map->line[i + j * map->w] == '0')
 				dr.color = (t_color){153, 113, 233};			// pirple
-			if (map->line[i + j * map->w] == '1')
+			else if (map->line[i + j * map->w] == '1')
 				dr.color = (t_color){227, 176, 229};			// pink
-			if (map->line[i + j * map->w] == '2')
+			else if (map->line[i + j * map->w] == '2')
 				dr.color = (t_color){92, 147, 255};				// blue
-			if (map->line[i + j * map->w] == '3')
+			 else if (map->line[i + j * map->w] == '3')
 				dr.color = (t_color){176, 229, 193};			// green
+			else if ((map->line[i + j * map->w]) == '4')
+				dr.color = (t_color){0, 0, 0};											// black
+			else if ((map->line[i + j * map->w]) == '5')
+				dr.color = (t_color){240 ,100, 100};									// red
+			else if ((map->line[i + j * map->w]) == '6')
+				dr.color = (t_color){240 ,240, 240};									// red
+			else if ((map->line[i + j * map->w]) == '7')
+				dr.color = (t_color){100, 150, 100};
+			else
+				dr.color = (t_color){-1, -1, -1};
 			draw_rect(dr, rect_w(map->w), rect_h(map->h), w->mlx);
 			i++;
 		}

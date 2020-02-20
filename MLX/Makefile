@@ -36,7 +36,7 @@ CFLAGS = -Wall -Wextra
 all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR):
-	mkdir $(OBJ_DIR)
+	@mkdir $(OBJ_DIR)
 
 
 $(NAME): $(RAW_OBJ_FILES)

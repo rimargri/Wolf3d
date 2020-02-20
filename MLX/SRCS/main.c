@@ -64,7 +64,6 @@ int		main(int ac, char **maps)
 	((wolf == NULL) ? (exit(98)) : 1);
 	 wolf->tmap = validate(ac, maps);
 	wolf->mlx = init_mlx();
-//	wolf->map = get_map();
 	wolf->move = init_move();
 	wolf->space_was_pressed = 0;
 	draw_background(wolf);
