@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 19:19:43 by hchau             #+#    #+#             */
-/*   Updated: 2020/02/20 14:24:25 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:28:21 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_map	validate(int ac, char **maps)
 	if ((fd = open(maps[1], O_RDONLY)) < 3)
 		wolf_error(NOT_A_FILE);
 	//считывание в буффер
-	if ((ret = read(fd, buf, MAX_MAP)) == MAX_MAP)
+	if ((ret = read(fd, buf, MAX_MAP)) >= MAX_MAP - 1)
 		wolf_error(TOO_BIG);
 	buf[ret] = '\0';
 	if (buf[ret - 1] != '\n')

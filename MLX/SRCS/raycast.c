@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 14:31:32 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:59:08 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void	find_distance(t_wolf *w, int pix)
 	t = 0.0f;
 	column_angle = w->player.look_column_angle - FOV / 2 + FOV * pix /
 														(float)(WIN_W / 2);
-	while (t < 25)
+	while (t < 100)
 	{
-//		if (len.x > w->map.w || len.y > w->map.h || len.x < 0 || len.y < 0)
-//			break ;
 		len.x = cos(column_angle) * t + w->player.pos.x; //? Logic
 		len.y = sin(column_angle) * t + w->player.pos.y;
 		if (len.x >= w->map.w || len.y > w->map.h || len.x < 0 || len.y < 0)
@@ -44,7 +42,7 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
 
 	r.distance = t;
 	r.wall_color = (t_color)wall_color(&w->map, len);
-	if (r.wall_color.r == 0 && r.wall_color.g == 0 && r.wall_color.b == 0)
+	if (r.wall_color.r == -1 && r.wall_color.g == -1 && r.wall_color.b == -1)
 		return ;
 	column_height = (int)(WIN_H / r.distance);
 	firstpix.x = (int){WIN_W / 2 + pix};

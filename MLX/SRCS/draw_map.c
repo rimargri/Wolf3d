@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 14:36:02 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:30:21 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,22 @@ void	draw_walls(t_wolf *w)
 			dr.firstpix.y = j * rect_h(w->map.h);
 			if (w->map.line[i + j * w->map.w] == '0')
 				dr.color = (t_color){153, 113, 233};			// pirple
-			if (w->map.line[i + j * w->map.w] == '1')
+			else if (w->map.line[i + j * w->map.w] == '1')
 				dr.color = (t_color){227, 176, 229};			// pink
-			if (w->map.line[i + j * w->map.w] == '2')
+			else if (w->map.line[i + j * w->map.w] == '2')
 				dr.color = (t_color){92, 147, 255};				// blue
-			if (w->map.line[i + j * w->map.w] == '3')
+			 else if (w->map.line[i + j * w->map.w] == '3')
 				dr.color = (t_color){176, 229, 193};			// green
+			else if ((w->map.line[i + j * w->map.w]) == '4')
+				dr.color = (t_color){0, 0, 0};					// black
+			else if ((w->map.line[i + j * w->map.w]) == '5')
+				dr.color = (t_color){240 ,100, 100};			// red
+			else if ((w->map.line[i + j * w->map.w]) == '6')
+				dr.color = (t_color){240 ,240, 240};			// red
+			else if ((w->map.line[i + j * w->map.w]) == '7')
+				dr.color = (t_color){100, 150, 100};
+			else
+				dr.color = (t_color){-1, -1, -1};
 			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), w->mlx);
 			i++;
 		}

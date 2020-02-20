@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 17:59:21 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 14:31:33 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 16:59:17 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_rays(t_wolf *w, int pix)
 	t = 0.0f;
 	column_angle = w->player.look_column_angle - FOV / 2 + FOV * pix /
 														(float)(WIN_W / 2);
-	while (t < 23)
+	while (t < 100)
 	{
 		len.x = cos(column_angle) * t + w->player.pos.x; //? Logic
 		len.y = sin(column_angle) * t + w->player.pos.y;
