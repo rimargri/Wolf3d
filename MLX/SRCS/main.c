@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/21 13:07:48 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 20:31:33 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		main(int ac, char **maps)
 	wolf->map = validate(ac, maps);
 	wolf->mlx = init_mlx();
 	wolf->t = init_textures();
-	// printf("main *** wolf->t = %p\n\n", wolf->t);
+	printf("main *** wolf->t = %p\n\n", wolf->t);
 	wolf->move = init_move();
 	wolf->space_was_pressed = 0;
 	draw_background(wolf);
@@ -50,7 +50,7 @@ int		main(int ac, char **maps)
 	draw_player(wolf);
 	render_rays(wolf);
 	render_walls(wolf);
-	test_text(wolf);
+	// test_text(wolf);
 	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
 	check_hooks_loops(wolf);
 	return (0);

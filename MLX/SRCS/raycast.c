@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 16:59:08 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 20:53:19 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
 	column_height = (int)(WIN_H / r.distance);
 	firstpix.x = (int){WIN_W / 2 + pix};
 	firstpix.y = (int){WIN_H / 2 - column_height / 2};
-	draw_rect((t_drawrect){firstpix, r.wall_color}, 1, column_height, w->mlx);
+	draw_rect((t_drawrect){firstpix, r.wall_color}, 1, column_height, w);
 }
 
 void	render_walls(t_wolf *w)

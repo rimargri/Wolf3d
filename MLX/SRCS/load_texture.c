@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 12:13:21 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/21 12:51:46 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 20:00:27 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		load_texture(char *filename, t_texture *t)
 
 	// printf("ya koshka\n");
 	pixmap = stbi_load(filename, &w, &h, &nchannels, 0);
-	// printf("ya koshka\n");
+	// printf("\nload_texture *** w = %d h = %d\n", w, h);
 	if (!pixmap)
 	{
 		printf("!pixmap\n");
@@ -41,7 +41,7 @@ int		load_texture(char *filename, t_texture *t)
 	t->text_size = w / t->text_cnt;
 	if (w != h * (int)t->text_cnt) // Error: the texture file must contain N square textures packed horizontally
 	{
-		printf("w != h\n");
+		printf("w != h * (int)t->text_cnt\n");
 		stbi_image_free(pixmap);
 		exit (13);
 	}

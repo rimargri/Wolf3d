@@ -6,11 +6,21 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 19:56:32 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 21:40:42 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int		rect_w(int w)
+{
+	return ((WIN_W / 2 / w));
+}
+
+int		rect_h(int h)
+{
+	return (WIN_H / h);
+}
 
 void	draw_background(t_wolf *w)
 {
@@ -37,16 +47,6 @@ void	draw_background(t_wolf *w)
 	}
 }
 
-int		rect_w(int w)
-{
-	return ((WIN_W / 2 / w));
-}
-
-int		rect_h(int h)
-{
-	return (WIN_H / h);
-}
-
 void	draw_walls(t_wolf *w)
 {
 	int			i;
@@ -68,13 +68,13 @@ void	draw_walls(t_wolf *w)
 			dr.firstpix.x = i * rect_w(w->map.w);				// перевод координат в масштаб окна из масштаба карты
 			dr.firstpix.y = j * rect_h(w->map.h);
 			if (w->map.line[i + j * w->map.w] == '0')
-				dr.color = (t_color){153, 113, 233};			// pirple
+				dr.color = (t_color){153, 113, 233};			// purple == Ayanami Pey
 			else if (w->map.line[i + j * w->map.w] == '1')
-				dr.color = (t_color){227, 176, 229};			// pink
+				dr.color = (t_color){227, 176, 229};			// pink == Sad Shinji
 			else if (w->map.line[i + j * w->map.w] == '2')
-				dr.color = (t_color){92, 147, 255};				// blue
+				dr.color = (t_color){92, 147, 255};				// blue == Misato Katsuragi
 			 else if (w->map.line[i + j * w->map.w] == '3')
-				dr.color = (t_color){176, 229, 193};			// green
+				dr.color = (t_color){176, 229, 193};			// green == Mexa
 			else if ((w->map.line[i + j * w->map.w]) == '4')
 				dr.color = (t_color){0, 0, 0};					// black
 			else if ((w->map.line[i + j * w->map.w]) == '5')
@@ -85,7 +85,7 @@ void	draw_walls(t_wolf *w)
 				dr.color = (t_color){100, 150, 100};
 			else
 				dr.color = (t_color){-1, -1, -1};
-			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), w->mlx);
+			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), w);
 			i++;
 		}
 		j++;
