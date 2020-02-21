@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 21:44:32 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 13:13:20 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int					rect_h(int h);
 /** *********************************** **/
 /** *********************************** **/
 
-void				texture_main(t_wolf *w);
+t_texture			**init_textures(void);
 void 				render_texture(t_wolf *wolf, t_texture *t, t_ivec2 offset);
-
+int					load_texture(char *filename, t_texture *t);
+void				test_text(t_wolf *w);
 #endif

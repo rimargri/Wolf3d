@@ -6,17 +6,18 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 21:39:52 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:41:44 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h> //!--------------------------------------------------------
 #ifndef WOLF_3D
 # define WOLF_3D
+#include "../MinilibX/mlx.h"
 #include "prototypes.h"
 #include "structs.h"
 #include "errors.h"
-#include <mlx.h>
+// #include <mlx.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -41,6 +42,7 @@
 # define WIN_H 512
 # define FOV M_PI / 3.0
 # define FALSE -1
+# define TEXTURE_MAX 10
 
 /** *********************************** **/
 /** *********************************** **/

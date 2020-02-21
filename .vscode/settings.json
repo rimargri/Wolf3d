@@ -13,6 +13,7 @@
 		"ios": "c",
 		"errors.h": "c",
 		"stb_image.h": "c",
-		"math.h": "c"
+		"math.h": "c",
+		"__string": "c"
 	}
 }

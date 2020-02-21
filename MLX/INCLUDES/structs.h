@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/20 21:39:27 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:48:18 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ typedef struct		s_mlx
 	int				*img;
 }					t_mlx;
 
-typedef struct		s_image
-{
-	void			*iptr;
-	int				*img;
-}					t_image;
+// typedef struct		s_image
+// {
+// 	void			*iptr;
+// 	int				*img;
+// }					t_image;
 
 typedef struct		s_wolf
 {
@@ -109,6 +109,7 @@ typedef struct		s_wolf
 	t_player		player;
 	t_map			map;
 	t_direction		move;
+	t_texture		**t;
 	int				space_was_pressed;
 }					t_wolf;
 

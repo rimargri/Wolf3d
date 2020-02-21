@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/20 19:56:50 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/21 12:44:58 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,14 @@ INCL_DIR = ./INCLUDES
 
 C_FILES = main.c key_press.c draw_rect.c draw_map.c color.c raycast.c \
 				render_rays.c player.c player_move.c check_player_move.c \
-				validate.c mlx_data.c textures.c
+				validate.c mlx_data.c textures.c load_texture.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
 RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 
-MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -L ./MinilibX -lm -lmlx -framework OpenGL -framework AppKit
+# MLX_FLAGS += ./MinilibX -lmlx
 
 CFLAGS = -Wall -Wextra
 # CFLAGS += -Werror
@@ -38,8 +39,8 @@ all: $(OBJ_DIR) $(NAME)
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
-
 $(NAME): $(RAW_OBJ_FILES)
+	make -C ./MinilibX
 	@gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
 	@echo "\033[38;2;200;150;200m(*≧ω≦*) \033[38;2;200;200;250m \
 	Mama, ya peresobralsya \033[38;2;200;150;200m (*≧ω≦*)  \033[0m"
@@ -47,13 +48,15 @@ $(NAME): $(RAW_OBJ_FILES)
 #### К о м п и л я ц и я ####
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@gcc $(CFLAGS) -I $(INCL_DIR) -c $< -o $@
+	@gcc $(CFLAGS) -I $(INCL_DIR) -I ./MinilibX -c $< -o $@
 
 clean:
 	@rm -rf $(RAW_OBJ_FILES)
+	@rm -rf ./libmlx/*.o
 
 fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
+	@rm -rf ./MinilibX/libmlx.a
 
 re: fclean all
