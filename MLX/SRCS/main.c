@@ -6,35 +6,11 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 22:57:03 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 13:07:48 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-char	*get_map(void)
-{
-	char *map;
-    
-	map = (char*)malloc(sizeof(char) * 258);
-	map   = "00    2222220000"\
-			"                "\
-			"       11111   0"\
-			"1     0        0"\
-			"0     0  1110000"\
-			"0     3        0"\
-			"0   10000      0"\
-			"0   0   11100  0"\
-			"0   0   0      0"\
-			"0   0   1  00000"\
-			"0       1      0"\
-			"2       1      0"\
-			"0       0      0"\
-			"2 3000000      0"\
-			"0              0"\
-			"2  22222222 0000";
-	return (map);
-}
 
 /*
 **		bp			: the number of bits per pixels.
@@ -43,17 +19,10 @@ char	*get_map(void)
 **					binary representation of a number.
 */
 
-t_direction	init_move(void)
-{
-	t_direction move;
-
-	move.forward = FAULSE;
-	move.back = FAULSE;
-	move.right = FAULSE;
-	move.left = FAULSE;
-	move.camera = 0;
-	return (move);
-}
+//void	put_layers(t_layer *layer)
+//{
+//	wolf_error("Priv!");
+//}
 
 int		main(int ac, char **maps)
 {
@@ -61,20 +30,22 @@ int		main(int ac, char **maps)
 	t_wolf *wolf;
 
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
-	((wolf == NULL) ? (exit(98)) : 1);
-	 wolf->tmap = validate(ac, maps);
+	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
+	wolf->map = validate(ac, maps);
 	wolf->mlx = init_mlx();
-	wolf->move = init_move();
+	wolf->layers = init_all_img(wolf->mlx.mptr);
+	wolf->t = init_textures();
+	// printf("main *** wolf->t = %p\n\n", wolf->t);
+//	wolf->move = init_move();
 	wolf->space_was_pressed = 0;
-	draw_background(wolf);
-	draw_walls(wolf, &wolf->tmap);
 	init_player(wolf);
-	draw_player(wolf);
-	render_rays(wolf);
-	render_walls(wolf);
-	// texture_main();
-	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
-	hooks_loops_mlx(wolf);
+	prepare_static_layers(wolf);
+//	draw_walls(wolf);
+
+//	test_text(wolf);
+//	put_layers(&wolf->layers);
+//	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
+	check_hooks_loops(wolf);
 	return (0);
 }
 

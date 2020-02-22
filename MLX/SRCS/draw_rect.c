@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 19:06:18 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/21 13:14:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 ** до правого пикселя в нижнем правом - весь rectcolumn_angle отрисован
 */
 
-void    draw_rect(t_drawrect dr, int w, int h, t_mlx mlx)
+//_FIXX_IF_YOU_WANNA это переделать на d_labyrinth
+
+void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
 {
 	int i;
 	int j;
@@ -38,7 +40,7 @@ void    draw_rect(t_drawrect dr, int w, int h, t_mlx mlx)
 			offset.x = dr.firstpix.x + i;
 			offset.y = dr.firstpix.y + j;
 			if ((offset.x + offset.y * WIN_W) <= (WIN_H * WIN_W) && (offset.x + offset.y * WIN_W) >= 0)
-				mlx.img[offset.x + offset.y * WIN_W] = color;
+				d_labyrinth->img[offset.x + offset.y * WIN_W] = color;
 			j++;
 		}
 		i++;

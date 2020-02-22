@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 22:36:19 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:57:12 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,18 @@
 ** key_d		-		move right
 */
 
-void	player_move(t_wolf *w, t_direction *move)
-{
-	if (move->forward != FAULSE)
-		move_forward(w);
-	if (move->back != FAULSE)
-		move_back(w);
-	if (move->right != FAULSE)
-		move_right(w);
-	if (move->left != FAULSE)
-		move_left(w);
-}
-
 int		key_unpress(int k, t_wolf *w)
 {
 	if (k == KEY_ARROW_RIGHT)
-		w->move.camera = 0;
+		w->player.move.camera = 0;
 	else if (k == KEY_ARROW_LEFT)
-		w->move.camera = 0;
+		w->player.move.camera = 0;
 	else
 	{
-		w->move.left = k == KEY_A ? FAULSE : w->move.left;
-		w->move.right = k == KEY_D ? FAULSE : w->move.right;
-		w->move.forward = k == KEY_W ? FAULSE : w->move.forward;
-		w->move.back = k == KEY_S ? FAULSE : w->move.back;
+		w->player.move.left = k == KEY_A ? FALSE : w->player.move.left;
+		w->player.move.right = k == KEY_D ? FALSE : w->player.move.right;
+		w->player.move.forward = k == KEY_W ? FALSE : w->player.move.forward;
+		w->player.move.back = k == KEY_S ? FALSE : w->player.move.back;
 	}
 	return (0);
 }
@@ -59,17 +47,17 @@ int		key_press(int k, t_wolf *w)
 	(k == KEY_ESC ? exit(0) : 1);
 
 	if (k == KEY_W)
-		w->move.forward = KEY_W;
+		w->player.move.forward = KEY_W;
 	else if (k == KEY_S)
-		w->move.back = KEY_S;
+		w->player.move.back = KEY_S;
 	else if (k == KEY_D)
-		w->move.right = KEY_D;
+		w->player.move.right = KEY_D;
 	else if (k == KEY_A)
-		w->move.left = KEY_A;
+		w->player.move.left = KEY_A;
 	else if  (k == KEY_ARROW_RIGHT)
-		w->move.camera = KEY_ARROW_RIGHT;
+		w->player.move.camera = KEY_ARROW_RIGHT;
 	else if (k == KEY_ARROW_LEFT)
-		w->move.camera = KEY_ARROW_LEFT;
+		w->player.move.camera = KEY_ARROW_LEFT;
 	else if (k == KEY_SPACE)
 			w->space_was_pressed = !(w->space_was_pressed);
 	return (0);

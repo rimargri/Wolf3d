@@ -6,12 +6,13 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 19:06:02 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:56:32 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
+//_FIXX_IF_YOU_WANNA это переделать на background
 void	draw_background(t_wolf *w)
 {
 	int i;
@@ -29,15 +30,14 @@ void	draw_background(t_wolf *w)
 			col.g = (255 * i / WIN_W);
 			col.b = 193;
 			color = get_color(col);
-			if ((i + j * WIN_W) <= (WIN_H * WIN_W) && (i + j * WIN_W) >= 0) 
-				w->mlx.img[i + j * WIN_W] = color;
+			if ((i + j * WIN_W) <= (WIN_H * WIN_W) && (i + j * WIN_W) >= 0)
+				w->layers->background.img[i + j * WIN_W] = color;
 			i++;
 		}
 		j++;
 	}
 }
 
-//сорри, лень что-то придумывать
 int		rect_w(int w)
 {
 	return ((WIN_W / 2 / w));
@@ -48,7 +48,7 @@ int		rect_h(int h)
 	return (WIN_H / h);
 }
 
-void	draw_walls(t_wolf *w, t_map *map)
+void	draw_walls(t_wolf *w)
 {
 	int			i;
 	int			j;
@@ -56,37 +56,37 @@ void	draw_walls(t_wolf *w, t_map *map)
 
 	j = 0;
 	dr = (t_drawrect){(t_ivec2){0, 0}, (t_color){0, 0, 0}};
-	while (j < map->h)
+	while (j < w->map.h)
 	{
 		i = 0;
-		while (i < map->w)
+		while (i < w->map.w)
 		{
-			if (map->line[i + j * map->w] == ' ')
+			if (w->map.line[i + j * w->map.w] == ' ')
 			{
 				i++;
 				continue;
 			}
-			dr.firstpix.x = i * rect_w(map->w); // перевод координат в масштаб окна из масштаба карты
-			dr.firstpix.y = j * rect_h(map->h);
-			if (map->line[i + j * map->w] == '0')
+			dr.firstpix.x = i * rect_w(w->map.w);				// перевод координат в масштаб окна из масштаба карты
+			dr.firstpix.y = j * rect_h(w->map.h);
+			if (w->map.line[i + j * w->map.w] == '0')
 				dr.color = (t_color){153, 113, 233};			// pirple
-			else if (map->line[i + j * map->w] == '1')
+			else if (w->map.line[i + j * w->map.w] == '1')
 				dr.color = (t_color){227, 176, 229};			// pink
-			else if (map->line[i + j * map->w] == '2')
+			else if (w->map.line[i + j * w->map.w] == '2')
 				dr.color = (t_color){92, 147, 255};				// blue
-			 else if (map->line[i + j * map->w] == '3')
+			 else if (w->map.line[i + j * w->map.w] == '3')
 				dr.color = (t_color){176, 229, 193};			// green
-			else if ((map->line[i + j * map->w]) == '4')
-				dr.color = (t_color){0, 0, 0};											// black
-			else if ((map->line[i + j * map->w]) == '5')
-				dr.color = (t_color){240 ,100, 100};									// red
-			else if ((map->line[i + j * map->w]) == '6')
-				dr.color = (t_color){240 ,240, 240};									// red
-			else if ((map->line[i + j * map->w]) == '7')
+			else if ((w->map.line[i + j * w->map.w]) == '4')
+				dr.color = (t_color){0, 0, 0};					// black
+			else if ((w->map.line[i + j * w->map.w]) == '5')
+				dr.color = (t_color){240 ,100, 100};			// red
+			else if ((w->map.line[i + j * w->map.w]) == '6')
+				dr.color = (t_color){240 ,240, 240};			// red
+			else if ((w->map.line[i + j * w->map.w]) == '7')
 				dr.color = (t_color){100, 150, 100};
 			else
 				dr.color = (t_color){-1, -1, -1};
-			draw_rect(dr, rect_w(map->w), rect_h(map->h), w->mlx);
+			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), &w->layers->map_view);
 			i++;
 		}
 		j++;
