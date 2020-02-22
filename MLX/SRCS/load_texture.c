@@ -45,7 +45,7 @@ int		load_texture(char *filename, t_texture *t)
 		stbi_image_free(pixmap);
 		exit (13);
 	}
-	t->texture = (int*)malloc(sizeof(int) * w * h);
+	t->texture = (int*)malloc(sizeof(int) * w * h);//ЗДЕСЬ_MALLOC
 	// printf("cringe\n");
 	while (j < h)
 	{

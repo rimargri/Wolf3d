@@ -33,18 +33,10 @@ int		main(int ac, char **maps)
 	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
 	wolf->map = validate(ac, maps);
 	wolf->mlx = init_mlx();
-	wolf->layers = init_all_img(wolf->mlx.mptr);
-	wolf->t = init_textures();
-	// printf("main *** wolf->t = %p\n\n", wolf->t);
-//	wolf->move = init_move();
+	init_all_img(wolf);
+//	wolf->t = init_textures();
 	wolf->space_was_pressed = 0;
 	init_player(wolf);
-	prepare_static_layers(wolf);
-//	draw_walls(wolf);
-
-//	test_text(wolf);
-//	put_layers(&wolf->layers);
-//	mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
 	check_hooks_loops(wolf);
 	return (0);
 }

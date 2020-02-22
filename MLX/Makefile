@@ -27,7 +27,8 @@ INCL_DIR = ./INCLUDES
 
 C_FILES = main.c key_press.c draw_rect.c draw_map.c color.c raycast.c \
 				render_rays.c player.c player_move.c check_player_move.c \
-				validate.c mlx_data.c textures.c load_texture.c layers.c
+				validate.c mlx_data.c textures.c load_texture.c layers.c \
+				clear_wolf.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -51,7 +52,7 @@ $(NAME): $(RAW_OBJ_FILES)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)"
 ###### ищем дефайны на задачи первой значимости ######
 	@echo "$(RED)RED ALERT:"
-	@grep '_FIXX_IMMIDIATLEY' ./**/* | sed '/./=' | sed '/./N; s/\n/ /'
+	@grep '//ЗДЕСЬ_MALLOC' ./**/* | sed '/./=' | sed '/./N; s/\n/ /'
 ###### ищем дефайны на задачи средней значимости ######
 	@echo "$(YELLOW)LATER:"
 	@grep '_FIXX_LATER' ./**/* | sed '/./=' | sed '/./N; s/\n/ /'

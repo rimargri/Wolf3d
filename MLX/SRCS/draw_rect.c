@@ -20,8 +20,6 @@
 ** до правого пикселя в нижнем правом - весь rectcolumn_angle отрисован
 */
 
-//_FIXX_IF_YOU_WANNA это переделать на d_labyrinth
-
 void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
 {
 	int i;

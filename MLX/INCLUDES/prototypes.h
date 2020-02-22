@@ -82,6 +82,7 @@ int					get_color(t_color color);
 /** *********************************** **/
 
 void    			draw_rect(t_drawrect v, int w, int h, t_img *labyrinth);
+void				clear_wolf(t_wolf **w);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -109,9 +110,11 @@ void				test_text(t_wolf *w);
 /**              images                 **/
 /** *********************************** **/
 /** *********************************** **/
-t_layer				*init_all_img(void *mlx_ptr);
+void				init_all_img(t_wolf *w);
 void				clear_layer(t_img *image);
 void				clear_dinamic_img(t_layer *layer);
 void				prepare_static_layers(t_wolf *w);
+void				put_layer_mask(t_img *image, t_img *mask);
+void				put_color_mask(t_img *image, int mask, int x, int y);
 
 #endif

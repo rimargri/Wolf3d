@@ -93,32 +93,31 @@ typedef struct		s_texture
 typedef struct		s_img
 {
 	int				on;
-	size_t			size;
+	size_t			pixels;
 	void			*mptr;
 	void			*iptr;
 	int				*img;
-	t_ivec2			begin;
+	t_ivec2			*begin;
+	t_ivec2			*size;
 }					t_img;
 
-//_FIXX_IMMIDIATLEY: переписать под 2 имаджа - карту и экран
 typedef struct		s_mlx
 {
 	void			*mptr;
 	void			*wptr;
-//	void			*iptr;
-//	int				*img;
 }					t_mlx;
 
 //все динамичные изображения я отмечаю как d_, это значит, что их
 //необходимо обнулять и переписывать каждый раз после ивентов
 typedef struct		s_layer
 {
-	int				count_layers;	//в wolf.h есть дефайн, здесь просто для наглядности
+	int				count_layers;//в wolf.h есть дефайн, здесь просто для наглядности,
+	//+, возможно, я буду пытаться кастом выделять память в цикле, хз
 	t_img			d_labyrinth;
 	t_img			d_player;//чтобы не перерисовывать мапу каждый раз
 	t_img			map_view;
-	t_img			background;
-
+	t_img			background;//чтобы не перерисовывать бэкграунд каждый раз
+	//либо чтобы пробовать разные бэкграунды, просто подставляя их
 	t_img			mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ
 //будем расширять здесь до бесконечности - на сколько креатива хватит
 }					t_layer;

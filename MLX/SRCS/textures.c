@@ -19,11 +19,11 @@ t_texture	**init_textures(void)
 	int			count_text;
 
 	count_text = 1;
-	t = (t_texture**)malloc(sizeof(t_texture*) * count_text);
+	t = (t_texture**)malloc(sizeof(t_texture*) * count_text);//ЗДЕСЬ_MALLOC
 	((t == NULL) ? exit(13) : 1);
 	while (i < count_text)
 	{
-		t[i] = (t_texture*)malloc(sizeof(t_texture));
+		t[i] = (t_texture*)malloc(sizeof(t_texture));//ЗДЕСЬ_MALLOC
 		((t[i] == NULL) ? exit(13) : 1);
 		i++;
 	}

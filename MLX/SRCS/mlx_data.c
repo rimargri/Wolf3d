@@ -23,12 +23,20 @@ t_mlx	init_mlx(void)
 	return (mlx);
 }
 
+void	should_we_draw_it(t_img *image, void *wptr)
+{
+	if (image->on == TRUE)
+		mlx_put_image_to_window(image->mptr, wptr, image->iptr,
+				image->begin->x, image->begin->y);
+}
+
 void	draw_layers(t_wolf *w)
 {
-	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->layers->background.iptr, 0, 0);
-	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->layers->d_labyrinth.iptr, 0, 0);
-	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->layers->d_player.iptr, 0, 0);
-	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->layers->map_view.iptr, 0, 0);
+	should_we_draw_it(&w->layers->background, w->mlx.wptr);
+	should_we_draw_it(&w->layers->d_labyrinth, w->mlx.wptr);
+	should_we_draw_it(&w->layers->d_player, w->mlx.wptr);
+	should_we_draw_it(&w->layers->map_view, w->mlx.wptr);
+	should_we_draw_it(&w->layers->mask, w->mlx.wptr);
 }
 
 int		draw_all_hook(t_wolf *w)
@@ -42,7 +50,7 @@ int		draw_all_hook(t_wolf *w)
 	draw_player(w);
 	render_rays(w);
 	render_walls(w);
-	test_text(w);
+//	test_text(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
 	return (0);

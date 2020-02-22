@@ -22,7 +22,7 @@ t_texture	*init_textures(void)
 	int			count_text;
 
 	count_text = 1;
-	t = (t_texture*)malloc(sizeof(t_texture) * count_text);
+	t = (t_texture*)malloc(sizeof(t_texture) * count_text);//ЗДЕСЬ_MALLOC
 	((t == NULL) ? exit(13) : 1);
 	if (!(load_texture("./textures/rei_ayanami.png", t[0])))
 		wolf_error(TEXTURE_LOAD);

@@ -44,7 +44,7 @@ int		key_unpress(int k, t_wolf *w)
 
 int		key_press(int k, t_wolf *w)
 {
-	(k == KEY_ESC ? exit(0) : 1);
+	(k == KEY_ESC ? clear_wolf(&(w)) : 1);
 
 	if (k == KEY_W)
 		w->player.move.forward = KEY_W;

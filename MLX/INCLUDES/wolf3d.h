@@ -42,6 +42,7 @@
 # define WIN_H 512
 # define FOV M_PI / 3.0
 # define FALSE -1
+# define TRUE 0
 # define TEXTURE_MAX 10
 
 /** *********************************** **/

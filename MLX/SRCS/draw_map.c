@@ -12,7 +12,6 @@
 
 #include "wolf3d.h"
 
-//_FIXX_IF_YOU_WANNA это переделать на background
 void	draw_background(t_wolf *w)
 {
 	int i;

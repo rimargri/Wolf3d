@@ -4,6 +4,4 @@
 
 Here are your tasks:
 
-1 ./INCLUDES/structs.h://_FIXX_IMMIDIATLEY: переписать под 2 имаджа - карту и экран
-2 ./SRCS/draw_map.c://_FIXX_IF_YOU_WANNA это переделать на background
-3 ./SRCS/draw_rect.c://_FIXX_IF_YOU_WANNA это переделать на d_labyrinth
+1 ./SRCS/layers.c:	//_FIXX_IMMIDIATLEY в функции 5 аргументов

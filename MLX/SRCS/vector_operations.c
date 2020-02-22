@@ -25,7 +25,7 @@ t_vector3d *vec_diff(t_vector3d *v1, t_vector3d *v2)
 {
 	t_vector3d *diff;
 	
-	diff = malloc(sizeof(t_vector3d*));
+	diff = malloc(sizeof(t_vector3d*));//ЗДЕСЬ_MALLOC
 	diff->x = v2->x - v1->x;
 	diff->y = v2->y - v1->y;
 	diff->z = v2->z - v1->z;
