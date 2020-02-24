@@ -36,6 +36,7 @@ int		key_unpress(int k, t_wolf *w)
 		w->player.move.camera = 0;
 	else if (k == KEY_ARROW_DOWN)
 		w->player.move.camera = 0;
+
 	else
 	{
 		w->player.move.left = k == KEY_A ? FALSE : w->player.move.left;
@@ -67,7 +68,7 @@ int		key_press(int k, t_wolf *w)
 	else if (k == KEY_ARROW_DOWN)
 		w->player.move.camera = KEY_ARROW_DOWN;
 	else if (k == KEY_SPACE)
-			w->space_was_pressed = !(w->space_was_pressed);
+		w->space_was_pressed = !(w->space_was_pressed);
 	else if (k == EARTHQUAKE_DEM)
 		w->dem->quake->on = w->dem->quake->on == TRUE ? FALSE : TRUE;
 	else if (k == WAVES_DEM)
@@ -76,6 +77,9 @@ int		key_press(int k, t_wolf *w)
 		w->dem->mirr->on = w->dem->mirr->on == TRUE ? FALSE : TRUE;
 	else if (k == NORM_DEM)
 		w->dem->norm->on = w->dem->norm->on == TRUE ? FALSE : TRUE;
+	else if (k == FRACTAL_DEM)
+		w->dem->fract->on = w->dem->fract->on == TRUE ? FALSE : TRUE;
+//	printf("%d", k);
 	return (0);
 	//__FIXX_IMMIDEATLEY Норма!
 //__FIXX_IMMIDEATLEY Работа модов вместе - сделать перекрывание

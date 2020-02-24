@@ -85,11 +85,14 @@
 # define NORM_DEM			18
 # define WAVES_DEM			19
 # define EARTHQUAKE_DEM		20
+# define FRACTAL_DEM		23
 //
 # define MIRROR_DEM			21
-# define FISHEYE_DEM		23
+//# define FISHEYE_DEM		23
 //# define GREEN_THEME		23
 # define SCROLL_UP			5
 # define SCROLL_DOWN		4
+# define IN					1
+# define OUT				-1
 
 #endif

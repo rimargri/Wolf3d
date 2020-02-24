@@ -37,6 +37,7 @@ void	draw_layers(t_wolf *w)
 	should_we_draw_it(&w->layers->d_player, w->mlx.wptr);
 	should_we_draw_it(&w->layers->map_view, w->mlx.wptr);
 	should_we_draw_it(&w->layers->mask, w->mlx.wptr);
+	should_we_draw_it(&w->layers->d_fractol_draw, w->mlx.wptr);
 }
 
 void	set_modes_false(t_dem *d)
@@ -50,6 +51,8 @@ void	set_modes_false(t_dem *d)
 	d->fisheye->intence = 0;
 	d->mirr->on = FALSE;
 	d->mirr->intence = 0;
+	d->fract->on = FALSE;
+	d->fract->intence = 0;
 }
 
 int		draw_all_hook(t_wolf *w)
@@ -69,6 +72,24 @@ int		draw_all_hook(t_wolf *w)
 	{
 		w->player.look_column_angle.y = 0.03;
 		w->dem->wave->intence =  w->dem->mirr->intence * 4;
+	}
+	w->layers->d_fractol_draw.on = w->dem->fract->on == FALSE ? FALSE : TRUE;
+	if (w->dem->fract->on != FALSE)
+	{
+		if (w->dem->fract->intence % 5 == 0)
+		{
+			w->layers->d_fractol->count.k.x += 0.01 * w->layers->d_fractol->is_mooving;
+			w->layers->d_fractol->count.k.y += 0.01 * w->layers->d_fractol->is_mooving;
+			draw_fractal(&w->layers->d_fractol, &w->layers->d_fractol_draw);
+		}
+		if (w->dem->fract->intence > 100)
+			w->layers->d_fractol->is_mooving = OUT;
+		if (w->dem->fract->intence < -50)
+		{
+			w->layers->d_fractol->is_mooving = IN;
+			w->layers->d_fractol->count.k.y += 0.03;
+		}
+		w->dem->fract->intence += w->layers->d_fractol->is_mooving;
 	}
 	clear_dinamic_img(w->layers);
 	player_move(w);

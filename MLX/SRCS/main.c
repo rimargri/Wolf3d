@@ -44,8 +44,9 @@ t_dem	*init_dem(void)
 	res->fisheye = new_mode();
 	res->mirr = new_mode();
 	res->norm = new_mode();
+	res->fract = new_mode();
 	res->norm->on = TRUE;
-	res->mirr->intence = 5;
+	res->mirr->intence = 6;
 	return (res);
 }
 
@@ -62,8 +63,9 @@ int		main(int ac, char **maps)
 	init_all_img(wolf);
 	wolf->dem = init_dem();
 	wolf->space_was_pressed = 0;
-
 	init_player(wolf);
+
+
 //	printf("\n%f\n", FOV);
 	check_hooks_loops(wolf);
 	return (0);

@@ -127,13 +127,15 @@ typedef struct		s_dem
 	t_mode			*fisheye;
 	t_mode			*mirr;
 	t_mode			*norm;
+	t_mode			*fract;
 }					t_dem;
 
 
 
 
 //для фрактала!!!!!!!!!!!!!!!!!!!!
-
+# include <pthread.h>
+# define THREADS		10
 typedef struct		s_complex
 {
 	long double		x;
@@ -150,7 +152,6 @@ typedef struct		s_fractal
 
 typedef struct		s_draw_fractal
 {
-	int				on;
 	int				start_line;
 	int				finish_line;
 	int				is_mooving;
@@ -165,8 +166,8 @@ typedef struct		s_draw_fractal
 typedef struct		s_layer
 {
 	int					count_layers;
-//	t_draw_fractal		*fractol;//фрактал
-//	t_img				d_fractol;
+	t_draw_fractal		*d_fractol;//фрактал
+	t_img				d_fractol_draw;
 	t_img				d_labyrinth;
 	t_img				d_player;
 	t_img				map_view;
