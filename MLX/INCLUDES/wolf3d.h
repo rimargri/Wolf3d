@@ -82,11 +82,14 @@
 /** *********************************** **/
 
 //исключают друг друга
-# define WAVES_DEM			18
-# define EARTHQUAKE_DEM		19
+# define NORM_DEM			18
+# define WAVES_DEM			19
+# define EARTHQUAKE_DEM		20
 //
-# define MIRROR_DEM			20
-//# define FISHEYE_DEM		21
+# define MIRROR_DEM			21
+# define FISHEYE_DEM		23
 //# define GREEN_THEME		23
+# define SCROLL_UP			5
+# define SCROLL_DOWN		4
 
 #endif

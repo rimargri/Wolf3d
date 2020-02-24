@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
+#define PUT_SECOND 10
 void	find_distance(t_wolf *w, int pix)
 {
 	float	t;
@@ -24,48 +24,24 @@ void	find_distance(t_wolf *w, int pix)
 	column_angle.x = w->player.look_column_angle.x - FOV / 2 + FOV * pix /
 														(float)(WIN_W / 2);
 	column_angle.y = w->player.look_column_angle.y;
-//	y_offset = w->player.look_column_angle.y * 50;
-//	if (column_angle.y < 0.0)
-//		column_angle.y *= -1;
-//	if (column_angle.y < 0.1)
-//		column_angle.y = 0.1;
 	while (t < 100)
 	{
-		//это вращение по y
-		//x
 		z = t;
-		len.x = /*   x //t// * cos(y-угол) + z (1) * sin(y-угол) */ cos(column_angle.x) * z + w->player.pos.x; //? Logic
+		len.x = cos(column_angle.x) * z + w->player.pos.x;
 		//z
-		len.y = /*   x //t// * sin(y-угол) + z * cos(у-угол) */ sin(column_angle.x) * z + w->player.pos.y;
-
-//		printf("z1  = %f, z2 = %f\n", (len.x - t * cos(column_angle.x)) / sin(column_angle.x),
-//			   	   	   	   	   	   	   (len.y + t * sin(column_angle.x)) / cos(column_angle.x));
-//		len.x = cos(column_angle.x) * t + w->player.pos.x; //? Logic
-//		len.y = len.y * (-1) * sin(column_angle.y) + w->player.pos.y;
-//		len.x = len.x * (-1) * sin(column_angle.y) + w->player.pos.y;
-
-//		//вращение по x
+		len.y = sin(column_angle.x) * z + w->player.pos.y;
 		if (len.x >= w->map.w || len.y > w->map.h || len.x < 0 || len.y < 0)
 			break ;
 		if (w->map.line[(int)len.x + (int)len.y * w->map.w] != ' ')
 				break;
 		t += 0.01;
 	}
-	z = z * cos(column_angle.y) * 20 - len.y * sin(column_angle.y) * 20;
-	y_offset = z * sin(column_angle.y) + len.x * cos(column_angle.y) * 20;
-//	if (column_angle.y > 6.28319 || column_angle.y * -1 < -6.28319)
-//	{
-//		z =  z * sin(column_angle.y) + z * cos(6.28317) * 20 - len.y * sin(6.28317) * 20;
-//		y_offset += len.x * cos(6.28317) * 20;
-//	}
-//	t += column_angle.y;
-//	printf("z1  = %f, z2 = %f\n", (len.x - t * cos(column_angle.x)) / sin(column_angle.x),
-//		   (len.y + t * sin(column_angle.x)) / cos(column_angle.x));
-//	y_offset = len.y * sin(column_angle.x) + len.y * cos(column_angle.y);
-//	if (column_angle.y < 0.005)
-//		raycast(w, t, len, pix, (int)(0));
-//	else
-	raycast(w, t, len, pix, (int)(y_offset));
+	z = z * cos(column_angle.y) * (w->dem->wave->intence) - len.y * sin(column_angle.y) * (w->dem->wave->intence);
+	y_offset = z * sin(column_angle.y) + len.x * cos(column_angle.y);
+	if (w->dem->norm->on == FALSE)
+		raycast(w, t, len, pix, (int)(y_offset) + (w->player.move.camera_up * 300));
+	if (w->dem->norm->on != FALSE || w->dem->mirr->on != FALSE)
+		raycast(w, t, len, pix, (w->player.move.camera_up * 300));
 }
 
 void	raycast(t_wolf *w, float t, t_vec2 len, int pix, int y_offset)
@@ -86,7 +62,7 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix, int y_offset)
 
 void	render_walls(t_wolf *w)
 {
-	int current_pix;
+	int current_pix;//__FIXX_IMMIDEATLEY чтобы вместиться в норму, можно сделать t_ivec2
 
 	current_pix = 0;
 	while (current_pix < WIN_W / 2)

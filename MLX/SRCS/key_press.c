@@ -68,8 +68,21 @@ int		key_press(int k, t_wolf *w)
 		w->player.move.camera = KEY_ARROW_DOWN;
 	else if (k == KEY_SPACE)
 			w->space_was_pressed = !(w->space_was_pressed);
+	else if (k == EARTHQUAKE_DEM)
+		w->dem->quake->on = w->dem->quake->on == TRUE ? FALSE : TRUE;
+	else if (k == WAVES_DEM)
+		w->dem->wave->on = w->dem->wave->on ==  TRUE ? FALSE : TRUE;
+	else if (k == MIRROR_DEM)
+		w->dem->mirr->on = w->dem->mirr->on == TRUE ? FALSE : TRUE;
+	else if (k == NORM_DEM)
+		w->dem->norm->on = w->dem->norm->on == TRUE ? FALSE : TRUE;
 	return (0);
 }
+
+//# define WAVES_DEM			18
+//# define EARTHQUAKE_DEM		19
+//
+//# define MIRROR_DEM			20
 
 int		close_hook(void *param)
 {

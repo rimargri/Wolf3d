@@ -58,6 +58,7 @@ typedef struct		s_direction
 	int				back;
 	int				right;
 	int				left;
+	float			camera_up;
 	int				camera;
 }					t_direction;
 
@@ -113,11 +114,19 @@ typedef struct		s_mlx
 	void			*wptr;
 }					t_mlx;
 
+typedef struct		s_mode
+{
+	int				on;
+	int				intence;
+}					t_mode;
+
 typedef struct		s_dem
 {
-	int				wave;
-	int				earthquake;
-	int				fisheye;
+	t_mode			*wave;
+	t_mode			*quake;
+	t_mode			*fisheye;
+	t_mode			*mirr;
+	t_mode			*norm;
 }					t_dem;
 
 //все динамичные изображения я отмечаю как d_, это значит, что их
@@ -127,7 +136,7 @@ typedef struct		s_layer
 	int				count_layers;
 	t_img			d_labyrinth;
 	t_img			d_player;
-	t_img			d_fractol;
+	t_img			d_fractol;//фрактал
 	t_img			map_view;
 	t_img			background;
 	t_img			mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ

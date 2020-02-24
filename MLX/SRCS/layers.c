@@ -27,8 +27,10 @@ void		put_color_mask(t_img *image, int mask, int x, int y)
 	{
 		while (j < y)
 		{
-			*(int *)(image->img +
-					 ((i * 4 + j * image->size->y))) += mask;
+//			*(int *)(image->img +
+//					 ((i + j * image->size->y))) += mask;
+			image->img[i + j * image->size->y] += mask << 20;
+//					 		((i + j * image->size->y))) += mask;
 			j++;
 		}
 		j = 0;

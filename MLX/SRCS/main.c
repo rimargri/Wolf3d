@@ -24,6 +24,30 @@
 //	wolf_error("Priv!");
 //}
 
+t_mode	*new_mode(void)
+{
+	t_mode		*res;
+
+	res = (t_mode *)malloc(sizeof(t_mode));
+	res->on = FALSE;
+	res->intence = 0;
+	return (res);
+}
+
+t_dem	*init_dem(void)
+{
+	t_dem	*res;
+
+	res = (t_dem *)malloc(sizeof(t_dem));
+	res->wave = new_mode();
+	res->quake = new_mode();
+	res->fisheye = new_mode();
+	res->mirr = new_mode();
+	res->norm = new_mode();
+	res->norm->on = TRUE;
+	return (res);
+}
+
 int		main(int ac, char **maps)
 {
 	printf("(*≧ω≦*) Mama, ya sobralsya o7\n");
@@ -32,10 +56,12 @@ int		main(int ac, char **maps)
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
 	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
 	wolf->map = validate(ac, maps);
+
 	wolf->mlx = init_mlx();
 	init_all_img(wolf);
-//	wolf->t = init_textures();
+	wolf->dem = init_dem();
 	wolf->space_was_pressed = 0;
+
 	init_player(wolf);
 //	printf("\n%f\n", FOV);
 	check_hooks_loops(wolf);
