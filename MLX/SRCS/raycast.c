@@ -6,11 +6,46 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/21 20:53:19 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/24 22:18:59 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	draw_texture(t_wolf *w, t_vec2 len, t_texture *t, int column_height, int current_pix)
+{
+	t_vec2		hit;
+	int			x_textcoord;
+	int			*column;
+	t_ivec2		pix;
+	int			y = -1;
+
+	printf("я в отрисовке текстур и прмвда пытаюсь их отрисовать!!!!\n");
+	pix = (t_ivec2){0, 0};
+	hit.x = len.x - floor(len.x + 0.5);
+	hit.y = len.y - floor(len.y + 0.5);
+	x_textcoord = (int)hit.x * t->size;
+	if (fabs(hit.y) > fabs(hit.x))
+		x_textcoord = hit.y * t->size;
+	if (x_textcoord < 0)
+		x_textcoord += t->size;
+
+	column = texture_column(w, t, x_textcoord, column_height);
+	pix.x = WIN_W / 2 + current_pix;
+	while (++y < column_height)
+	{
+		// printf("я в цикле  y < column_height\n");
+		pix.y = y + WIN_H / 2 - column_height / 2;
+		// printf("pix.y = %d\n", pix.y);
+		// printf("y == %d\n", y);
+		if (pix.y < 0 || pix.y >= (int)WIN_H)
+			continue;
+		w->mlx.img[pix.x + pix.y * WIN_W] = column[y];
+		// printf("w->mlx.img[pix.x + pix.y * WIN_W] = %d\n", w->mlx.img[pix.x + pix.y * WIN_W]);
+		// y++;
+	}
+	sleep(3);
+}
 
 void	find_distance(t_wolf *w, int pix)
 {
@@ -27,27 +62,31 @@ void	find_distance(t_wolf *w, int pix)
 		len.y = sin(column_angle) * t + w->player.pos.y;
 		if (len.x >= w->map.w || len.y > w->map.h || len.x < 0 || len.y < 0)
 			break ;
+		// printf("w->map.line[(int)len.x + (int)len.y * w->map.w] == ||%c||\n", w->map.line[(int)len.x + (int)len.y * w->map.w]);
 		if (w->map.line[(int)len.x + (int)len.y * w->map.w] != ' ')
-				break;
+		// {
+			// printf("NOTSPACE\n");
+		// }
+			break;
 		t += 0.01;
 	}
-	raycast(w, t, len, pix);
+	raycast(w, t, len, pix, column_angle);
 }
 
-void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
+void	raycast(t_wolf *w, float t, t_vec2 len, int pix, column_angle)
 {
 	t_raycast	r;
 	int			column_height;
-	t_ivec2		firstpix;
 
+	// printf("w->text_id = %d\n", w->text_id);
 	r.distance = t;
-	r.wall_color = (t_color)wall_color(&w->map, len);
-	if (r.wall_color.r == -1 && r.wall_color.g == -1 && r.wall_color.b == -1)
-		return ;
-	column_height = (int)(WIN_H / r.distance);
-	firstpix.x = (int){WIN_W / 2 + pix};
-	firstpix.y = (int){WIN_H / 2 - column_height / 2};
-	draw_rect((t_drawrect){firstpix, r.wall_color}, 1, column_height, w);
+	r.texture = choice_texture(w, w->map.line[(int)len.x + (int)len.y * w->map.w]);
+	printf("%s\n", r.texture->id);
+	// printf("texture_size = %d\n", r.texture->text_size);
+	column_height = (int)(WIN_H / (r.distance * cos(column_angle - w->player.look_column_angle)));
+	// printf("col_height = %d\n", column_height);
+	printf("сейчас зайду в рисовку текстур\n");
+	draw_texture(w, len, r.texture, column_height, pix);
 }
 
 void	render_walls(t_wolf *w)

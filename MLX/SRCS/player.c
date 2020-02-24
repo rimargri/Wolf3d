@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:40:26 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/21 20:53:10 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/22 18:56:01 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void	draw_player(t_wolf *w)
 {
 	w->player.transform.x = w->player.pos.x * rect_w(w->map.w);
 	w->player.transform.y = w->player.pos.y * rect_h(w->map.h);
-	draw_rect((t_drawrect){w->player.transform, (t_color){255, 255, 255}},
-															4, 4, w);
+	draw_rect((t_drawrect){w->player.transform,
+					get_color((t_color){255, 255, 255})}, 4, 4, w);
 }

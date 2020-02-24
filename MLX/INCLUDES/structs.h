@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/21 12:48:18 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/24 22:16:08 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct  	s_color
 typedef struct		s_drawrect
 {
 	t_ivec2			firstpix;
-	t_color			color;
+	int				color;
 }					t_drawrect;
 
 typedef struct		s_direction
@@ -76,18 +76,28 @@ typedef struct		s_player
 	float			look_column_angle;
 }					t_player;
 
-typedef struct		s_raycast
-{
-	float			distance;
-	t_color			wall_color;
-}					t_raycast;
-
 typedef struct		s_texture
 {
 	int				*texture;
-	int				text_size;
-	int				text_cnt;
+	int				size;
+	int				cnt;
+	float			id;
 }					t_texture;
+
+typedef struct		s_load_t
+{
+	unsigned char 	*pixmap;
+	int 			nchannels;
+	int 			w;
+	int 			h;
+}					t_load_t;
+
+typedef struct		s_raycast
+{
+	float			distance;
+	int				wall_color;
+	t_texture		*texture;
+}					t_raycast;
 
 typedef struct		s_mlx
 {

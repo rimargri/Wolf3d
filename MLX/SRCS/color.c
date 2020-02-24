@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:45:42 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/19 20:34:27 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:47:08 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ int		get_color(t_color color)
 	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }
 
-t_color	wall_color(t_map *map, t_vec2 len)
+int		wall_color(t_map *map, t_vec2 len)
 {
 	t_color c;
+	int		color;
 
 	if ((int)len.x >= map->w || (int)len.x < 0 ||
 			(int)len.y >= map->h || (int)len.y < 0)
-		return ((t_color){-1, -1, -1});
-	if (map->line[(int)len.x + (int)len.y * map->w] == '0')					// purple
+		return (get_color((t_color){-1, -1, -1}));
+	if (map->line[(int)len.x + (int)len.y * map->w] == '0')				// purple
 		c = (t_color){153, 113, 233};
 	else if (map->line[(int)len.x + (int)len.y * map->w] == '1')
 		c = (t_color){227, 176, 229};									// pink
@@ -42,5 +43,37 @@ t_color	wall_color(t_map *map, t_vec2 len)
 		c = (t_color){100, 150, 100};
 	else
 		c = (t_color){-1, -1, -1};
-	return ((t_color)c);
+	color = get_color((t_color)(c));
+	return (color);
+}
+
+int		color_of_texture(t_wolf *w, char c)
+{
+	int color;
+
+	color = 0;
+	if (c == '0')
+		color = w->t[0]->texture[0];
+	if (c == '1')
+		color = w->t[1]->texture[149];
+	if (c == '2')
+		color = w->t[2]->texture[170];
+	if (c == '3')
+		color = w->t[3]->texture[160];
+	return (color);
+}
+
+t_texture	*choice_texture(t_wolf *w, char c)
+{
+	t_texture *texture;
+
+	if (c == '0')
+		texture = w->t[0];
+	if (c == '1')
+		texture = w->t[1];
+	if (c == '2')
+		texture = w->t[2];
+	if (c == '3')
+		texture = w->t[3];
+	return (texture);
 }

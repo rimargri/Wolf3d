@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 12:13:21 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/21 20:00:27 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/24 22:16:07 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,76 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+t_texture	**init_textures(void)
+{
+	t_texture	**t;
+	int			i = 0;
+	int			count_text;
+
+	count_text = 4;
+	t = (t_texture**)malloc(sizeof(t_texture*) * count_text);
+	((t == NULL) ? exit(13) : 1);
+	while (i < count_text)
+	{
+		t[i] = (t_texture*)malloc(sizeof(t_texture));
+		((t[i] == NULL) ? exit(13) : 1);
+		t[i]->id = i;
+		i++;
+	}
+	if (!(load_texture("./textures/rei_ayanami.png", t[0])))
+		exit(13);
+	if (!(load_texture("./textures/a9ff7837af8a58cbf6642ae954f0c5.png", t[1])))
+		exit(13);
+	if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-1.png", t[2])))
+		exit(13);
+	if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-3.png", t[3])))
+		exit(13);
+	// printf("init_textures *** t[0].text_size = %d\n", t[0]->text_size);
+	return (t);
+}
+
 int		load_texture(char *filename, t_texture *t)
 {
-	unsigned char *pixmap;
-	int nchannels = -1, w, h;
-	int i;
-	int j = 0;
-	t_color c;
+	t_load_t	load_texture;
+	t_ivec2		pix;
+	t_color 	c;
 
-	// printf("ya koshka\n");
-	pixmap = stbi_load(filename, &w, &h, &nchannels, 0);
-	// printf("\nload_texture *** w = %d h = %d\n", w, h);
-	if (!pixmap)
+	pix = (t_ivec2){0, 0};
+	load_texture.pixmap = stbi_load(filename, &load_texture.w, &load_texture.h, &load_texture.nchannels, 0);
+	if (!load_texture.pixmap)
 	{
 		printf("!pixmap\n");
 		exit (11);
 	}
-	// printf("ya koshka\n");
-	if (nchannels != 4) // Error: the texture must be a 32 bit image
+	if (load_texture.nchannels != 4) // Error: the texture must be a 32 bit image
 	{
-		printf("!= 444 xkoshka\n");
-		stbi_image_free(pixmap);
+		printf("nchannels != 4\n");
+		stbi_image_free(load_texture.pixmap);
 		exit (12);
 	}
-	t->text_cnt = w / h;
-	t->text_size = w / t->text_cnt;
-	if (w != h * (int)t->text_cnt) // Error: the texture file must contain N square textures packed horizontally
-	{
-		printf("w != h * (int)t->text_cnt\n");
-		stbi_image_free(pixmap);
-		exit (13);
-	}
-	t->texture = (int*)malloc(sizeof(int) * w * h);
+	// t->cnt = w / h;
+	// t->size = w / t->cnt;
+	// if (w != h * (int)t->cnt) // Error: the texture file must contain N square textures packed horizontally
+	// {
+	// 	printf("w != h * (int)t->text_cnt\n");
+	// 	stbi_image_free(pixmap);
+	// 	exit (13);
+	// }
+	t->texture = (int*)malloc(sizeof(int) * load_texture.w * load_texture.h);
 	// printf("cringe\n");
-	while (j < h)
+	while (pix.y < load_texture.h)
 	{
-		i = 0;
-		while (i < w)
+		pix.x = 0;
+		while (pix.x < load_texture.w)
 		{
-			c.r = (int)pixmap[(i + j * w) * 4 + 0];
-			c.g = (int)pixmap[(i + j * w) * 4 + 1];
-			c.b = (int)pixmap[(i + j * w) * 4 + 2];
-			t->texture[i + j * w] = get_color(c);
-			i++;
+			c.r = (int)load_texture.pixmap[(pix.x + pix.y * load_texture.w) * 4 + 0];
+			c.g = (int)load_texture.pixmap[(pix.x + pix.y * load_texture.w) * 4 + 1];
+			c.b = (int)load_texture.pixmap[(pix.x + pix.y * load_texture.w) * 4 + 2];
+			t->texture[pix.x + pix.y * load_texture.w] = get_color(c);
+			pix.x++;
 		}
-		j++;
+		pix.y++;
 	}
-	stbi_image_free(pixmap);
+	stbi_image_free(load_texture.pixmap);
 	return (1);
 }

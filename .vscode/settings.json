@@ -14,6 +14,14 @@
 		"errors.h": "c",
 		"stb_image.h": "c",
 		"math.h": "c",
-		"__string": "c"
+		"__string": "c",
+		"__hash_table": "c",
+		"bitset": "c",
+		"initializer_list": "c",
+		"memory": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"utility": "c",
+		"hashtable": "c"
 	}
 }
