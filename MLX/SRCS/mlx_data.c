@@ -65,6 +65,11 @@ int		draw_all_hook(t_wolf *w)
 		w->player.look_column_angle.y += 0.01 * w->dem->quake->intence;
 	if (w->dem->wave->on != FALSE)
 		w->player.look_column_angle.y += 0.03;
+	if (w->dem->mirr->on != FALSE)
+	{
+		w->player.look_column_angle.y = 0.03;
+		w->dem->wave->intence =  w->dem->mirr->intence * 4;
+	}
 	clear_dinamic_img(w->layers);
 	player_move(w);
 	draw_player(w);
@@ -84,6 +89,8 @@ int		count_intence(int k, int x, int y, t_wolf *w)
 			w->dem->quake->intence++;
 		if (w->dem->wave->on != FALSE)
 			w->dem->wave->intence++;
+		if (w->dem->mirr->on != FALSE)
+			w->dem->mirr->intence++;
 	}
 	if (k == SCROLL_DOWN)
 	{
@@ -91,6 +98,10 @@ int		count_intence(int k, int x, int y, t_wolf *w)
 			w->dem->quake->intence--;
 		if (w->dem->wave->on != FALSE)
 			w->dem->wave->intence--;
+		if (w->dem->mirr->on != FALSE)
+			w->dem->mirr->intence--;
+		if (w->dem->mirr->intence < 5)
+			w->dem->mirr->intence = 5;
 	}
 	return (0);
 }

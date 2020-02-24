@@ -33,7 +33,7 @@ t_mode	*new_mode(void)
 	res->intence = 0;
 	return (res);
 }
-
+//__FIXX_IMMIDEATLEY Перенести выделение в другой файл
 t_dem	*init_dem(void)
 {
 	t_dem	*res;
@@ -45,6 +45,7 @@ t_dem	*init_dem(void)
 	res->mirr = new_mode();
 	res->norm = new_mode();
 	res->norm->on = TRUE;
+	res->mirr->intence = 5;
 	return (res);
 }
 

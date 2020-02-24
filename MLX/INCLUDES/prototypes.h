@@ -117,4 +117,8 @@ void				prepare_static_layers(t_wolf *w);
 void				put_layer_mask(t_img *image, t_img *mask);
 void				put_color_mask(t_img *image, int mask, int x, int y);
 
+void				init_fractol(t_draw_fractal **f, void *mlx);
+void				init_img(t_img *img, void *mlx_ptr, int bul, t_ivec2 *begin, t_ivec2 *size);
+
+
 #endif

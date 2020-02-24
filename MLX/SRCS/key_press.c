@@ -77,12 +77,9 @@ int		key_press(int k, t_wolf *w)
 	else if (k == NORM_DEM)
 		w->dem->norm->on = w->dem->norm->on == TRUE ? FALSE : TRUE;
 	return (0);
+	//__FIXX_IMMIDEATLEY Норма!
+//__FIXX_IMMIDEATLEY Работа модов вместе - сделать перекрывание
 }
-
-//# define WAVES_DEM			18
-//# define EARTHQUAKE_DEM		19
-//
-//# define MIRROR_DEM			20
 
 int		close_hook(void *param)
 {

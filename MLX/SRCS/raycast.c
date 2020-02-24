@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+//__FIXX_IMMIDEATLEY Непонятный код
+
 #include "wolf3d.h"
 #define PUT_SECOND 10
+
 void	find_distance(t_wolf *w, int pix)
 {
 	float	t;
@@ -28,7 +31,6 @@ void	find_distance(t_wolf *w, int pix)
 	{
 		z = t;
 		len.x = cos(column_angle.x) * z + w->player.pos.x;
-		//z
 		len.y = sin(column_angle.x) * z + w->player.pos.y;
 		if (len.x >= w->map.w || len.y > w->map.h || len.x < 0 || len.y < 0)
 			break ;
@@ -38,9 +40,9 @@ void	find_distance(t_wolf *w, int pix)
 	}
 	z = z * cos(column_angle.y) * (w->dem->wave->intence) - len.y * sin(column_angle.y) * (w->dem->wave->intence);
 	y_offset = z * sin(column_angle.y) + len.x * cos(column_angle.y);
-	if (w->dem->norm->on == FALSE)
+	if (w->dem->norm->on == FALSE && w->dem->mirr->on != PUT_SECOND)
 		raycast(w, t, len, pix, (int)(y_offset) + (w->player.move.camera_up * 300));
-	if (w->dem->norm->on != FALSE || w->dem->mirr->on != FALSE)
+	else
 		raycast(w, t, len, pix, (w->player.move.camera_up * 300));
 }
 
@@ -69,5 +71,17 @@ void	render_walls(t_wolf *w)
 	{
 		find_distance(w, current_pix);
 		current_pix++;
+	}
+	if (w->dem->mirr->on != FALSE)
+	{
+		w->dem->mirr->on = PUT_SECOND;
+		current_pix = 0;
+		put_color_mask(&w->layers->d_labyrinth, 0xAA000000, WIN_W, WIN_H * 2);
+		while (current_pix < WIN_W / 2)
+		{
+			find_distance(w, current_pix);
+			current_pix++;
+		}
+		w->dem->mirr->on = TRUE;
 	}
 }

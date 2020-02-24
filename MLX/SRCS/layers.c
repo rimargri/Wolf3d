@@ -29,7 +29,7 @@ void		put_color_mask(t_img *image, int mask, int x, int y)
 		{
 //			*(int *)(image->img +
 //					 ((i + j * image->size->y))) += mask;
-			image->img[i + j * image->size->y] += mask << 20;
+			image->img[i + j * image->size->y] = image->img[i + j * image->size->y]  | mask;
 //					 		((i + j * image->size->y))) += mask;
 			j++;
 		}
@@ -96,7 +96,7 @@ void		init_all_img(t_wolf *w)
 	init_img(&res->map_view, w->mlx.mptr, TRUE, &(t_ivec2){0, 0}, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->mask, w->mlx.mptr, FALSE, &(t_ivec2){0, 0}, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->background, w->mlx.mptr, TRUE, &(t_ivec2){0, 0}, &(t_ivec2){WIN_W, WIN_H});
-	init_img(&res->d_fractol, w->mlx.mptr, FALSE, &(t_ivec2){0, 0}, &(t_ivec2){WIN_W, WIN_H});
+//	init_img(&res->d_fractol, w->mlx.mptr, FALSE, &(t_ivec2){0, 0}, &(t_ivec2){WIN_W, WIN_H});
 	w->layers = res;
 	prepare_static_layers(w);
 }

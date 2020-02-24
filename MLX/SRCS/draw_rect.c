@@ -20,6 +20,8 @@
 ** до правого пикселя в нижнем правом - весь rectcolumn_angle отрисован
 */
 
+//__FIXX_IMMIDEATLEY Норма!
+
 void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth, int y_offset)
 {
 	int i;

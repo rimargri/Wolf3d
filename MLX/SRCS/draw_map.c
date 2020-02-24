@@ -85,6 +85,7 @@ void	draw_walls(t_wolf *w)
 				dr.color = (t_color){100, 150, 100};
 			else
 				dr.color = (t_color){-1, -1, -1};
+//__FIXX_IMMIDEATLEY Норма!
 			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), &w->layers->map_view, 0);
 			i++;
 		}

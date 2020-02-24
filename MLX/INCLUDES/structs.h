@@ -129,17 +129,49 @@ typedef struct		s_dem
 	t_mode			*norm;
 }					t_dem;
 
+
+
+
+//для фрактала!!!!!!!!!!!!!!!!!!!!
+
+typedef struct		s_complex
+{
+	long double		x;
+	long double		y;
+}					t_complex;
+
+typedef struct		s_fractal
+{
+	int				max_iteration;
+	t_complex		k;
+	t_complex		constant;
+	t_complex		cur;
+}					t_fractal;
+
+typedef struct		s_draw_fractal
+{
+	int				on;
+	int				start_line;
+	int				finish_line;
+	int				is_mooving;
+	t_img			*drawing;
+	t_fractal		count;
+}					t_draw_fractal;
+
+
+
 //все динамичные изображения я отмечаю как d_, это значит, что их
 //необходимо обнулять и переписывать каждый раз после ивентов
 typedef struct		s_layer
 {
-	int				count_layers;
-	t_img			d_labyrinth;
-	t_img			d_player;
-	t_img			d_fractol;//фрактал
-	t_img			map_view;
-	t_img			background;
-	t_img			mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ
+	int					count_layers;
+//	t_draw_fractal		*fractol;//фрактал
+//	t_img				d_fractol;
+	t_img				d_labyrinth;
+	t_img				d_player;
+	t_img				map_view;
+	t_img				background;
+	t_img				mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ
 //будем расширять здесь до бесконечности - на сколько креатива хватит
 }					t_layer;
 
@@ -153,5 +185,7 @@ typedef struct		s_wolf
 	t_dem			*dem;
 	int				space_was_pressed;
 }					t_wolf;
+
+
 
 #endif
