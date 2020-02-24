@@ -61,8 +61,8 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_W 13
-// # define KEY_ARROW_UP 126
-// # define KEY_ARROW_DOWN 125
+# define KEY_ARROW_UP 126
+# define KEY_ARROW_DOWN 125
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
 
@@ -74,5 +74,19 @@
 
 # define COUNT_LAYERS	5
 # define NOCOLOR		0xFF000000
+
+/** *********************************** **/
+/** *********************************** **/
+/**         defines for dementions      **/
+/** *********************************** **/
+/** *********************************** **/
+
+//исключают друг друга
+# define WAVES_DEM			18
+# define EARTHQUAKE_DEM		19
+//
+# define MIRROR_DEM			20
+//# define FISHEYE_DEM		21
+//# define GREEN_THEME		23
 
 #endif

@@ -15,16 +15,18 @@
 void	draw_rays(t_wolf *w, int pix)
 {
 	float	t;
-	float	column_angle;
+	t_vec2	column_angle;
 	t_vec2	len;
 
 	t = 0.0f;
-	column_angle = w->player.look_column_angle - FOV / 2 + FOV * pix /
+	column_angle.x = w->player.look_column_angle.x - FOV / 2 + FOV * pix /
 														(float)(WIN_W / 2);
+	column_angle.y = w->player.look_column_angle.y - FOV / 2 + FOV * pix /
+															   (float)(WIN_H / 2);
 	while (t < 100)
 	{
-		len.x = cos(column_angle) * t + w->player.pos.x; //? Logic
-		len.y = sin(column_angle) * t + w->player.pos.y;
+		len.x = cos(column_angle.x) * t + w->player.pos.x; //? Logic
+		len.y = sin(column_angle.x) * t + w->player.pos.y;
 		w->player.transform.x = len.x * rect_w(w->map.w);
 		w->player.transform.y = len.y * rect_h(w->map.h);
 		if (!w->space_was_pressed && len.x < w->map.w

@@ -37,6 +37,7 @@ int		main(int ac, char **maps)
 //	wolf->t = init_textures();
 	wolf->space_was_pressed = 0;
 	init_player(wolf);
+//	printf("\n%f\n", FOV);
 	check_hooks_loops(wolf);
 	return (0);
 }

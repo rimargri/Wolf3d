@@ -77,7 +77,8 @@ void	init_player(t_wolf *w)
 	t_player p;
 
 	p.pos = find_player(w);
-	p.look_column_angle = 0.0;
+	p.look_column_angle.x = 0.0;
+	p.look_column_angle.y = 0.0;
 	p.move = init_move();
 	w->player = p;
 }
@@ -87,5 +88,5 @@ void	draw_player(t_wolf *w)
 	w->player.transform.x = w->player.pos.x * rect_w(w->map.w);
 	w->player.transform.y = w->player.pos.y * rect_h(w->map.h);
 	draw_rect((t_drawrect){w->player.transform, (t_color){255, 255, 255}},
-															4, 4, &w->layers->d_player);
+															4, 4, &w->layers->d_player, 0);
 }

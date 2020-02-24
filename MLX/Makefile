@@ -52,6 +52,8 @@ $(NAME): $(RAW_OBJ_FILES)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)"
 ###### ищем дефайны на задачи первой значимости ######
 	@echo "$(RED)RED ALERT:"
+	@grep '_FIXX_IMMIDIATLEY' ./**/* | sed '/./=' | sed '/./N; s/\n/ /'
+	@echo "$(BLUE)RED ALERT:"
 	@grep '//ЗДЕСЬ_MALLOC' ./**/* | sed '/./=' | sed '/./N; s/\n/ /'
 ###### ищем дефайны на задачи средней значимости ######
 	@echo "$(YELLOW)LATER:"

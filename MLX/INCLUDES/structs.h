@@ -26,6 +26,11 @@ typedef struct  	s_ivec2
     int         	y;
 }               	t_ivec2;
 
+typedef struct  	s_ivec3
+{
+	int         	x;
+	int         	y;
+}               	t_ivec3;
 
 typedef struct		s_vec2
 {
@@ -74,7 +79,8 @@ typedef struct		s_player
 	t_vec2			pos;
 	t_ivec2			transform;
 	t_direction		move;
-	float			look_column_angle;
+//	float			look_column_angle;
+	t_vec2			look_column_angle;
 }					t_player;
 
 typedef struct		s_raycast
@@ -107,17 +113,23 @@ typedef struct		s_mlx
 	void			*wptr;
 }					t_mlx;
 
+typedef struct		s_dem
+{
+	int				wave;
+	int				earthquake;
+	int				fisheye;
+}					t_dem;
+
 //все динамичные изображения я отмечаю как d_, это значит, что их
 //необходимо обнулять и переписывать каждый раз после ивентов
 typedef struct		s_layer
 {
-	int				count_layers;//в wolf.h есть дефайн, здесь просто для наглядности,
-	//+, возможно, я буду пытаться кастом выделять память в цикле, хз
+	int				count_layers;
 	t_img			d_labyrinth;
-	t_img			d_player;//чтобы не перерисовывать мапу каждый раз
+	t_img			d_player;
+	t_img			d_fractol;
 	t_img			map_view;
-	t_img			background;//чтобы не перерисовывать бэкграунд каждый раз
-	//либо чтобы пробовать разные бэкграунды, просто подставляя их
+	t_img			background;
 	t_img			mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ
 //будем расширять здесь до бесконечности - на сколько креатива хватит
 }					t_layer;
@@ -129,6 +141,7 @@ typedef struct		s_wolf
 	t_map			map;
 	t_layer			*layers;//все имаджи, где хочешь, там рисуешь
 	t_texture		**t;
+	t_dem			*dem;
 	int				space_was_pressed;
 }					t_wolf;
 

@@ -23,7 +23,7 @@
 
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
-void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix, int y_offset);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -81,7 +81,7 @@ int					get_color(t_color color);
 /** *********************************** **/
 /** *********************************** **/
 
-void    			draw_rect(t_drawrect v, int w, int h, t_img *labyrinth);
+void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth, int y_offset);
 void				clear_wolf(t_wolf **w);
 
 /** *********************************** **/

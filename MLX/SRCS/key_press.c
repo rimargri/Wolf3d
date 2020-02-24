@@ -32,6 +32,10 @@ int		key_unpress(int k, t_wolf *w)
 		w->player.move.camera = 0;
 	else if (k == KEY_ARROW_LEFT)
 		w->player.move.camera = 0;
+	else if (k == KEY_ARROW_UP)
+		w->player.move.camera = 0;
+	else if (k == KEY_ARROW_DOWN)
+		w->player.move.camera = 0;
 	else
 	{
 		w->player.move.left = k == KEY_A ? FALSE : w->player.move.left;
@@ -58,6 +62,10 @@ int		key_press(int k, t_wolf *w)
 		w->player.move.camera = KEY_ARROW_RIGHT;
 	else if (k == KEY_ARROW_LEFT)
 		w->player.move.camera = KEY_ARROW_LEFT;
+	else if (k == KEY_ARROW_UP)
+		w->player.move.camera = KEY_ARROW_UP;
+	else if (k == KEY_ARROW_DOWN)
+		w->player.move.camera = KEY_ARROW_DOWN;
 	else if (k == KEY_SPACE)
 			w->space_was_pressed = !(w->space_was_pressed);
 	return (0);

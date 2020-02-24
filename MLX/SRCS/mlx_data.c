@@ -42,8 +42,10 @@ void	draw_layers(t_wolf *w)
 int		draw_all_hook(t_wolf *w)
 {
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
-	(w->player.move.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle += 0.05 : 1);
-	(w->player.move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle -= 0.05 : 1);
+	(w->player.move.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle.x += 0.05 : 1);
+	(w->player.move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle.x -= 0.05 : 1);
+	(w->player.move.camera == KEY_ARROW_UP ? w->player.look_column_angle.y += 0.01 : 0);
+	(w->player.move.camera == KEY_ARROW_DOWN ? w->player.look_column_angle.y -= 0.01 : 0);
 	clear_dinamic_img(w->layers);//возникает проблема - придётся чистить лабиринт, чтобы не перерисовывать бэкграунд,
 	//на нём остаются старые стены, раньше ты забивала имадж бэкграундом, теперь это у нас отдельный имадж
 	player_move(w);
