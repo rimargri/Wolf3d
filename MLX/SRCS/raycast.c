@@ -15,7 +15,7 @@
 #include "wolf3d.h"
 #define PUT_SECOND 10
 
-void	find_distance(t_wolf *w, int pix)
+void	find_distance(t_wolf *w, int pix, int w_w, int delim)
 {
 	float	t;
 	t_vec2	column_angle;
@@ -24,8 +24,8 @@ void	find_distance(t_wolf *w, int pix)
 	float	y_offset;
 
 	t = 0.0f;
-	column_angle.x = w->player.look_column_angle.x - FOV / 2 + FOV * pix /
-														(float)(WIN_W / 2);
+	column_angle.x = (w->player.look_column_angle.x + w->layers->draw_shift) - FOV / delim + FOV * pix /
+														(float)(w_w);
 	column_angle.y = w->player.look_column_angle.y;
 	while (t < 100)
 	{
@@ -51,25 +51,36 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix, int y_offset)
 	t_raycast	r;
 	int			column_height;
 	t_ivec2		firstpix;
+	int	wall_w;
 
 	r.distance = t;
+	wall_w = w->layers->map_view.on == TRUE ? WIN_W / 2 : WIN_W;
 	r.wall_color = (t_color)wall_color(&w->map, len);
 	if (r.wall_color.r == -1 && r.wall_color.g == -1 && r.wall_color.b == -1)
 		return ;
 	column_height = (int)(WIN_H / r.distance);
-	firstpix.x = (int){WIN_W / 2 + pix};
+	firstpix.x = (int){wall_w + pix};
 	firstpix.y = (int){WIN_H / 2 - column_height / 2};
 	draw_rect((t_drawrect){firstpix, r.wall_color}, 1, column_height, &w->layers->d_labyrinth, y_offset);
 }
 
 void	render_walls(t_wolf *w)
 {
+	int	wall_w;
+	int	delim;
+	int	move_delim;
 	int current_pix;//__FIXX_IMMIDEATLEY чтобы вместиться в норму, можно сделать t_ivec2
 
 	current_pix = 0;
-	while (current_pix < WIN_W / 2)
+//	if (w->layers->map_view.on == TRUE)
+//	{
+//	}
+	wall_w = w->layers->map_view.on == TRUE ? WIN_W / 2 : WIN_W;
+	delim = w->layers->map_view.on == TRUE ? 1 : 2;
+	move_delim = w->layers->map_view.on == TRUE ? 2 : 1;
+	while (current_pix < wall_w)
 	{
-		find_distance(w, current_pix);
+		find_distance(w, current_pix, wall_w / delim, move_delim);
 		current_pix++;
 	}
 	if (w->dem->mirr->on != FALSE)
@@ -77,9 +88,9 @@ void	render_walls(t_wolf *w)
 		w->dem->mirr->on = PUT_SECOND;
 		current_pix = 0;
 		put_color_mask(&w->layers->d_labyrinth, 0xAA000000, WIN_W, WIN_H * 2);
-		while (current_pix < WIN_W / 2)
+		while (current_pix < wall_w)
 		{
-			find_distance(w, current_pix);
+			find_distance(w, current_pix, wall_w / delim, move_delim);
 			current_pix++;
 		}
 		w->dem->mirr->on = TRUE;

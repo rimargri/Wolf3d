@@ -23,75 +23,21 @@ t_mlx	init_mlx(void)
 	return (mlx);
 }
 
-void	should_we_draw_it(t_img *image, void *wptr)
+void	change_wolf(t_wolf *w)
 {
-	if (image->on == TRUE)
-		mlx_put_image_to_window(image->mptr, wptr, image->iptr,
-				image->begin->x, image->begin->y);
-}
-
-void	draw_layers(t_wolf *w)
-{
-	should_we_draw_it(&w->layers->background, w->mlx.wptr);
-	should_we_draw_it(&w->layers->d_labyrinth, w->mlx.wptr);
-	should_we_draw_it(&w->layers->d_player, w->mlx.wptr);
-	should_we_draw_it(&w->layers->map_view, w->mlx.wptr);
-	should_we_draw_it(&w->layers->mask, w->mlx.wptr);
-	should_we_draw_it(&w->layers->d_fractol_draw, w->mlx.wptr);
-}
-
-void	set_modes_false(t_dem *d)
-{
-	d->norm->intence = 0;
-	d->wave->on = FALSE;
-	d->wave->intence = 0;
-	d->quake->on = FALSE;
-	d->quake->intence = 0;
-	d->fisheye->on = FALSE;
-	d->fisheye->intence = 0;
-	d->mirr->on = FALSE;
-	d->mirr->intence = 0;
-	d->fract->on = FALSE;
-	d->fract->intence = 0;
+	(w->player.move.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle.x += 0.05 : 1);
+	(w->player.move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle.x -= 0.05 : 1);
+	//__FIXX_IF_YOU_WANNA_подумать о повороте головы
+	(w->player.move.camera == KEY_ARROW_UP ? w->player.move.camera_up += 0.02 : 0);
+	(w->player.move.camera == KEY_ARROW_DOWN ? w->player.move.camera_up -= 0.02 : 0);
+	get_wolf_with_modes(w);
+	clear_dinamic_img(w->layers);
 }
 
 int		draw_all_hook(t_wolf *w)
 {
+	change_wolf(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
-	(w->player.move.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle.x += 0.05 : 1);
-	(w->player.move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle.x -= 0.05 : 1);
-	(w->player.move.camera == KEY_ARROW_UP ? w->player.move.camera_up += 0.02 : 0);
-	(w->player.move.camera == KEY_ARROW_DOWN ? w->player.move.camera_up -= 0.02 : 0);
-	if (w->dem->norm->on == TRUE)
-		set_modes_false(w->dem);
-	if (w->dem->quake->on != FALSE)
-		w->player.look_column_angle.y += 0.01 * w->dem->quake->intence;
-	if (w->dem->wave->on != FALSE)
-		w->player.look_column_angle.y += 0.03;
-	if (w->dem->mirr->on != FALSE)
-	{
-		w->player.look_column_angle.y = 0.03;
-		w->dem->wave->intence =  w->dem->mirr->intence * 4;
-	}
-	w->layers->d_fractol_draw.on = w->dem->fract->on == FALSE ? FALSE : TRUE;
-	if (w->dem->fract->on != FALSE)
-	{
-		if (w->dem->fract->intence % 5 == 0)
-		{
-			w->layers->d_fractol->count.k.x += 0.01 * w->layers->d_fractol->is_mooving;
-			w->layers->d_fractol->count.k.y += 0.01 * w->layers->d_fractol->is_mooving;
-			draw_fractal(&w->layers->d_fractol, &w->layers->d_fractol_draw);
-		}
-		if (w->dem->fract->intence > 100)
-			w->layers->d_fractol->is_mooving = OUT;
-		if (w->dem->fract->intence < -50)
-		{
-			w->layers->d_fractol->is_mooving = IN;
-			w->layers->d_fractol->count.k.y += 0.03;
-		}
-		w->dem->fract->intence += w->layers->d_fractol->is_mooving;
-	}
-	clear_dinamic_img(w->layers);
 	player_move(w);
 	draw_player(w);
 	render_rays(w);
@@ -99,31 +45,6 @@ int		draw_all_hook(t_wolf *w)
 //	test_text(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
-	return (0);
-}
-
-int		count_intence(int k, int x, int y, t_wolf *w)
-{
-	if (k == SCROLL_UP)
-	{
-		if (w->dem->quake->on != FALSE)
-			w->dem->quake->intence++;
-		if (w->dem->wave->on != FALSE)
-			w->dem->wave->intence++;
-		if (w->dem->mirr->on != FALSE)
-			w->dem->mirr->intence++;
-	}
-	if (k == SCROLL_DOWN)
-	{
-		if (w->dem->quake->on != FALSE)
-			w->dem->quake->intence--;
-		if (w->dem->wave->on != FALSE)
-			w->dem->wave->intence--;
-		if (w->dem->mirr->on != FALSE)
-			w->dem->mirr->intence--;
-		if (w->dem->mirr->intence < 5)
-			w->dem->mirr->intence = 5;
-	}
 	return (0);
 }
 

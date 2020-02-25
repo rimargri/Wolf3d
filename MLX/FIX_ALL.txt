@@ -6,10 +6,12 @@ Here are your tasks:
 
 1 ./SRCS/draw_map.c://__FIXX_IMMIDEATLEY Норма!
 2 ./SRCS/draw_rect.c://__FIXX_IMMIDEATLEY Норма!
-3 ./SRCS/key_press.c:	//__FIXX_IMMIDEATLEY Норма!
-4 ./SRCS/key_press.c://__FIXX_IMMIDEATLEY Работа модов вместе - сделать перекрывание
-5 ./SRCS/layers.c:	//_FIXX_IMMIDIATLEY в функции 5 аргументов
-6 ./SRCS/main.c://__FIXX_IMMIDEATLEY Перенести выделение в другой файл
-7 ./SRCS/player.c://__FIXX_IMMIDEATLEY !!!
-8 ./SRCS/raycast.c://__FIXX_IMMIDEATLEY Непонятный код
-9 ./SRCS/raycast.c:	int current_pix;//__FIXX_IMMIDEATLEY чтобы вместиться в норму, можно сделать t_ivec2
+3 ./SRCS/key_press.c:** //__FIXX_IMMIDEATLEY need to think about managing processes
+4 ./SRCS/key_press.c://__FIXX_LATER зеркальный пол не отключается, если пытаться переключать на другие
+5 ./SRCS/key_press.c://__FIXX_LATER моды, пока не отключишь его намеренно
+6 ./SRCS/key_press.c:	//__FIXX_IMMIDEATLEY printf, если что
+7 ./SRCS/mlx_data.c:	//__FIXX_IF_YOU_WANNA_подумать о повороте головы
+8 ./SRCS/modes_for_fun.c://__FIXX_IMMIDEATLEY Перенести выделение в другой файл
+9 ./SRCS/player.c://__FIXX_IMMIDEATLEY !!!
+10 ./SRCS/raycast.c://__FIXX_IMMIDEATLEY Непонятный код
+11 ./SRCS/raycast.c:	int current_pix;//__FIXX_IMMIDEATLEY чтобы вместиться в норму, можно сделать t_ivec2

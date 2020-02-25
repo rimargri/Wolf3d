@@ -65,6 +65,9 @@
 # define KEY_ARROW_DOWN 125
 # define KEY_ARROW_LEFT 123
 # define KEY_ARROW_RIGHT 124
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
+# define ENTER 36
 
 /** *********************************** **/
 /** *********************************** **/
@@ -81,18 +84,25 @@
 /** *********************************** **/
 /** *********************************** **/
 
-//исключают друг друга
 # define NORM_DEM			18
 # define WAVES_DEM			19
 # define EARTHQUAKE_DEM		20
 # define FRACTAL_DEM		23
-//
 # define MIRROR_DEM			21
+# define CAMERA_DIFFUSION	0.01
+//# define
 //# define FISHEYE_DEM		23
-//# define GREEN_THEME		23
-# define SCROLL_UP			5
-# define SCROLL_DOWN		4
+
+/** *********************************** **/
+/** *********************************** **/
+/**         defines for fractal	        **/
+/** *********************************** **/
+/** *********************************** **/
+
 # define IN					1
 # define OUT				-1
+# define FRACT_MAX_INTENCE	100
+# define FRACT_MIN_INTENCE	-50
+# define FRACT_MOVE			0.005
 
 #endif

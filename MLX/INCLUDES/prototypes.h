@@ -24,6 +24,7 @@
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
 void				raycast(t_wolf *w, float t, t_vec2 len, int pix, int y_offset);
+void				raycast_lab(t_wolf *w, float t, t_vec2 len, t_ivec2 pix);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -81,7 +82,7 @@ int					get_color(t_color color);
 /** *********************************** **/
 /** *********************************** **/
 
-void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth, int y_offset);
+void    			draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth, int y_offset);
 void				clear_wolf(t_wolf **w);
 
 /** *********************************** **/
@@ -110,16 +111,26 @@ void				test_text(t_wolf *w);
 /**              images                 **/
 /** *********************************** **/
 /** *********************************** **/
+
 void				init_all_img(t_wolf *w);
-void				clear_layer(t_img *image);
 void				clear_dinamic_img(t_layer *layer);
-void				prepare_static_layers(t_wolf *w);
 void				put_layer_mask(t_img *image, t_img *mask);
 void				put_color_mask(t_img *image, int mask, int x, int y);
-
+void				clear_layer(t_img *image);
+void				prepare_static_layers(t_wolf *w);
 void				init_fractol(t_draw_fractal **f);
-void				init_img(t_img *img, void *mlx_ptr, int bul, t_ivec2 *begin, t_ivec2 *size);
+void				change_img_coord(t_img *img, t_ivec2 *begin);
 void				draw_fractal(t_draw_fractal **fractal, t_img *f);
+void				draw_layers(t_wolf *w);
 
+/** *********************************** **/
+/** *********************************** **/
+/**           modes(dementions)         **/
+/** *********************************** **/
+/** *********************************** **/
+
+t_dem				*init_dem(void);
+void				get_wolf_with_modes(t_wolf *w);
+int					count_intence(int k, int x, int y, t_wolf *w);
 
 #endif

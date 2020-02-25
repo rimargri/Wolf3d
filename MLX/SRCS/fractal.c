@@ -4,6 +4,27 @@
 
 #include "wolf3d.h"
 
+int			fract_get_color(int iteration, int max_iteration, int shift)
+{
+	double			t;
+	static float	shift_color;
+	int				red;
+	int				green;
+	int				blue;
+
+	if (iteration == max_iteration)
+		return (0xAAFF77FF);
+	t = ((double)iteration / (double)max_iteration);
+	green = (int)(9 * (1 - t) * pow(t, 3) * 255);
+	blue = (int)(shift_color * pow((1 - t), 3) * t * 255);
+	red  = (int)(15 * pow((1 - t), 2) * pow(t, 2) * 255);
+	if (shift % 50 == 0)
+		shift_color += 0.5;
+	if (blue % 255 == 0 || blue % 254 == 0 || blue % 253 == 0 || blue % 252 == 0)
+		blue += 20;
+	return (0xCC << 24 | (red) << 16 | (green) << 8 | (blue));
+}
+
 void		image_set_pixel(t_img **image, int x, int y, int color)
 {
 	int				i;
@@ -21,21 +42,6 @@ void		image_set_pixel(t_img **image, int x, int y, int color)
 	}
 }
 
-void	init_fractol(t_draw_fractal **f)
-{
-	static t_fractal	count = {20, {0.4, 0.1}, {0, 0}, {0, 0}};
-
-	*f = (t_draw_fractal *)malloc(sizeof(t_draw_fractal));
-	(*f)->is_mooving = IN;
-	(*f)->count = count;
-
-//	(*f)->drawing = lol;
-//	(*f)->on = FALSE;
-}
-
-
-//
-//
 int		julia(t_fractal *julia)
 {
 	int			iteration;
@@ -55,36 +61,6 @@ int		julia(t_fractal *julia)
 	}
 	return (iteration);
 }
-//
-//
-//void		recalculate(int *first, int *second, int *third, double t)
-//{
-//	*first = (int)(9 * (1 - t) * pow(t, 3) * 255);
-//	*second = (int)(8.5 * pow((1 - t), 3) * t * 255);
-//	*third = (int)(15 * pow((1 - t), 2) * pow(t, 2) * 255);
-//}
-
-int			fract_get_color(int iteration, int max_iteration)
-{
-	double		t;
-	static int	color_shift;
-	int			red;
-	int			green;
-	int			blue;
-
-	if (iteration == max_iteration)
-		return (0xAAFF77FF);
-	t = ((double)iteration / (double)max_iteration);
-	green = (int)(9 * (1 - t) * pow(t, 3) * 255);
-	red = (int)(8.5 * pow((1 - t), 3) * t * 255);
-	blue = (int)(15 * pow((1 - t), 2) * pow(t, 2) * 255);
-	color_shift++;
-	return (0xCC << 24 | (red) << 16 | green << 8 | blue);
-}
-
-/*
-**		разбиение на потоки, передача пикселей в следующую функцию
-*/
 
 int			get_fractal_img(t_draw_fractal *full)
 {
@@ -101,7 +77,7 @@ int			get_fractal_img(t_draw_fractal *full)
 			full->count.constant.x = -1.0 + x * full->count.cur.x;
 			image_set_pixel(&full->drawing, x, y,
 							fract_get_color(julia(&full->count),
-									  full->count.max_iteration));
+									  full->count.max_iteration, full->count.color_shift));
 			x++;
 		}
 		y++;
@@ -132,5 +108,4 @@ void		draw_fractal(t_draw_fractal **fractal, t_img *f)
 	}
 	while (i-- > 0)
 		pthread_join(threads[i], NULL);
-//	f = (*fractal)->drawing;
 }

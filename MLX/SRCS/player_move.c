@@ -30,7 +30,10 @@ void	move_forward(t_wolf *w)
 	t_vec2 forward;
 	t_vec2 tmp;
 
-	forward_base = (t_vec2){0.04f, 0.0f};
+//	if (w->layers->map_view.on == TRUE)
+//	forward_base = (t_vec2){0.04f, 0.0f};
+//	else
+		forward_base = (t_vec2){0.04f, 0.0f};
 	forward.x = forward_base.x * cos(w->player.look_column_angle.x) -
 	forward_base.y * sin(w->player.look_column_angle.x);
 	forward.y = forward_base.x * sin(w->player.look_column_angle.x) +

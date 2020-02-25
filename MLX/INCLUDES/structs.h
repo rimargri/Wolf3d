@@ -148,6 +148,7 @@ typedef struct		s_fractal
 	t_complex		k;
 	t_complex		constant;
 	t_complex		cur;
+	int				color_shift;
 }					t_fractal;
 
 typedef struct		s_draw_fractal
@@ -165,6 +166,7 @@ typedef struct		s_draw_fractal
 //необходимо обнулять и переписывать каждый раз после ивентов
 typedef struct		s_layer
 {
+	float				draw_shift;
 	int					count_layers;
 	t_draw_fractal		*d_fractol;//фрактал
 	t_img				d_fractol_draw;
