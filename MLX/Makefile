@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/24 22:19:53 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/25 23:05:01 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ INCL_DIR = ./INCLUDES
 C_FILES = main.c key_press.c draw_rect.c draw_map.c color.c \
 				render_rays.c player.c player_move.c check_player_move.c \
 				validate.c mlx_data.c load_texture.c 
-C_FILES += raycast.c textures.c
+# C_FILES += raycast.c textures.c
 # C_FILES += raycast_copy.c test_textures.c
+C_FILES += raycast_25_02_20.c test_textures.c text_help_raycast.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

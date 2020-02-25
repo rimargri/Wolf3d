@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 22:20:04 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/25 23:04:40 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,19 @@
 
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
-void				raycast(t_wolf *w, float t, t_vec2 len, int pix, int column_angle);
+
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix, float column_angle);
 // void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
+
+/** *********************************** **/
+/** *********************************** **/
+/**        TEMP func for rendering      **/
+/** *********************************** **/
+/** *********************************** **/
+
+int     size_of_texture(t_vec2 offset, t_wolf *w, t_texture *t);
+int		*scale_column(t_wolf *w, t_texture *t, int size_texture, int *column, int column_height);
+void	full_column_texture(t_wolf *w, int *column, int column_height, int current_pix);
 
 /** *********************************** **/
 /** *********************************** **/

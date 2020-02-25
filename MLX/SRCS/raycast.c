@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 22:18:59 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/25 20:57:32 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,15 @@ void	find_distance(t_wolf *w, int pix)
 		len.y = sin(column_angle) * t + w->player.pos.y;
 		if (len.x >= w->map.w || len.y > w->map.h || len.x < 0 || len.y < 0)
 			break ;
-		// printf("w->map.line[(int)len.x + (int)len.y * w->map.w] == ||%c||\n", w->map.line[(int)len.x + (int)len.y * w->map.w]);
 		if (w->map.line[(int)len.x + (int)len.y * w->map.w] != ' ')
-		// {
-			// printf("NOTSPACE\n");
-		// }
-			break;
+			// break;
+			continue;
 		t += 0.01;
 	}
 	raycast(w, t, len, pix, column_angle);
 }
 
-void	raycast(t_wolf *w, float t, t_vec2 len, int pix, column_angle)
+void	raycast(t_wolf *w, float t, t_vec2 len, int pix, int column_angle)
 {
 	t_raycast	r;
 	int			column_height;

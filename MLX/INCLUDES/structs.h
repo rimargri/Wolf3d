@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 22:16:08 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/25 23:08:41 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct		s_texture
 	int				*texture;
 	int				size;
 	int				cnt;
-	float			id;
+	int				id;
 }					t_texture;
 
 typedef struct		s_load_t

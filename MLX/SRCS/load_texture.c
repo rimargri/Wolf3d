@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 12:13:21 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 22:16:07 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/25 23:19:37 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_texture	**init_textures(void)
 		exit(13);
 	if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-3.png", t[3])))
 		exit(13);
-	// printf("init_textures *** t[0].text_size = %d\n", t[0]->text_size);
+	// printf("init_textures *** t[0].text_size = %d\n", t[0]->size);
 	return (t);
 }
 
@@ -61,8 +61,8 @@ int		load_texture(char *filename, t_texture *t)
 		stbi_image_free(load_texture.pixmap);
 		exit (12);
 	}
-	// t->cnt = w / h;
-	// t->size = w / t->cnt;
+	t->cnt = load_texture.w / load_texture.h;
+	t->size = load_texture.w / t->cnt;
 	// if (w != h * (int)t->cnt) // Error: the texture file must contain N square textures packed horizontally
 	// {
 	// 	printf("w != h * (int)t->text_cnt\n");

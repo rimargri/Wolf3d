@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:45:42 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 16:47:08 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/25 23:11:30 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ t_texture	*choice_texture(t_wolf *w, char c)
 		texture = w->t[2];
 	if (c == '3')
 		texture = w->t[3];
+	printf("t->size = %d =)))\nw->t[0] = %d\n", texture->size, w->t[0]->size);
 	return (texture);
 }
