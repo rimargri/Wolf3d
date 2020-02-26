@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/25 23:04:40 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/26 22:27:22 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
 
-void				raycast(t_wolf *w, float t, t_vec2 len, int pix, float column_angle);
-// void				raycast(t_wolf *w, float t, t_vec2 len, int pix);
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix, float column_angle); // raycast_rexture
+// void				raycast(t_wolf *w, float t, t_vec2 len, int pix); //raycast color
 
 /** *********************************** **/
 /** *********************************** **/

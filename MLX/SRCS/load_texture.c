@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 12:13:21 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/25 23:19:37 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/26 21:06:26 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_texture	**init_textures(void)
 	int			i = 0;
 	int			count_text;
 
-	count_text = 4;
+	count_text = 5;
 	t = (t_texture**)malloc(sizeof(t_texture*) * count_text);
 	((t == NULL) ? exit(13) : 1);
 	while (i < count_text)
@@ -38,7 +38,10 @@ t_texture	**init_textures(void)
 		exit(13);
 	if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-3.png", t[3])))
 		exit(13);
-	// printf("init_textures *** t[0].text_size = %d\n", t[0]->size);
+	if (!(load_texture("./textures/pepe.png", t[4])))
+		exit(13);
+
+	// printf("init_textures *** t[3].text_size = %d\n", t[3]->size);
 	return (t);
 }
 

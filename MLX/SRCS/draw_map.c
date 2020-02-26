@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 21:56:48 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/26 22:16:24 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,25 @@ void	draw_background(t_wolf *w)
 	}
 }
 
-// доделать ещё 3 текстуры
+// void	draw_texture_on_background(t_wolf *w, t_texture *t)
+// {
+// 	int x;
+// 	int y;
+// 	int i;
+
+// 	x = 0;
+// 	while (x < WIN_W)
+// 	{
+// 		y = 0;
+// 		while (y < WIN_H)
+// 		{
+// 			w->mlx.img[x + y * WIN_W] = t->texture[];
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// }
+
 
 void	draw_walls(t_wolf *w)
 {

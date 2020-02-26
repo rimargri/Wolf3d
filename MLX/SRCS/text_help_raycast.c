@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 22:02:33 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/25 23:22:22 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/26 20:57:04 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int     size_of_texture(t_vec2 offset, t_wolf *w, t_texture *t)
 
 	pix.x = offset.x - floor(offset.x + 0.5);
 	pix.y = offset.y - floor(offset.y + 0.5);
-	printf("pix.x = %f pix.y = %f\n", pix.x, pix.y);
+	// printf("pix.x = %f pix.y = %f\n", pix.x, pix.y);
 	general_size = pix.x * t->size;
 	if (fabs(pix.y) > fabs(pix.x))
 		general_size = pix.y * t->size;
@@ -38,11 +38,36 @@ int		*scale_column(t_wolf *w, t_texture *t, int size_texture, int *column, int c
 	int y = 0;
 	while (y < column_height)
 	{
-		column[y] = w->mlx.img[size_texture + y * WIN_W];
+		// column[y] = w->mlx.img[size_texture + y * WIN_W];
+		//!! MODE "matrix": column[y] = t->texture[size_texture + y * WIN_W];
+		// column[y] = t->texture[size_texture + (y * t->size / column_height) * WIN_W];
+		column[y] = t->texture[size_texture + (y * t->size / column_height) * t->size];
 		y++;
 	}
 	return (column);
 }
+
+// void	full_column_texture(t_wolf *w, int *column, int column_height, int current_pix)
+// {
+// 	int x = WIN_W / 2;
+// 	int y = 0;
+
+
+// 	// while (x < WIN_W / 2)
+// 	// {
+// 		while (x < WIN_W)
+// 		{
+// 			y = 0;
+// 			while (y < column_height)
+// 			{
+// 				w->mlx.img[x + y * WIN_W] = column[y];
+// 				y++;
+// 			}
+// 			x++;
+// 		}
+// 	// 	x++;
+// 	// }
+// }
 
 void	full_column_texture(t_wolf *w, int *column, int column_height, int current_pix)
 {

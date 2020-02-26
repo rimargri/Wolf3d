@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_25_02_20.c                                 :+:      :+:    :+:   */
+/*   raycast_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:49:02 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/25 23:21:38 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/26 22:55:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int		check_distance(t_vec2 len, t_map *map)
+{
+	if ((int)len.x >= map->w || (int)len.x < 0 ||
+		(int)len.y >= map->h || (int)len.y < 0)
+			return (0);
+	return (1);
+}
 
 void	find_distance(t_wolf *w, int pix)
 {
@@ -29,7 +37,6 @@ void	find_distance(t_wolf *w, int pix)
 			break ;
 		if (w->map.line[(int)len.x + (int)len.y * w->map.w] != ' ')
 				break;
-                // continue;
 		t += 0.01;
 	}
 	raycast(w, t, len, pix, column_angle);
@@ -44,14 +51,14 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix, float column_angle)
 	int			*column;
 
 	r.distance = t;
-	r.wall_color = wall_color(&w->map, len);
-	((r.wall_color == -1) ? (exit(99)) : 1);
+	r.wall_color = color_of_texture(w, w->map.line[(int)len.x + (int)len.y * w->map.w]);
+	if (r.wall_color == -1 || !(check_distance(len, &w->map)))
+		return ;
 	column_height = (int)(WIN_H / (r.distance * cos(column_angle - w->player.look_column_angle)));
-    printf("col_height = %d\n", column_height);
 	texture = choice_texture(w, w->map.line[(int)len.x + (int)len.y * w->map.w]);
-	printf("texture->id = %d\tsize = %d\n", texture->id, texture->size);
+	if (!(texture) || !(check_distance(len, &w->map)))
+		return ;
 	size_texture = size_of_texture(len, w, texture);
-	printf("size_texture = %d\n", size_texture);
 	column = (int*)malloc(sizeof(int) * column_height);
 	((column == NULL) ? exit (99) : 1);
 	column = scale_column(w, texture, size_texture, column, column_height);
