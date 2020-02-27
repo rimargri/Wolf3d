@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 12:13:21 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/26 21:06:26 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:19:29 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_texture	**init_textures(void)
 	int			i = 0;
 	int			count_text;
 
-	count_text = 5;
+	count_text = 6;
 	t = (t_texture**)malloc(sizeof(t_texture*) * count_text);
 	((t == NULL) ? exit(13) : 1);
 	while (i < count_text)
@@ -30,15 +30,44 @@ t_texture	**init_textures(void)
 		t[i]->id = i;
 		i++;
 	}
-	if (!(load_texture("./textures/rei_ayanami.png", t[0])))
+
+				/** *********************************** **/
+				/** *********************************** **/
+				/**            evangelion               **/
+				/** *********************************** **/
+				/** *********************************** **/
+
+
+	// if (!(load_texture("./textures/rei_ayanami.png", t[0])))
+	// 	exit(13);
+	// // if (!(load_texture("./textures/ray.png", t[0])))
+	// // 	exit(13);
+	// if (!(load_texture("./textures/a9ff7837af8a58cbf6642ae954f0c5.png", t[1])))
+	// 	exit(13);
+	// if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-1.png", t[2])))
+	// 	exit(13);
+	// if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-3.png", t[3])))
+	// 	exit(13);
+	// if (!(load_texture("./textures/pepe.png", t[4])))
+	// 	exit(13);
+
+				/** *********************************** **/
+				/** *********************************** **/
+				/**            panelki                  **/
+				/** *********************************** **/
+				/** *********************************** **/
+
+	if (!(load_texture("./textures/panelka_1.png", t[0])))
 		exit(13);
-	if (!(load_texture("./textures/a9ff7837af8a58cbf6642ae954f0c5.png", t[1])))
+	if (!(load_texture("./textures/love_house.png", t[1])))
 		exit(13);
-	if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-1.png", t[2])))
+	if (!(load_texture("./textures/panelka_2.png", t[2])))
 		exit(13);
-	if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-3.png", t[3])))
+	if (!(load_texture("./textures/ray.png", t[3])))
 		exit(13);
 	if (!(load_texture("./textures/pepe.png", t[4])))
+		exit(13);
+	if (!(load_texture("./textures/wallpaper.png", t[5])))
 		exit(13);
 
 	// printf("init_textures *** t[3].text_size = %d\n", t[3]->size);

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/25 23:08:41 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/27 14:08:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ typedef struct		s_load_t
 typedef struct		s_raycast
 {
 	float			distance;
-	int				wall_color;
-	t_texture		*texture;
+	t_vec2			len;
+	// int				wall_color;
+	t_texture		*t;
 }					t_raycast;
 
 typedef struct		s_mlx

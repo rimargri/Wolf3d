@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:45:42 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/26 22:56:09 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:24:18 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,18 @@ int		color_of_texture(t_wolf *w, char c)
 {
 	int color;
 
+	// printf("c = %c\n", c);
 	color = 0;
 	if (c == '0')
 		color = w->t[0]->texture[0];
-	if (c == '1')
+	// printf("color = %d", color);
+	else if (c == '1')
 		color = w->t[1]->texture[149];
-	if (c == '2')
+	else if (c == '2')
 		color = w->t[2]->texture[170];
-	if (c == '3')
+	else if (c == '3')
 		color = w->t[3]->texture[160];
-	if (c >= '4' && c <= '7')
+	else if (c >= '4' && c <= '7')
 		color = w->t[4]->texture[160];
 	else
 		return (-1);
@@ -73,13 +75,13 @@ t_texture	*choice_texture(t_wolf *w, char c)
 
 	if (c == '0')
 		texture = w->t[0];
-	if (c == '1')
+	else if (c == '1')
 		texture = w->t[1];
-	if (c == '2')
+	else if (c == '2')
 		texture = w->t[2];
-	if (c == '3')
+	else if (c == '3')
 		texture = w->t[3];
-	if (c >= '4' && c <= '7')
+	else if (c >= '4' && c <= '7')
 		texture = w->t[4];
 	else
 		texture = NULL;

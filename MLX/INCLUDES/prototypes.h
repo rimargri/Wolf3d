@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/26 22:27:22 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/27 16:53:44 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,8 @@
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
 
-void				raycast(t_wolf *w, float t, t_vec2 len, int pix, float column_angle); // raycast_rexture
+void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle); // raycast_rexture
 // void				raycast(t_wolf *w, float t, t_vec2 len, int pix); //raycast color
-
-/** *********************************** **/
-/** *********************************** **/
-/**        TEMP func for rendering      **/
-/** *********************************** **/
-/** *********************************** **/
-
-int     size_of_texture(t_vec2 offset, t_wolf *w, t_texture *t);
-int		*scale_column(t_wolf *w, t_texture *t, int size_texture, int *column, int column_height);
-void	full_column_texture(t_wolf *w, int *column, int column_height, int current_pix);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -115,9 +105,13 @@ t_texture			**init_textures(void);
 void 				render_texture(t_wolf *wolf, t_texture *t, t_ivec2 offset);
 int					load_texture(char *filename, t_texture *t);
 int		            *texture_column(t_wolf *w, t_texture *t, int text_coord, int column_height);
-void				test_text(t_wolf *w);
+// void				test_text(t_wolf *w);
 int					color_of_texture(t_wolf *w, char c);
 t_texture           *choice_texture(t_wolf *w, char c);
-void               	draw_texture(t_wolf *w, t_vec2 len, t_texture *t, int column_height, int pix);
+// void               	draw_texture(t_wolf *w, t_vec2 len, t_texture *t, int column_height, int pix);
+int					x_start(t_vec2 offset, t_texture *t);
+int					*scale_column(t_raycast r, int *column, int column_height);
+void				full_column_texture(t_wolf *w, int *column, int column_height, int current_pix);
+void				draw_texture_on_background(t_wolf *w, t_texture *t);
 
 #endif

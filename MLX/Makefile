@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/26 22:27:26 by cvernius         ###   ########.fr        #
+#    Updated: 2020/02/27 14:32:09 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ INCL_DIR = ./INCLUDES
 C_FILES = main.c key_press.c draw_rect.c draw_map.c color.c \
 				render_rays.c player.c player_move.c check_player_move.c \
 				validate.c mlx_data.c load_texture.c 
-# C_FILES += raycast_colr.c test_textures.c
-C_FILES += raycast_texture.c text_help_raycast.c
+# C_FILES += render_walls(color).c test_textures.c
+C_FILES += render_walls.c render_texture.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -42,7 +42,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
 $(NAME): $(RAW_OBJ_FILES)
-	make -C ./MinilibX
+	@make -C ./MinilibX
 	@gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
 	@echo "\033[38;2;200;150;200m(*≧ω≦*) \033[38;2;200;200;250m \
 	Mama, ya peresobralsya \033[38;2;200;150;200m (*≧ω≦*)  \033[0m"

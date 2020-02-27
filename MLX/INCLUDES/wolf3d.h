@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/21 11:41:44 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/27 14:06:11 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@
 /** *********************************** **/
 /** *********************************** **/
 
-# define WIN_W 1024
-# define WIN_H 512
+// # define WIN_W 1024
+// # define WIN_H 512
+# define WIN_W 2000
+# define WIN_H (WIN_W / 2)
 # define FOV M_PI / 3.0
 # define FALSE -1
 # define TEXTURE_MAX 10

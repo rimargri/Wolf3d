@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 22:18:12 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 21:55:14 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/02/27 15:44:28 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int		draw_all_hook(t_wolf *w)
 	(w->move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle -= 0.05 : 1);
 	player_move(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
-	draw_background(w);
+	draw_texture_on_background(w, w->t[5]);
+	// draw_background(w);
 	draw_walls(w);
 	draw_player(w);
 	render_rays(w);
