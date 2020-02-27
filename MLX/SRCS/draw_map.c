@@ -25,8 +25,8 @@ void	draw_background(t_wolf *w)
 		i = 0;
 		while (i < WIN_W)
 		{
-			col.r = (255 * j / WIN_H);
-			col.g = (255 * i / WIN_W);
+			col.r = (255 * j / 2594);
+			col.g = (255 * i / 2594);
 			col.b = 193;
 			color = get_color(col);
 			if ((i + j * WIN_W) <= (WIN_H * WIN_W) && (i + j * WIN_W) >= 0)
@@ -86,7 +86,7 @@ void	draw_walls(t_wolf *w)
 			else
 				dr.color = (t_color){-1, -1, -1};
 //__FIXX_IMMIDEATLEY Норма!
-			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), &w->layers->map_view, 0);
+			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), &w->layers->map_view);
 			i++;
 		}
 		j++;

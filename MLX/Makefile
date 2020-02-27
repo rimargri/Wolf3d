@@ -28,7 +28,8 @@ INCL_DIR = ./INCLUDES
 C_FILES = main.c key_press.c draw_rect.c draw_map.c color.c raycast.c \
 				render_rays.c player.c player_move.c check_player_move.c \
 				validate.c mlx_data.c textures.c load_texture.c layers.c \
-				clear_wolf.c fractal.c modes_for_fun.c init_layer.c
+				clear_wolf.c fractal.c modes_for_fun.c init_layer.c \
+				draw_rect_mode.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

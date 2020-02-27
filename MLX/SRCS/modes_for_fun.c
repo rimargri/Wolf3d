@@ -105,5 +105,7 @@ int		count_intence(int k, int x, int y, t_wolf *w)
 		if (w->dem->mirr->intence < 5)
 			w->dem->mirr->intence = 5;
 	}
+	x = 0;
+	y = 0;
 	return (0);
 }

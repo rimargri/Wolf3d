@@ -22,7 +22,7 @@
 
 //__FIXX_IMMIDEATLEY Норма!
 
-void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth, int y_offset)
+void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
 {
 	int i;
 	int j;
@@ -38,9 +38,9 @@ void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth, int y_offset)
 		while (j < h)
 		{
 			offset.x = dr.firstpix.x + i;
-			offset.y = dr.firstpix.y + j + y_offset;
-			if ((offset.x + (offset.y + y_offset) * WIN_W) <= (WIN_H * WIN_W) && (offset.x + (offset.y + y_offset) * WIN_W) >= 0)
-				d_labyrinth->img[offset.x + (offset.y + y_offset) * WIN_W] = color;
+			offset.y = dr.firstpix.y + j;
+			if ((offset.x + (offset.y) * WIN_W) <= (WIN_H * WIN_W) && (offset.x + (offset.y) * WIN_W) >= 0)
+				d_labyrinth->img[offset.x + (offset.y) * WIN_W] = color;
 			j++;
 		}
 		i++;

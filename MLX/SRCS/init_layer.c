@@ -8,6 +8,7 @@
 void		clear_dinamic_img(t_layer *layer)
 {
 	clear_layer(&layer->d_labyrinth);
+//	clear_layer(&layer->d_player);
 	clear_layer(&layer->d_player);
 }
 

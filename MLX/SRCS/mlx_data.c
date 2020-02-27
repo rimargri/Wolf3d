@@ -41,11 +41,29 @@ int		draw_all_hook(t_wolf *w)
 	player_move(w);
 	draw_player(w);
 	render_rays(w);
-	render_walls(w);
+	//с модами
+	render_walls_mode(w);
+	//без модов
+//    render_walls(w);
 //	test_text(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
 	return (0);
+}
+
+int		move_player_mouse(int x, int y, t_wolf *w)
+{
+	static int		prev_x;
+
+	if (prev_x < x)
+		w->player.look_column_angle.x += 0.05;
+	else if (prev_x > x)
+		w->player.look_column_angle.x -= 0.05;
+	prev_x = x;
+	y = 0;
+	x = 0;
+	return (0);
+
 }
 
 void	check_hooks_loops(t_wolf *wolf)
@@ -55,5 +73,6 @@ void	check_hooks_loops(t_wolf *wolf)
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 3, 0, &key_unpress, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 4, 0, &count_intence, &wolf->mlx);
+	mlx_hook(wolf->mlx.wptr, 6, 0, &move_player_mouse, &wolf->mlx);
 	mlx_loop(wolf->mlx.mptr);
 }

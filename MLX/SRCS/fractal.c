@@ -4,10 +4,9 @@
 
 #include "wolf3d.h"
 
-int			fract_get_color(int iteration, int max_iteration, int shift)
+int			fract_get_color(int iteration, int max_iteration)
 {
 	double			t;
-	static float	shift_color;
 	int				red;
 	int				green;
 	int				blue;
@@ -16,10 +15,8 @@ int			fract_get_color(int iteration, int max_iteration, int shift)
 		return (0xAAFF77FF);
 	t = ((double)iteration / (double)max_iteration);
 	green = (int)(9 * (1 - t) * pow(t, 3) * 255);
-	blue = (int)(shift_color * pow((1 - t), 3) * t * 255);
+	blue = (int)(8.5 * pow((1 - t), 3) * t * 255);
 	red  = (int)(15 * pow((1 - t), 2) * pow(t, 2) * 255);
-	if (shift % 50 == 0)
-		shift_color += 0.5;
 	if (blue % 255 == 0 || blue % 254 == 0 || blue % 253 == 0 || blue % 252 == 0)
 		blue += 20;
 	return (0xCC << 24 | (red) << 16 | (green) << 8 | (blue));
@@ -77,7 +74,7 @@ int			get_fractal_img(t_draw_fractal *full)
 			full->count.constant.x = -1.0 + x * full->count.cur.x;
 			image_set_pixel(&full->drawing, x, y,
 							fract_get_color(julia(&full->count),
-									  full->count.max_iteration, full->count.color_shift));
+									  full->count.max_iteration));
 			x++;
 		}
 		y++;

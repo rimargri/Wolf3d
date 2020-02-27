@@ -33,16 +33,16 @@ void	clear_layers(t_layer **layer)
 	free(*layer);
 	layer = NULL;
 }
-
-void	clear_textures(t_texture **t)
-{
-
-}
+//
+//void	clear_textures(t_texture **t)
+//{
+//
+//}
 
 void	clear_wolf(t_wolf **w)
 {
 	clear_layers(&((*w)->layers));
-	clear_textures((*w)->t);
+//	clear_textures((*w)->t);
 	free((*w)->map.line);
 	(*w)->map.line = NULL;
 //	if ((*w)->t != NULL)

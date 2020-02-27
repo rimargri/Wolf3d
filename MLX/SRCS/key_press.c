@@ -129,7 +129,7 @@ int		key_press(int k, t_wolf *w)
 		w->space_was_pressed = !(w->space_was_pressed);
 
 	//__FIXX_IMMIDEATLEY printf, если что
-	printf("%d", k);
+//	printf("%d", k);
 	return (0);
 }
 

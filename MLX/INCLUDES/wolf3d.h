@@ -38,8 +38,8 @@
 /** *********************************** **/
 /** *********************************** **/
 
-# define WIN_W 1024
-# define WIN_H 512
+# define WIN_W 5120 / 4
+# define WIN_H 2880 / 4
 # define FOV M_PI / 3.0
 # define FALSE -1
 # define TRUE 0
