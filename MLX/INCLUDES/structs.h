@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/27 14:08:49 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/01 23:05:12 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct		s_raycast
 	t_vec2			len;
 	// int				wall_color;
 	t_texture		*t;
+	t_vec2			hit;
 }					t_raycast;
 
 typedef struct		s_mlx
@@ -107,12 +108,6 @@ typedef struct		s_mlx
 	void			*iptr;
 	int				*img;
 }					t_mlx;
-
-// typedef struct		s_image
-// {
-// 	void			*iptr;
-// 	int				*img;
-// }					t_image;
 
 typedef struct		s_wolf
 {

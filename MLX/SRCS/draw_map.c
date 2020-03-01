@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/27 16:53:17 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/01 17:11:13 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,19 @@ int		rect_h(int h)
 	return (WIN_H / h);
 }
 
-void	draw_background(t_wolf *w)
+void	draw_background_on_map(t_wolf *w)
 {
 	int x;
 	int y;
-	t_color col;
 	int color;
 
 	y = 0;
+	color = get_color((t_color){120, 120, 150});
 	while (y < WIN_H)
 	{
 		x = 0;
-		while (x < WIN_W)
+		while (x < WIN_W / 2)
 		{
-			col.r = (255 * y / WIN_H);
-			col.g = (255 * x / WIN_W);
-			col.b = 193;
-			color = get_color(col);
 			if ((x + y * WIN_W) <= (WIN_H * WIN_W) && (x + y * WIN_W) >= 0) 
 				w->mlx.img[x + y * WIN_W] = color;
 			x++;
@@ -47,17 +43,15 @@ void	draw_background(t_wolf *w)
 	}
 }
 
-// column[y] = r.t->texture[x + (y * r.t->size / column_height) * r.t->size];
-
-void	draw_texture_on_background(t_wolf *w, t_texture *t)
+void	draw_texture_on_celling(t_wolf *w, t_texture *t)
 {
 	int x;
 	int y;
 
 	y = 0;
-	while (y < WIN_H)
+	while (y < WIN_H / 2)
 	{
-		x = 0;
+		x = WIN_W / 2;
 		while (x < WIN_W)
 		{
 			w->mlx.img[x + y * WIN_W] = t->texture[x + y * t->size];
@@ -67,6 +61,23 @@ void	draw_texture_on_background(t_wolf *w, t_texture *t)
 	}
 }
 
+void	draw_texture_on_floor(t_wolf *w, t_texture *t)
+{
+	int x;
+	int y;
+
+	y = WIN_H / 2;
+	while (y < WIN_H)
+	{
+		x = WIN_W / 2;
+		while (x < WIN_W)
+		{
+			w->mlx.img[x + y * WIN_W] = t->texture[x + y * t->size];
+			x++;
+		}
+		y++;
+	}
+}
 
 void	draw_walls(t_wolf *w)
 {

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/27 16:53:44 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/01 23:09:02 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void				player_move(t_wolf *w);
 
 void				draw_walls(t_wolf *w);
 void				draw_background(t_wolf *w);
+void				draw_floor(t_wolf *w);
+void				draw_celling(t_wolf *w);
+void				draw_texture_on_celling(t_wolf *w, t_texture *t);
+void				draw_texture_on_floor(t_wolf *w, t_texture *t);
+void				draw_background_on_map(t_wolf *w);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -109,9 +114,9 @@ int		            *texture_column(t_wolf *w, t_texture *t, int text_coord, int co
 int					color_of_texture(t_wolf *w, char c);
 t_texture           *choice_texture(t_wolf *w, char c);
 // void               	draw_texture(t_wolf *w, t_vec2 len, t_texture *t, int column_height, int pix);
-int					x_start(t_vec2 offset, t_texture *t);
+int					x_start(t_vec2 offset, t_texture *t, t_vec2 *hit);
 int					*scale_column(t_raycast r, int *column, int column_height);
 void				full_column_texture(t_wolf *w, int *column, int column_height, int current_pix);
-void				draw_texture_on_background(t_wolf *w, t_texture *t);
+t_texture			*cardinal_points(t_wolf *w, t_vec2 len);
 
 #endif

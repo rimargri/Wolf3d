@@ -6,22 +6,22 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/27 17:19:15 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/01 23:08:50 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int     x_start(t_vec2 offset, t_texture *t)
+int     x_start(t_vec2 offset, t_texture *t, t_vec2 *hit)
 {
 	int		x;
-	t_vec2	pix;
+	// t_vec2	pix;
 
-	pix.x = offset.x - floor(offset.x + 0.5);
-	pix.y = offset.y - floor(offset.y + 0.5);
-	x = pix.x * t->size;
-	if (fabs(pix.y) > fabs(pix.x))
-		x = pix.y * t->size;
+	hit->x = offset.x - floor(offset.x + 0.5);
+	hit->y = offset.y - floor(offset.y + 0.5);
+	x = hit->x * t->size;
+	if (fabs(hit->y) > fabs(hit->x))
+		x = hit->y * t->size;
 	if (x < 0)
 		x += t->size;
 	return (x);
@@ -33,7 +33,7 @@ int		*scale_column(t_raycast r, int *column, int column_height)
 	int x;
 
 	y = 0;
-	x = x_start(r.len, r.t);
+	x = x_start(r.len, r.t, &r.hit);
 	while (y < column_height)
 	{
 		// ?? MODE "matrix": 

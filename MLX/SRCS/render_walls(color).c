@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_copy.c                                     :+:      :+:    :+:   */
+/*   render_walls(color).c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/24 22:00:50 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/01 23:13:21 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,32 @@ void	render_walls(t_wolf *w)
 		current_pix++;
 	}
 }
+
+
+
+
+
+
+
+// 	if (m->ray.hitx < m->ray.eps)
+// 	{
+// 		tmp_arr = ((t_wall *)m->objs[index].data)->state1->texture_east;
+// //		SDL_Log("%sEAST%s\n", KGRN, KGRN);
+// 	}
+// 	else if (m->ray.hitx > m->ray.hity && m->ray.hity > m->ray.eps)
+// 	{
+// 		tmp_arr = ((t_wall *)m->objs[index].data)->state1->texture_west;
+// //		SDL_Log("%sWEST%s\n", KYEL, KYEL);
+// 	}
+// 	else if (m->ray.hity > m->ray.eps)
+// 	{
+// 		tmp_arr = ((t_wall *)m->objs[index].data)->state1->texture_north;
+// //		SDL_Log("%sNORTH%s\n", KBLU, KBLU);
+// 	}
+// 	else
+// 	{
+// 		tmp_arr = ((t_wall *)m->objs[index].data)->state1->texture_south;
+// //		SDL_Log("%sSOUTH%s\n", KCYN, KCYN);
+// 	}
+// 	return (tmp_arr);
+// }

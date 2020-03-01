@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 12:13:21 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/27 17:19:29 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/01 19:31:26 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_texture	**init_textures(void)
 	int			i = 0;
 	int			count_text;
 
-	count_text = 6;
+	count_text = 9;
 	t = (t_texture**)malloc(sizeof(t_texture*) * count_text);
 	((t == NULL) ? exit(13) : 1);
 	while (i < count_text)
@@ -67,10 +67,15 @@ t_texture	**init_textures(void)
 		exit(13);
 	if (!(load_texture("./textures/pepe.png", t[4])))
 		exit(13);
-	if (!(load_texture("./textures/wallpaper.png", t[5])))
+	if (!(load_texture("./textures/night_sky_3.png", t[5])))
 		exit(13);
-
-	// printf("init_textures *** t[3].text_size = %d\n", t[3]->size);
+	if (!(load_texture("./textures/carpet.png", t[6])))
+		exit(13);
+	if (!(load_texture("./textures/blacktext.png", t[7])))
+		exit(13);
+	if (!(load_texture("./textures/planet_surface.png", t[8])))
+		exit(13);
+	// printf("init_textures *** t[6].text_size = %d\n", t[6]->size);
 	return (t);
 }
 
@@ -102,7 +107,6 @@ int		load_texture(char *filename, t_texture *t)
 	// 	exit (13);
 	// }
 	t->texture = (int*)malloc(sizeof(int) * load_texture.w * load_texture.h);
-	// printf("cringe\n");
 	while (pix.y < load_texture.h)
 	{
 		pix.x = 0;
