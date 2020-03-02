@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/01 23:08:50 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/02 23:31:01 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,21 @@
 int     x_start(t_vec2 offset, t_texture *t, t_vec2 *hit)
 {
 	int		x;
-	// t_vec2	pix;
+	t_vec2	pix;
 
 	hit->x = offset.x - floor(offset.x + 0.5);
 	hit->y = offset.y - floor(offset.y + 0.5);
+
+	// hit->x = floor(offset.x);		// перевод в локальные координаты
+	// hit->y = floor(offset.y);
+	// hit->x = hit->x - 0.5;
+	// hit->y = hit->y - 0.5;
+	// printf("hit->x = %f\n", hit->x);
+
+	// pix.x = offset.x - hit->x; // + offset.x;
+	// pix.y = offset.y - hit->y; // + offset.y;
+	// hit->x = offset.x + floor(offset.x - 0.5);
+	// hit->y = offset.y + floor(offset.y - 0.5);
 	x = hit->x * t->size;
 	if (fabs(hit->y) > fabs(hit->x))
 		x = hit->y * t->size;

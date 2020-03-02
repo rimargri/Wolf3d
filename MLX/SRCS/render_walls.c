@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:49:02 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/01 23:02:55 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/02 23:49:08 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	find_distance(t_wolf *w, int pix)
 			break ;
 		if (w->map.line[(int)r.len.x + (int)r.len.y * w->map.w] != ' ')
 				break;
-		r.distance += 0.01;
+		r.distance += 0.02;
 	}
 	raycast(w, r, pix, column_angle);
 }
