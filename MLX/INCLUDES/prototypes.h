@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 21:06:38 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 23:33:47 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
 
-// void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle);	// raycast_rexture
-void				raycast(t_wolf *w, float t, t_vec2 len, int pix);				//raycast color
+void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle);	// raycast_rexture
+// void				raycast(t_wolf *w, float t, t_vec2 len, int pix);				//raycast color
 
 // Hchau's part
 void	            raycast_mode(t_wolf *w, float t, t_vec2 len, int pix, int y_offset);
@@ -85,6 +85,7 @@ void				draw_background_on_map(t_wolf *w);
 
 int					wall_color(t_map *map, t_vec2 len);
 int					get_color(t_color color);
+int					color_of_wall(char c);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -92,7 +93,7 @@ int					get_color(t_color color);
 /** *********************************** **/
 /** *********************************** **/
 
-void    			draw_rect(t_drawrect v, int w, int h, t_wolf *wolf);
+// void    			draw_rect(t_drawrect v, int w, int h, t_wolf *wolf);
 
 //Hchau's part
 void    			draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth);

@@ -1,6 +1,14 @@
-//
-// Created by Hugor Chau on 2020-02-25.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_layer.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/03 23:39:23 by cvernius          #+#    #+#             */
+/*   Updated: 2020/03/03 23:39:25 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "wolf3d.h"
 
@@ -15,8 +23,8 @@ void		clear_dinamic_img(t_layer *layer)
 void		prepare_static_layers(t_wolf *w)
 {
 	clear_layer(&w->layers->map_view);
+	draw_background_on_map(w);
 	draw_walls(w);
-	draw_background(w);
 }
 
 void		change_img_coord(t_img *img, t_ivec2 *begin)
@@ -62,15 +70,15 @@ void		init_all_img(t_wolf *w)
 	res = (t_layer *)malloc(sizeof(t_layer));
 	res->draw_shift = 0.0;
 	res->count_layers = COUNT_LAYERS;
-	init_fractol(&res->d_fractol);
-	init_img(&res->d_fractol_draw, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
+	// init_fractol(&res->d_fractol);
+	// init_img(&res->d_fractol_draw, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->d_labyrinth, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->d_player, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->map_view, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->mask, w->mlx.mptr, FALSE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->background, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	//если нужно по дефолту ставить имадж на других координатах, используй ф-ию (change_img_coord)
-	draw_fractal(&res->d_fractol, &res->d_fractol_draw);
+	// draw_fractal(&res->d_fractol, &res->d_fractol_draw);
 	w->layers = res;
 	prepare_static_layers(w);
 }

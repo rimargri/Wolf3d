@@ -6,11 +6,16 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/02 23:31:01 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 23:42:59 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*
+** hit->x, hit->y check it in cardinal_points
+** if its not nessesary, remove part "hit" from struct in structs.h
+*/
 
 int     x_start(t_vec2 offset, t_texture *t, t_vec2 *hit)
 {
@@ -19,17 +24,6 @@ int     x_start(t_vec2 offset, t_texture *t, t_vec2 *hit)
 
 	hit->x = offset.x - floor(offset.x + 0.5);
 	hit->y = offset.y - floor(offset.y + 0.5);
-
-	// hit->x = floor(offset.x);		// перевод в локальные координаты
-	// hit->y = floor(offset.y);
-	// hit->x = hit->x - 0.5;
-	// hit->y = hit->y - 0.5;
-	// printf("hit->x = %f\n", hit->x);
-
-	// pix.x = offset.x - hit->x; // + offset.x;
-	// pix.y = offset.y - hit->y; // + offset.y;
-	// hit->x = offset.x + floor(offset.x - 0.5);
-	// hit->y = offset.y + floor(offset.y - 0.5);
 	x = hit->x * t->size;
 	if (fabs(hit->y) > fabs(hit->x))
 		x = hit->y * t->size;
@@ -67,7 +61,8 @@ void	full_column_texture(t_wolf *w, int *column, int column_height, int current_
 	{
 		pix.y = y + WIN_H / 2 - column_height / 2;
 		if (pix.y >= 0 && pix.y < WIN_H)
-			w->mlx.img[pix.x + pix.y * WIN_W] = column[y]; 
+			// w->mlx.img[pix.x + pix.y * WIN_W] = column[y]; 
+			w->layers->background.img[pix.x + pix.y * WIN_W] = column[y]; 
 		y++;
 	}
 }

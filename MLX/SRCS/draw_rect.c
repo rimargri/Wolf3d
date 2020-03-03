@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 21:39:54 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 22:25:50 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
 			offset.x = dr.firstpix.x + i;
 			offset.y = dr.firstpix.y + j;
 			if ((offset.x + (offset.y) * WIN_W) <= (WIN_H * WIN_W) && (offset.x + offset.y * WIN_W) >= 0)
-				d_labyrinth->img[offset.x + (offset.y) * WIN_W] = color;
+				d_labyrinth->img[offset.x + (offset.y) * WIN_W] = dr.color;
 				// wolf->mlx.img[offset.x + offset.y * WIN_W] = dr.color;
 			j++;
 		}

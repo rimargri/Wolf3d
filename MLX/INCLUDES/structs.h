@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 21:18:10 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 23:29:35 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ typedef struct		s_player
 {
 	t_vec2			pos;
 	t_ivec2			transform;
-	float			look_column_angle;
+	// float			look_column_angle;
+	t_vec2			look_column_angle;
 	t_direction		move;
 }					t_player;
 
@@ -108,16 +109,16 @@ typedef struct		s_raycast
 	t_vec2			hit;
 }					t_raycast;
 
-typedef struct      s_img
+typedef struct		s_img
 {
-    int             on;
-    size_t          pixels;
-    void            *mptr;
-    void            *iptr;
-    int             *img;
-    t_ivec2         *begin;
-    t_ivec2         *size;
-}                   t_img;
+	int				on;
+	size_t			pixels;
+	void			*mptr;
+	void			*iptr;
+	int				*img;
+	t_ivec2			*begin;
+	t_ivec2			*size;
+}					t_img;
 
 typedef struct		s_mlx
 {
@@ -179,7 +180,7 @@ typedef struct		s_draw_fractal
 
 //все динамичные изображения я отмечаю как d_, это значит, что их
 //необходимо обнулять и переписывать каждый раз после ивентов
-typedef struct		s_layer
+typedef struct			s_layer
 {
 	float				draw_shift;
 	int					count_layers;
@@ -191,21 +192,16 @@ typedef struct		s_layer
 	t_img				background;
 	t_img				mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ
 //будем расширять здесь до бесконечности - на сколько креатива хватит
-}					t_layer;
+}						t_layer;
 
 typedef struct		s_wolf
 {
 	t_mlx			mlx;
 	t_player		player;
 	t_map			map;
-// 	t_direction		move;
-// 	t_texture		**t;
-// 	int				space_was_pressed;
-// }					t_wolf;
-
-	t_layer			*layers;//все имаджи, где хочешь, там рисуешь
+	t_layer			*layers;		//все имаджи, где хочешь, там рисуешь
 	t_texture		**t;
-	t_dem			*dem;
+	// t_dem			*dem;
 	int				space_was_pressed;
 }					t_wolf;
 

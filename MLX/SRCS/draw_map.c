@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 21:32:15 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 23:41:33 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	draw_texture_on_celling(t_wolf *w, t_texture *t)
 		x = WIN_W / 2;
 		while (x < WIN_W)
 		{
-			w->mlx.img[x + y * WIN_W] = t->texture[x + y * t->size];
+			w->layers->background.img[x + y * WIN_W] = t->texture[x + y * t->size];
 			x++;
 		}
 		y++;
@@ -76,7 +76,7 @@ void	draw_texture_on_floor(t_wolf *w, t_texture *t)
 		x = WIN_W / 2;
 		while (x < WIN_W)
 		{
-			w->mlx.img[x + y * WIN_W] = t->texture[x + y * t->size];
+			w->layers->background.img[x + y * WIN_W] = t->texture[x + y * t->size];
 			x++;
 		}
 		y++;
@@ -105,17 +105,9 @@ void	draw_walls(t_wolf *w)
 			dr.firstpix.y = y * rect_h(w->map.h);
 			if (w->map.line[x + y * w->map.w] >= '0' && w->map.line[x + y * w->map.w] <= '3')
 				dr.color = color_of_texture(w, w->map.line[x + y * w->map.w]);
-			else if ((w->map.line[x + y * w->map.w]) == '4')
-				dr.color = get_color((t_color){0, 0, 0});					// black
-			else if ((w->map.line[x + y * w->map.w]) == '5')
-				dr.color = get_color((t_color){240, 100, 100});				// red
-			else if ((w->map.line[x + y * w->map.w]) == '6')
-				dr.color = get_color((t_color){240, 240, 240});				// gray
-			else if ((w->map.line[x + y * w->map.w]) == '7')
-				dr.color = get_color((t_color){100, 150, 100});
-			else
-				dr.color = get_color((t_color){-1, -1, -1});
-			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), w);
+			else if (w->map.line[x + y * w->map.w] >= '4' && w->map.line[x + y * w->map.w] <= '7')
+				dr.color = color_of_wall(w->map.line[x + y * w->map.w]);
+			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), &w->layers->map_view);
 			x++;
 		}
 		y++;

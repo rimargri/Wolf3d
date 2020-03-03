@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:49:02 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/02 23:49:08 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 23:38:54 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	find_distance(t_wolf *w, int pix)
 
 	r.distance = 0.0f;
 	r.len = (t_vec2){0.0f, 0.0f};
-	column_angle = w->player.look_column_angle - FOV / 2 + FOV * pix /
+	column_angle = w->player.look_column_angle.x - FOV / 2 + FOV * pix /
 														(float)(WIN_W / 2);
 	while (r.distance < 100)
 	{
@@ -47,7 +47,7 @@ void	raycast(t_wolf *w, t_raycast r, int pix, float column_angle)
 	int			column_height;
 	int			*column;
 
-	column_height = (int)(WIN_H / (r.distance * cos(column_angle - w->player.look_column_angle)));
+	column_height = (int)(WIN_H / (r.distance * cos(column_angle - w->player.look_column_angle.x)));
 	// r.t = choice_texture(w, w->map.line[(int)r.len.x + (int)r.len.y * w->map.w]);
 	r.t = cardinal_points(w, r.len);
 	if (!(r.t) || !(check_distance(r.len, &w->map)))

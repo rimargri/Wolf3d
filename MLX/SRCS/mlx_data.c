@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 22:18:12 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 21:48:58 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 23:33:15 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	change_wolf(t_wolf *w)
 	//__FIXX_IF_YOU_WANNA_подумать о повороте головы
 	(w->player.move.camera == KEY_ARROW_UP ? w->player.move.camera_up += 0.02 : 0);
 	(w->player.move.camera == KEY_ARROW_DOWN ? w->player.move.camera_up -= 0.02 : 0);
-	get_wolf_with_modes(w);
+	// get_wolf_with_modes(w);
 	clear_dinamic_img(w->layers);
 }
 
@@ -65,10 +65,12 @@ int		draw_all_hook(t_wolf *w)
 	player_move(w);
 	draw_player(w);
 	render_rays(w);
+	draw_texture_on_floor(w, w->t[7]);
+	draw_texture_on_celling(w, w->t[5]);
 	//с модами
-	render_walls_mode(w);
+	// render_walls_mode(w);
 	//без модов
-//    render_walls(w);
+   render_walls(w);
 //	test_text(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
@@ -96,7 +98,7 @@ void	check_hooks_loops(t_wolf *wolf)
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 3, 0, &key_unpress, &wolf->mlx);
-	mlx_hook(wolf->mlx.wptr, 4, 0, &count_intence, &wolf->mlx);
+	// mlx_hook(wolf->mlx.wptr, 4, 0, &count_intence, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 6, 0, &move_player_mouse, &wolf->mlx);
 	mlx_loop(wolf->mlx.mptr);
 }

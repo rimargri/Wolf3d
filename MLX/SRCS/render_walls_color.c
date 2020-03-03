@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_walls(color).c                              :+:      :+:    :+:   */
+/*   render_walls_color.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 22:09:00 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 23:30:22 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
     t_ivec2		firstpix;
 
 	r.distance = t;
-	r.wall_color = wall_color(&w->map, len);
+	r.wall_color = color_of_wall(w->map.line[(int)len.x + (int)len.y * w->map.w]);
 	if (r.wall_color == -1)
 		return ;
 	column_height = (int)(WIN_H / r.distance);
-    // printf("col_height = %d\n", column_height);
 	firstpix.x = (int){WIN_W / 2 + pix};
 	firstpix.y = (int){WIN_H / 2 - column_height / 2};
 	draw_rect((t_drawrect){firstpix, r.wall_color}, 1, column_height, &w->layers->d_labyrinth);
