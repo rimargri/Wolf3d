@@ -25,15 +25,14 @@ void	wolf_error(char *reason)
 
 void	check_simbols(t_map *map, char *buf)
 {
-	//ты считываешь фигуру подряд, без разделителей строки,
-	//поэтому перепись получилась довольно большая, позже
-	//разобью
 	int		i;
 	int		cur_w;
+	int		x_flag;
 
 	map->h = 0;
 	map->w = 0;
 	cur_w = 0;
+	x_flag = 0;
 	i = 0;
 	while (buf[i])
 	{
@@ -41,22 +40,23 @@ void	check_simbols(t_map *map, char *buf)
 		{
 			map->h++;
 			if (map->w < cur_w)
-			{
 				map->w = cur_w;
-			}
 			cur_w = 0;
 		}
 		else
 		{
 			if ((buf[i] < '0' || buf[i] > '9') && buf[i] != ' ' && buf[i] != 'x')
 				{
-					free(map->line);
-					wolf_error(MAP_SIMB);
+					if (buf[i] == 'x')
+						x_flag++;
+					else
+						wolf_error(MAP_SIMB);
 				}
 			cur_w++;
 		}
 		i++;
 	}
+	x_flag > 1 ? wolf_error(EXNTRA_X) : 0;
 }
 
 void	make_empty_map(t_map *map)

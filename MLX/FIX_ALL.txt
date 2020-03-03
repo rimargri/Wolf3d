@@ -1,0 +1,17 @@
+***************************************************************************
+*** Flags: *** _FIXX_IMMIDIATLEY *** _FIXX_LATER *** _FIXX_IF_YOU_WANNA ***
+***************************************************************************
+
+Here are your tasks:
+
+1 ./SRCS/draw_map.c://__FIXX_IMMIDEATLEY Норма!
+2 ./SRCS/draw_rect.c://__FIXX_IMMIDEATLEY Норма!
+3 ./SRCS/draw_rect_mode.c:    int current_pix;//__FIXX_IMMIDEATLEY чтобы вместиться в норму, можно сделать t_ivec2
+4 ./SRCS/key_press.c:** //__FIXX_IMMIDEATLEY need to think about managing processes
+5 ./SRCS/key_press.c://__FIXX_LATER зеркальный пол не отключается, если пытаться переключать на другие
+6 ./SRCS/key_press.c://__FIXX_LATER моды, пока не отключишь его намеренно
+7 ./SRCS/key_press.c:	//__FIXX_IMMIDEATLEY printf, если что
+8 ./SRCS/mlx_data.c:	//__FIXX_IF_YOU_WANNA_подумать о повороте головы
+9 ./SRCS/modes_for_fun.c://__FIXX_IMMIDEATLEY Перенести выделение в другой файл
+10 ./SRCS/player.c://__FIXX_IMMIDEATLEY !!!
+11 ./SRCS/raycast.c://__FIXX_IMMIDEATLEY Непонятный код

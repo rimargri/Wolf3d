@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/22 19:11:39 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:39:54 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@
 ** до правого пикселя в нижнем правом - весь rectcolumn_angle отрисован
 */
 
-void    draw_rect(t_drawrect dr, int w, int h, t_wolf *wolf)
+// void    draw_rect(t_drawrect dr, int w, int h, t_wolf *wolf)
+
+//__FIXX_IMMIDEATLEY Норма!
+
+void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
 {
 	int i;
 	int j;
@@ -35,8 +39,9 @@ void    draw_rect(t_drawrect dr, int w, int h, t_wolf *wolf)
 		{
 			offset.x = dr.firstpix.x + i;
 			offset.y = dr.firstpix.y + j;
-			if ((offset.x + offset.y * WIN_W) <= (WIN_H * WIN_W) && (offset.x + offset.y * WIN_W) >= 0)
-				wolf->mlx.img[offset.x + offset.y * WIN_W] = dr.color;
+			if ((offset.x + (offset.y) * WIN_W) <= (WIN_H * WIN_W) && (offset.x + offset.y * WIN_W) >= 0)
+				d_labyrinth->img[offset.x + (offset.y) * WIN_W] = color;
+				// wolf->mlx.img[offset.x + offset.y * WIN_W] = dr.color;
 			j++;
 		}
 		i++;

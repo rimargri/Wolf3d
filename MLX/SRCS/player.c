@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:40:26 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/22 18:56:01 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:53:53 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,22 @@ t_vec2		first_empty_place(t_wolf *w)
 		p.x++;
 	}
 	if (!(w->map.line[(int)p.x + (int)p.y * w->map.w] == ' '))
-		wolf_error(MAP_IS_FULL);
+		wolf_error(NO_SPACE_FOR_PLAYER);
 	return (p);
+}
+
+t_direction	init_move(void)
+{
+	t_direction move;
+
+	move.forward = FALSE;
+	move.back = FALSE;
+	move.right = FALSE;
+	move.left = FALSE;
+	move.camera = 0;
+//__FIXX_IMMIDEATLEY !!!
+	move.camera_up = 0.0;
+	return (move);
 }
 
 void	init_player(t_wolf *w)
@@ -65,7 +79,10 @@ void	init_player(t_wolf *w)
 	t_player p;
 
 	p.pos = find_player(w);
-	p.look_column_angle = 0.0;
+	// p.look_column_angle = 0.0;
+	p.look_column_angle.x = 0.0;
+	p.look_column_angle.y = 0.0;
+	p.move = init_move();
 	w->player = p;
 }
 
@@ -74,5 +91,5 @@ void	draw_player(t_wolf *w)
 	w->player.transform.x = w->player.pos.x * rect_w(w->map.w);
 	w->player.transform.y = w->player.pos.y * rect_h(w->map.h);
 	draw_rect((t_drawrect){w->player.transform,
-					get_color((t_color){255, 255, 255})}, 4, 4, w);
+					get_color((t_color){255, 255, 255})}, 4, 4, &w->layers->d_player);
 }

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/01 23:09:02 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:06:38 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
 
-void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle); // raycast_rexture
-// void				raycast(t_wolf *w, float t, t_vec2 len, int pix); //raycast color
+// void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle);	// raycast_rexture
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix);				//raycast color
+
+// Hchau's part
+void	            raycast_mode(t_wolf *w, float t, t_vec2 len, int pix, int y_offset);
+void	            render_walls_mode(t_wolf *w);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -90,6 +94,10 @@ int					get_color(t_color color);
 
 void    			draw_rect(t_drawrect v, int w, int h, t_wolf *wolf);
 
+//Hchau's part
+void    			draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth);
+void				clear_wolf(t_wolf **w);
+
 /** *********************************** **/
 /** *********************************** **/
 /**            validation               **/
@@ -118,5 +126,33 @@ int					x_start(t_vec2 offset, t_texture *t, t_vec2 *hit);
 int					*scale_column(t_raycast r, int *column, int column_height);
 void				full_column_texture(t_wolf *w, int *column, int column_height, int current_pix);
 t_texture			*cardinal_points(t_wolf *w, t_vec2 len);
+// void				test_text(t_wolf *w);
+
+/** *********************************** **/
+/** *********************************** **/
+/**              images                 **/
+/** *********************************** **/
+/** *********************************** **/
+
+void				init_all_img(t_wolf *w);
+void				clear_dinamic_img(t_layer *layer);
+void				put_layer_mask(t_img *image, t_img *mask);
+void				put_color_mask(t_img *image, int mask, int x, int y);
+void				clear_layer(t_img *image);
+void				prepare_static_layers(t_wolf *w);
+void				init_fractol(t_draw_fractal **f);
+void				change_img_coord(t_img *img, t_ivec2 *begin);
+void				draw_fractal(t_draw_fractal **fractal, t_img *f);
+void				draw_layers(t_wolf *w);
+
+/** *********************************** **/
+/** *********************************** **/
+/**           modes(dementions)         **/
+/** *********************************** **/
+/** *********************************** **/
+
+t_dem				*init_dem(void);
+void				get_wolf_with_modes(t_wolf *w);
+int					count_intence(int k, int x, int y, t_wolf *w);
 
 #endif

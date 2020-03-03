@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/01 17:11:13 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/03 21:32:15 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ void	draw_background_on_map(t_wolf *w)
 		x = 0;
 		while (x < WIN_W / 2)
 		{
-			if ((x + y * WIN_W) <= (WIN_H * WIN_W) && (x + y * WIN_W) >= 0) 
-				w->mlx.img[x + y * WIN_W] = color;
+			// col.r = (255 * y / 2594);
+			// col.g = (255 * x / 2594);
+			// col.b = 193;
+			// color = get_color(col);
+			if ((x + y * WIN_W) <= (WIN_H * WIN_W) && (x + y * WIN_W) >= 0)
+				w->layers->background.img[x + y * WIN_W] = color;
 			x++;
 		}
 		y++;
