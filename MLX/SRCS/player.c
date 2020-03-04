@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:40:26 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 15:43:47 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:08:39 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	init_player(t_wolf *w)
 	t_player p;
 
 	p.pos = find_player(w);
+	printf("str = %d\n", strlen(w->map.line));
 	// p.look_column_angle = 0.0;
 	p.look_column_angle.x = 0.0;
 	p.look_column_angle.y = 0.0;

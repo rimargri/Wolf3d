@@ -6,11 +6,13 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 15:41:56 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:20:09 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+// #include "stdio.h"
 
 /*
 **		bp			: the number of bits per pixels.
@@ -27,6 +29,7 @@ int		main(int ac, char **maps)
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
 	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
 	wolf->map = validate(ac, maps);
+	printf("strlen == %d\n", strlen(wolf->map.line));
 	init_player(wolf);
 	wolf->t = init_textures();
 	wolf->mlx = init_mlx();

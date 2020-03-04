@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 15:29:22 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:11:28 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,14 @@ void	draw_walls(t_wolf *w)
 			}
 			dr.firstpix.x = x * rect_w(w->map.w);				// перевод координат в масштаб окна из масштаба карты
 			dr.firstpix.y = y * rect_h(w->map.h);
-			dr.color = choice_color(w, w->map.line[x + y * w->map.w]);
+			if (w->map.line[x + y * w->map.w] >= '0' && w->map.line[x + y * w->map.w] <= '7')
+				dr.color = choice_color(w, w->map.line[x + y * w->map.w]);
 			// if (w->map.line[x + y * w->map.w] >= '0' && w->map.line[x + y * w->map.w] <= '3')
 			// 	dr.color = color_of_texture(w, w->map.line[x + y * w->map.w]);
 			// else if (w->map.line[x + y * w->map.w] >= '4' && w->map.line[x + y * w->map.w] <= '7')
 			// 	dr.color = color_of_wall(w->map.line[x + y * w->map.w]);
+			else
+				dr.color = -1;
 			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), &w->layers->map_view);
 			x++;
 		}

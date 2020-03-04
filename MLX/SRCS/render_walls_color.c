@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 14:55:04 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 17:19:58 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
 
 	r.distance = t;
 	r.wall_color = choice_color(w, w->map.line[(int)len.x + (int)len.y * w->map.w]);
+	// printf("r.wall_color = %d *** len.x = %f len.y = %f **** |||%c|||\n", r.wall_color, len.x, len.y, w->map.line[(int)len.x + (int)len.y * w->map.w]);
 	if (r.wall_color == -1)
 		return ;
 	column_height = (int)(WIN_H / r.distance);
