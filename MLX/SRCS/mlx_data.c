@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 22:18:12 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:33:15 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:25:53 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,15 @@ t_mlx	init_mlx(void)
 		wolf_error(MLX_POINTER);
 	if (!(mlx.wptr = mlx_new_window(mlx.mptr, WIN_W, WIN_H, "WOLF3D\0")))
 		wolf_error(CANT_OPEN_WINDOW);
-	// if (!(mlx.iptr = mlx_new_image(mlx.mptr, WIN_W, WIN_H)))
-	// 	wolf_error(IMG_ALLOC_ERR);
-	// if (!(mlx.img = (int*)mlx_get_data_addr(mlx.iptr, &bp, &size_line, &endian)))
-	// 	wolf_error(IMG_ALLOC_ERR);
 	return (mlx);
 }
+
+	//__FIXX_IF_YOU_WANNA_подумать о повороте головы *** func: change_wolf
 
 void	change_wolf(t_wolf *w)
 {
 	(w->player.move.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle.x += 0.05 : 1);
 	(w->player.move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle.x -= 0.05 : 1);
-	//__FIXX_IF_YOU_WANNA_подумать о повороте головы
 	(w->player.move.camera == KEY_ARROW_UP ? w->player.move.camera_up += 0.02 : 0);
 	(w->player.move.camera == KEY_ARROW_DOWN ? w->player.move.camera_up -= 0.02 : 0);
 	// get_wolf_with_modes(w);
@@ -40,28 +37,7 @@ void	change_wolf(t_wolf *w)
 
 int		draw_all_hook(t_wolf *w)
 {
-// 	(w->move.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle += 0.05 : 1);
-// 	(w->move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle -= 0.05 : 1);
-// 	player_move(w);
-// 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
-// 	// draw_texture_on_background(w, w->t[5]);
-// 	// draw_background(w);
-// 	draw_background_on_map(w);
-// 	// draw_floor(w);
-// 	draw_texture_on_floor(w, w->t[7]);
-// 	// draw_celling(w);
-// 	draw_texture_on_celling(w, w->t[5]);
-// 	draw_walls(w);
-// 	draw_player(w);
-// 	render_rays(w);
-// 	render_walls(w);
-// 	// test_text(w);
-// 	mlx_put_image_to_window(w->mlx.mptr, w->mlx.wptr, w->mlx.iptr, 0, 0);
-// 	return (0);
-// }
-
 	change_wolf(w);
-	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	player_move(w);
 	draw_player(w);
 	render_rays(w);
@@ -70,8 +46,7 @@ int		draw_all_hook(t_wolf *w)
 	//с модами
 	// render_walls_mode(w);
 	//без модов
-   render_walls(w);
-//	test_text(w);
+	render_walls(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
 	return (0);

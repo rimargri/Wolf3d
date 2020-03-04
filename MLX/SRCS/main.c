@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:40:20 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:41:56 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,36 +21,18 @@
 
 int		main(int ac, char **maps)
 {
-	printf("(*≧ω≦*) Mama, ya sobralsya o7\n");
+	printf("(*≧ω≦*) Mama, ya sobralsya o7 (*≧ω≦*)\n");
 	t_wolf *wolf;
 
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
 	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
 	wolf->map = validate(ac, maps);
-	// wolf->mlx = init_mlx();
+	init_player(wolf);
 	wolf->t = init_textures();
-	// // printf("main *** wolf->t = %p\twolf->t[0]->size = %d\n\n", wolf->t, wolf->t[0]->size);
-	// wolf->move = init_move();
-	// wolf->space_was_pressed = 0;
-	// draw_background_on_map(wolf);
-	// draw_texture_on_floor(wolf, wolf->t[7]);
-	// draw_texture_on_celling(wolf, wolf->t[5]);
-	// draw_walls(wolf);
-	// init_player(wolf);
-	// draw_player(wolf);
-	// render_rays(wolf);
-	// render_walls(wolf);
-	// // test_text(wolf);
-	// mlx_put_image_to_window(wolf->mlx.mptr, wolf->mlx.wptr, wolf->mlx.iptr, 0, 0);
-
 	wolf->mlx = init_mlx();
-	init_all_img(wolf);
 	// wolf->dem = init_dem();
 	wolf->space_was_pressed = 0;
-	init_player(wolf);
+	init_all_img(wolf);
 	check_hooks_loops(wolf);
 	return (0);
 }
-
-	// mlx_hook(mlx->win_ptr, 4, 0, &mouse_hook, mlx);
-	// mlx_hook(mlx->win_ptr, 6, 0, &move_hook, mlx);

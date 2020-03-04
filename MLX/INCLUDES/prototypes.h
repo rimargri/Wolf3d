@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 14:56:45 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:32:31 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,6 @@ int					choice_color(t_wolf *w, char c);
 /** *********************************** **/
 /** *********************************** **/
 
-// void    			draw_rect(t_drawrect v, int w, int h, t_wolf *wolf);
-
-//Hchau's part
 void    			draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth);
 void				clear_wolf(t_wolf **w);
 
@@ -120,15 +117,12 @@ t_texture			**init_textures(void);
 void 				render_texture(t_wolf *wolf, t_texture *t, t_ivec2 offset);
 int					load_texture(char *filename, t_texture *t);
 int		            *texture_column(t_wolf *w, t_texture *t, int text_coord, int column_height);
-// void				test_text(t_wolf *w);
 int					color_of_texture(t_wolf *w, char c);
 t_texture           *choice_texture(t_wolf *w, char c);
-// void               	draw_texture(t_wolf *w, t_vec2 len, t_texture *t, int column_height, int pix);
 int					x_start(t_vec2 offset, t_texture *t);
 int					*scale_column(t_raycast r, int *column, int column_height);
 void				full_column_texture(t_wolf *w, int *column, int column_height, int current_pix);
 t_texture			*cardinal_points(t_wolf *w, t_vec2 len);
-// void				test_text(t_wolf *w);
 
 /** *********************************** **/
 /** *********************************** **/

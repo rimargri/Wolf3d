@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:40:58 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:41:33 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:29:22 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,8 @@ void	draw_background_on_map(t_wolf *w)
 		x = 0;
 		while (x < WIN_W / 2)
 		{
-			// col.r = (255 * y / 2594);
-			// col.g = (255 * x / 2594);
-			// col.b = 193;
-			// color = get_color(col);
 			if ((x + y * WIN_W) <= (WIN_H * WIN_W) && (x + y * WIN_W) >= 0)
-				w->layers->background.img[x + y * WIN_W] = color;
+				w->layers->map_view.img[x + y * WIN_W] = color;
 			x++;
 		}
 		y++;
@@ -103,10 +99,11 @@ void	draw_walls(t_wolf *w)
 			}
 			dr.firstpix.x = x * rect_w(w->map.w);				// перевод координат в масштаб окна из масштаба карты
 			dr.firstpix.y = y * rect_h(w->map.h);
-			if (w->map.line[x + y * w->map.w] >= '0' && w->map.line[x + y * w->map.w] <= '3')
-				dr.color = color_of_texture(w, w->map.line[x + y * w->map.w]);
-			else if (w->map.line[x + y * w->map.w] >= '4' && w->map.line[x + y * w->map.w] <= '7')
-				dr.color = color_of_wall(w->map.line[x + y * w->map.w]);
+			dr.color = choice_color(w, w->map.line[x + y * w->map.w]);
+			// if (w->map.line[x + y * w->map.w] >= '0' && w->map.line[x + y * w->map.w] <= '3')
+			// 	dr.color = color_of_texture(w, w->map.line[x + y * w->map.w]);
+			// else if (w->map.line[x + y * w->map.w] >= '4' && w->map.line[x + y * w->map.w] <= '7')
+			// 	dr.color = color_of_wall(w->map.line[x + y * w->map.w]);
 			draw_rect(dr, rect_w(w->map.w), rect_h(w->map.h), &w->layers->map_view);
 			x++;
 		}
