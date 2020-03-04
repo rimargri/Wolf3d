@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:45:42 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:05:52 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:48:37 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 int		get_color(t_color color)
 {
 	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
+}
+
+int		choice_color(t_wolf *w, char c)
+{
+	if (c >= '0' && c <= '3')
+		return (color_of_texture(w, c));
+	else if (c >= '4' && c <= '7')
+		return (color_of_wall(c));
+	return (0);
 }
 
 int		color_of_texture(t_wolf *w, char c)

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:42:59 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:40:10 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@
 ** if its not nessesary, remove part "hit" from struct in structs.h
 */
 
-int     x_start(t_vec2 offset, t_texture *t, t_vec2 *hit)
+int     x_start(t_vec2 len, t_texture *t)
 {
 	int		x;
-	t_vec2	pix;
+	t_vec2	hit;
 
-	hit->x = offset.x - floor(offset.x + 0.5);
-	hit->y = offset.y - floor(offset.y + 0.5);
-	x = hit->x * t->size;
-	if (fabs(hit->y) > fabs(hit->x))
-		x = hit->y * t->size;
+	hit.x = floor(len.x + 0.5f);
+	hit.y = floor(len.y + 0.5f);
+	hit.x = len.x - hit.x;
+	hit.y = len.y - hit.y;
+	x = hit.x * t->size;
+	if (fabs(hit.y) > fabs(hit.x))
+		x = hit.y * t->size;
 	if (x < 0)
 		x += t->size;
 	return (x);
@@ -38,7 +40,7 @@ int		*scale_column(t_raycast r, int *column, int column_height)
 	int x;
 
 	y = 0;
-	x = x_start(r.len, r.t, &r.hit);
+	x = x_start(r.len, r.t);
 	while (y < column_height)
 	{
 		// ?? MODE "matrix": 

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:33:47 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:56:45 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
 
-void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle);	// raycast_rexture
-// void				raycast(t_wolf *w, float t, t_vec2 len, int pix);				//raycast color
+// void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle);	// raycast_rexture
+void				raycast(t_wolf *w, float t, t_vec2 len, int pix);				//raycast color
 
 // Hchau's part
 void	            raycast_mode(t_wolf *w, float t, t_vec2 len, int pix, int y_offset);
@@ -86,6 +86,7 @@ void				draw_background_on_map(t_wolf *w);
 int					wall_color(t_map *map, t_vec2 len);
 int					get_color(t_color color);
 int					color_of_wall(char c);
+int					choice_color(t_wolf *w, char c);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -123,7 +124,7 @@ int		            *texture_column(t_wolf *w, t_texture *t, int text_coord, int co
 int					color_of_texture(t_wolf *w, char c);
 t_texture           *choice_texture(t_wolf *w, char c);
 // void               	draw_texture(t_wolf *w, t_vec2 len, t_texture *t, int column_height, int pix);
-int					x_start(t_vec2 offset, t_texture *t, t_vec2 *hit);
+int					x_start(t_vec2 offset, t_texture *t);
 int					*scale_column(t_raycast r, int *column, int column_height);
 void				full_column_texture(t_wolf *w, int *column, int column_height, int current_pix);
 t_texture			*cardinal_points(t_wolf *w, t_vec2 len);

@@ -6,14 +6,13 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:13:24 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:30:22 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:55:04 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //__FIXX_IMMIDEATLEY Непонятный код
 
 #include "wolf3d.h"
-#define PUT_SECOND 10
 
 void	find_distance(t_wolf *w, int pix)
 {
@@ -44,7 +43,7 @@ void	raycast(t_wolf *w, float t, t_vec2 len, int pix)
     t_ivec2		firstpix;
 
 	r.distance = t;
-	r.wall_color = color_of_wall(w->map.line[(int)len.x + (int)len.y * w->map.w]);
+	r.wall_color = choice_color(w, w->map.line[(int)len.x + (int)len.y * w->map.w]);
 	if (r.wall_color == -1)
 		return ;
 	column_height = (int)(WIN_H / r.distance);

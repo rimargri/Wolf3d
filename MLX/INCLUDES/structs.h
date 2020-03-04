@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:29:35 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:05:54 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ typedef struct		s_raycast
 	t_vec2			len;
 	int				wall_color;
 	t_texture		*t;
-	t_vec2			hit;
 }					t_raycast;
 
 typedef struct		s_img
