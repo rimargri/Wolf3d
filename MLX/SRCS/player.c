@@ -79,8 +79,6 @@ void	init_player(t_wolf *w)
 	t_player p;
 
 	p.pos = find_player(w);
-	printf("str = %d\n", strlen(w->map.line));
-	// p.look_column_angle = 0.0;
 	p.look_column_angle.x = 0.0;
 	p.look_column_angle.y = 0.0;
 	p.move = init_move();

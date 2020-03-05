@@ -41,9 +41,6 @@ int		draw_all_hook(t_wolf *w)
 	player_move(w);
 	draw_player(w);
 	render_rays(w);
-	//с модами
-//	 render_walls_mode(w);
-	//без модов
 	render_walls(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
@@ -59,10 +56,7 @@ int		move_player_mouse(int x, int y, t_wolf *w)
 	else if (prev_x > x)
 		w->player.look_column_angle.x -= 0.05;
 	prev_x = x;
-	y = 0;
-	x = 0;
 	return (0);
-
 }
 
 void	check_hooks_loops(t_wolf *wolf)

@@ -8,7 +8,7 @@ void	full_column_texture_mirr(t_wolf *w, int *column, int column_height, int cur
 	int     l_y;
 	
 	pix.x = current_pix + WIN_W / 2;
-	mask = (w->dem->mirr->intence * 10) << 24;
+	mask = (w->dem->mirr->intence * 5) << 24;
 	pix.y = y_offset;
 	l_y = 0;
 	y = column_height;

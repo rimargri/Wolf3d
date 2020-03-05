@@ -15,7 +15,8 @@
 int		check_distance(t_vec2 len, t_map *map)
 {
 	if ((int)len.x >= map->w || (int)len.x < 0 ||
-		(int)len.y >= map->h || (int)len.y < 0)
+		(int)len.y >= map->h || (int)len.y < 0 ||
+		map->line[(int)len.x + (int)len.y * map->w] == ' ')
 			return (0);
 	return (1);
 }

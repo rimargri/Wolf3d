@@ -29,7 +29,6 @@ int		main(int ac, char **maps)
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
 	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
 	wolf->map = validate(ac, maps);
-	printf("strlen == %d\n", strlen(wolf->map.line));
 	init_player(wolf);
 	wolf->t = init_textures();
 	wolf->mlx = init_mlx();
@@ -37,8 +36,6 @@ int		main(int ac, char **maps)
 	wolf->space_was_pressed = 0;
 
 	init_all_img(wolf);
-	printf("%s\n", wolf->map.line);
-	printf("strlen == %d\n", strlen(wolf->map.line));
 
 
 	check_hooks_loops(wolf);

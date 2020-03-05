@@ -49,10 +49,7 @@ void	get_wolf_with_modes(t_wolf *w)
 	if (w->dem->wave->on != FALSE)
 		w->player.look_column_angle.y += CAMERA_DIFFUSION * 3;
 	if (w->dem->mirr->on != FALSE)
-	{
-		w->player.look_column_angle.y = CAMERA_DIFFUSION * 3;
-		w->dem->wave->intence = w->dem->mirr->intence * 4;
-	}
+		w->player.look_column_angle.y = CAMERA_DIFFUSION * 4;
 	w->layers->d_fractol_draw.on = w->dem->fract->on == FALSE ? FALSE : TRUE;
 	redraw_fract(w);
 }
@@ -91,8 +88,8 @@ int		count_intence(int k, int x, int y, t_wolf *w)
 			w->dem->quake->intence++;
 		if (w->dem->wave->on != FALSE)
 			w->dem->wave->intence++;
-		if (w->dem->mirr->on != FALSE)
-			w->dem->mirr->intence++;
+		if (w->dem->mirr->on != FALSE && w->dem->mirr->intence > 0)
+			w->dem->mirr->intence--;
 	}
 	if (k == SCROLL_DOWN)
 	{
@@ -100,10 +97,8 @@ int		count_intence(int k, int x, int y, t_wolf *w)
 			w->dem->quake->intence--;
 		if (w->dem->wave->on != FALSE)
 			w->dem->wave->intence--;
-		if (w->dem->mirr->on != FALSE)
-			w->dem->mirr->intence--;
-		if (w->dem->mirr->intence < 5)
-			w->dem->mirr->intence = 5;
+		if (w->dem->mirr->on != FALSE && w->dem->mirr->intence < (51))
+			w->dem->mirr->intence++;
 	}
 	x = 0;
 	y = 0;
