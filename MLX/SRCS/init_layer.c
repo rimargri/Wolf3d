@@ -24,6 +24,8 @@ void		prepare_static_layers(t_wolf *w)
 {
 	clear_layer(&w->layers->map_view);
 	draw_background_on_map(w);
+	draw_texture_on_floor(w, w->t[7]);
+	draw_texture_on_celling(w, w->t[5]);
 	draw_walls(w);
 }
 
@@ -70,8 +72,8 @@ void		init_all_img(t_wolf *w)
 	res = (t_layer *)malloc(sizeof(t_layer));
 	res->draw_shift = 0.0;
 	res->count_layers = COUNT_LAYERS;
-	// init_fractol(&res->d_fractol);
-	// init_img(&res->d_fractol_draw, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
+	init_fractol(&res->d_fractol);
+	init_img(&res->d_fractol_draw, w->mlx.mptr, FALSE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->d_labyrinth, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->d_player, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->map_view, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});

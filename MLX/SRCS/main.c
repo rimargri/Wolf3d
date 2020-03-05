@@ -33,9 +33,14 @@ int		main(int ac, char **maps)
 	init_player(wolf);
 	wolf->t = init_textures();
 	wolf->mlx = init_mlx();
-	// wolf->dem = init_dem();
+	 wolf->dem = init_dem();
 	wolf->space_was_pressed = 0;
+
 	init_all_img(wolf);
+	printf("%s\n", wolf->map.line);
+	printf("strlen == %d\n", strlen(wolf->map.line));
+
+
 	check_hooks_loops(wolf);
 	return (0);
 }

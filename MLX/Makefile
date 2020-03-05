@@ -27,11 +27,10 @@ INCL_DIR = ./INCLUDES
 C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c init_layer.c \
 		  key_press.c load_texture.c main.c \
 				render_rays.c player.c player_move.c \
-				validate.c mlx_data.c layers.c 
-			#fractal.c modes_for_fun.c
-			#draw_rect_mode.c
-C_FILES += render_walls_color.c 
-# C_FILES += render_walls_textures.c render_texture.c cardinal_points.c
+			validate.c mlx_data.c layers.c \
+		fractal.c modes_for_fun.c draw_rect_mode.c mirror_floor.c
+# C_FILES += render_walls_color.c
+C_FILES += render_walls_textures.c render_texture.c cardinal_points.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

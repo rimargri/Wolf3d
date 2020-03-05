@@ -31,7 +31,7 @@ void	change_wolf(t_wolf *w)
 	(w->player.move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle.x -= 0.05 : 1);
 	(w->player.move.camera == KEY_ARROW_UP ? w->player.move.camera_up += 0.02 : 0);
 	(w->player.move.camera == KEY_ARROW_DOWN ? w->player.move.camera_up -= 0.02 : 0);
-	// get_wolf_with_modes(w);
+	 get_wolf_with_modes(w);
 	clear_dinamic_img(w->layers);
 }
 
@@ -41,10 +41,8 @@ int		draw_all_hook(t_wolf *w)
 	player_move(w);
 	draw_player(w);
 	render_rays(w);
-	draw_texture_on_floor(w, w->t[7]);
-	draw_texture_on_celling(w, w->t[5]);
 	//с модами
-	// render_walls_mode(w);
+//	 render_walls_mode(w);
 	//без модов
 	render_walls(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
@@ -73,7 +71,7 @@ void	check_hooks_loops(t_wolf *wolf)
 	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 3, 0, &key_unpress, &wolf->mlx);
-	// mlx_hook(wolf->mlx.wptr, 4, 0, &count_intence, &wolf->mlx);
+	mlx_hook(wolf->mlx.wptr, 4, 0, &count_intence, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 6, 0, &move_player_mouse, &wolf->mlx);
 	mlx_loop(wolf->mlx.mptr);
 }

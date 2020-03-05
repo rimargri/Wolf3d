@@ -14,7 +14,7 @@ void    draw_rect_mode(t_drawrect dr, int w, int h, t_img *d_labyrinth, int y_of
 
     i = 0;
     offset = (t_ivec2){0, 0};
-    color = get_color(dr.color);
+    color = dr.color;
     while (i < w)
     {
         j = 0;
@@ -37,12 +37,10 @@ void	find_distance_mode(t_wolf *w, int pix, int w_w, int delim)
     t_vec2	len;
     float	z = 0;
     float	y_offset;
-    int		x;
 
     t = 0.0f;
     column_angle.x = (w->player.look_column_angle.x + w->layers->draw_shift) - FOV / delim + FOV * pix /
                                                                                              (float)(w_w);
-    x = 0;
     column_angle.y = w->player.look_column_angle.y;
     while (t < 100)
     {
@@ -57,12 +55,13 @@ void	find_distance_mode(t_wolf *w, int pix, int w_w, int delim)
     }
     z = z * cos(column_angle.y) * (w->dem->wave->intence) - len.y * sin(column_angle.y) * (w->dem->wave->intence);
     y_offset = z * sin(column_angle.y) + len.x * cos(column_angle.y);
+    
     if (w->dem->norm->on == FALSE && w->dem->mirr->on != PUT_SECOND)
     {
         if ((w->dem->mirr->on == TRUE) && (y_offset > WIN_H / 2 / t))
             raycast_mode(w, t, len, pix, (int)(WIN_H / 2 / t));
         else
-            raycast_mode(w, t, len, pix, (int)(y_offset) + (column_angle.y * 3));
+            raycast_mode(w, t, len, pix, (int)(y_offset) + (0));
     }
     else
         raycast_mode(w, t, len, pix, (int)(0));
@@ -77,11 +76,11 @@ void	raycast_mode(t_wolf *w, float t, t_vec2 len, int pix, int y_offset)
 
     r.distance = t;
     wall_w = w->layers->map_view.on == TRUE ? WIN_W / 2 : WIN_W;
-    r.wall_color = (t_color)wall_color(&w->map, len);
+    r.wall_color = choice_color(w, w->map.line[(int)len.x + (int)len.y * w->map.w]);
     column_height = (int)(WIN_H / r.distance);
     firstpix.x = (int){wall_w + pix};
     firstpix.y = (int){WIN_H / 2 - column_height / 2};
-    if (r.wall_color.r == -1 && r.wall_color.g == -1 && r.wall_color.b == -1)
+    if (r.wall_color == -1)
         return ;
     draw_rect_mode((t_drawrect){firstpix, r.wall_color}, 1, column_height, &w->layers->d_labyrinth, y_offset);
 }

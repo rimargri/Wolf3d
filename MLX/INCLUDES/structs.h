@@ -200,7 +200,7 @@ typedef struct		s_wolf
 	t_map			map;
 	t_layer			*layers;		//все имаджи, где хочешь, там рисуешь
 	t_texture		**t;
-	// t_dem			*dem;
+	 t_dem			*dem;
 	int				space_was_pressed;
 }					t_wolf;
 

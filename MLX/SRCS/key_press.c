@@ -51,24 +51,24 @@
 //__FIXX_LATER моды, пока не отключишь его намеренно
 
 
-// int		dem_change(int k, t_wolf *w)
-// {
-// 	if (k == EARTHQUAKE_DEM)
-// 		w->dem->quake->on = w->dem->quake->on == TRUE ? FALSE : TRUE;
-// 	else if (k == WAVES_DEM)
-// 		w->dem->wave->on = w->dem->wave->on ==  TRUE ? FALSE : TRUE;
-// 	else if (k == MIRROR_DEM)
-// 		w->dem->mirr->on = w->dem->mirr->on == TRUE ? FALSE : TRUE;
-// 	else if (k == NORM_DEM)
-// 		w->dem->norm->on = w->dem->norm->on == TRUE ? FALSE : TRUE;
-// 	else if (k == FRACTAL_DEM)
-// 		w->dem->fract->on = w->dem->fract->on == TRUE ? FALSE : TRUE;
-// 	else
-// 		return (FALSE);
-// 	if (k != NORM_DEM)
-// 		w->dem->norm->on = FALSE;
-// 	return (TRUE);
-// }
+ int		dem_change(int k, t_wolf *w)
+ {
+ 	if (k == EARTHQUAKE_DEM)
+ 		w->dem->quake->on = w->dem->quake->on == TRUE ? FALSE : TRUE;
+ 	else if (k == WAVES_DEM)
+ 		w->dem->wave->on = w->dem->wave->on ==  TRUE ? FALSE : TRUE;
+ 	else if (k == MIRROR_DEM)
+ 		w->dem->mirr->on = w->dem->mirr->on == TRUE ? FALSE : TRUE;
+ 	else if (k == NORM_DEM)
+ 		w->dem->norm->on = w->dem->norm->on == TRUE ? FALSE : TRUE;
+ 	else if (k == FRACTAL_DEM)
+ 		w->dem->fract->on = w->dem->fract->on == TRUE ? FALSE : TRUE;
+ 	else
+ 		return (FALSE);
+ 	if (k != NORM_DEM)
+ 		w->dem->norm->on = FALSE;
+ 	return (TRUE);
+ }
 
 int		key_unpress(int k, t_wolf *w)
 {
@@ -95,8 +95,8 @@ int		key_unpress(int k, t_wolf *w)
 			w->layers->draw_shift = -0.52;
 		}
 	}
-	// else if (dem_change(k, w) == TRUE)
-	// 	;
+	 else if (dem_change(k, w) == TRUE)
+	 	;
 	else
 	{
 		w->player.move.left = k == KEY_A ? FALSE : w->player.move.left;

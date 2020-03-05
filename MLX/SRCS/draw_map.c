@@ -51,7 +51,7 @@ void	draw_texture_on_celling(t_wolf *w, t_texture *t)
 	y = 0;
 	while (y < WIN_H / 2)
 	{
-		x = WIN_W / 2;
+		x = 0;
 		while (x < WIN_W)
 		{
 			w->layers->background.img[x + y * WIN_W] = t->texture[x + y * t->size];
@@ -69,7 +69,7 @@ void	draw_texture_on_floor(t_wolf *w, t_texture *t)
 	y = WIN_H / 2;
 	while (y < WIN_H)
 	{
-		x = WIN_W / 2;
+		x = 0;
 		while (x < WIN_W)
 		{
 			w->layers->background.img[x + y * WIN_W] = t->texture[x + y * t->size];

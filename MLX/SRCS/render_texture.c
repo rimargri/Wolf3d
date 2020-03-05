@@ -64,7 +64,7 @@ void	full_column_texture(t_wolf *w, int *column, int column_height, int current_
 		pix.y = y + WIN_H / 2 - column_height / 2;
 		if (pix.y >= 0 && pix.y < WIN_H)
 			// w->mlx.img[pix.x + pix.y * WIN_W] = column[y]; 
-			w->layers->background.img[pix.x + pix.y * WIN_W] = column[y]; 
+			w->layers->d_labyrinth.img[pix.x + pix.y * WIN_W] = column[y];
 		y++;
 	}
 }
