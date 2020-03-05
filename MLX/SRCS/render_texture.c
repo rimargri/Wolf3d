@@ -56,7 +56,7 @@ void	full_column_texture(t_wolf *w, int *column, int column_height, int current_
 	int		y;
 	t_ivec2	pix;
 
-	pix.x = current_pix + WIN_W / 2;
+	pix.x = w->layers->map_view.on == TRUE ? current_pix + WIN_W / 2 : current_pix;
 	pix.y = 0;
 	y = 0;
 	while (y < column_height)

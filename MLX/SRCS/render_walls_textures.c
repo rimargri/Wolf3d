@@ -21,15 +21,15 @@ int		check_distance(t_vec2 len, t_map *map)
 	return (1);
 }
 
-void	find_distance(t_wolf *w, int pix)
+void	find_distance(t_wolf *w, int pix, int w_w, int delim)
 {
 	t_raycast	r;
 	float		column_angle;
 
 	r.distance = 0.0f;
 	r.len = (t_vec2){0.0f, 0.0f};
-	column_angle = w->player.look_column_angle.x - FOV / 2 + FOV * pix /
-														(float)(WIN_W / 2);
+	column_angle = (w->player.look_column_angle.x + w->layers->draw_shift) - FOV / delim + FOV * pix /
+														(float)(w_w);
 	while (r.distance < 100)
 	{
 		r.len.x = cos(column_angle) * r.distance + w->player.pos.x;
@@ -51,8 +51,7 @@ void	raycast(t_wolf *w, t_raycast r, int pix, float column_angle)
 	int			column_height;
 	int			*column;
 	
-	column_height = (int)(WIN_H / (r.distance * cos(column_angle - w->player.look_column_angle.x)));
-	// r.t = choice_texture(w, w->map.line[(int)r.len.x + (int)r.len.y * w->map.w]);
+	column_height = (int)(WIN_H / (r.distance * cos(column_angle / 2 - w->player.look_column_angle.x / 2)));
 	r.t = cardinal_points(w, r.len);
 	if (!(r.t) || !(check_distance(r.len, &w->map)))
 		return ;
@@ -65,11 +64,17 @@ void	raycast(t_wolf *w, t_raycast r, int pix, float column_angle)
 void	render_walls(t_wolf *w)
 {
 	int current_pix;
+	int	wall_w;
+	int	delim;
+	int	move_delim;
 
 	current_pix = 0;
-	while (current_pix < WIN_W / 2)
+	wall_w = w->layers->map_view.on == TRUE ? WIN_W / 2 : WIN_W;
+	delim = w->layers->map_view.on == TRUE ? 1 : 2;
+	move_delim = w->layers->map_view.on == TRUE ? 2 : 1;
+	while (current_pix < wall_w)
 	{
-		find_distance(w, current_pix);
+		find_distance(w, current_pix, wall_w / delim, move_delim);
 		current_pix++;
 	}
 }

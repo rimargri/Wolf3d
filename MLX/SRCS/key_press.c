@@ -92,7 +92,7 @@ int		key_unpress(int k, t_wolf *w)
 		} else
 		{
 			w->layers->d_player.on = FALSE;
-			w->layers->draw_shift = -0.52;
+			w->layers->draw_shift = -0.5236;
 		}
 	}
 	 else if (dem_change(k, w) == TRUE)
