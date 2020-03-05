@@ -55,14 +55,10 @@ void	find_distance_mode(t_wolf *w, int pix, int w_w, int delim)
     }
     z = z * cos(column_angle.y) * (w->dem->wave->intence) - len.y * sin(column_angle.y) * (w->dem->wave->intence);
     y_offset = z * sin(column_angle.y) + len.x * cos(column_angle.y);
-    
-    if (w->dem->norm->on == FALSE && w->dem->mirr->on != PUT_SECOND)
-    {
-        if ((w->dem->mirr->on == TRUE) && (y_offset > WIN_H / 2 / t))
-            raycast_mode(w, t, len, pix, (int)(WIN_H / 2 / t));
-        else
-            raycast_mode(w, t, len, pix, (int)(y_offset) + (0));
-    }
+    if (w->dem->mirr->on == TRUE)
+	    raycast_mirror(w, t, len, pix, (int)(y_offset) + (0));
+    else if (w->dem->norm->on == FALSE)
+    	raycast_mode(w, t, len, pix, (int)(y_offset) + (0));
     else
         raycast_mode(w, t, len, pix, (int)(0));
 }
@@ -101,16 +97,16 @@ void	render_walls_mode(t_wolf *w)
         find_distance_mode(w, current_pix, wall_w / delim, move_delim);
         current_pix++;
     }
-    if (w->dem->mirr->on != FALSE)
-    {
-        w->dem->mirr->on = PUT_SECOND;
-        current_pix = 0;
-        put_color_mask(&w->layers->d_labyrinth, 0xAA000000, WIN_W, WIN_H * 2);
-        while (current_pix < wall_w)
-        {
-            find_distance_mode(w, current_pix, wall_w / delim, move_delim);
-            current_pix++;
-        }
-        w->dem->mirr->on = TRUE;
-    }
+//    if (w->dem->mirr->on != FALSE)
+//    {
+//        w->dem->mirr->on = PUT_SECOND;
+//        current_pix = 0;
+//        put_color_mask(&w->layers->d_labyrinth, 0xAA000000, WIN_W, WIN_H * 2);
+//        while (current_pix < wall_w)
+//        {
+//            find_distance_mode(w, current_pix, wall_w / delim, move_delim);
+//            current_pix++;
+//        }
+//        w->dem->mirr->on = TRUE;
+//    }
 }

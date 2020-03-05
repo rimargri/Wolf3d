@@ -39,14 +39,17 @@ void	find_distance(t_wolf *w, int pix)
 				break;
 		r.distance += 0.02;
 	}
-	raycast(w, r, pix, column_angle);
+	if (w->dem->norm->on != TRUE)
+		raycast_modes_text(w, r, pix, column_angle);
+	else
+		raycast(w, r, pix, column_angle);
 }
 
 void	raycast(t_wolf *w, t_raycast r, int pix, float column_angle)
 {
 	int			column_height;
 	int			*column;
-
+	
 	column_height = (int)(WIN_H / (r.distance * cos(column_angle - w->player.look_column_angle.x)));
 	// r.t = choice_texture(w, w->map.line[(int)r.len.x + (int)r.len.y * w->map.w]);
 	r.t = cardinal_points(w, r.len);

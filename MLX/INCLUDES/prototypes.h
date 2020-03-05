@@ -151,5 +151,6 @@ t_dem				*init_dem(void);
 void				get_wolf_with_modes(t_wolf *w);
 int					count_intence(int k, int x, int y, t_wolf *w);
 void	            raycast_mirror(t_wolf *w, float t, t_vec2 len, int pix, int y_offset);
+void	            raycast_modes_text(t_wolf *w, t_raycast r, int pix, float column_angle);
 
 #endif
