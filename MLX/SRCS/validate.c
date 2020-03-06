@@ -6,22 +6,11 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 19:19:43 by hchau             #+#    #+#             */
-/*   Updated: 2020/03/04 17:30:34 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:49:42 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void	wolf_error(char *reason)
-{
-	int		i;
-
-	i = 0;
-	while(reason[i])
-		i++;
-	write(1, reason, i);
-	exit(0);
-}
 
 void	check_simbols(t_map *map, char *buf)
 {
@@ -45,13 +34,14 @@ void	check_simbols(t_map *map, char *buf)
 		}
 		else
 		{
-			if ((buf[i] < '0' || buf[i] > '9') && buf[i] != ' ' && buf[i] != 'x')
-				{
-					if (buf[i] == 'x')
-						x_flag++;
-					else
-						wolf_error(MAP_SIMB);
-				}
+			if ((buf[i] < '0' || buf[i] > '9')
+										&& buf[i] != ' ' && buf[i] != 'x')
+			{
+				if (buf[i] == 'x')
+					x_flag++;
+				else
+					wolf_error(MAP_SIMB);
+			}
 			cur_w++;
 		}
 		i++;
@@ -94,7 +84,6 @@ void	record_shape(t_map *map, char *src)
 		i = src[i] ? ++i : i;
 	}
 	map->line[comm_diff] = '\0';
-
 }
 
 t_map	validate(int ac, char **maps)

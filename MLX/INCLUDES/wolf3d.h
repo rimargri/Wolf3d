@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 14:55:21 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:57:46 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@
 /** *********************************** **/
 /** *********************************** **/
 
-// # define WIN_W 2000
-// # define WIN_H (WIN_W / 2)
-
 # define WIN_W 5120 / 4
 # define WIN_H 2880 / 4
 # define FOV M_PI / 3.0
@@ -55,8 +52,6 @@
 /** *********************************** **/
 
 # define KEY_ESC 53
-// # define KEY_1 18
-// # define KEY_2 19
 # define KEY_SPACE 49
 # define KEY_A 0
 # define KEY_D 2
@@ -100,6 +95,7 @@
 /** *********************************** **/
 /** *********************************** **/
 
+# define THREADS			10
 # define IN					1
 # define OUT				-1
 # define FRACT_MAX_INTENCE	100

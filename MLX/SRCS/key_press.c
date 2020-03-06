@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 23:14:30 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:07:12 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ int		key_unpress(int k, t_wolf *w)
 		w->player.move.camera = 0;
 	else if (k == KEY_ARROW_DOWN)
 		w->player.move.camera = 0;
-	//чтобы моды нельзя было бесконечно часто включать/выключать,
-	//зажимая клавишу тысячу раз - лучше на отпускание
 	else if (k == ENTER)
 	{
 		w->layers->map_view.on = w->layers->map_view.on == TRUE ? FALSE : TRUE;
@@ -129,9 +127,6 @@ int		key_press(int k, t_wolf *w)
 		w->player.move.camera = KEY_ARROW_DOWN;
 	else if (k == KEY_SPACE)
 		w->space_was_pressed = !(w->space_was_pressed);
-
-	//__FIXX_IMMIDEATLEY printf, если что
-//	printf("%d", k);
 	return (0);
 }
 

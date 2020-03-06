@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:40:26 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 18:08:39 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:21:09 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ t_vec2		find_player(t_wolf *w)
 		while (p.y < w->map.h)
 		{
 			if (w->map.line[(int)p.x + (int)p.y * w->map.w] == 'x')
-				break;
+				break ;
 			p.y++;
 		}
 		if (w->map.line[(int)p.x + (int)p.y * w->map.w] == 'x')
-			break;
+			break ;
 		p.x++;
 	}
 	if (w->map.line[(int)p.x + (int)p.y * w->map.w] == 'x')
-			w->map.line[(int)p.x + (int)p.y * w->map.w] = ' ';
+		w->map.line[(int)p.x + (int)p.y * w->map.w] = ' ';
 	else if (w->map.line[(int)p.x + (int)p.y * w->map.w] != 'x')
 		p = first_empty_place(w);
 	return (p);
@@ -48,11 +48,11 @@ t_vec2		first_empty_place(t_wolf *w)
 		while (p.y < w->map.h)
 		{
 			if (w->map.line[(int)p.x + (int)p.y * w->map.w] == ' ')
-				break;
+				break ;
 			p.y++;
 		}
 		if (w->map.line[(int)p.x + (int)p.y * w->map.w] == ' ')
-			break;
+			break ;
 		p.x++;
 	}
 	if (!(w->map.line[(int)p.x + (int)p.y * w->map.w] == ' '))
@@ -69,12 +69,11 @@ t_direction	init_move(void)
 	move.right = FALSE;
 	move.left = FALSE;
 	move.camera = 0;
-//__FIXX_IMMIDEATLEY !!!
 	move.camera_up = 0.0;
 	return (move);
 }
 
-void	init_player(t_wolf *w)
+void		init_player(t_wolf *w)
 {
 	t_player p;
 
@@ -85,10 +84,10 @@ void	init_player(t_wolf *w)
 	w->player = p;
 }
 
-void	draw_player(t_wolf *w)
+void		draw_player(t_wolf *w)
 {
 	w->player.transform.x = w->player.pos.x * rect_w(w->map.w);
 	w->player.transform.y = w->player.pos.y * rect_h(w->map.h);
 	draw_rect((t_drawrect){w->player.transform,
-					get_color((t_color){255, 255, 255})}, 4, 4, &w->layers->d_player);
+		get_color((t_color){255, 255, 255})}, 4, 4, &w->layers->d_player);
 }

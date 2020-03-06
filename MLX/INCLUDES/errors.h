@@ -6,15 +6,12 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 19:18:14 by hchau             #+#    #+#             */
-/*   Updated: 2020/03/03 20:51:42 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 23:06:14 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_ERRORS_H
-#define MLX_ERRORS_H
-/*
-**		map errors
-*/
+#ifndef ERRORS_H
+#define ERRORS_H
 void	wolf_error(char *reason);
 # define OK					0
 # define MAX_MAP			1000000

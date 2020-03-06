@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 22:37:47 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/03 21:49:09 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:18:15 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void	move_forward(t_wolf *w)
 	t_vec2 forward;
 	t_vec2 tmp;
 
-//	if (w->layers->map_view.on == TRUE)
-//	forward_base = (t_vec2){0.04f, 0.0f};
-//	else
-		forward_base = (t_vec2){0.04f, 0.0f};
+	forward_base = (t_vec2){0.04f, 0.0f};
 	forward.x = forward_base.x * cos(w->player.look_column_angle.x) -
 	forward_base.y * sin(w->player.look_column_angle.x);
 	forward.y = forward_base.x * sin(w->player.look_column_angle.x) +

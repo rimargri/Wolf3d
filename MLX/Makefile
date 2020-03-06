@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/04 14:56:41 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/06 21:40:21 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,11 @@ INCL_DIR = ./INCLUDES
 
 C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c init_layer.c \
 		  key_press.c load_texture.c main.c \
-				render_rays.c player.c player_move.c \
-			validate.c mlx_data.c layers.c \
-		fractal.c modes_for_fun.c mirror_floor.c
+		  render_rays.c player.c player_move.c \
+		  validate.c mlx_data.c layers.c \
+		  fractal.c modes_for_fun.c mirror_floor.c wolf_error.c init_textures.c \
+		  draw_text_back.c
+
 C_FILES += render_walls_textures.c render_texture.c cardinal_points.c
 
 OBJ_FILES = $(C_FILES:.c=.o)

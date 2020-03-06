@@ -6,13 +6,14 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 14:05:54 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:56:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_WOLF3D
 # define STRUCTS_WOLF3D
 #include "wolf3d.h"
+# include <pthread.h>
 
 /** *********************************** **/
 /** *********************************** **/
@@ -25,12 +26,6 @@ typedef struct  	s_ivec2
     int         	x;
     int         	y;
 }               	t_ivec2;
-
-// typedef struct  	s_ivec3
-// {
-// 	int         	x;
-// 	int         	y;
-// }               	t_ivec3;
 
 typedef struct		s_vec2
 {
@@ -79,7 +74,6 @@ typedef struct		s_player
 {
 	t_vec2			pos;
 	t_ivec2			transform;
-	// float			look_column_angle;
 	t_vec2			look_column_angle;
 	t_direction		move;
 }					t_player;
@@ -123,10 +117,6 @@ typedef struct		s_mlx
 {
 	void			*mptr;
 	void			*wptr;
-// 	void			*iptr;
-// 	int				*img;
-// }					t_mlx;
-
 }					t_mlx;
 
 typedef struct		s_mode
@@ -151,8 +141,6 @@ typedef struct		s_dem
 /** *********************************** **/
 /** *********************************** **/
 
-# include <pthread.h>
-# define THREADS		10
 typedef struct		s_complex
 {
 	long double		x;
