@@ -66,6 +66,10 @@ int		find_offset(t_raycast r, t_wolf *w)
 	z = z * cos(angle) * (w->dem->wave->intence) -
 			y * sin(angle) * (w->dem->wave->intence);
 	y = z * sin(angle) + r.len.x * cos(angle);
+	if (w->player.move.jump_h > 0)
+		y += w->player.move.camera_up * 50;
+	if (w->dem->norm->on == TRUE)
+		return (w->player.move.camera_up * 50);
 	return (y);
 }
 

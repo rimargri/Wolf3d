@@ -41,7 +41,7 @@ void	find_distance(t_wolf *w, int pix, int w_w, int delim)
 			break ;
 		r.distance += 0.02;
 	}
-	if (w->dem->norm->on != TRUE)
+	if (w->dem->norm->on != TRUE || w->player.move.jump_h > 0)
 		raycast_modes_text(w, r, pix, column_angle);
 	else
 		raycast(w, r, pix, column_angle);

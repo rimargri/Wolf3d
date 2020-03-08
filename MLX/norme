@@ -10,9 +10,6 @@ Error (line 22): comment not well formatted
 Error (line 38, col 6): missing space after if
 Norme: ./SRCS/clear_wolf.c
 Norme: ./SRCS/color.c
-Norme: ./SRCS/draw_rect.c
-Error (line 23): C++ comment
-Error (line 25): C++ comment
 Norme: ./SRCS/draw_map.c
 Error: file must end with a single empty line
 Error (line 46): comment not well formatted
@@ -54,6 +51,9 @@ Error (line 103): C++ comment
 Error (line 104): C++ comment
 Error (line 105): C++ comment
 Error (line 106): C++ comment
+Norme: ./SRCS/draw_rect.c
+Error (line 23): C++ comment
+Error (line 25): C++ comment
 Norme: ./SRCS/draw_text_back.c
 Norme: ./SRCS/check_player_move.c
 Norme: ./SRCS/init_modes.c
@@ -112,20 +112,21 @@ Error (line 63): comment not well formatted
 Error (line 64): Empty line
 Error (line 83): bad indentation
 Error (line 83): C++ comment
-Norme: ./SRCS/draw_menu.c
+Norme: ./SRCS/jump.c
 Norme: ./SRCS/fractal.c
-Norme: ./SRCS/layers.c
 Norme: ./SRCS/init_layer.c
+Norme: ./SRCS/draw_menu.c
 Norme: ./SRCS/main.c
-Norme: ./SRCS/key_press.c
+Norme: ./SRCS/layers.c
 Norme: ./SRCS/load_texture.c
 Norme: ./SRCS/menu.c
 Norme: ./SRCS/mlx_data.c
-Norme: ./SRCS/player.c
+Norme: ./SRCS/key_press.c
 Norme: ./SRCS/modes_for_fun.c
-Norme: ./SRCS/render_texture.c
-Norme: ./SRCS/render_rays.c
 Norme: ./SRCS/mirror_floor.c
+Norme: ./SRCS/render_rays.c
+Norme: ./SRCS/player.c
+Norme: ./SRCS/render_texture.c
 Norme: ./SRCS/wolf_error.c
 Norme: ./SRCS/write_map.c
 Norme: ./SRCS/validate.c

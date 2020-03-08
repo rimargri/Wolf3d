@@ -55,6 +55,8 @@ typedef struct		s_direction
 	int				left;
 	float			camera_up;
 	int				camera;
+	int				jump;
+	int				jump_h;
 }					t_direction;
 
 /** *********************************** **/

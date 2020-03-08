@@ -43,7 +43,6 @@
 # define FALSE -1
 # define TRUE 0
 # define TEXTURE_MAX 10
-# define PUT_SECOND 10
 
 /** *********************************** **/
 /** *********************************** **/
@@ -64,6 +63,7 @@
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
 # define ENTER 36
+# define KEY_R 15
 
 /** *********************************** **/
 /** *********************************** **/
@@ -86,6 +86,10 @@
 # define FRACTAL_DEM		23
 # define MIRROR_DEM			21
 # define CAMERA_DIFFUSION	0.01
+# define NORMAL_HEIGHT		50
+# define MAX_HEIGHT			100
+# define STARTED            -2
+
 //# define
 //# define FISHEYE_DEM		23
 

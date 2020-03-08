@@ -25,14 +25,11 @@ t_mlx	init_mlx(void)
 
 void	change_wolf(t_wolf *w)
 {
+	jump(w);
 	(w->player.move.camera == KEY_ARROW_RIGHT ?
 								w->player.look_column_angle.x += 0.05 : 1);
 	(w->player.move.camera == KEY_ARROW_LEFT ?
 								w->player.look_column_angle.x -= 0.05 : 1);
-	(w->player.move.camera == KEY_ARROW_UP ?
-								w->player.move.camera_up += 0.02 : 0);
-	(w->player.move.camera == KEY_ARROW_DOWN ?
-								w->player.move.camera_up -= 0.02 : 0);
 	get_wolf_with_modes(w);
 	clear_dinamic_img(w->layers);
 }

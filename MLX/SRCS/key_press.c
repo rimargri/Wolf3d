@@ -93,13 +93,16 @@ int		key_unpress(int k, t_wolf *w)
 		map_view_change(w);
 	else if (dem_change(k, w) == TRUE)
 		;
-	else
+	else if (k == KEY_SPACE)
 	{
-		w->player.move.left = k == KEY_A ? FALSE : w->player.move.left;
-		w->player.move.right = k == KEY_D ? FALSE : w->player.move.right;
-		w->player.move.forward = k == KEY_W ? FALSE : w->player.move.forward;
-		w->player.move.back = k == KEY_S ? FALSE : w->player.move.back;
+		w->player.move.jump_h = w->player.move.jump_h > MAX_HEIGHT ?
+				MAX_HEIGHT : w->player.move.jump_h;
+		w->player.move.jump = w->player.move.jump_h / 2;
 	}
+	w->player.move.left = k == KEY_A ? FALSE : w->player.move.left;
+	w->player.move.right = k == KEY_D ? FALSE : w->player.move.right;
+	w->player.move.forward = k == KEY_W ? FALSE : w->player.move.forward;
+	w->player.move.back = k == KEY_S ? FALSE : w->player.move.back;
 	return (0);
 }
 
@@ -122,8 +125,10 @@ int		key_press(int k, t_wolf *w)
 		w->player.move.camera = KEY_ARROW_UP;
 	else if (k == KEY_ARROW_DOWN)
 		w->player.move.camera = KEY_ARROW_DOWN;
-	else if (k == KEY_SPACE)
+	else if (k == KEY_R)
 		w->space_was_pressed = !(w->space_was_pressed);
+	else if (k == KEY_SPACE)
+		w->player.move.jump = STARTED;
 	return (0);
 }
 
