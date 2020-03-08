@@ -46,6 +46,8 @@ int		draw_all_hook(t_wolf *w)
 	render_walls(w);
 	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
+	if (w->layers->menu.on == TRUE)
+		draw_menu(w);
 	return (0);
 }
 
@@ -60,6 +62,16 @@ int		move_player_mouse(int x, int y, t_wolf *w)
 	else if (prev_x > x)
 		w->player.look_column_angle.x -= 0.05;
 	prev_x = x;
+	if (x > WIN_W - 155 && x < WIN_W - 5 && y > 5 && y < 62)
+	{
+		w->layers->menu_button.on = TRUE;
+		w->layers->button_mask.on = FALSE;
+	}
+	else
+	{
+		w->layers->menu_button.on = FALSE;
+		w->layers->button_mask.on = TRUE;
+	}
 	return (0);
 }
 
@@ -70,6 +82,7 @@ void	check_hooks_loops(t_wolf *wolf)
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 3, 0, &key_unpress, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 4, 0, &count_intence, &wolf->mlx);
+	mlx_hook(wolf->mlx.wptr, 5, 0, &open_menu, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 6, 0, &move_player_mouse, &wolf->mlx);
 	mlx_loop(wolf->mlx.mptr);
 }

@@ -20,10 +20,28 @@ void		clear_dinamic_img(t_layer *layer)
 
 void		prepare_static_layers(t_wolf *w)
 {
+	int		x;
+
+	x = 0;
 	clear_layer(&w->layers->map_view);
 	draw_background_on_map(w);
 	draw_texture_on_floor(w, w->t[7]);
 	draw_texture_on_celling(w, w->t[5]);
+	open_menu_image(&w->layers->menu_button,
+			"./textures/menu_butt.xpm", 150, 57);
+	open_menu_image(&w->layers->button_mask,
+			"./textures/menu_butt.xpm", 150, 57);
+	open_menu_image(&w->layers->menu,
+			"./textures/EVA.xpm", WIN_W, WIN_W);
+	put_color_mask(&w->layers->button_mask, 0x55000000, 57, 150);
+	while (x < 150)
+	{
+		w->layers->menu_button.img[x] =
+				w->layers->menu_button.img[0] | 0xFF000000;
+		w->layers->menu_button.img[x + 1] =
+				w->layers->menu_button.img[1] | 0xFF000000;
+		x++;
+	}
 	draw_walls(w);
 }
 
@@ -71,8 +89,13 @@ void		init_all_img(t_wolf *w)
 	init_img(&res->d_labyrinth, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->d_player, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->map_view, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
-	init_img(&res->mask, w->mlx.mptr, FALSE, &(t_ivec2){WIN_W, WIN_H});
+	init_img(&res->menu, w->mlx.mptr, FALSE, &(t_ivec2){WIN_W, WIN_H});
+	init_img(&res->menu_button, w->mlx.mptr, FALSE, &(t_ivec2){150, 57});
+	init_img(&res->button_mask, w->mlx.mptr, TRUE, &(t_ivec2){150, 57});
 	init_img(&res->background, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	w->layers = res;
 	prepare_static_layers(w);
+	change_img_coord(&res->menu_button, &(t_ivec2){WIN_W - 155, 5});
+	change_img_coord(&res->button_mask, &(t_ivec2){WIN_W - 155, 5});
+	change_img_coord(&res->menu, &(t_ivec2){WIN_W / 2, 0});
 }

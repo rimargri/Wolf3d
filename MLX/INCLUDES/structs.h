@@ -177,7 +177,11 @@ typedef struct			s_layer
 	t_img				d_player;
 	t_img				map_view;
 	t_img				background;
-	t_img				mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ
+	t_img               menu;
+	t_img               menu_button;
+	t_img               button_mask;
+	t_img               menu_background;
+//	t_img				mask;//допустим, на фрактал, или для смены цвета/интенсивности ВСЕГО НАХУЙ
 //будем расширять здесь до бесконечности - на сколько креатива хватит
 }						t_layer;
 

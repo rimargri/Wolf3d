@@ -29,7 +29,7 @@ C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c init_l
 		  render_rays.c player.c player_move.c \
 		  validate.c mlx_data.c layers.c \
 		  fractal.c modes_for_fun.c mirror_floor.c wolf_error.c init_textures.c \
-		  draw_text_back.c
+		  draw_text_back.c menu.c draw_menu.c
 
 C_FILES += render_walls_textures.c render_texture.c cardinal_points.c init_modes.c write_map.c
 
@@ -42,7 +42,7 @@ MLX_FLAGS = -L ./MinilibX -lm -lmlx -framework OpenGL -framework AppKit
 CFLAGS = -Wall -Wextra
 # CFLAGS += -Werror
 # CFLAGS += -g
-# CFLAGS += -O2
+CFLAGS += -Ofast
 
 all: $(OBJ_DIR) $(NAME)
 

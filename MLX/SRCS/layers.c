@@ -63,6 +63,8 @@ void		draw_layers(t_wolf *w)
 	should_we_draw_it(&w->layers->d_labyrinth, w->mlx.wptr);
 	should_we_draw_it(&w->layers->map_view, w->mlx.wptr);
 	should_we_draw_it(&w->layers->d_player, w->mlx.wptr);
-	should_we_draw_it(&w->layers->mask, w->mlx.wptr);
+	should_we_draw_it(&w->layers->menu, w->mlx.wptr);
+	should_we_draw_it(&w->layers->menu_button, w->mlx.wptr);
+	should_we_draw_it(&w->layers->button_mask, w->mlx.wptr);
 	should_we_draw_it(&w->layers->d_fractol_draw, w->mlx.wptr);
 }

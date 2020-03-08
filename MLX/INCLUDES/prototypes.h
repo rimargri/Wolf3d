@@ -40,6 +40,8 @@ void				check_hooks_loops(t_wolf *wolf);
 int					key_unpress(int k, t_wolf *w);
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
+void				draw_menu(t_wolf *w);
+int					open_menu(int button, int x, int y, t_wolf *w);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -136,6 +138,8 @@ void				init_fractol(t_draw_fractal **f);
 void				change_img_coord(t_img *img, t_ivec2 *begin);
 void				draw_fractal(t_draw_fractal **fractal, t_img *f);
 void				draw_layers(t_wolf *w);
+void			    open_menu_image(t_img *image, char *filename, int size_x, int size_y);
+void				draw_menu(t_wolf *w);
 
 /** *********************************** **/
 /** *********************************** **/

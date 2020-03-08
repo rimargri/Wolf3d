@@ -37,7 +37,6 @@ void	clear_layers(t_layer **layer)
 	clear_img(&(*layer)->d_player);
 	clear_img(&(*layer)->map_view);
 	clear_img(&(*layer)->background);
-	clear_img(&(*layer)->mask);
 	free(*layer);
 	layer = NULL;
 }
