@@ -41,6 +41,8 @@ int			write_waves_earthquake(t_wolf *w)
 
 void		write_curr_dem(t_wolf *w)
 {
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 600,
+			0x00BBBBFF, "current shape:");
 	if (w->dem->norm->on == TRUE)
 		mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 230, 600,
 			0x00BBBBFF, "normal");
@@ -78,8 +80,18 @@ void		write_dementions_management(t_wolf *w)
 			0x00BBBBFF, "4 - mirrors on floor");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 230,
 			0x00BBBBFF, "5 - fractal mask");
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 600,
-			0x00BBBBFF, "current shape:");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 283,
+			0x00BBBBFF, "use    (enter)");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 260,
+			0x00BBBBFF, "show/hide map:");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 283,
+			0x00BBBBFF, "      |");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 260, 285,
+			0x00BBBBFF, "     _");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 262, 285,
+			0x00BBBBFF, "    _");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 262, 292,
+			0x00BBBBFF, "    <");
 }
 
 void		draw_menu(t_wolf *w)
