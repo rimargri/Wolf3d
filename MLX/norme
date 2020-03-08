@@ -1,0 +1,133 @@
+Norme: ./SRCS/cardinal_points.c
+Error (line 15): comment not well formatted
+Error (line 16): comment not well formatted
+Error (line 17): comment not well formatted
+Error (line 18): comment not well formatted
+Error (line 19): comment not well formatted
+Error (line 20): comment not well formatted
+Error (line 21): comment not well formatted
+Error (line 22): comment not well formatted
+Error (line 38, col 6): missing space after if
+Norme: ./SRCS/clear_wolf.c
+Norme: ./SRCS/color.c
+Norme: ./SRCS/draw_rect.c
+Error (line 23): C++ comment
+Error (line 25): C++ comment
+Norme: ./SRCS/draw_map.c
+Error: file must end with a single empty line
+Error (line 46): comment not well formatted
+Error (line 47): comment not well formatted
+Error (line 49): function draw_walls has 27 lines
+Error (line 67): C++ comment
+Error (line 67): line has 118 characters
+Error (line 67, col 39): bad character after ;
+Error (line 69): line has 94 characters
+Error (line 73): line has 85 characters
+Error (line 79): comment not well formatted
+Error (line 80): C++ comment
+Error (line 81): C++ comment
+Error (line 82): C++ comment
+Error (line 83): C++ comment
+Error (line 84): C++ comment
+Error (line 85): C++ comment
+Error (line 86): C++ comment
+Error (line 87): C++ comment
+Error (line 88): C++ comment
+Error (line 89): C++ comment
+Error (line 90): C++ comment
+Error (line 91): C++ comment
+Error (line 92): C++ comment
+Error (line 93): C++ comment
+Error (line 94): C++ comment
+Error (line 95): C++ comment
+Error (line 95): line has 118 characters
+Error (line 96): C++ comment
+Error (line 97): line has 94 characters
+Error (line 97): C++ comment
+Error (line 98): C++ comment
+Error (line 99): C++ comment
+Error (line 100): C++ comment
+Error (line 101): C++ comment
+Error (line 101): line has 85 characters
+Error (line 102): C++ comment
+Error (line 103): C++ comment
+Error (line 104): C++ comment
+Error (line 105): C++ comment
+Error (line 106): C++ comment
+Norme: ./SRCS/draw_text_back.c
+Norme: ./SRCS/check_player_move.c
+Norme: ./SRCS/init_modes.c
+Norme: ./SRCS/init_textures.c
+Error (line 18, col 7): i is instanciated during declaration
+Error (line 34): function init_textures has 49 lines
+Error (line 39): bad indentation
+Error (line 39): comment not well formatted
+Error (line 39): comment not well placed
+Error (line 40): comment not well placed
+Error (line 40): bad indentation
+Error (line 40): comment not well formatted
+Error (line 41): comment not well formatted
+Error (line 41): comment not well placed
+Error (line 41): bad indentation
+Error (line 42): bad indentation
+Error (line 42): comment not well placed
+Error (line 42): comment not well formatted
+Error (line 43): comment not well placed
+Error (line 43): comment not well formatted
+Error (line 43): bad indentation
+Error (line 44): Empty line
+Error (line 45): multiple empty lines
+Error (line 45): Empty line
+Error (line 46): C++ comment
+Error (line 47): C++ comment
+Error (line 48): C++ comment
+Error (line 49): C++ comment
+Error (line 50): C++ comment
+Error (line 50): line has 83 characters
+Error (line 51): C++ comment
+Error (line 52): C++ comment
+Error (line 52): line has 83 characters
+Error (line 53): C++ comment
+Error (line 54): line has 83 characters
+Error (line 54): C++ comment
+Error (line 55): C++ comment
+Error (line 56): C++ comment
+Error (line 57): C++ comment
+Error (line 58): Empty line
+Error (line 59): comment not well placed
+Error (line 59): comment not well formatted
+Error (line 59): bad indentation
+Error (line 60): bad indentation
+Error (line 60): comment not well formatted
+Error (line 60): comment not well placed
+Error (line 61): comment not well formatted
+Error (line 61): comment not well placed
+Error (line 61): bad indentation
+Error (line 62): bad indentation
+Error (line 62): comment not well formatted
+Error (line 62): comment not well placed
+Error (line 63): bad indentation
+Error (line 63): comment not well placed
+Error (line 63): comment not well formatted
+Error (line 64): Empty line
+Error (line 83): bad indentation
+Error (line 83): C++ comment
+Norme: ./SRCS/draw_menu.c
+Norme: ./SRCS/fractal.c
+Norme: ./SRCS/layers.c
+Norme: ./SRCS/init_layer.c
+Norme: ./SRCS/main.c
+Norme: ./SRCS/key_press.c
+Norme: ./SRCS/load_texture.c
+Norme: ./SRCS/menu.c
+Norme: ./SRCS/mlx_data.c
+Norme: ./SRCS/player.c
+Norme: ./SRCS/modes_for_fun.c
+Norme: ./SRCS/render_texture.c
+Norme: ./SRCS/render_rays.c
+Norme: ./SRCS/mirror_floor.c
+Norme: ./SRCS/wolf_error.c
+Norme: ./SRCS/write_map.c
+Norme: ./SRCS/validate.c
+Norme: ./SRCS/render_walls_textures.c
+Norme: ./SRCS/player_move.c

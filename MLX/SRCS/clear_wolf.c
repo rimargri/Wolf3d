@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 21:35:09 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 11:29:05 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 22:02:39 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	clear_layers(t_layer **layer)
 	clear_img(&(*layer)->d_player);
 	clear_img(&(*layer)->map_view);
 	clear_img(&(*layer)->background);
-	clear_img(&(*layer)->mask);
 	free(*layer);
 	layer = NULL;
 }

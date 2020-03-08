@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:38:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 09:43:37 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:43:20 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,10 @@ typedef struct			s_layer
 	t_img				map_view;
 	t_img				background;
 	t_img				mask;
+	t_img               menu;
+	t_img               menu_button;
+	t_img               button_mask;
+	t_img               menu_background;
 }						t_layer;
 
 typedef struct			s_wolf

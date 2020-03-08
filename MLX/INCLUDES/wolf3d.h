@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 21:15:27 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 22:22:34 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,6 @@
 # define FOV M_PI / 3.0
 # define FALSE -1
 # define TRUE 0
-// # define EVA 4
-// # define PANELKI 4
-# define PUT_SECOND 10
 # define STATE_EVANGELION 0
 # define STATE_PEPEGA 1
 # define STATE_PANELKI 2

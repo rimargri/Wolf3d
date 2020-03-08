@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/08 16:12:29 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/08 21:37:16 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,21 @@ C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c \
 		  render_rays.c player.c player_move.c \
 		  validate.c mlx_data.c layers.c \
 		  fractal.c modes_for_fun.c mirror_floor.c wolf_error.c types_errors.c \
-		  init_textures.c draw_text_back.c
+		  init_textures.c draw_text_back.c 
 
 C_FILES += render_walls.c render_texture.c cardinal_points.c default_textures.c \
 		   custom_textures.c
+
+C_FILES += menu.c draw_menu.c init_modes.c write_map.c
+	
+# C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c init_layer.c \
+# 		  key_press.c load_texture.c main.c \
+# 		  render_rays.c player.c player_move.c \
+# 		  validate.c mlx_data.c layers.c \
+# 		  fractal.c modes_for_fun.c mirror_floor.c wolf_error.c init_textures.c \
+# 		  draw_text_back.c menu.c draw_menu.c
+
+# C_FILES += render_walls_textures.c render_texture.c cardinal_points.c init_modes.c write_map.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

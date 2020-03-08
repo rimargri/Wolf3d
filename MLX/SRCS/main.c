@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 18:11:16 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:50:47 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_wolf	*init_wolf(t_wolf *wolf, int ac, char **maps)
 	wolf = (t_wolf*)malloc(sizeof(t_wolf));
 	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
 	wolf->map = validate(ac, maps);
-	wolf->mlx = init_mlx();
 	wolf->t = init_textures(wolf, maps[1]);
+	wolf->mlx = init_mlx();
 	wolf->dem = init_dem();
 	wolf->space_was_pressed = 0;
 	return (wolf);

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:02:34 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 14:13:33 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:48:36 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,21 @@ int		dem_change(int k, t_wolf *w)
 	return (TRUE);
 }
 
+void	map_view_change(t_wolf *w)
+{
+	w->layers->map_view.on = w->layers->map_view.on == TRUE ? FALSE : TRUE;
+	if (w->layers->map_view.on == TRUE)
+	{
+		w->layers->d_player.on = TRUE;
+		w->layers->draw_shift = 0.0;
+	}
+	else
+	{
+		w->layers->d_player.on = FALSE;
+		w->layers->draw_shift = -0.5236;
+	}
+}
+
 int		key_unpress(int k, t_wolf *w)
 {
 	if (k == KEY_ARROW_RIGHT)
@@ -71,19 +86,7 @@ int		key_unpress(int k, t_wolf *w)
 	else if (k == KEY_ARROW_DOWN)
 		w->player.move.camera = 0;
 	else if (k == ENTER)
-	{
-		w->layers->map_view.on = w->layers->map_view.on == TRUE ? FALSE : TRUE;
-		if (w->layers->map_view.on == TRUE)
-		{
-			w->layers->d_player.on = TRUE;
-			w->layers->draw_shift = 0.0;
-		}
-		else
-		{
-			w->layers->d_player.on = FALSE;
-			w->layers->draw_shift = -0.5236;
-		}
-	}
+		map_view_change(w);
 	else if (dem_change(k, w) == TRUE)
 		;
 	else

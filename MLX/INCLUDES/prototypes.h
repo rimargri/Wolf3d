@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 19:21:13 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:39:31 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void				check_hooks_loops(t_wolf *wolf);
 int					key_unpress(int k, t_wolf *w);
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
+void				draw_menu(t_wolf *w);
+int					open_menu(int button, int x, int y, t_wolf *w);
 
 /*
 ** *********************************** **
@@ -101,8 +103,6 @@ int					choice_color(t_wolf *w, char c);
 */
 
 void				draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth);
-int					rect_w(int w);
-int					rect_h(int h);
 
 /*
 ** *********************************** **
@@ -113,6 +113,9 @@ int					rect_h(int h);
 */
 
 t_map				validate(int ac, char **maps);
+int					rect_w(int w);
+int					rect_h(int h);
+void				prepare_map(t_map *map, char *src, int ret);
 
 /*
 ** *********************************** **
@@ -178,6 +181,8 @@ void				init_fractol(t_draw_fractal **f);
 void				change_img_coord(t_img *img, t_ivec2 *begin);
 void				draw_fractal(t_draw_fractal **fractal, t_img *f);
 void				draw_layers(t_wolf *w);
+void			    open_menu_image(t_img *image, char *filename, int size_x, int size_y);
+void				draw_menu(t_wolf *w);
 
 /*
 ** *********************************** **
