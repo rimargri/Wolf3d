@@ -6,18 +6,18 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:45:42 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 17:09:59 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:36:14 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		get_color(t_color color)
+int			get_color(t_color color)
 {
 	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }
 
-int		choice_color(t_wolf *w, char c)
+int			choice_color(t_wolf *w, char c)
 {
 	if (c == ' ')
 		return (-1);
@@ -28,7 +28,7 @@ int		choice_color(t_wolf *w, char c)
 	return (-1);
 }
 
-int		color_of_texture(t_wolf *w, char c)
+int			color_of_texture(t_wolf *w, char c)
 {
 	int color;
 
@@ -48,17 +48,17 @@ int		color_of_texture(t_wolf *w, char c)
 	return (color);
 }
 
-int		color_of_wall(char c)
+int			color_of_wall(char c)
 {
 	int color;
 
 	color = 0;
 	if (c == '4')
-		color = get_color((t_color){0, 0, 0});					// black
+		color = get_color((t_color){0, 0, 0});
 	else if (c == '5')
-		color = get_color((t_color){240, 100, 100});			// red
+		color = get_color((t_color){240, 100, 100});
 	else if (c == '6')
-		color = get_color((t_color){240, 240, 240});			// gray
+		color = get_color((t_color){240, 240, 240});
 	else if (c == '7')
 		color = get_color((t_color){100, 150, 100});
 	else

@@ -1,6 +1,14 @@
-//
-// Created by Hugor Chau on 2020-02-22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clear_wolf.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/06 21:35:09 by cvernius          #+#    #+#             */
+/*   Updated: 2020/03/06 21:35:11 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "wolf3d.h"
 
@@ -33,23 +41,17 @@ void	clear_layers(t_layer **layer)
 	free(*layer);
 	layer = NULL;
 }
-//
-//void	clear_textures(t_texture **t)
-//{
-//
-//}
 
 void	clear_wolf(t_wolf **w)
 {
 	clear_layers(&((*w)->layers));
-//	clear_textures((*w)->t);
 	free((*w)->map.line);
 	(*w)->map.line = NULL;
-//	if ((*w)->t != NULL)
-//	{
-//		free((*w)->t);
-//		(*w)->t = NULL;
-//	}
+	if ((*w)->t != NULL)
+	{
+		free((*w)->t);
+		(*w)->t = NULL;
+	}
 	free(*w);
 	*w = NULL;
 	exit(0);

@@ -1,0 +1,218 @@
+Norme: ./INCLUDES/errors.h
+Error (line 14): wrong number of spaces in preprocessor indentation
+Error (line 14): preprocessor block must be followed by one empty line
+Error (line 19): comment not well formatted
+Error (line 20): comment not well formatted
+Error (line 21): comment not well formatted
+Error (line 22): comment not well formatted
+Error (line 23): comment not well formatted
+Error (line 25): preprocessor block must be followed by one empty line
+Error (line 26): C++ comment
+Error (line 27): multiline define
+Error (line 27): preprocessor block must be followed by one empty line
+Error (line 29): multiline define
+Error (line 29): preprocessor block must be followed by one empty line
+Error (line 31): preprocessor block must be followed by one empty line
+Error (line 31): multiline define
+Error (line 33): multiline define
+Error (line 33): preprocessor block must be followed by one empty line
+Error (line 37): multiline define
+Error (line 37): preprocessor block must be followed by one empty line
+Error (line 40): multiline define
+Error (line 40): preprocessor block must be followed by one empty line
+Error (line 42): preprocessor block must be followed by one empty line
+Error (line 42): multiline define
+Error (line 46): comment not well formatted
+Error (line 47): comment not well formatted
+Error (line 48): comment not well formatted
+Error (line 49): comment not well formatted
+Error (line 50): comment not well formatted
+Error (line 52): wrong number of spaces in preprocessor indentation
+Error (line 52): preprocessor block must be followed by one empty line
+Error (line 52): line has 85 characters
+Error (line 52): multiline define
+Error (line 53): line has 89 characters
+Error (line 54): line has 85 characters
+Error (line 54): wrong number of spaces in preprocessor indentation
+Error (line 56): comment not well formatted
+Error (line 57): comment not well formatted
+Error (line 58): comment not well formatted
+Error (line 59): comment not well formatted
+Error (line 60): comment not well formatted
+Error (line 64): comment not well formatted
+Error (line 65): comment not well formatted
+Error (line 66): comment not well formatted
+Error (line 67): comment not well formatted
+Error (line 68): comment not well formatted
+Error (line 70): wrong number of spaces in preprocessor indentation
+Error (line 71): wrong number of spaces in preprocessor indentation
+Error (line 71): line has 83 characters
+Error (line 72): wrong number of spaces in preprocessor indentation
+Norme: ./INCLUDES/wolf3d.h
+Error: has double inclusion protection but not with the good define name
+Error (line 13): C++ comment
+Error (line 16): wrong number of spaces in preprocessor indentation
+Error (line 17): wrong number of spaces in preprocessor indentation
+Error (line 18): wrong number of spaces in preprocessor indentation
+Error (line 19): wrong number of spaces in preprocessor indentation
+Error (line 20): wrong number of spaces in preprocessor indentation
+Error (line 21): wrong number of spaces in preprocessor indentation
+Error (line 23): comment not well formatted
+Error (line 24): comment not well formatted
+Error (line 25): comment not well formatted
+Error (line 26): comment not well formatted
+Error (line 27): comment not well formatted
+Error (line 29): wrong number of spaces in preprocessor indentation
+Error (line 30): wrong number of spaces in preprocessor indentation
+Error (line 31): wrong number of spaces in preprocessor indentation
+Error (line 32): wrong number of spaces in preprocessor indentation
+Error (line 34): comment not well formatted
+Error (line 35): comment not well formatted
+Error (line 36): comment not well formatted
+Error (line 37): comment not well formatted
+Error (line 38): comment not well formatted
+Error (line 48): comment not well formatted
+Error (line 49): comment not well formatted
+Error (line 50): comment not well formatted
+Error (line 51): comment not well formatted
+Error (line 52): comment not well formatted
+Error (line 68): comment not well formatted
+Error (line 69): comment not well formatted
+Error (line 70): comment not well formatted
+Error (line 71): comment not well formatted
+Error (line 72): comment not well formatted
+Error (line 77): comment not well formatted
+Error (line 78): comment not well formatted
+Error (line 79): comment not well formatted
+Error (line 80): comment not well formatted
+Error (line 81): comment not well formatted
+Error (line 89): C++ comment
+Error (line 90): C++ comment
+Error (line 92): comment not well formatted
+Error (line 93): comment not well formatted
+Error (line 94): comment not well formatted
+Error (line 95): comment not well formatted
+Error (line 96): comment not well formatted
+Norme: ./INCLUDES/structs.h
+Error: has double inclusion protection but not with the good define name
+Error: global scope bad aligned
+Error (line 15): wrong number of spaces in preprocessor indentation
+Error (line 18): comment not well formatted
+Error (line 19): comment not well formatted
+Error (line 20): comment not well formatted
+Error (line 21): comment not well formatted
+Error (line 22): comment not well formatted
+Error (line 24): must have only tabulations between struct and s_ivec2.
+Error (line 24, col 14): bad spacing
+Error (line 26): bad indentation
+Error (line 26): must begin only by tabulations
+Error (line 26, col 7): bad spacing
+Error (line 27): must begin only by tabulations
+Error (line 27): bad indentation
+Error (line 27, col 7): bad spacing
+Error (line 28, col 1): bad spacing
+Error (line 37): must have only tabulations between struct and s_color.
+Error (line 37, col 14): bad spacing
+Error (line 39): bad indentation
+Error (line 39): must begin only by tabulations
+Error (line 39, col 7): bad spacing
+Error (line 40): must begin only by tabulations
+Error (line 40): bad indentation
+Error (line 40, col 7): bad spacing
+Error (line 41): must begin only by tabulations
+Error (line 41): bad indentation
+Error (line 41, col 7): bad spacing
+Error (line 42, col 1): bad spacing
+Error (line 60): comment not well formatted
+Error (line 61): comment not well formatted
+Error (line 62): comment not well formatted
+Error (line 63): comment not well formatted
+Error (line 64): comment not well formatted
+Error (line 91, col 14): bad spacing
+Error (line 92, col 4): bad spacing
+Error (line 93, col 4): bad spacing
+Error (line 94, col 4): bad spacing
+Error (line 138): comment not well formatted
+Error (line 139): comment not well formatted
+Error (line 140): comment not well formatted
+Error (line 141): comment not well formatted
+Error (line 142): comment not well formatted
+Error (line 168): C++ comment
+Error (line 169): C++ comment
+Error (line 174): C++ comment
+Error (line 180): line has 99 characters
+Error (line 180): C++ comment
+Error (line 181): C++ comment
+Error (line 189): C++ comment
+Error (line 189, col 18): bad character after ;
+Error (line 191): must begin only by tabulations
+Norme: ./INCLUDES/prototypes.h
+Error: has double inclusion protection but not with the good define name
+Error (line 15): wrong number of spaces in preprocessor indentation
+Error (line 16): wrong number of spaces in preprocessor indentation
+Error (line 18): comment not well formatted
+Error (line 19): comment not well formatted
+Error (line 20): comment not well formatted
+Error (line 21): comment not well formatted
+Error (line 22): comment not well formatted
+Error (line 27): line has 82 characters
+Error (line 28): line has 89 characters
+Error (line 28, col 4): bad spacing
+Error (line 29, col 4): bad spacing
+Error (line 31): comment not well formatted
+Error (line 32): comment not well formatted
+Error (line 33): comment not well formatted
+Error (line 34): comment not well formatted
+Error (line 35): comment not well formatted
+Error (line 44): comment not well formatted
+Error (line 45): comment not well formatted
+Error (line 46): comment not well formatted
+Error (line 47): comment not well formatted
+Error (line 48): comment not well formatted
+Error (line 63): comment not well formatted
+Error (line 64): comment not well formatted
+Error (line 65): comment not well formatted
+Error (line 66): comment not well formatted
+Error (line 67): comment not well formatted
+Error (line 74): comment not well formatted
+Error (line 75): comment not well formatted
+Error (line 76): comment not well formatted
+Error (line 77): comment not well formatted
+Error (line 78): comment not well formatted
+Error (line 85): comment not well formatted
+Error (line 86): comment not well formatted
+Error (line 87): comment not well formatted
+Error (line 88): comment not well formatted
+Error (line 89): comment not well formatted
+Error (line 91, col 4): bad spacing
+Error (line 94): comment not well formatted
+Error (line 95): comment not well formatted
+Error (line 96): comment not well formatted
+Error (line 97): comment not well formatted
+Error (line 98): comment not well formatted
+Error (line 105): comment not well formatted
+Error (line 106): comment not well formatted
+Error (line 107): comment not well formatted
+Error (line 108): comment not well formatted
+Error (line 109): comment not well formatted
+Error (line 112, col 4): bad spacing
+Error (line 114): line has 97 characters
+Error (line 114, col 3): bad spacing
+Error (line 116, col 9): bad spacing
+Error (line 119): line has 101 characters
+Error (line 122): comment not well formatted
+Error (line 123): comment not well formatted
+Error (line 124): comment not well formatted
+Error (line 125): comment not well formatted
+Error (line 126): comment not well formatted
+Error (line 139): comment not well formatted
+Error (line 140): comment not well formatted
+Error (line 141): comment not well formatted
+Error (line 142): comment not well formatted
+Error (line 143): comment not well formatted
+Error (line 148): line has 91 characters
+Error (line 148, col 4): bad spacing
+Error (line 149): line has 93 characters
+Error (line 149, col 4): bad spacing
+Norme: ./INCLUDES/stb_image.h
+Warning: /Users/hchau/Downloads/Wolf3d-378ed8302f9181b04113eea827db9cd0b5f890e8/MLX/INCLUDES/stb_image.h may not compile or is invalid for some reasons.

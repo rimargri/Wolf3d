@@ -1,10 +1,18 @@
-//
-// Created by Hugor Chau on 2020-02-24.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractal.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/06 22:07:41 by cvernius          #+#    #+#             */
+/*   Updated: 2020/03/06 22:07:43 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int			fract_get_color(int iteration, int max_iteration)
+int		fract_get_color(int iteration, int max_iteration)
 {
 	double			t;
 	int				red;
@@ -16,13 +24,11 @@ int			fract_get_color(int iteration, int max_iteration)
 	t = ((double)iteration / (double)max_iteration);
 	green = (int)(9 * (1 - t) * pow(t, 3) * 255);
 	blue = (int)(8.5 * pow((1 - t), 3) * t * 255);
-	red  = (int)(15 * pow((1 - t), 2) * pow(t, 2) * 255);
-	if (blue % 255 == 0 || blue % 254 == 0 || blue % 253 == 0 || blue % 252 == 0)
-		blue += 20;
+	red = (int)(15 * pow((1 - t), 2) * pow(t, 2) * 255);
 	return (0xCC << 24 | (red) << 16 | (green) << 8 | (blue));
 }
 
-void		image_set_pixel(t_img **image, int x, int y, int color)
+void	image_set_pixel(t_img **image, int x, int y, int color)
 {
 	int				i;
 	t_img			*img;
@@ -49,7 +55,7 @@ int		julia(t_fractal *julia)
 	z.x = julia->constant.y;
 	z.y = julia->constant.x;
 	while (pow(z.x, 2.0) + pow(z.y, 2.0) <= 4
-		   && iteration < julia->max_iteration)
+			&& iteration < julia->max_iteration)
 	{
 		extra = z.x;
 		z.x = pow(z.x, 2.0) - pow(z.y, 2.0) + julia->k.x;
@@ -59,7 +65,7 @@ int		julia(t_fractal *julia)
 	return (iteration);
 }
 
-int			get_fractal_img(t_draw_fractal *full)
+int		get_fractal_img(t_draw_fractal *full)
 {
 	int				y;
 	int				x;
@@ -74,7 +80,7 @@ int			get_fractal_img(t_draw_fractal *full)
 			full->count.constant.x = -1.0 + x * full->count.cur.x;
 			image_set_pixel(&full->drawing, x, y,
 							fract_get_color(julia(&full->count),
-									  full->count.max_iteration));
+									full->count.max_iteration));
 			x++;
 		}
 		y++;
@@ -82,16 +88,16 @@ int			get_fractal_img(t_draw_fractal *full)
 	return (0);
 }
 
-void		draw_fractal(t_draw_fractal **fractal, t_img *f)
+void	draw_fractal(t_draw_fractal **fractal, t_img *f)
 {
 	pthread_t		threads[THREADS];
 	t_draw_fractal	current[THREADS];
 	int				i;
 
 	(*fractal)->count.cur.x = (0.0 + 8.0)
-						   / (WIN_W - 1);
+						/ (WIN_W - 1);
 	(*fractal)->count.cur.y = (1.0 + 1.0)
-						   / (WIN_H - 1);
+						/ (WIN_H - 1);
 	(*fractal)->drawing = f;
 	i = 0;
 	while (i < THREADS)
@@ -100,7 +106,7 @@ void		draw_fractal(t_draw_fractal **fractal, t_img *f)
 		current[i].start_line = i * (WIN_H / THREADS);
 		current[i].finish_line = (i + 1) * (WIN_H / THREADS);
 		pthread_create(&threads[i], NULL,
-					   (void *(*)(void *))get_fractal_img, (void *)&current[i]);
+					(void *(*)(void *))get_fractal_img, (void *)&current[i]);
 		i++;
 	}
 	while (i-- > 0)

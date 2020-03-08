@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 14:40:10 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:41:24 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** if its not nessesary, remove part "hit" from struct in structs.h
 */
 
-int     x_start(t_vec2 len, t_texture *t)
+int		x_start(t_vec2 len, t_texture *t)
 {
 	int		x;
 	t_vec2	hit;
@@ -43,27 +43,25 @@ int		*scale_column(t_raycast r, int *column, int column_height)
 	x = x_start(r.len, r.t);
 	while (y < column_height)
 	{
-		// ?? MODE "matrix": 
-		// column[y] = r.t->texture[x + y * WIN_W];
-		column[y] = r.t->texture[x + (y * r.t->size / column_height) * r.t->size];
+		column[y] = r.t->texture[x + (y * r.t->size / column_height)
+														* r.t->size];
 		y++;
 	}
 	return (column);
 }
 
-void	full_column_texture(t_wolf *w, int *column, int column_height, int current_pix)
+void	full_column_texture(t_wolf *w, int *column, int col_height, int cur_pix)
 {
 	int		y;
 	t_ivec2	pix;
 
-	pix.x = w->layers->map_view.on == TRUE ? current_pix + WIN_W / 2 : current_pix;
+	pix.x = w->layers->map_view.on == TRUE ? cur_pix + WIN_W / 2 : cur_pix;
 	pix.y = 0;
 	y = 0;
-	while (y < column_height)
+	while (y < col_height)
 	{
-		pix.y = y + WIN_H / 2 - column_height / 2;
+		pix.y = y + WIN_H / 2 - col_height / 2;
 		if (pix.y >= 0 && pix.y < WIN_H)
-			// w->mlx.img[pix.x + pix.y * WIN_W] = column[y]; 
 			w->layers->d_labyrinth.img[pix.x + pix.y * WIN_W] = column[y];
 		y++;
 	}

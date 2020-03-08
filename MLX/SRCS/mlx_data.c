@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 22:18:12 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 15:25:53 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:17:54 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_mlx	init_mlx(void)
 {
 	t_mlx	mlx;
-	
+
 	if (!(mlx.mptr = mlx_init()))
 		wolf_error(MLX_POINTER);
 	if (!(mlx.wptr = mlx_new_window(mlx.mptr, WIN_W, WIN_H, "WOLF3D\0")))
@@ -23,15 +23,17 @@ t_mlx	init_mlx(void)
 	return (mlx);
 }
 
-	//__FIXX_IF_YOU_WANNA_подумать о повороте головы *** func: change_wolf
-
 void	change_wolf(t_wolf *w)
 {
-	(w->player.move.camera == KEY_ARROW_RIGHT ? w->player.look_column_angle.x += 0.05 : 1);
-	(w->player.move.camera == KEY_ARROW_LEFT ? w->player.look_column_angle.x -= 0.05 : 1);
-	(w->player.move.camera == KEY_ARROW_UP ? w->player.move.camera_up += 0.02 : 0);
-	(w->player.move.camera == KEY_ARROW_DOWN ? w->player.move.camera_up -= 0.02 : 0);
-	 get_wolf_with_modes(w);
+	(w->player.move.camera == KEY_ARROW_RIGHT ?
+								w->player.look_column_angle.x += 0.05 : 1);
+	(w->player.move.camera == KEY_ARROW_LEFT ?
+								w->player.look_column_angle.x -= 0.05 : 1);
+	(w->player.move.camera == KEY_ARROW_UP ?
+								w->player.move.camera_up += 0.02 : 0);
+	(w->player.move.camera == KEY_ARROW_DOWN ?
+								w->player.move.camera_up -= 0.02 : 0);
+	get_wolf_with_modes(w);
 	clear_dinamic_img(w->layers);
 }
 
@@ -50,7 +52,9 @@ int		draw_all_hook(t_wolf *w)
 int		move_player_mouse(int x, int y, t_wolf *w)
 {
 	static int		prev_x;
+	int				param;
 
+	param = y;
 	if (prev_x < x)
 		w->player.look_column_angle.x += 0.05;
 	else if (prev_x > x)

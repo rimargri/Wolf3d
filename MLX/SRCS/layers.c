@@ -1,6 +1,14 @@
-//
-// Created by Hugor Chau on 2020-02-22.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   layers.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/06 22:07:31 by cvernius          #+#    #+#             */
+/*   Updated: 2020/03/06 22:07:33 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "wolf3d.h"
 
@@ -11,9 +19,15 @@ void		clear_layer(t_img *image)
 	len = 0;
 	while (len < (image)->pixels)
 	{
-		(image)->img[len] = NOCOLOR;//выкручиваю альфа на максимум
+		(image)->img[len] = NOCOLOR;
 		len++;
 	}
+}
+
+void		change_img_coord(t_img *img, t_ivec2 *begin)
+{
+	img->begin->x = begin->x;
+	img->begin->y = begin->y;
 }
 
 void		put_color_mask(t_img *image, int mask, int x, int y)
@@ -27,7 +41,8 @@ void		put_color_mask(t_img *image, int mask, int x, int y)
 	{
 		while (j < y)
 		{
-			image->img[i + j * image->size->y] = image->img[i + j * image->size->y]  | mask;
+			image->img[i + j * image->size->y] =
+					image->img[i + j * image->size->y] | mask;
 			j++;
 		}
 		j = 0;
@@ -35,27 +50,14 @@ void		put_color_mask(t_img *image, int mask, int x, int y)
 	}
 }
 
-void		put_layer_mask(t_img *image, t_img *mask)
-{
-	size_t	len;
-
-	len = 0;
-	while (len < (image)->pixels)
-	{
-		(image)->img[len] = mask->img[len];//один имадж на другой накладываю
-		len++;
-	}
-}
-
-
-void	should_we_draw_it(t_img *image, void *wptr)
+void		should_we_draw_it(t_img *image, void *wptr)
 {
 	if (image->on == TRUE)
 		mlx_put_image_to_window(image->mptr, wptr, image->iptr,
 								image->begin->x, image->begin->y);
 }
 
-void	draw_layers(t_wolf *w)
+void		draw_layers(t_wolf *w)
 {
 	should_we_draw_it(&w->layers->background, w->mlx.wptr);
 	should_we_draw_it(&w->layers->d_labyrinth, w->mlx.wptr);

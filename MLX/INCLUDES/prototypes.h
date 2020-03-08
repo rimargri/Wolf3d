@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:36:18 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 15:32:31 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 19:51:28 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@
 
 void				render_rays(t_wolf *w);
 void				render_walls(t_wolf *w);
-
- void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle);	// raycast_rexture
-//void				raycast(t_wolf *w, float t, t_vec2 len, int pix);				//raycast color
-
-// Hchau's part
+int					check_distance(t_vec2 len, t_map *map);
+void				raycast(t_wolf *w, t_raycast r, int pix, float column_angle);
 void	            raycast_mode(t_wolf *w, float t, t_vec2 len, int pix, int y_offset);
 void	            render_walls_mode(t_wolf *w);
 
@@ -70,12 +67,9 @@ void				player_move(t_wolf *w);
 /** *********************************** **/
 
 void				draw_walls(t_wolf *w);
-void				draw_background(t_wolf *w);
-void				draw_floor(t_wolf *w);
-void				draw_celling(t_wolf *w);
+void				draw_background_on_map(t_wolf *w);
 void				draw_texture_on_celling(t_wolf *w, t_texture *t);
 void				draw_texture_on_floor(t_wolf *w, t_texture *t);
-void				draw_background_on_map(t_wolf *w);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -96,6 +90,7 @@ int					choice_color(t_wolf *w, char c);
 
 void    			draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth);
 void				clear_wolf(t_wolf **w);
+void				wolf_error(char *reason);
 
 /** *********************************** **/
 /** *********************************** **/
@@ -106,6 +101,7 @@ void				clear_wolf(t_wolf **w);
 t_map				validate(int ac, char **maps);
 int					rect_w(int w);
 int					rect_h(int h);
+void				prepare_map(t_map *map, char *src, int ret);
 
 /** *********************************** **/
 /** *********************************** **/

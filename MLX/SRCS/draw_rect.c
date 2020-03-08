@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 17:00:28 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:05:17 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,26 @@
 
 //__FIXX_IMMIDEATLEY Норма!
 
-void    draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
+void	draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
 {
-	int i;
-	int j;
+	int		x;
+	int		y;
 	t_ivec2 offset;
 
-	i = 0;
+	x = 0;
 	offset = (t_ivec2){0, 0};
-	while (i < w)
+	while (x < w)
 	{
-		j = 0;
-		while (j < h)
+		y = 0;
+		while (y < h)
 		{
-			offset.x = dr.firstpix.x + i;
-			offset.y = dr.firstpix.y + j;
-			if ((offset.x + (offset.y) * WIN_W) <= (WIN_H * WIN_W) && (offset.x + offset.y * WIN_W) >= 0)
+			offset.x = dr.firstpix.x + x;
+			offset.y = dr.firstpix.y + y;
+			if ((offset.x + (offset.y) * WIN_W) <= (WIN_H * WIN_W)
+				&& (offset.x + offset.y * WIN_W) >= 0)
 				d_labyrinth->img[offset.x + (offset.y) * WIN_W] = dr.color;
-			j++;
+			y++;
 		}
-		i++;
+		x++;
 	}
 }
