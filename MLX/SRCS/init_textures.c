@@ -6,80 +6,74 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/06 21:15:11 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:23:37 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <string.h>
 
-t_texture	**malloc_text(void)
+void		malloc_text(t_texture **t, int count_text, int i)
 {
-	t_texture	**t;
-	int			i = 0;
-	int			count_text;
+	int start_pos;
 
-	count_text = 9;
-	t = (t_texture**)malloc(sizeof(t_texture*) * count_text);
-	((t == NULL) ? wolf_error(MALLOC_ERROR) : 1);
-	while (i < count_text)
+	start_pos = i + count_text;
+	while (i < start_pos)
 	{
 		t[i] = (t_texture*)malloc(sizeof(t_texture));
 		((t[i] == NULL) ? wolf_error(MALLOC_ERROR) : 1);
-		t[i]->id = i;
 		i++;
+	}
+}
+
+t_texture	**init_textures(t_wolf *w, char *s)
+{
+	t_texture	**t;
+
+	t = (t_texture**)malloc(sizeof(t_texture*) * 6);
+	((t == NULL) ? wolf_error(MALLOC_ERROR) : 1);
+	malloc_text(t, 6, 0);
+	text_floor(t[0]);
+	text_celling(t[1]);
+	if (!strcmp(s, "../maps/0") || (!strcmp(s, "../maps/2")))
+	{
+		w->text_id = STATE_PANELKI;
+		text_panelki(t);
+	}
+	else if (!strcmp(s, "../maps/4") || !strcmp(s, "../maps/5") ||
+												(!strcmp(s, "../maps/1")))
+	{
+		w->text_id = STATE_EVANGELION;
+		text_evangelion(t);
+	}
+	else if (!strcmp(s, "../maps/Pepe"))
+	{
+		w->text_id = STATE_PEPEGA;
+		text_pepe(t);
 	}
 	return (t);
 }
 
-t_texture	**init_textures(void)
+void		change_textures(t_wolf *w)
 {
-	t_texture	**t;
-
-	t = malloc_text();
-				/** *********************************** **/
-				/** *********************************** **/
-				/**            evangelion               **/
-				/** *********************************** **/
-				/** *********************************** **/
-
-
-	// if (!(load_texture("./textures/rei_ayanami.png", t[0])))
-	// 	exit(13);
-	// // if (!(load_texture("./textures/ray.png", t[0])))
-	// // 	exit(13);
-	// if (!(load_texture("./textures/a9ff7837af8a58cbf6642ae954f0c5.png", t[1])))
-	// 	exit(13);
-	// if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-1.png", t[2])))
-	// 	exit(13);
-	// if (!(load_texture("./textures/screen-shot-2020-02-21-at-21-3.png", t[3])))
-	// 	exit(13);
-	// if (!(load_texture("./textures/pepe.png", t[4])))
-	// 	exit(13);
-
-				/** *********************************** **/
-				/** *********************************** **/
-				/**            panelki                  **/
-				/** *********************************** **/
-				/** *********************************** **/
-
-	if (!(load_texture("./textures/panelka_1.png", t[0])))
-		exit(13);
-	if (!(load_texture("./textures/love_house.png", t[1])))
-		exit(13);
-	if (!(load_texture("./textures/panelka_2.png", t[2])))
-		exit(13);
-	if (!(load_texture("./textures/ray.png", t[3])))
-		exit(13);
-	if (!(load_texture("./textures/pepe.png", t[4])))
-		exit(13);
-	if (!(load_texture("./textures/night_sky0.png", t[5])))
-		exit(13);
-	if (!(load_texture("./textures/carpet.png", t[6])))
-		exit(13);
-	if (!(load_texture("./textures/blacktext.png", t[7])))
-		exit(13);
-	if (!(load_texture("./textures/planet_surface.png", t[8])))
-		exit(13);
-	// printf("init_textures *** t[6].text_size = %d\n", t[6]->size);
-	return (t);
+	clear_texture(w->t);
+	malloc_text(w->t, 4, 2);
+	if (w->text_id == STATE_EVANGELION)
+		w->text_id = STATE_PEPEGA;
+	else if (w->text_id == STATE_PEPEGA)
+		w->text_id = STATE_PANELKI;
+	else if (w->text_id == STATE_PANELKI)
+		w->text_id = STATE_EVANGELION_MULTI;
+	else if (w->text_id == STATE_EVANGELION_MULTI)
+		w->text_id = STATE_PEPEGA_MULTI;
+	else if (w->text_id == STATE_PEPEGA_MULTI)
+		w->text_id = STATE_PANELKI_MULTI;
+	else if (w->text_id == STATE_PANELKI_MULTI)
+		w->text_id = STATE_EVANGELION;
+	if (w->text_id == STATE_EVANGELION || w->text_id == STATE_EVANGELION_MULTI)
+		text_evangelion(w->t);
+	if (w->text_id == STATE_PEPEGA || w->text_id == STATE_PEPEGA_MULTI)
+		text_pepe(w->t);
+	else if (w->text_id == STATE_PANELKI || w->text_id == STATE_PANELKI_MULTI)
+		text_panelki(w->t);
 }

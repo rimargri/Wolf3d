@@ -62,7 +62,7 @@ void	raycast_modes_text(t_wolf *w, t_raycast r, int pix, float column_angle)
 	
 	y_offset = find_offset(r, w);
 	column_height = (int)(WIN_H / (r.distance * cos(column_angle / 2 - w->player.look_column_angle.x / 2)));
-	r.t = cardinal_points(w, r.len);
+	r.t = choice_drawing_texture(w, r.len);
 	if (!(r.t) || !(check_distance(r.len, &w->map)))
 		return ;
 	if (w->dem->mirr->on == TRUE)
@@ -74,6 +74,7 @@ void	raycast_modes_text(t_wolf *w, t_raycast r, int pix, float column_angle)
 		((column == NULL) ? exit (99) : 1);
 		column = scale_column(r, column, y_offset);
 		full_column_texture_mirr(w, column, y_offset, pix, column_height);
+		free(column);
 	}
 	column = (int*)malloc(sizeof(int) * column_height);
 	((column == NULL) ? exit (99) : 1);
@@ -81,7 +82,9 @@ void	raycast_modes_text(t_wolf *w, t_raycast r, int pix, float column_angle)
 	if (w->dem->mirr->on == TRUE)
 	{
 		full_column_texture(w, column, column_height, pix);
+		free(column);
 		return ;
 	}
 	full_column_texture_mode(w, column, column_height, pix, y_offset);
+	free(column);
 }

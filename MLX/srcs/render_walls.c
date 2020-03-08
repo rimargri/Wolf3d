@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_walls_textures.c                            :+:      :+:    :+:   */
+/*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 20:49:02 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/06 22:47:30 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 18:31:50 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	find_distance(t_wolf *w, int pix, int w_w, int delim)
 			break ;
 		if (w->map.line[(int)r.len.x + (int)r.len.y * w->map.w] != ' ')
 			break ;
-		r.distance += 0.02;
+		r.distance += 0.009;
 	}
 	if (w->dem->norm->on != TRUE)
 		raycast_modes_text(w, r, pix, column_angle);
@@ -54,13 +54,14 @@ void	raycast(t_wolf *w, t_raycast r, int pix, float column_angle)
 
 	column_height = (int)(WIN_H / (r.distance *
 				cos(column_angle / 2 - w->player.look_column_angle.x / 2)));
-	r.t = cardinal_points(w, r.len);
+	r.t = choice_drawing_texture(w, r.len);
 	if (!(r.t) || !(check_distance(r.len, &w->map)))
 		return ;
 	column = (int*)malloc(sizeof(int) * column_height);
 	((column == NULL) ? wolf_error(MALLOC_ERROR) : 1);
 	column = scale_column(r, column, column_height);
 	full_column_texture(w, column, column_height, pix);
+	free(column);
 }
 
 void	render_walls(t_wolf *w)

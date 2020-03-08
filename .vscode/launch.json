@@ -8,10 +8,10 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/wolf3d",
-			"args": [],
+			"program": "${workspaceFolder}/MLX/wolf3d",
+			"args": ["../maps/1"],
 			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}",
+			"cwd": "${workspaceFolder}/MLX",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"

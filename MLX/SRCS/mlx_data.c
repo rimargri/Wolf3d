@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 22:18:12 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/06 22:17:54 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 12:34:46 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	change_wolf(t_wolf *w)
 
 int		draw_all_hook(t_wolf *w)
 {
+	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	change_wolf(w);
 	player_move(w);
 	draw_player(w);
 	render_rays(w);
 	render_walls(w);
-	mlx_clear_window(w->mlx.mptr, w->mlx.wptr);
 	draw_layers(w);
 	return (0);
 }
@@ -56,9 +56,9 @@ int		move_player_mouse(int x, int y, t_wolf *w)
 
 	param = y;
 	if (prev_x < x)
-		w->player.look_column_angle.x += 0.05;
+		w->player.look_column_angle.x += 0.05 * (float)abs(prev_x - x) * 0.1;
 	else if (prev_x > x)
-		w->player.look_column_angle.x -= 0.05;
+		w->player.look_column_angle.x -= 0.05 * (float)abs(prev_x - x) * 0.1;
 	prev_x = x;
 	return (0);
 }

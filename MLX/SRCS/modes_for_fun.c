@@ -59,6 +59,7 @@ t_mode	*new_mode(void)
 	t_mode		*res;
 
 	res = (t_mode *)malloc(sizeof(t_mode));
+	(res == NULL ? wolf_error(MALLOC_ERROR) : 1);
 	res->on = FALSE;
 	res->intence = 0;
 	return (res);
@@ -69,6 +70,7 @@ t_dem	*init_dem(void)
 	t_dem	*res;
 
 	res = (t_dem *)malloc(sizeof(t_dem));
+	(res == NULL ? wolf_error(MALLOC_ERROR) : 1);
 	res->wave = new_mode();
 	res->quake = new_mode();
 	res->fisheye = new_mode();

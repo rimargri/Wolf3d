@@ -2,7 +2,8 @@
     "configurations": [
         {
             "includePath": [
-                "~/.brew/include/SDL2/"
+				"~/.brew/include/SDL2/",
+				"${workspaceFolder}/MLX/INCLUDES"
             ],
             "macFrameworkPath": [
                 "/System/Library/Frameworks",

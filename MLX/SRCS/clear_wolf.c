@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 21:35:09 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/06 21:35:11 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 11:29:05 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,18 @@ void	clear_wolf(t_wolf **w)
 	free(*w);
 	*w = NULL;
 	exit(0);
+}
+
+void	clear_texture(t_texture **t)
+{
+	int i;
+
+	i = 2;
+	while (i < 6)
+	{
+		free(t[i]->texture);
+		free(t[i]);
+		t[i] = NULL;
+		i++;
+	}
 }

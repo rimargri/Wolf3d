@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:56:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/06 22:05:17 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/07 19:51:07 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@
 ** Т. о. доходим от первого пикселя в левом верхнем углу
 ** до правого пикселя в нижнем правом - весь rectcolumn_angle отрисован
 */
-
-// void    draw_rect(t_drawrect dr, int w, int h, t_wolf *wolf)
-
-//__FIXX_IMMIDEATLEY Норма!
 
 void	draw_rect(t_drawrect dr, int w, int h, t_img *d_labyrinth)
 {

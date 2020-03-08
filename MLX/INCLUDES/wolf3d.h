@@ -6,50 +6,63 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/06 22:57:46 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:15:27 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h> //!--------------------------------------------------------
-#ifndef WOLF_3D
-# define WOLF_3D
-#include "../MinilibX/mlx.h"
-#include "prototypes.h"
-#include "structs.h"
-#include "errors.h"
-#include <stdlib.h>
-#include <math.h>
+#ifndef WOLF3D_H
+# define WOLF3D_H
+# include "../MinilibX/mlx.h"
+# include "prototypes.h"
+# include "structs.h"
+# include "errors.h"
+# include <stdlib.h>
+# include <math.h>
+# include <pthread.h>
 
-/** *********************************** **/
-/** *********************************** **/
-/**         libs for reading            **/
-/** *********************************** **/
-/** *********************************** **/
+/*
+** *********************************** **
+** *********************************** **
+**         libs for reading            **
+** *********************************** **
+** *********************************** **
+*/
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
-/** *********************************** **/
-/** *********************************** **/
-/**         general defines             **/
-/** *********************************** **/
-/** *********************************** **/
+/*
+** *********************************** **
+** *********************************** **
+**         general defines             **
+** *********************************** **
+** *********************************** **
+*/
 
 # define WIN_W 5120 / 4
 # define WIN_H 2880 / 4
 # define FOV M_PI / 3.0
 # define FALSE -1
 # define TRUE 0
-# define TEXTURE_MAX 10
+// # define EVA 4
+// # define PANELKI 4
 # define PUT_SECOND 10
-
-/** *********************************** **/
-/** *********************************** **/
-/**         defines for mlx             **/
-/** *********************************** **/
-/** *********************************** **/
+# define STATE_EVANGELION 0
+# define STATE_PEPEGA 1
+# define STATE_PANELKI 2
+# define STATE_EVANGELION_MULTI 3
+# define STATE_PEPEGA_MULTI 4
+# define STATE_PANELKI_MULTI 5
+/*
+** *********************************** **
+** *********************************** **
+**         defines for mlx             **
+** *********************************** **
+** *********************************** **
+*/
 
 # define KEY_ESC 53
 # define KEY_SPACE 49
@@ -57,6 +70,7 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_W 13
+# define KEY_T 17
 # define KEY_ARROW_UP 126
 # define KEY_ARROW_DOWN 125
 # define KEY_ARROW_LEFT 123
@@ -65,20 +79,24 @@
 # define SCROLL_DOWN 4
 # define ENTER 36
 
-/** *********************************** **/
-/** *********************************** **/
-/**         defines for layers          **/
-/** *********************************** **/
-/** *********************************** **/
+/*
+** *********************************** **
+** *********************************** **
+**         defines for layers          **
+** *********************************** **
+** *********************************** **
+*/
 
 # define COUNT_LAYERS	5
 # define NOCOLOR		0xFF000000
 
-/** *********************************** **/
-/** *********************************** **/
-/**         defines for dementions      **/
-/** *********************************** **/
-/** *********************************** **/
+/*
+** *********************************** **
+** *********************************** **
+**         defines for dementions      **
+** *********************************** **
+** *********************************** **
+*/
 
 # define NORM_DEM			18
 # define WAVES_DEM			19
@@ -86,14 +104,14 @@
 # define FRACTAL_DEM		23
 # define MIRROR_DEM			21
 # define CAMERA_DIFFUSION	0.01
-//# define
-//# define FISHEYE_DEM		23
 
-/** *********************************** **/
-/** *********************************** **/
-/**         defines for fractal	        **/
-/** *********************************** **/
-/** *********************************** **/
+/*
+** *********************************** **
+** *********************************** **
+**         defines for fractal	       **
+** *********************************** **
+** *********************************** **
+*/
 
 # define THREADS			10
 # define IN					1
