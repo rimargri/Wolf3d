@@ -6,123 +6,119 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/13 23:37:35 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 22:22:34 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h> //!--------------------------------------------------------
-#ifndef WOLF_3D
-# define WOLF_3D
-#include <mlx.h>
-#include <stdlib.h>
-#include <math.h>
-# define WIN_W 1024
-# define WIN_H 512
-# define MAP_W 16
-# define MAP_H 16
-# define RECT_W (WIN_W / 2 / MAP_W)
-# define RECT_H (WIN_H / MAP_H)
+#ifndef WOLF3D_H
+# define WOLF3D_H
+# include "../MinilibX/mlx.h"
+# include "prototypes.h"
+# include "structs.h"
+# include "errors.h"
+# include <stdlib.h>
+# include <math.h>
+# include <pthread.h>
+
+/*
+** *********************************** **
+** *********************************** **
+**         libs for reading            **
+** *********************************** **
+** *********************************** **
+*/
+
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
+/*
+** *********************************** **
+** *********************************** **
+**         general defines             **
+** *********************************** **
+** *********************************** **
+*/
+
+# define WIN_W 5120 / 4
+# define WIN_H 2880 / 4
 # define FOV M_PI / 3.0
+# define FALSE -1
+# define TRUE 0
+# define STATE_EVANGELION 0
+# define STATE_PEPEGA 1
+# define STATE_PANELKI 2
+# define STATE_EVANGELION_MULTI 3
+# define STATE_PEPEGA_MULTI 4
+# define STATE_PANELKI_MULTI 5
+/*
+** *********************************** **
+** *********************************** **
+**         defines for mlx             **
+** *********************************** **
+** *********************************** **
+*/
 
-/** *********************************** **/
-/** *********************************** **/
-/**         defines for mlx             **/
-/** *********************************** **/
-/** *********************************** **/
-
-# define HEIGHT 900
-# define WIDTH 1200
 # define KEY_ESC 53
-# define KEY_1 18
-# define KEY_2 19
 # define KEY_SPACE 49
 # define KEY_A 0
 # define KEY_D 2
-# define KEY_W 1
-# define KEY_S 13
+# define KEY_S 1
+# define KEY_W 13
+# define KEY_T 17
+# define KEY_ARROW_UP 126
+# define KEY_ARROW_DOWN 125
+# define KEY_ARROW_LEFT 123
+# define KEY_ARROW_RIGHT 124
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
+# define ENTER 36
+# define KEY_R 15
 
 /*
-**		added for validation
+** *********************************** **
+** *********************************** **
+**         defines for layers          **
+** *********************************** **
+** *********************************** **
 */
-#include "errors.h"
 
-typedef struct		s_map
-{
-	char			*line;
-	int				h;//сорри, не нашла лучшего способа избавиться от дефайнов,
-	int				w;//если что - откатимся
-}					t_map;
+# define COUNT_LAYERS	5
+# define NOCOLOR		0xFF000000
 
-typedef struct  	s_ivec2
-{
-    int         	x;
-    int         	y;
-}               	t_ivec2;
+/*
+** *********************************** **
+** *********************************** **
+**         defines for dementions      **
+** *********************************** **
+** *********************************** **
+*/
 
-typedef struct		s_vec2
-{
-	double			x;
-	double			y;
-}					t_vec2;
+# define NORM_DEM			18
+# define WAVES_DEM			19
+# define EARTHQUAKE_DEM		20
+# define FRACTAL_DEM		23
+# define MIRROR_DEM			21
+# define CAMERA_DIFFUSION	0.01
+# define NORMAL_HEIGHT		50
+# define MAX_HEIGHT			100
+# define STARTED			-2
 
-typedef struct  	s_color
-{
-    int         	r;
-    int         	g;
-    int         	b;
-}               	t_color;
+/*
+** *********************************** **
+** *********************************** **
+**         defines for fractal	       **
+** *********************************** **
+** *********************************** **
+*/
 
-typedef struct		s_player
-{
-	t_ivec2			pos;
-	t_ivec2			transform;
-}					t_player;
-
-typedef struct		s_reycast
-{
-	float			vec_dir;
-	float			angle;
-	float			t;
-	t_player		player;
-	t_vec2			len;
-	t_ivec2			transform;
-	int				current_pix;
-	t_color			color;
-}					t_reycast;
-
-typedef struct s_raycast {
-	float distance;
-	t_color wall_color;
-} t_raycast;
-
-typedef struct		s_mlx
-{
-	void			*mptr;
-	void			*wptr;
-}					t_mlx;
-
-typedef struct		s_wolf
-{
-	t_mlx			mlx;
-	t_reycast		r;
-	t_player		player;
-//	char			*map;
-	t_map			tmap;
-}					t_wolf;
-
-int					key_press(int k, t_wolf *wolf);
-int					close_hook(void *param);
-int					get_color(t_color color);
-void				create_objects(t_wolf *w);
-void    			draw_rect(t_ivec2 v, int w, int h, t_color col, t_mlx mlx);
-void				draw_background(t_wolf *w);
-void				draw_walls(t_wolf *w, t_map map);
-void				draw_player(t_wolf *w);
-void				cast_ray(t_reycast r, t_wolf *w, t_map map);
-void				init_reycast(t_wolf *wolf);
-void				init_player(t_wolf *w);
-void				calc_player_pos(t_wolf *w, int k);
-t_map				validate(int ac, char **maps);
-void				wolf_error(char *reason);
+# define THREADS			10
+# define IN					1
+# define OUT				-1
+# define FRACT_MAX_INTENCE	100
+# define FRACT_MIN_INTENCE	-50
+# define FRACT_MOVE			0.005
 
 #endif

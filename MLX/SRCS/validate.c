@@ -1,88 +1,68 @@
-//
-// Created by Hugor Chau on 2020-02-11.
-//
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/19 19:19:43 by hchau             #+#    #+#             */
+/*   Updated: 2020/03/08 21:58:55 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	wolf_error(char *reason)
+void	check_str(char c, int *x_flag)
 {
-	int		i;
-
-	i = 0;
-	while(reason[i])
-		i++;
-	write(1, reason, i);
-	exit(0);
+	if ((c < '0' || c > '9'))
+	{
+		if (c == 'x')
+			*x_flag = *x_flag + 1;
+		else if (c != ' ')
+			wolf_error(MAP_SIMB);
+	}
 }
 
 void	check_simbols(t_map *map, char *buf)
 {
-	//ты считываешь фигуру подряд, без разделителей строки,
-	//поэтому перепись получилась довольно большая, позже
-	//разобью
 	int		i;
-	int		map_i;
+	int		cur_w;
+	int		x_flag;
 
 	map->h = 0;
 	map->w = 0;
-	i = 0;
-	map_i = 0;
-	while (buf[i])
+	cur_w = 0;
+	x_flag = 0;
+	i = -1;
+	while (buf[++i])
 	{
 		if (buf[i] == '\n')
 		{
 			map->h++;
-			if (map->w != 0 && map->w != i / map->h)
-			{
-				free(map->line);
-				wolf_error(SHAPE);
-			}
-			map->w = i / map->h;
+			if (map->w < cur_w)
+				map->w = cur_w;
+			cur_w = 0;
 		}
 		else
 		{
-			map->line[map_i] = buf[i];
-			if ((buf[i] < '0' || buf[i] > '9') && buf[i] != ' ')
-				{
-					free(map->line);
-					wolf_error(MAP_SIMB);
-				}
-			map_i++;
+			check_str(buf[i], &x_flag);
+			cur_w++;
 		}
-		i++;
 	}
-	map->line[map_i] = '\0';
+	x_flag > 1 ? wolf_error(EXNTRA_X) : 0;
 }
 
-void	check_square(t_map map)
+void	check_read_file(int ac, char **maps)
 {
-	int		i;
+	int		fd;
 
-	i = 0;
-	while (i < map.w)
-	{
-		//гаризонталь первой и последней линий должны быть забиты числами
-		if (map.line[i] < '0' || map.line[i] > '9')
-			wolf_error(SHAPE);
-		if (map.line[i + (map.h - 1) * (map.w)] < '0')
-			wolf_error(SHAPE);
-		i++;
-	}
-	i = 0;
-	//вертикаль первой и последней линий должны быть забиты числами
-	while (map.line[i])
-	{
-		if (map.line[i] < '0' || map.line[i] > '9')
-			if (map.line[i] != '\n')
-				wolf_error(SHAPE);
-		if (map.line[i + map.w - 1] < '0')
-			wolf_error(SHAPE);
-		i += map.w;
-	}
+	if (ac < 2)
+		wolf_error(MISSING_ARG);
+	if (ac > 2)
+		wolf_error(TOO_MUCH);
+	if ((fd = open(maps[1], O_DIRECTORY)) > 0)
+		wolf_error(DIRECTORY_ERR);
+	close(fd);
 }
 
 t_map	validate(int ac, char **maps)
@@ -92,27 +72,20 @@ t_map	validate(int ac, char **maps)
 	int		fd;
 	int		ret;
 
-	//все проверки валидности самого аргумента
-	if (ac < 2)
-		wolf_error(MISSING_ARG);
-	if (ac > 2)
-		wolf_error(TOO_MUCH);
-	if ((fd = open(maps[1], O_DIRECTORY)) > 0)
-		wolf_error(DIRECTORY_ERR);
-	close(fd);
+	check_read_file(ac, maps);
 	if ((fd = open(maps[1], O_RDONLY)) < 3)
 		wolf_error(NOT_A_FILE);
-	//считывание в буффер
-	if ((ret = read(fd, buf, MAX_MAP)) == MAX_MAP)
+	if ((ret = read(fd, buf, MAX_MAP)) >= MAX_MAP - 1)
 		wolf_error(TOO_BIG);
 	buf[ret] = '\0';
-	//подготовка строки
-	res.line = (char *)malloc(sizeof(char) * ret);
-	//посимвольная проверка
+	if (buf[ret - 1] != '\n')
+	{
+		buf[ret] = '\n';
+		buf[ret + 1] = '\0';
+	}
 	check_simbols(&res, buf);
-	//проверка формы (пока доступен только прямоугольник)
-	check_square(res);
-	if (!(close(fd)))
-		wolf_error("wolf3d: fd close error");
+	prepare_map(&res, buf, ret);
+	if ((close(fd)))
+		wolf_error(CLOSE_FD_ERROR);
 	return (res);
 }

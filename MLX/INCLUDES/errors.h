@@ -1,35 +1,89 @@
-//
-// Created by Hugor Chau on 2020-02-11.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/19 19:18:14 by hchau             #+#    #+#             */
+/*   Updated: 2020/03/08 21:37:26 by cvernius         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef MLX_ERRORS_H
-#define MLX_ERRORS_H
-/*
-**		map errors
-*/
+#ifndef ERRORS_H
+# define ERRORS_H
 # define OK					0
-# define MAX_MAP			10000//не хочу ГНЛ-ить, и не думаю, что
-								//поддержка бòльших карт что-то даст,
-								//кроме вечного подвисания
-# define MISSING_ARG	"wolf3d: missing argument after call\n"\
-						"usage: ./wolf3d [file]\n"
+# define MAX_MAP			1000000
 
-# define TOO_MUCH		"wolf3d: too much arguments, expected one\n"\
-						"usage: ./wolf3d [file]\n"
+/*
+** *********************************** **
+** *********************************** **
+**         arguments errors	           **
+** *********************************** **
+** *********************************** **
+*/
 
-# define MAP_SIMB		"wolf3d: map is invalid!\n"\
-						"it should consist of only numbers and spaces\n"
+# define MISSING_ARG			0
+# define TOO_MUCH				1
 
-# define SHAPE			"wolf3d: map is invalid!\n"\
-						"shape of map should remind a square\n"
+/*
+** *********************************** **
+** *********************************** **
+**             map errors	           **
+** *********************************** **
+** *********************************** **
+*/
 
-# define EMPTY			"wolf3d: map is empty!\n"\
-						"it should consist of only numbers and spaces\n"
+# define MAP_SIMB				2
+# define SHAPE					3
+# define EMPTY					4
+# define NOT_A_FILE				5
+# define TOO_BIG				6
+# define DIRECTORY_ERR			7
+# define CLOSE_FD_ERROR			8
 
-# define NOT_A_FILE		"wolf3d: can't open a map\n"
-# define TOO_BIG		"wolf3d: map is too big! try to load another one\n"
-# define DIRECTORY_ERR	"wolf3d: map can't be a directory!\n"\
-						"wolf3d: please check path\n"
+/*
+** *********************************** **
+** *********************************** **
+**            player errors	           **
+** *********************************** **
+** *********************************** **
+*/
 
+# define NO_SPACE_FOR_PLAYER	9
+# define EXNTRA_X				10
+
+/*
+** *********************************** **
+** *********************************** **
+**          texture errors	           **
+** *********************************** **
+** *********************************** **
+*/
+
+# define TEXTURE_LOAD			11
+# define TEXTURE_CHANNELS		12
+
+/*
+** *********************************** **
+** *********************************** **
+**           malloc errors	           **
+** *********************************** **
+** *********************************** **
+*/
+
+# define MALLOC_ERROR			13
+
+/*
+** *********************************** **
+** *********************************** **
+**             mlx errors              **
+** *********************************** **
+** *********************************** **
+*/
+
+# define CANT_OPEN_WINDOW		14
+# define MLX_POINTER			15
+# define IMG_ALLOC_ERR			16
 
 #endif

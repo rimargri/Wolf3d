@@ -6,64 +6,40 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/02/13 23:42:12 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:50:47 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-//
-//char	*get_map(void)
-//{
-//	char *map;
-//
-//	map = (char*)malloc(sizeof(char) * 258);
-//	map   = "0000222222220000"\
-//			"1              0"\
-//			"1      11111   0"\
-//			"1     0        0"\
-//			"0     0  1110000"\
-//			"0     3        0"\
-//			"0   10000      0"\
-//			"0   0   11100  0"\
-//			"0   0   0      0"\
-//			"0   0   1  00000"\
-//			"0       1      0"\
-//			"2       1      0"\
-//			"0       0      0"\
-//			"2 3000000      0"\
-//			"0              0"\
-//			"2202222222200000";
-//	return (map);
-//}
 
-t_mlx	init_mlx(void)
+/*
+**		bp			: the number of bits per pixels.
+**		size_line	: the size of a line times 4.
+**		endian		: the endian - order of bytes (or sometimes bits) within a
+**					binary representation of a number.
+*/
+
+t_wolf	*init_wolf(t_wolf *wolf, int ac, char **maps)
 {
-	t_mlx mlx;
-	
-	mlx.mptr = mlx_init();
-	mlx.wptr = mlx_new_window(mlx.mptr, WIN_W, WIN_H, "WOLF3D\0");
-	return (mlx);
+	wolf = (t_wolf*)malloc(sizeof(t_wolf));
+	((wolf == NULL) ? (wolf_error(MALLOC_ERROR)) : 1);
+	wolf->map = validate(ac, maps);
+	wolf->t = init_textures(wolf, maps[1]);
+	wolf->mlx = init_mlx();
+	wolf->dem = init_dem();
+	wolf->space_was_pressed = 0;
+	return (wolf);
 }
 
 int		main(int ac, char **maps)
 {
 	t_wolf *wolf;
 
-	wolf = (t_wolf*)malloc(sizeof(t_wolf));
-	((wolf == NULL) ? (exit(98)) : 1);
-	wolf->tmap = validate(ac, maps);
-	wolf->mlx = init_mlx();
-//	wolf->map = get_map();
-	draw_background(wolf);
-	draw_walls(wolf, wolf->tmap);
+	write(1, "(*≧ω≦*) Mama, ya sobralsya o7 (*≧ω≦*)\n", 49);
+	wolf = NULL;
+	wolf = init_wolf(wolf, ac, maps);
 	init_player(wolf);
-	init_reycast(wolf);
-	cast_ray(wolf->r, wolf, wolf->tmap);
-	mlx_hook(wolf->mlx.wptr, 17, 0, &close_hook, &wolf->mlx);
-	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
-	// mlx_hook(mlx->win_ptr, 4, 0, &mouse_hook, mlx);
-	// mlx_hook(mlx->win_ptr, 6, 0, &move_hook, mlx);
-	// mlx_update_hook();
-	mlx_loop(wolf->mlx.mptr);
+	init_all_img(wolf);
+	check_hooks_loops(wolf);
 	return (0);
 }
