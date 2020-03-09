@@ -36,6 +36,7 @@ void	change_wolf(t_wolf *w)
 								w->player.move.camera_up -= 0.02 : 0);
 	get_wolf_with_modes(w);
 	clear_dinamic_img(w->layers);
+	change_music(w);
 }
 
 int		draw_all_hook(t_wolf *w)
@@ -57,16 +58,7 @@ int		move_player_mouse(int x, int y, t_wolf *w)
 	static int		prev_x;
 	int				param;
 
-	if (x > WIN_W - 155 && x < WIN_W - 5 && y > 5 && y < 62)
-	{
-		w->layers->menu_button.on = TRUE;
-		w->layers->button_mask.on = FALSE;
-	}
-	else
-	{
-		w->layers->menu_button.on = FALSE;
-		w->layers->button_mask.on = TRUE;
-	}
+	change_button_intence(x, y, w);
 	if (w->mouse_angle == FALSE)
 		return (0);
 	param = y;

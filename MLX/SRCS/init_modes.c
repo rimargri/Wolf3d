@@ -35,5 +35,8 @@ t_dem	*init_dem(void)
 	res->fract = new_mode();
 	res->norm->on = TRUE;
 	res->mirr->intence = 2;
+	res->music_on = FALSE;
+	res->change_music = FALSE;
+	res->repeat = TRUE;
 	return (res);
 }

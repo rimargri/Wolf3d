@@ -33,15 +33,13 @@ void		prepare_static_layers(t_wolf *w)
 			"./textures/menu_butt.xpm", 150, 57);
 	open_menu_image(&w->layers->menu,
 			"./textures/EVA.xpm", WIN_W, WIN_W);
+	open_menu_image(&w->layers->music_button,
+			"./textures/music.xpm", 150, 57);
+	open_menu_image(&w->layers->music_mask,
+			"./textures/music.xpm", 150, 57);
 	put_color_mask(&w->layers->button_mask, 0x55000000, 57, 150);
-	while (x < 150)
-	{
-		w->layers->menu_button.img[x] =
-				w->layers->menu_button.img[0] | 0xFF000000;
-		w->layers->menu_button.img[x + 1] =
-				w->layers->menu_button.img[1] | 0xFF000000;
-		x++;
-	}
+	put_color_mask(&w->layers->music_mask, 0x55000000, 57, 65);
+	prepare_menu_img(w);
 	draw_walls(w);
 }
 
@@ -94,12 +92,16 @@ void		init_all_img(t_wolf *w)
 	init_img(&res->d_player, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->map_view, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->menu, w->mlx.mptr, FALSE, &(t_ivec2){WIN_W, WIN_H});
+	init_img(&res->background, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
 	init_img(&res->menu_button, w->mlx.mptr, FALSE, &(t_ivec2){150, 57});
 	init_img(&res->button_mask, w->mlx.mptr, TRUE, &(t_ivec2){150, 57});
-	init_img(&res->background, w->mlx.mptr, TRUE, &(t_ivec2){WIN_W, WIN_H});
+	init_img(&res->music_button, w->mlx.mptr, FALSE, &(t_ivec2){150, 57});
+	init_img(&res->music_mask, w->mlx.mptr, TRUE, &(t_ivec2){150, 57});
 	w->layers = res;
 	prepare_static_layers(w);
 	change_img_coord(&res->menu_button, &(t_ivec2){WIN_W - 155, 5});
 	change_img_coord(&res->button_mask, &(t_ivec2){WIN_W - 155, 5});
+	change_img_coord(&res->music_button, &(t_ivec2){WIN_W - 105, WIN_H - 90});
+	change_img_coord(&res->music_mask, &(t_ivec2){WIN_W - 105, WIN_H - 90});
 	change_img_coord(&res->menu, &(t_ivec2){WIN_W / 2, 0});
 }

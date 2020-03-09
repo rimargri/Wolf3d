@@ -36,6 +36,9 @@ void		write_extra_management(t_wolf *w)
 			0x00BBBBFF, "rotation:");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 420,
 			0x00BBBBFF, "left button");
+	if (w->dem->music_on == TRUE)
+		mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 680,
+		0x00BBBBFF, "press Q to on/off connect           music and maze shape");
 }
 
 int			write_waves_earthquake(t_wolf *w)

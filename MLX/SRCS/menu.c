@@ -39,18 +39,55 @@ void		open_menu_image(t_img *image, char *filename,
 	}
 }
 
+void		change_button_intence(int x, int y, t_wolf *w)
+{
+	if (x > WIN_W - 155 && x < WIN_W - 5 && y > 5 && y < 62)
+	{
+		w->layers->menu_button.on = TRUE;
+		w->layers->button_mask.on = FALSE;
+	}
+	else
+	{
+		w->layers->menu_button.on = FALSE;
+		w->layers->button_mask.on = TRUE;
+	}
+	if (x > WIN_W - 90 && x < WIN_W - 40 && y > WIN_H - 90 && y < WIN_H - 40)
+	{
+		w->layers->music_button.on = TRUE;
+		w->layers->music_mask.on = FALSE;
+	}
+	else
+	{
+		w->layers->music_button.on = FALSE;
+		w->layers->music_mask.on = TRUE;
+	}
+}
+
+void		prepare_menu_img(t_wolf *w)
+{
+	int		x;
+
+	x = 0;
+	while (x < 150)
+	{
+		w->layers->menu_button.img[x] =
+				w->layers->menu_button.img[0] | 0xFF000000;
+		w->layers->menu_button.img[x + 1] =
+				w->layers->menu_button.img[1] | 0xFF000000;
+		x++;
+	}
+}
+
 int			click_mouse(int button, int x, int y, t_wolf *w)
 {
 	int		menu;
 
-	if (w->layers->menu.on == TRUE)
-		menu = FALSE;
-	else
-		menu = TRUE;
+	menu = w->layers->menu.on == TRUE ? FALSE : TRUE;
 	if (button == 2)
 		w->mouse_angle = w->mouse_angle == TRUE ? FALSE : TRUE;
 	if (button != 1)
 		return (0);
+	torn_music_on(x, y, w);
 	if (x > WIN_W - 155 && x < WIN_W - 5 && y > 5 && y < 62)
 	{
 		if (menu == TRUE)

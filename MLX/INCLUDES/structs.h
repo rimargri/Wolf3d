@@ -138,6 +138,9 @@ typedef struct			s_dem
 	t_mode				*mirr;
 	t_mode				*norm;
 	t_mode				*fract;
+	int					music_on;
+	int					change_music;
+	int					repeat;
 }						t_dem;
 
 /*
@@ -187,6 +190,8 @@ typedef struct			s_layer
 	t_img				menu_button;
 	t_img				button_mask;
 	t_img				menu_background;
+	t_img				music_button;
+	t_img				music_mask;
 }						t_layer;
 
 typedef struct			s_wolf

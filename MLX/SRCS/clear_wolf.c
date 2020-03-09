@@ -53,6 +53,7 @@ void	clear_wolf(t_wolf **w)
 	}
 	free(*w);
 	*w = NULL;
+	system("pkill afplay");
 	exit(0);
 }
 

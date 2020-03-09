@@ -67,6 +67,7 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_W 13
+# define KEY_Q 12
 # define KEY_T 17
 # define KEY_ARROW_UP 126
 # define KEY_ARROW_DOWN 125

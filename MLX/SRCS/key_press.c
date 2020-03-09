@@ -44,17 +44,18 @@
 int		dem_change(int k, t_wolf *w)
 {
 	if (k == EARTHQUAKE_DEM)
-		w->dem->quake->on = w->dem->quake->on == TRUE ? FALSE : TRUE;
+		change_dems(w, w->dem->quake);
 	else if (k == WAVES_DEM)
-		w->dem->wave->on = w->dem->wave->on == TRUE ? FALSE : TRUE;
+		change_dems(w, w->dem->wave);
 	else if (k == MIRROR_DEM)
-		w->dem->mirr->on = w->dem->mirr->on == TRUE ? FALSE : TRUE;
+		change_dems(w, w->dem->mirr);
 	else if (k == NORM_DEM)
-		w->dem->norm->on = w->dem->norm->on == TRUE ? FALSE : TRUE;
+		change_dems(w, w->dem->norm);
 	else if (k == FRACTAL_DEM)
 		w->dem->fract->on = w->dem->fract->on == TRUE ? FALSE : TRUE;
 	else
 		return (FALSE);
+	w->dem->change_music = w->dem->repeat == TRUE ? FALSE : TRUE;
 	if (k != NORM_DEM)
 		w->dem->norm->on = FALSE;
 	return (TRUE);
@@ -95,6 +96,8 @@ int		key_unpress(int k, t_wolf *w)
 				MAX_HEIGHT : w->player.move.jump_h;
 		w->player.move.jump = w->player.move.jump_h / 2;
 	}
+	else if (k == KEY_Q)
+		w->dem->repeat = w->dem->repeat == TRUE ? FALSE : TRUE;
 	w->player.move.left = k == KEY_A ? FALSE : w->player.move.left;
 	w->player.move.right = k == KEY_D ? FALSE : w->player.move.right;
 	w->player.move.forward = k == KEY_W ? FALSE : w->player.move.forward;

@@ -185,6 +185,8 @@ void				draw_layers(t_wolf *w);
 void				open_menu_image(t_img *image, char *filename,
 								int size_x, int size_y);
 void				draw_menu(t_wolf *w);
+void				change_button_intence(int x, int y, t_wolf *w);
+void				prepare_menu_img(t_wolf *w);
 
 /*
 ** *********************************** **
@@ -208,6 +210,10 @@ void				full_column_texture_mirr(t_wolf *w, int *column,
 int					find_offset(t_raycast r, t_wolf *w);
 void				full_column_texture_mode(t_wolf *w, int *column,
 						int column_height, t_ivec2 offset);
+void				change_music(t_wolf *w);
+void				torn_music_on(int x, int y, t_wolf *w);
+void				set_modes_false(t_dem *d);
+void				change_dems(t_wolf *w, t_mode *mode);
 
 /*
 ** *********************************** **

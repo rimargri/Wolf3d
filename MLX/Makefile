@@ -35,7 +35,7 @@ C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c \
 C_FILES += render_walls.c render_texture.c cardinal_points.c default_textures.c \
 		   custom_textures.c
 
-C_FILES += menu.c draw_menu.c init_modes.c write_map.c jump.c
+C_FILES += menu.c draw_menu.c init_modes.c write_map.c jump.c music.c
 	
 # C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c init_layer.c \
 # 		  key_press.c load_texture.c main.c \

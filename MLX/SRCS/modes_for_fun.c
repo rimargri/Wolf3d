@@ -12,6 +12,15 @@
 
 #include "wolf3d.h"
 
+void	change_dems(t_wolf *w, t_mode *mode)
+{
+	int		flag;
+
+	flag = mode->on;
+	set_modes_false(w->dem);
+	mode->on = flag == TRUE ? FALSE : TRUE;
+}
+
 void	set_modes_false(t_dem *d)
 {
 	d->norm->intence = 0;
