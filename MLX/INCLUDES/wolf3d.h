@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 22:22:34 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/09 17:56:09 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include "../MinilibX/mlx.h"
+# include "../libft/libft.h"
 # include "prototypes.h"
 # include "structs.h"
 # include "errors.h"

@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/08 21:37:16 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/09 17:55:10 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,25 +25,12 @@ OBJ_DIR = ./obj
 INCL_DIR = ./includes
 
 C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c \
-		  init_layer.c key_press.c load_texture.c main.c \
-		  render_rays.c player.c player_move.c \
-		  validate.c mlx_data.c layers.c \
-		  fractal.c modes_for_fun.c mirror_floor.c wolf_error.c types_errors.c \
-		  init_textures.c draw_text_back.c 
-
-C_FILES += render_walls.c render_texture.c cardinal_points.c default_textures.c \
-		   custom_textures.c
-
-C_FILES += menu.c draw_menu.c init_modes.c write_map.c jump.c music.c
-	
-# C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c init_layer.c \
-# 		  key_press.c load_texture.c main.c \
-# 		  render_rays.c player.c player_move.c \
-# 		  validate.c mlx_data.c layers.c \
-# 		  fractal.c modes_for_fun.c mirror_floor.c wolf_error.c init_textures.c \
-# 		  draw_text_back.c menu.c draw_menu.c
-
-# C_FILES += render_walls_textures.c render_texture.c cardinal_points.c init_modes.c write_map.c
+		  init_layer.c key_press.c load_texture.c main.c render_rays.c \
+		  player.c player_move.c validate.c mlx_data.c layers.c fractal.c \
+		  modes_for_fun.c mirror_floor.c wolf_error.c types_errors.c \
+		  init_textures.c draw_text_back.c  render_walls.c render_texture.c \
+		  cardinal_points.c default_textures.c custom_textures.c menu.c \
+		  draw_menu.c init_modes.c write_map.c jump.c music.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -51,10 +38,9 @@ RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 
 MLX_FLAGS = -L ./MinilibX -lm -lmlx -framework OpenGL -framework AppKit
 
-CFLAGS = -Wall -Wextra
-CFLAGS += -Werror
-CFLAGS += -g
-# CFLAGS += -O2
+LIBFT_FLAGS = -L libft/ -lft
+
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -63,22 +49,24 @@ $(OBJ_DIR):
 
 $(NAME): $(RAW_OBJ_FILES)
 	@make -C ./MinilibX
-	@gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
+	@make -C ./libft
+	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(NAME)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)"
-
 
 #### К о м п и л я ц и я ####
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@gcc $(CFLAGS) -I $(INCL_DIR) -I ./MinilibX -c $< -o $@
+	@gcc $(CFLAGS) -I $(INCL_DIR) -I ./MinilibX -I ./libft -c $< -o $@
 
 clean:
 	@rm -rf $(RAW_OBJ_FILES)
 	@rm -rf ./libmlx/*.o
+	@rm -rf ./libft/*.o
 
 fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
 	@rm -rf ./MinilibX/libmlx.a
+	@rm -rf ./libft/libft.a
 
 re: fclean all
