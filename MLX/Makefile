@@ -15,7 +15,6 @@ BLUE = \033[38;2;200;200;250m
 RED = \033[38;2;200;30;70m
 YELLOW = \033[38;2;200;200;50m
 GREEN = \033[38;2;0;200;0m
-EOC = \033;0m
 
 NAME = wolf3d
 
@@ -65,7 +64,7 @@ $(OBJ_DIR):
 $(NAME): $(RAW_OBJ_FILES)
 	@make -C ./MinilibX
 	@gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
-	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)$(EOC)lll"
+	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)"
 
 
 #### К о м п и л я ц и я ####
