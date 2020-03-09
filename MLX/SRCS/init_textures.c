@@ -46,7 +46,7 @@ t_texture	**init_textures(t_wolf *w, char *s)
 		w->text_id = STATE_EVANGELION;
 		text_evangelion(t);
 	}
-	else if (!strcmp(s, "../maps/Pepe"))
+	else
 	{
 		w->text_id = STATE_PEPEGA;
 		text_pepe(t);
