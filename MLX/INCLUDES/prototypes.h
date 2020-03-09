@@ -45,7 +45,7 @@ int					key_unpress(int k, t_wolf *w);
 int					key_press(int k, t_wolf *wolf);
 int					close_hook(void *param);
 void				draw_menu(t_wolf *w);
-int					open_menu(int button, int x, int y, t_wolf *w);
+int					click_mouse(int button, int x, int y, t_wolf *w);
 
 /*
 ** *********************************** **

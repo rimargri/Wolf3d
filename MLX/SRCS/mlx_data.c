@@ -57,12 +57,6 @@ int		move_player_mouse(int x, int y, t_wolf *w)
 	static int		prev_x;
 	int				param;
 
-	param = y;
-	if (prev_x < x)
-		w->player.look_column_angle.x += 0.05 * (float)abs(prev_x - x) * 0.1;
-	else if (prev_x > x)
-		w->player.look_column_angle.x -= 0.05 * (float)abs(prev_x - x) * 0.1;
-	prev_x = x;
 	if (x > WIN_W - 155 && x < WIN_W - 5 && y > 5 && y < 62)
 	{
 		w->layers->menu_button.on = TRUE;
@@ -73,6 +67,14 @@ int		move_player_mouse(int x, int y, t_wolf *w)
 		w->layers->menu_button.on = FALSE;
 		w->layers->button_mask.on = TRUE;
 	}
+	if (w->mouse_angle == FALSE)
+		return (0);
+	param = y;
+	if (prev_x < x)
+		w->player.look_column_angle.x += 0.05 * (float)abs(prev_x - x) * 0.1;
+	else if (prev_x > x)
+		w->player.look_column_angle.x -= 0.05 * (float)abs(prev_x - x) * 0.1;
+	prev_x = x;
 	return (0);
 }
 
@@ -83,7 +85,7 @@ void	check_hooks_loops(t_wolf *wolf)
 	mlx_hook(wolf->mlx.wptr, 2, 0, &key_press, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 3, 0, &key_unpress, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 4, 0, &count_intence, &wolf->mlx);
-	mlx_hook(wolf->mlx.wptr, 5, 0, &open_menu, &wolf->mlx);
+	mlx_hook(wolf->mlx.wptr, 5, 0, &click_mouse, &wolf->mlx);
 	mlx_hook(wolf->mlx.wptr, 6, 0, &move_player_mouse, &wolf->mlx);
 	mlx_loop(wolf->mlx.mptr);
 }

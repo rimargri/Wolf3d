@@ -12,6 +12,32 @@
 
 #include "wolf3d.h"
 
+void		write_extra_management(t_wolf *w)
+{
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 283,
+			0x00BBBBFF, "use    (enter)");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 260,
+			0x00BBBBFF, "show/hide map:");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 283,
+			0x00BBBBFF, "      |");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 260, 285,
+			0x00BBBBFF, "     _");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 262, 285,
+			0x00BBBBFF, "    _");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 262, 292,
+			0x00BBBBFF, "    <");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 312,
+			0x00BBBBFF, "show/hide radar:");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 332,
+			0x00BBBBFF, "R key");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 380,
+			0x00BBBBFF, "on/off mouse");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 400,
+			0x00BBBBFF, "rotation:");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 420,
+			0x00BBBBFF, "left button");
+}
+
 int			write_waves_earthquake(t_wolf *w)
 {
 	if (w->dem->wave->on == TRUE)
@@ -68,6 +94,8 @@ void		write_curr_dem(t_wolf *w)
 
 void		write_dementions_management(t_wolf *w)
 {
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + (255 + 50) / 2, 30,
+			0x00BBBBFF, "Game control:");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 120,
 			0x00BBBBFF, "change maze shape: ");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 150,
@@ -80,24 +108,18 @@ void		write_dementions_management(t_wolf *w)
 			0x00BBBBFF, "4 - mirrors on floor");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 230,
 			0x00BBBBFF, "5 - fractal mask");
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 283,
-			0x00BBBBFF, "use    (enter)");
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 260,
-			0x00BBBBFF, "show/hide map:");
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 255, 283,
-			0x00BBBBFF, "      |");
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 260, 285,
-			0x00BBBBFF, "     _");
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 262, 285,
-			0x00BBBBFF, "    _");
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 262, 292,
-			0x00BBBBFF, "    <");
+	write_curr_dem(w);
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 230 + 250, 120,
+			0x00BBBBFF, "change maze");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 230 + 250, 140,
+			0x00BBBBFF, "textures:");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 230 + 250, 170,
+			0x00BBBBFF, "press T");
+	write_extra_management(w);
 }
 
 void		draw_menu(t_wolf *w)
 {
-	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + (255 + 50) / 2, 30,
-			0x00BBBBFF, "Game control:");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 120,
 			0x00BBBBFF, "move:");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 150,
@@ -118,6 +140,9 @@ void		draw_menu(t_wolf *w)
 			0x00BBBBFF, "       - - ");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 300,
 			0x00BBBBFF, "keys");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 330,
+			0x00BBBBFF, "jump:");
+	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 350,
+			0x00BBBBFF, "hold space");
 	write_dementions_management(w);
-	write_curr_dem(w);
 }

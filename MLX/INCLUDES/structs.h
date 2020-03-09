@@ -199,6 +199,7 @@ typedef struct			s_wolf
 	int					text_id;
 	t_dem				*dem;
 	int					space_was_pressed;
+	int					mouse_angle;
 }						t_wolf;
 
 #endif

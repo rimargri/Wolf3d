@@ -70,6 +70,8 @@ t_direction	init_move(void)
 	move.left = FALSE;
 	move.camera = 0;
 	move.camera_up = 0.0;
+	move.jump = 0;
+	move.jump_h = 0;
 	return (move);
 }
 

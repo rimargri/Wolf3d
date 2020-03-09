@@ -39,7 +39,7 @@ void		open_menu_image(t_img *image, char *filename,
 	}
 }
 
-int			open_menu(int button, int x, int y, t_wolf *w)
+int			click_mouse(int button, int x, int y, t_wolf *w)
 {
 	int		menu;
 
@@ -47,6 +47,8 @@ int			open_menu(int button, int x, int y, t_wolf *w)
 		menu = FALSE;
 	else
 		menu = TRUE;
+	if (button == 2)
+		w->mouse_angle = w->mouse_angle == TRUE ? FALSE : TRUE;
 	if (button != 1)
 		return (0);
 	if (x > WIN_W - 155 && x < WIN_W - 5 && y > 5 && y < 62)

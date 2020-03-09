@@ -28,6 +28,7 @@ t_wolf	*init_wolf(t_wolf *wolf, int ac, char **maps)
 	wolf->mlx = init_mlx();
 	wolf->dem = init_dem();
 	wolf->space_was_pressed = 0;
+	wolf->mouse_angle = TRUE;
 	return (wolf);
 }
 
