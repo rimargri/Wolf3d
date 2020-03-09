@@ -6,12 +6,11 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 20:43:11 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 21:47:57 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/09 18:30:50 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include <string.h>
 
 void		malloc_text(t_texture **t, int count_text, int i)
 {
@@ -35,13 +34,13 @@ t_texture	**init_textures(t_wolf *w, char *s)
 	malloc_text(t, 6, 0);
 	text_floor(t[0]);
 	text_celling(t[1]);
-	if (!strcmp(s, "../maps/0") || (!strcmp(s, "../maps/2")))
+	if (!ft_strcmp(s, "maps/0") || (!ft_strcmp(s, "maps/2")))
 	{
 		w->text_id = STATE_PANELKI;
 		text_panelki(t);
 	}
-	else if (!strcmp(s, "../maps/4") || !strcmp(s, "../maps/5") ||
-												(!strcmp(s, "../maps/1")))
+	else if (!ft_strcmp(s, "maps/4") || !ft_strcmp(s, "maps/5") ||
+												(!ft_strcmp(s, "maps/1")))
 	{
 		w->text_id = STATE_EVANGELION;
 		text_evangelion(t);

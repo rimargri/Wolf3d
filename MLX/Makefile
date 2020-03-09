@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/09 18:05:44 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/09 21:07:38 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,18 +40,23 @@ MLX_FLAGS = -L ./MinilibX -lm -lmlx -framework OpenGL -framework AppKit
 
 LIBFT_FLAGS = -L libft/ -lft
 
+NON_EXISTET	= tfbil
+
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(OBJ_DIR) $(NAME)
+all: $(OBJ_DIR) $(NAME) $(NON_EXISTET)
+
+$(NON_EXISTET):
+	@make -C ./libft
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
 $(NAME): $(RAW_OBJ_FILES)
 	@make -C ./MinilibX
-	@make -C ./libft
+	@make -sC ./libft
 	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(NAME)
-	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)"
+	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)\033[0m"
 
 #### К о м п и л я ц и я ####
 
@@ -60,7 +65,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
 
 clean:
 	@rm -rf $(RAW_OBJ_FILES)
-	@rm -rf ./libmlx/*.o
+	@rm -rf ./MinilibX/*.o
 	@rm -rf ./libft/*.o
 
 fclean: clean

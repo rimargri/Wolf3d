@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hchau <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:34:42 by hchau             #+#    #+#             */
-/*   Updated: 2020/03/08 18:34:44 by hchau            ###   ########.fr       */
+/*   Updated: 2020/03/09 20:20:25 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		write_extra_management(t_wolf *w)
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 400,
 			0x00BBBBFF, "rotation:");
 	mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 420,
-			0x00BBBBFF, "left button");
+			0x00BBBBFF, "right button");
 	if (w->dem->music_on == TRUE)
 		mlx_string_put(w->mlx.mptr, w->mlx.wptr, WIN_W / 2 + 50, 680,
 		0x00BBBBFF, "press Q to on/off connect           music and maze shape");

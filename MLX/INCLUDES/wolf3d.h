@@ -6,11 +6,10 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/09 18:06:50 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/09 18:36:38 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> //!--------------------------------------------------------
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include "../MinilibX/mlx.h"
@@ -43,8 +42,8 @@
 ** *********************************** **
 */
 
-# define WIN_W 5120 / 10
-# define WIN_H 2880 / 10
+# define WIN_W 5120 / 4
+# define WIN_H 2880 / 4
 # define FOV M_PI / 3.0
 # define FALSE -1
 # define TRUE 0

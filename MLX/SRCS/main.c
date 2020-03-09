@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:06:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/08 21:50:47 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/09 21:00:37 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int		main(int ac, char **maps)
 {
 	t_wolf *wolf;
 
-	write(1, "(*≧ω≦*) Mama, ya sobralsya o7 (*≧ω≦*)\n", 49);
+	write(1, "\033[38;2;100;200;250m", 19);
+	write(1, "(*≧ω≦*) Mama, ya zapustilsya o7 (*≧ω≦*)\n", 50);
 	wolf = NULL;
 	wolf = init_wolf(wolf, ac, maps);
 	init_player(wolf);

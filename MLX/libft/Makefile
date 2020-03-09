@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/15 16:38:08 by cvernius          #+#    #+#              #
-#    Updated: 2019/10/20 23:50:38 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/09 19:22:23 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,34 +28,28 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c \
  ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_strndup.c ft_count_words.c \
  ft_swap.c ft_strrev.c get_next_line.c ft_readfile.c
 
-OBJ = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o \
- ft_memchr.o ft_memcmp.o ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o \
- ft_strcat.o ft_strncat.o ft_strlcat.o ft_strchr.o ft_strrchr.o ft_strstr.o ft_strnstr.o \
- ft_strcmp.o ft_strncmp.o ft_atoi.o ft_isalpha.o ft_isdigit.o  ft_isalnum.o \
- ft_isascii.o  ft_isprint.o \
- ft_toupper.o ft_tolower.o ft_memalloc.o ft_memdel.o ft_strnew.o ft_strdel.o \
- ft_strclr.o ft_striter.o ft_striteri.o ft_strmap.o ft_strmapi.o ft_strequ.o \
- ft_strnequ.o ft_strsub.o ft_strjoin.o ft_strtrim.o ft_strsplit.o \
- ft_itoa.o ft_putchar.o ft_putstr.o ft_putendl.o ft_putnbr.o ft_putchar_fd.o \
- ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o ft_lstdelone.o \
- ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o ft_strndup.o ft_count_words.o \
- ft_swap.o ft_strrev.o get_next_line.o ft_readfile.o
+OBJ = $(SRC:.c=.o)
 
-LIBA = libft.h
+HEADER = libft.h
 
 FLAGS = -Wall -Wextra -Werror -c
 
-all: $(NAME)
+all: $(NAME) $(OBJ)
+
+%.o: %.c *.h
+	@gcc -c $< -I $(HEADER)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) $(SRC) -I $(LIBA)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc $(FLAGS) $(SRC) -I $(HEADER)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
