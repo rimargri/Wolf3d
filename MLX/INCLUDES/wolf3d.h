@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:41:05 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/09 17:56:09 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/09 18:06:50 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 ** *********************************** **
 */
 
-# define WIN_W 5120 / 4
-# define WIN_H 2880 / 4
+# define WIN_W 5120 / 10
+# define WIN_H 2880 / 10
 # define FOV M_PI / 3.0
 # define FALSE -1
 # define TRUE 0
