@@ -5,97 +5,73 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/11 18:58:16 by cvernius          #+#    #+#              #
-#    Updated: 2020/02/11 20:20:36 by cvernius         ###   ########.fr        #
+#    Created: 2020/02/10 20:07:51 by cvernius          #+#    #+#              #
+#    Updated: 2020/03/09 21:07:38 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# https://m.habr.com/ru/post/439698/
-
-##### try to do default makefile laubching needed library in depends on OS #####
-
-detected_OS := $(shell uname 2>/dev/null || echo Unknown)
-detected_OS := $(patsubst CYGWIN%,Cygwin,$(detected_OS))
-detected_OS := $(patsubst MSYS%,MSYS,$(detected_OS))
-detected_OS := $(patsubst MINGW%,MSYS,$(detected_OS))cflags
+PINK = \033[38;2;200;150;200m
+BLUE = \033[38;2;200;200;250m
+RED = \033[38;2;200;30;70m
+YELLOW = \033[38;2;200;200;50m
+GREEN = \033[38;2;0;200;0m
 
 NAME = wolf3d
 
-SRC_DIR = SRCS
+SRC_DIR = ./srcs
 
-OBJ_DIR = OBJ
+OBJ_DIR = ./obj
 
-INCL_DIR = INCLUDES
+INCL_DIR = ./includes
 
-ifeq ($(detected_OS),Darwin)
-	SRC_DIR = $(addprefix MLX/,$(SRC_DIR))
-	OBJ_DIR = $(addprefix MLX/,$(OBJ_DIR))
-	INCL_DIR = $(addprefix MLX/,$(INCL_DIR))
-endif
-
-ifeq ($(detected_OS),Linux)
-	SRC_DIR = $(addprefix SDL/,$(SRC_DIR))
-	OBJ_DIR = $(addprefix SDL/,$(OBJ_DIR))
-	INCL_DIR = $(addprefix SDL/,$(INCL_DIR))
-endif
-
-C_FILES = main.c drawing.c map_data.c reycast.c
-
-ifeq ($(detected_OS),Linux)
-	C_FILES += data_sdl.c
-endif
+C_FILES = check_player_move.c clear_wolf.c color.c draw_map.c draw_rect.c \
+		  init_layer.c key_press.c load_texture.c main.c render_rays.c \
+		  player.c player_move.c validate.c mlx_data.c layers.c fractal.c \
+		  modes_for_fun.c mirror_floor.c wolf_error.c types_errors.c \
+		  init_textures.c draw_text_back.c  render_walls.c render_texture.c \
+		  cardinal_points.c default_textures.c custom_textures.c menu.c \
+		  draw_menu.c init_modes.c write_map.c jump.c music.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
 RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 
-# RAW_C_FILES = $(addprefix $(SRCS_DIR)/,$(C_FILES))
+MLX_FLAGS = -L ./MinilibX -lm -lmlx -framework OpenGL -framework AppKit
 
-ifeq ($(detected_OS),Darwin)        # Mac OS X
-	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
-endif
+LIBFT_FLAGS = -L libft/ -lft
 
-ifeq ($(detected_OS),Linux)
-	SDLCFLAGS := $(shell sdl2-config --cflags)
-	SDLLFLAGS := $(shell sdl2-config --libs) $(shell sdl2-config --static-libs)    
-endif
+NON_EXISTET	= tfbil
 
-CFLAGS = -Wall -Wextra
-# CFLAGS += -Werror
-# CFLAGS += -g
-# CFLAGS += -O2
+CFLAGS = -Wall -Wextra -Werror
 
-all: $(OBJ_DIR) $(NAME)
+all: $(OBJ_DIR) $(NAME) $(NON_EXISTET)
+
+$(NON_EXISTET):
+	@make -C ./libft
 
 $(OBJ_DIR):
-	mkdir $(OBJ_DIR)
+	@mkdir $(OBJ_DIR)
 
 $(NAME): $(RAW_OBJ_FILES)
+	@make -C ./MinilibX
+	@make -sC ./libft
+	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(NAME)
+	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)\033[0m"
 
-	ifeq ($(detected_OS),Darwin)
-		gcc $(RAW_OBJ_FILES) $(MLX_FLAGS) -o $(NAME)
-	endif
-	ifeq ($(detected_OS),Linux)   
-		gcc $(RAW_OBJ_FILES) $(SDLLFLAGS) -o $(NAME)
-	endif
+#### К о м п и л я ц и я ####
 
-						#############################
-						#### К о м п и л я ц и я ####
-						#############################
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
+	@gcc $(CFLAGS) -I $(INCL_DIR) -I ./MinilibX -I ./libft -c $< -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-
-	ifeq ($(detected_OS),Darwin)
-		gcc $(CFLAGS) -I $(INCL_DIR) -c $< -o $@
-	endif
-	ifeq ($(detected_OS),Linux)
-		gcc $(CFLAGS) $(SDLCFLAGS) -I $(INCL_DIR) -c $< -o $@
-	endif
-	
 clean:
-	rm -rf $(RAW_OBJ_FILES)
+	@rm -rf $(RAW_OBJ_FILES)
+	@rm -rf ./MinilibX/*.o
+	@rm -rf ./libft/*.o
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@rm -rf $(OBJ_DIR)
+	@rm -rf ./MinilibX/libmlx.a
+	@rm -rf ./libft/libft.a
 
 re: fclean all
