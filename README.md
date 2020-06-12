@@ -13,8 +13,9 @@ Runs only on MacOS using graphic library minilibX.
 Enter "make" on the command line. You can test different maps: it's name from 0 to 5 and special map named "Pepe". To launch the program, enter "./wolf3d maps/%map_name%" on the command line. Have a good time! ☼ ☼ ☼ (≧◡≦)
 
 Creators:
-	cvernius: raycaster engine, adding textures
-	hchau: parsing maps, modes
+
+	f0rsunka aka cvernius: raycaster engine, adding textures
+	Hchau-student aka hchau: parsing maps, modes
 
 ![](https://github.com/f0rsunka/Wolf3d/raw/master/screenshots/3.jpg)
 
